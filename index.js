@@ -22,7 +22,11 @@ require("dotenv").config();
 
   await page.select("#idSiteNew", idSite);
 
-  await page.click(`.displayAction.displayActionSmall.qtipOn.skinBgVert`);
+  let submit = await page.$$(
+    ".displayAction.displayActionSmall.qtipOn.skinBgVert"
+  );
+
+  await submit[1].click();
 
   await page.waitForSelector("#login");
 
