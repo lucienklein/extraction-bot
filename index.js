@@ -45,5 +45,12 @@ require("dotenv").config();
 
   await submit[0].click();
 
-  await browser.close();
+  browser.on("targetcreated", async (target) => {
+    const newPage = await target.page();
+
+    if (newPage) {
+    }
+  });
+
+  //   await browser.close();
 })();
