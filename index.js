@@ -22,9 +22,7 @@ require("dotenv").config();
 
   await page.select("#idSiteNew", idSite);
 
-  await page.click(
-    `[class="displayAction displayActionSmall qtipOn skinBgVert"]`
-  );
+  await page.click(`.displayAction.displayActionSmall.qtipOn.skinBgVert`);
 
   await page.waitForSelector("#login");
 
