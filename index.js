@@ -41,7 +41,9 @@ require("dotenv").config();
 
   await page.type("#password", password);
 
-  await page.click("#daSubmit64d4f1a87393b001");
+  submit = await page.$$(".displayAction.displayActionSmall.qtipOn.skinBgBleu");
+
+  await submit[0].click();
 
   await browser.close();
 })();
