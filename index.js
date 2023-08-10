@@ -30,7 +30,14 @@ require("dotenv").config();
 
   await page.waitForSelector("#login");
 
-  await page.type("#login", username);
+  let dropdownSelector = "#loginSelect";
+
+  const optionValue = await page.$eval(
+    `${dropdownSelector} > option[initial="LUKL"]`,
+    (option) => option.value
+  );
+
+  await page.select(dropdownSelector, optionValue);
 
   await page.type("#password", password);
 
