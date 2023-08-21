@@ -52,18 +52,9 @@ const getDemandes = async (page) => {
   await page.setViewport({ width: 1280, height: 800 });
 
   browser.on("targetcreated", async (target) => {
-    const newPage = await target.page();
+    const popup = await target.page();
 
-    if (newPage && newPage !== page) {
-      // Redirect the main page to the popup's URL
-      const popupURL = newPage.url();
-      await page.goto(popupURL);
-
-      // Close the popup window
-      await newPage.close();
-    }
-
-    await getDemandes(page);
+    await getDemandes(popup);
   });
 
   await login(page);
