@@ -40,9 +40,9 @@ const login = async (page) => {
 };
 
 const getDemandes = async (page) => {
-  await page.waitForSelector(`input[title="Demandes du jour"]`);
+  await page.waitForSelector(`input[value="Demandes\u00A0du\u00A0jour"]`);
 
-  await page.click(`input[title="Demandes du jour"]`);
+  await page.click(`input[value="Demandes\u00A0du\u00A0jour"]`);
 };
 
 (async () => {
