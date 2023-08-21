@@ -85,9 +85,7 @@ const getRequestInfo = async (id, page) => {
     spans.map((span) => span.innerText)
   );
 
-  codes = codes.map((code) =>
-    code.replace(/[\d\.]+/g, "").replace(/[\[\]]/g, "")
-  );
+  codes = codes.map((code) => code.replace(/(\[\d+(\.\d+)?\])/g, ""));
   codes = [...new Set(codes)];
 
   // get all children div of the the div .scans
