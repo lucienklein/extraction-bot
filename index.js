@@ -1,9 +1,10 @@
 require("dotenv").config();
+require("./mongo");
 
 const puppeteer = require("puppeteer");
-const fetch = require("node-fetch");
 
 const { uploadToS3FromBuffer } = require("./s3");
+const Prescription = require("./models/prescription");
 
 const login = async (page) => {
   const url = process.env.URL;
@@ -47,7 +48,7 @@ const login = async (page) => {
   await page.goto(`${url}/kalilab.php`);
 };
 
-const getDemandes = async (page) => {
+const getRequestsId = async (page) => {
   await page.waitForSelector("#iframePrincipal");
 
   const elementHandle = await page.$("#iframePrincipal");
@@ -61,25 +62,29 @@ const getDemandes = async (page) => {
 
   const trs = await table.$$("tr");
 
-  let dataIds = await Promise.all(
+  let requestsId = await Promise.all(
     trs.map(async (tr) => {
       const dataId = await tr.evaluate((node) => node.getAttribute("data-id"));
       return dataId;
     })
   );
 
-  dataIds = dataIds.filter((dataId) => dataId !== null);
+  requestsId = requestsId.filter((dataId) => dataId !== null);
 
-  return dataIds;
+  return requestsId;
 };
 
-const getOrdonnance = async (demandesId, page) => {
+const getRequestInfo = async (id, page) => {
   const url = process.env.URL;
 
-  let id = demandesId[0];
+  let id = requestsId[0];
 
   await page.goto(
     `${url}/moduleSil/demande/resultat/index.php?idDemande=${id}`
+  );
+
+  const codes = await page.$$eval(".dataCode", (spans) =>
+    spans.map((span) => span.innerText)
   );
 
   // get all children div of the the div .scans
@@ -111,11 +116,11 @@ const getOrdonnance = async (demandesId, page) => {
     };
   });
 
-  const ordonnancesInfo = filesInfo.filter(
+  let prescriptionsInfo = filesInfo.filter(
     (fileInfo) => fileInfo !== null && fileInfo.idTypeScan === "1"
   );
 
-  for (const info of ordonnancesInfo) {
+  for (const info of prescriptionsInfo) {
     await page.goto(
       `${url}/moduleKalilab/scan/visuImage.php?idScan=${info.idScan}&idTypeReference=${info.idTypeReference}&idTypeScan=${info.idTypeScan}&idReference=${info.idReference}`
     );
@@ -130,16 +135,21 @@ const getOrdonnance = async (demandesId, page) => {
 
     const buffer = await response.buffer();
 
-    const res = await uploadToS3FromBuffer(
-      `ordonnances/${info.idReference}/${info.idScan}.jpg`,
-      buffer,
-      "image/jpeg"
-    );
+    info.buffer = buffer;
 
-    console.log(res);
+    // const res = await uploadToS3FromBuffer(
+    //   `prescriptions/${info.idReference}/${info.idScan}.jpg`,
+    //   buffer,
+    //   "image/jpeg"
+    // );
+
+    // await Prescription.create({
+    //   s3Key: res.Key,
+    //   idReference: info.idReference,
+    // });
   }
 
-  return ordonnancesInfo;
+  return { prescriptionsInfo, codes };
 };
 
 (async () => {
@@ -156,9 +166,11 @@ const getOrdonnance = async (demandesId, page) => {
 
   await login(page);
 
-  const demandesId = await getDemandes(page);
+  const requestsId = await getRequestsId(page);
 
-  await getOrdonnance(demandesId, page);
+  const id = requestsId[0];
+
+  const requestInfo = await getRequestInfo(id, page);
 
   //   await browser.close();
 })();
