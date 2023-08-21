@@ -108,7 +108,7 @@ const getOrdonnance = async (demandesId, page) => {
   });
 
   const ordonnancesInfo = filesInfo.filter(
-    (fileInfo) => fileInfo !== null && fileInfo.idTypeScan !== "1"
+    (fileInfo) => fileInfo !== null && fileInfo.idTypeScan === "1"
   );
 
   console.log(ordonnancesInfo);
