@@ -38,7 +38,7 @@ const login = async (page) => {
     `input[value="\u00A0\u00A0\u00A0Se\u00A0connecter\u00A0\u00A0\u00A0"]`
   );
 
-  await new Promise((resolve) => setTimeout(resolve, 5000));
+  await new Promise((resolve) => setTimeout(resolve, 2000));
 
   await page.goto(`${url}/kalilab.php`);
 };
@@ -78,7 +78,7 @@ const getOrdonnance = async (demandesId, page) => {
     `${url}/moduleSil/demande/resultat/index.php?idDemande=${id}`
   );
 
-  await page.waitForSelector("#iframePrincipal");
+  // await page.waitForSelector("#iframePrincipal");
 
   const elementHandle = await page.$("#iframePrincipal");
   const frame = await elementHandle.contentFrame();
