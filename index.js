@@ -9,6 +9,20 @@ require("dotenv").config();
 
   const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
+  await page.setViewport({ width: 1280, height: 800 });
+
+  browser.on("targetcreated", async (target) => {
+    const newPage = await target.page();
+
+    if (newPage && newPage !== page) {
+      // Redirect the main page to the popup's URL
+      const popupURL = newPage.url();
+      await page.goto(popupURL);
+
+      // Close the popup window
+      await newPage.close();
+    }
+  });
 
   await page.goto(url);
 
@@ -44,19 +58,6 @@ require("dotenv").config();
   submit = await page.$$(".displayAction.displayActionSmall.qtipOn.skinBgBleu");
 
   await submit[0].click();
-
-  browser.on("targetcreated", async (target) => {
-    const newPage = await target.page();
-
-    if (newPage && newPage !== page) {
-      // Redirect the main page to the popup's URL
-      const popupURL = newPage.url();
-      await page.goto(popupURL);
-
-      // Close the popup window
-      await newPage.close();
-    }
-  });
 
   //   await browser.close();
 })();
