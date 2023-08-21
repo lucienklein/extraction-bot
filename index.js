@@ -37,6 +37,8 @@ const login = async (page) => {
   await page.click(
     `input[value="\u00A0\u00A0\u00A0Se\u00A0connecter\u00A0\u00A0\u00A0"]`
   );
+
+  await page.goto(`${url}/kalilab.php`);
 };
 
 const getDemandes = async (page) => {
@@ -100,20 +102,14 @@ const getOrdonnance = async (demandesId, page) => {
 
   browser.on("targetcreated", async (target) => {
     const popup = await target.page();
-
-    if (popup && popup !== page) {
-      // Redirect the main page to the popup's URL
-      const popupURL = popup.url();
-      await page.goto(popupURL);
-
-      // Close the popup window
-      await popup.close();
-    }
-    const demandesId = await getDemandes(page);
-
-    await getOrdonnance(demandesId, page);
+    await popup.close();
   });
 
   await login(page);
+
+  const demandesId = await getDemandes(page);
+
+  await getOrdonnance(demandesId, page);
+
   //   await browser.close();
 })();
