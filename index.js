@@ -37,7 +37,7 @@ require("dotenv").config();
 
   await page.select("#idSiteNew", idSite);
 
-  await page.click(`'input[value="\u00A0Enregistrer\u00A0"]'`);
+  await page.click(`input[value="\u00A0Enregistrer\u00A0"]`);
 
   await page.waitForSelector("#login");
 
@@ -58,7 +58,7 @@ require("dotenv").config();
 
   await page.waitForSelector(`'input[title="Demandes du jour"]'`);
 
-  await page.click(`'input[title="Demandes du jour"]'`);
+  await page.click(`input[title="Demandes du jour"]`);
 
   //   await browser.close();
 })();
