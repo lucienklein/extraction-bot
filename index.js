@@ -47,6 +47,16 @@ const getDemandes = async (page) => {
   const frame = await elementHandle.contentFrame();
 
   await frame.click(`input[value="Demandes\u00A0du\u00A0jour"]`);
+
+  await frame.waitForSelector(".tableau.tableDemande");
+
+  const table = await frame.$(".tableau.tableDemande");
+
+  const trs = await table.$$(".dj");
+
+  const tr = trs[0];
+
+  await tr.click(".qtipOn.hand.il");
 };
 
 (async () => {
