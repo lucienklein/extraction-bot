@@ -42,7 +42,8 @@ const login = async (page) => {
 const getDemandes = async (page) => {
   await page.waitForSelector("#pageTitle");
 
-  await page.waitForTimeout(10000);
+  const html = await page.content();
+  console.log(html);
 
   await page.click(`input[value="Demandes\u00A0du\u00A0jour"]`);
 };
