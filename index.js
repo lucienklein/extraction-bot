@@ -127,7 +127,8 @@ const getOrdonnance = async (demandesId, page) => {
     const imgSrc = await img.evaluate((node) => node.getAttribute("src"));
 
     const response = await fetch(imgSrc);
-    const buffer = await response.buffer();
+    const arrayBuffer = await response.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
 
     const res = await uploadFromUrlToS3(
       `ordonnances/${info.idReference}/${info.idScan}.jpg`,
