@@ -1,4 +1,5 @@
 const puppeteer = require("puppeteer");
+const { uploadFromUrlToS3 } = require("./s3");
 require("dotenv").config();
 
 const login = async (page) => {
@@ -111,7 +112,27 @@ const getOrdonnance = async (demandesId, page) => {
     (fileInfo) => fileInfo !== null && fileInfo.idTypeScan === "1"
   );
 
-  console.log(ordonnancesInfo);
+  for (const info of ordonnancesInfo) {
+    await page.goto(
+      `${url}/moduleKalilab/scan/visuImage.php?idScan=${info.idScan}&idTypeReference=${info.idTypeReference}&idTypeScan=${info.idTypeScan}&idReference=${info.idReference}`
+    );
+
+    // select the img
+    const img = await page.$("img");
+
+    // get the img src
+    const imgSrc = await img.evaluate((node) => node.getAttribute("src"));
+
+    // upload the img to s3
+    const res = await uploadFromUrlToS3(
+      imgSrc,
+      `ordonnances/${info.idReference}/${info.idScan}.jpg`,
+      "image/jpeg"
+    );
+
+    console.log(res);
+  }
+
   return ordonnancesInfo;
 };
 
