@@ -42,10 +42,11 @@ const login = async (page) => {
 const getDemandes = async (page) => {
   await page.waitForSelector("#pageTitle");
 
-  const html = await page.content();
-  console.log(html);
+  // get iframe with the id "iframePrincipal"
+  const elementHandle = await page.$("#iframePrincipal");
+  const frame = await elementHandle.contentFrame();
 
-  await page.click(`input[value="Demandes\u00A0du\u00A0jour"]`);
+  await frame.click(`input[value="Demandes\u00A0du\u00A0jour"]`);
 };
 
 (async () => {
