@@ -81,9 +81,12 @@ const getRequestInfo = async (id, page) => {
     `${url}/moduleSil/demande/resultat/index.php?idDemande=${id}`
   );
 
-  const codes = await page.$$eval(".dataCode", (spans) =>
+  let codes = await page.$$eval(".dataCode", (spans) =>
     spans.map((span) => span.innerText)
   );
+
+  codes = codes.map((code) => code.replace(/\[\d+\]/g, ""));
+  codes = [...new Set(codes)];
 
   // get all children div of the the div .scans
   const files = await page.$$(".scans > div");
