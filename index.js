@@ -90,7 +90,29 @@ const getOrdonnance = async (demandesId, page) => {
     })
   );
 
-  console.log(filesInfo);
+  filesInfo = filesInfo.map((fileInfo) => {
+    const matches = str.match(/remoteScan\(([^)]+)\)/);
+
+    if (!matches || !matches[1]) return null;
+
+    const params = matches[1]
+      .split(",")
+      .map((param) => param.trim().replace(/['"]/g, ""));
+
+    return {
+      idScan: params[0],
+      idTypeReference: params[1],
+      idTypeScan: params[2],
+      idReference: params[3],
+    };
+  });
+
+  const ordonnancesInfo = filesInfo.filter(
+    (fileInfo) => fileInfo !== null && fileInfo.idTypeScan !== "1"
+  );
+
+  console.log(ordonnancesInfo);
+  return ordonnancesInfo;
 };
 
 (async () => {
