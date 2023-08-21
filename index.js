@@ -1,6 +1,9 @@
-const puppeteer = require("puppeteer");
-const { uploadFromUrlToS3 } = require("./s3");
 require("dotenv").config();
+
+const puppeteer = require("puppeteer");
+const fetch = require("node-fetch");
+
+const { uploadFromUrlToS3 } = require("./s3");
 
 const login = async (page) => {
   const url = process.env.URL;
@@ -123,9 +126,12 @@ const getOrdonnance = async (demandesId, page) => {
 
     const imgSrc = await img.evaluate((node) => node.getAttribute("src"));
 
+    const response = await fetch(imgSrc);
+    const buffer = await response.buffer();
+
     const res = await uploadFromUrlToS3(
-      imgSrc,
       `ordonnances/${info.idReference}/${info.idScan}.jpg`,
+      buffer,
       "image/jpeg"
     );
 
