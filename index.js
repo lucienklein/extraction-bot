@@ -96,9 +96,7 @@ const getOrdonnance = async (demandesId, page) => {
 
     const demandesId = await getDemandes(frame);
 
-    const newPage = await browser.newPage();
-
-    await getOrdonnance(demandesId, newPage);
+    await getOrdonnance(demandesId, page);
   });
 
   await login(page);
