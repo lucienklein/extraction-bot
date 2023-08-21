@@ -40,17 +40,9 @@ const login = async (page) => {
 };
 
 const getDemandes = async (page) => {
-  await page.waitForSelector("#pageTitle");
+  await page.waitForSelector(".tableau.tableDemande");
 
-  // get iframe with the id "iframePrincipal"
-  const elementHandle = await page.$("#iframePrincipal");
-  const frame = await elementHandle.contentFrame();
-
-  await frame.click(`input[value="Demandes\u00A0du\u00A0jour"]`);
-
-  await frame.waitForSelector(".tableau.tableDemande");
-
-  const table = await frame.$(".tableau.tableDemande");
+  const table = await page.$(".tableau.tableDemande");
 
   const trs = await table.$$("tr");
 
@@ -63,7 +55,17 @@ const getDemandes = async (page) => {
 
   dataIds = dataIds.filter((dataId) => dataId !== null);
 
-  console.log(dataIds);
+  return dataIds;
+};
+
+const getOrdonnance = async (demandesId, page) => {
+  const url = process.env.URL;
+
+  let id = demandesId[0];
+
+  await page.goto(
+    `${url}/moduleSil/demande/resultat/index.php?idDemande=${id}`
+  );
 };
 
 (async () => {
@@ -73,18 +75,30 @@ const getDemandes = async (page) => {
   await page.setViewport({ width: 1280, height: 800 });
 
   browser.on("targetcreated", async (target) => {
-    const newPage = await target.page();
+    const popup = await target.page();
 
-    if (newPage && newPage !== page) {
+    if (newPage && popup !== page) {
       // Redirect the main page to the popup's URL
-      const popupURL = newPage.url();
+      const popupURL = popup.url();
       await page.goto(popupURL);
 
       // Close the popup window
-      await newPage.close();
+      await popup.close();
     }
 
-    await getDemandes(page);
+    await page.waitForSelector("#pageTitle");
+
+    // get iframe with the id "iframePrincipal"
+    const elementHandle = await page.$("#iframePrincipal");
+    const frame = await elementHandle.contentFrame();
+
+    await frame.click(`input[value="Demandes\u00A0du\u00A0jour"]`);
+
+    const demandesId = await getDemandes(frame);
+
+    const newPage = await browser.newPage();
+
+    await getOrdonnance(demandesId, newPage);
   });
 
   await login(page);
