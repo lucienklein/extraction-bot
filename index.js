@@ -48,7 +48,13 @@ require("dotenv").config();
   browser.on("targetcreated", async (target) => {
     const newPage = await target.page();
 
-    if (newPage) {
+    if (newPage && newPage !== page) {
+      // Redirect the main page to the popup's URL
+      const popupURL = newPage.url();
+      await page.goto(popupURL);
+
+      // Close the popup window
+      await newPage.close();
     }
   });
 
