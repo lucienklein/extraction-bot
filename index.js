@@ -77,7 +77,7 @@ const getOrdonnance = async (demandesId, page) => {
   browser.on("targetcreated", async (target) => {
     const popup = await target.page();
 
-    if (newPage && popup !== page) {
+    if (popup && popup !== page) {
       // Redirect the main page to the popup's URL
       const popupURL = popup.url();
       await page.goto(popupURL);
