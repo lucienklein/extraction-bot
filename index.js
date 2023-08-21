@@ -91,7 +91,7 @@ const getOrdonnance = async (demandesId, page) => {
   );
 
   filesInfo = filesInfo.map((fileInfo) => {
-    const matches = str.match(/remoteScan\(([^)]+)\)/);
+    const matches = fileInfo.match(/remoteScan\(([^)]+)\)/);
 
     if (!matches || !matches[1]) return null;
 
