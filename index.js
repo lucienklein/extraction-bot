@@ -78,7 +78,7 @@ const getOrdonnance = async (demandesId, page) => {
     `${url}/moduleSil/demande/resultat/index.php?idDemande=${id}`
   );
 
-  // await page.waitForSelector("#iframePrincipal");
+  await page.waitForSelector("#iframePrincipal");
 
   const elementHandle = await page.$("#iframePrincipal");
   const frame = await elementHandle.contentFrame();
