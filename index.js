@@ -4,7 +4,7 @@ require("dotenv").config();
 const login = async (page) => {
   const url = process.env.URL;
   const idSite = process.env.ID_SITE;
-  const username = process.env.USERNAME;
+  const user = process.env.USER;
   const password = process.env.PASSWORD;
 
   await page.goto(url);
@@ -26,7 +26,7 @@ const login = async (page) => {
   let dropdownSelector = "#loginSelect";
 
   const optionValue = await page.$eval(
-    `${dropdownSelector} > option[initial="${username}"]`,
+    `${dropdownSelector} > option[initial="${user}"]`,
     (option) => option.value
   );
 
