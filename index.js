@@ -52,11 +52,18 @@ const getDemandes = async (page) => {
 
   const table = await frame.$(".tableau.tableDemande");
 
-  const trs = await table.$$(".dj");
+  const trs = await table.$$("tr");
 
-  const tr = trs[0];
+  let dataIds = await Promise.all(
+    trs.map(async (tr) => {
+      const dataId = await tr.evaluate((node) => node.getAttribute("data-id"));
+      return dataId;
+    })
+  );
 
-  await tr.click(".qtipOn.hand.il");
+  dataIds = dataIds.filter((dataId) => dataId !== null);
+
+  console.log(dataIds);
 };
 
 (async () => {
