@@ -130,6 +130,12 @@ const createBucket = (name) => {
 };
 
 function uploadToS3FromStream(name) {
+  console.log(
+    CELLAR_ADDON_HOST,
+    CELLAR_ADDON_KEY_ID,
+    CELLAR_ADDON_KEY_SECRET,
+    CELLAR_BUCKET_NAME
+  );
   const pass = new stream.PassThrough();
   const s3bucket = new AWS.S3({
     endpoint: CELLAR_ADDON_HOST,
