@@ -40,9 +40,16 @@ const login = async (page) => {
 };
 
 const getDemandes = async (page) => {
-  await page.waitForSelector(".tableau.tableDemande");
+  await page.waitForSelector("#iframePrincipal");
 
-  const table = await page.$(".tableau.tableDemande");
+  const elementHandle = await page.$("#iframePrincipal");
+  const frame = await elementHandle.contentFrame();
+
+  await frame.click(`input[value="Demandes\u00A0du\u00A0jour"]`);
+
+  await frame.waitForSelector(".tableau.tableDemande");
+
+  const table = await frame.$(".tableau.tableDemande");
 
   const trs = await table.$$("tr");
 
@@ -66,6 +73,23 @@ const getOrdonnance = async (demandesId, page) => {
   await page.goto(
     `${url}/moduleSil/demande/resultat/index.php?idDemande=${id}`
   );
+
+  await page.waitForSelector("#iframePrincipal");
+
+  const elementHandle = await page.$("#iframePrincipal");
+  const frame = await elementHandle.contentFrame();
+
+  // select the div with the class .typeScan and the innerText "Ordonnance"
+  await frame.waitForSelector(".typeScan");
+
+  const ordonnance = await frame.$x('//div[contains(text(), "Ordonnance")]');
+
+  // access the value of the key onclick
+  const ordonnanceOnclick = await ordonnance[0].evaluate((node) =>
+    node.getAttribute("onclick")
+  );
+
+  console.log(ordonnanceOnclick);
 };
 
 (async () => {
@@ -85,16 +109,7 @@ const getOrdonnance = async (demandesId, page) => {
       // Close the popup window
       await popup.close();
     }
-
-    await page.waitForSelector("#pageTitle");
-
-    // get iframe with the id "iframePrincipal"
-    const elementHandle = await page.$("#iframePrincipal");
-    const frame = await elementHandle.contentFrame();
-
-    await frame.click(`input[value="Demandes\u00A0du\u00A0jour"]`);
-
-    const demandesId = await getDemandes(frame);
+    const demandesId = await getDemandes(page);
 
     await getOrdonnance(demandesId, page);
   });
