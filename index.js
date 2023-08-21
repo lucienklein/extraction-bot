@@ -77,8 +77,6 @@ const getRequestsId = async (page) => {
 const getRequestInfo = async (id, page) => {
   const url = process.env.URL;
 
-  let id = requestsId[0];
-
   await page.goto(
     `${url}/moduleSil/demande/resultat/index.php?idDemande=${id}`
   );
