@@ -117,13 +117,12 @@ const getOrdonnance = async (demandesId, page) => {
       `${url}/moduleKalilab/scan/visuImage.php?idScan=${info.idScan}&idTypeReference=${info.idTypeReference}&idTypeScan=${info.idTypeScan}&idReference=${info.idReference}`
     );
 
-    // select the img
-    const img = await page.$(".imgScan");
+    await page.waitForSelector("#imgScan");
 
-    // get the img src
+    const img = await page.$("#imgScan");
+
     const imgSrc = await img.evaluate((node) => node.getAttribute("src"));
 
-    // upload the img to s3
     const res = await uploadFromUrlToS3(
       imgSrc,
       `ordonnances/${info.idReference}/${info.idScan}.jpg`,
