@@ -38,7 +38,7 @@ const login = async (page) => {
     `input[value="\u00A0\u00A0\u00A0Se\u00A0connecter\u00A0\u00A0\u00A0"]`
   );
 
-  await page.waitFor(10000);
+  await new Promise((resolve) => setTimeout(resolve, 5000));
 
   await page.goto(`${url}/kalilab.php`);
 };
@@ -104,7 +104,7 @@ const getOrdonnance = async (demandesId, page) => {
 
   browser.on("targetcreated", async (target) => {
     const popup = await target.page();
-    await popup.waitFor(10000);
+    await new Promise((resolve) => setTimeout(resolve, 1000));
     await popup.close();
   });
 
