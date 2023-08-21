@@ -78,17 +78,8 @@ const getOrdonnance = async (demandesId, page) => {
     `${url}/moduleSil/demande/resultat/index.php?idDemande=${id}`
   );
 
-  await page.waitForSelector("#iframePrincipal");
+  const ordonnance = await page.$x('//div[contains(text(), "Ordonnance")]');
 
-  const elementHandle = await page.$("#iframePrincipal");
-  const frame = await elementHandle.contentFrame();
-
-  // select the div with the class .typeScan and the innerText "Ordonnance"
-  await frame.waitForSelector(".typeScan");
-
-  const ordonnance = await frame.$x('//div[contains(text(), "Ordonnance")]');
-
-  // access the value of the key onclick
   const ordonnanceOnclick = await ordonnance[0].evaluate((node) =>
     node.getAttribute("onclick")
   );
