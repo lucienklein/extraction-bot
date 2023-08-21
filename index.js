@@ -40,6 +40,8 @@ const login = async (page) => {
 };
 
 const getDemandes = async (page) => {
+  await page.waitForSelector("#pageTitle");
+
   await page.waitForSelector(`input[value="Demandes\u00A0du\u00A0jour"]`);
 
   await page.click(`input[value="Demandes\u00A0du\u00A0jour"]`);
@@ -52,9 +54,18 @@ const getDemandes = async (page) => {
   await page.setViewport({ width: 1280, height: 800 });
 
   browser.on("targetcreated", async (target) => {
-    const popup = await target.page();
+    const newPage = await target.page();
 
-    await getDemandes(popup);
+    if (newPage && newPage !== page) {
+      // Redirect the main page to the popup's URL
+      const popupURL = newPage.url();
+      await page.goto(popupURL);
+
+      // Close the popup window
+      await newPage.close();
+    }
+
+    await getDemandes(page);
   });
 
   await login(page);
