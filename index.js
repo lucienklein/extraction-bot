@@ -23,6 +23,12 @@ require("dotenv").config();
       // Close the popup window
       await newPage.close();
     }
+
+    await page.waitForSelector(`input[title="Demandes du jour"]`, {
+      timeout: 60000,
+    });
+
+    await page.click(`input[title="Demandes du jour"]`);
   });
 
   await page.goto(url);
@@ -55,12 +61,6 @@ require("dotenv").config();
   await page.click(
     `input[value="\u00A0\u00A0\u00A0Se\u00A0connecter\u00A0\u00A0\u00A0"]`
   );
-
-  await page.waitForSelector(`input[title="Demandes du jour"]`, {
-    timeout: 60000,
-  });
-
-  await page.click(`input[title="Demandes du jour"]`);
 
   //   await browser.close();
 })();
