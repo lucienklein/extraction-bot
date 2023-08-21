@@ -78,13 +78,19 @@ const getOrdonnance = async (demandesId, page) => {
     `${url}/moduleSil/demande/resultat/index.php?idDemande=${id}`
   );
 
-  const ordonnance = await page.$x('//div[contains(text(), "Ordonnance")]');
+  // get all children div of the the div .scans
+  const files = await page.$$(".scans > div");
 
-  const ordonnanceOnclick = await ordonnance[0].evaluate((node) =>
-    node.getAttribute("onclick")
+  let filesInfo = await Promise.all(
+    files.map(async (div) => {
+      const fileInfo = await div.evaluate((node) =>
+        node.getAttribute("onclick")
+      );
+      return fileInfo;
+    })
   );
 
-  console.log(ordonnanceOnclick);
+  console.log(filesInfo);
 };
 
 (async () => {
