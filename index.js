@@ -1,35 +1,11 @@
 const puppeteer = require("puppeteer");
 require("dotenv").config();
 
-(async () => {
+const login = async (page) => {
   const url = process.env.URL;
   const idSite = process.env.ID_SITE;
   const username = process.env.USERNAME;
   const password = process.env.PASSWORD;
-
-  const browser = await puppeteer.launch({ headless: false });
-
-  const page = await browser.newPage();
-  await page.setViewport({ width: 1280, height: 800 });
-
-  browser.on("targetcreated", async (target) => {
-    const newPage = await target.page();
-
-    if (newPage && newPage !== page) {
-      // Redirect the main page to the popup's URL
-      const popupURL = newPage.url();
-      await page.goto(popupURL);
-
-      // Close the popup window
-      await newPage.close();
-    }
-
-    await page.waitForSelector(`input[title="Demandes du jour"]`, {
-      timeout: 60000,
-    });
-
-    await page.click(`input[title="Demandes du jour"]`);
-  });
 
   await page.goto(url);
 
@@ -50,7 +26,7 @@ require("dotenv").config();
   let dropdownSelector = "#loginSelect";
 
   const optionValue = await page.$eval(
-    `${dropdownSelector} > option[initial="LUKL"]`,
+    `${dropdownSelector} > option[initial="${username}"]`,
     (option) => option.value
   );
 
@@ -61,6 +37,35 @@ require("dotenv").config();
   await page.click(
     `input[value="\u00A0\u00A0\u00A0Se\u00A0connecter\u00A0\u00A0\u00A0"]`
   );
+};
 
+const getDemandes = async (page) => {
+  await page.waitForSelector(`input[title="Demandes du jour"]`);
+
+  await page.click(`input[title="Demandes du jour"]`);
+};
+
+(async () => {
+  const browser = await puppeteer.launch({ headless: false });
+
+  const page = await browser.newPage();
+  await page.setViewport({ width: 1280, height: 800 });
+
+  browser.on("targetcreated", async (target) => {
+    const newPage = await target.page();
+
+    if (newPage && newPage !== page) {
+      // Redirect the main page to the popup's URL
+      const popupURL = newPage.url();
+      await page.goto(popupURL);
+
+      // Close the popup window
+      await newPage.close();
+    }
+
+    await getDemandes(page);
+  });
+
+  await login(page);
   //   await browser.close();
 })();
