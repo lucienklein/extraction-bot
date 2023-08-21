@@ -118,7 +118,7 @@ const getOrdonnance = async (demandesId, page) => {
     );
 
     // select the img
-    const img = await page.$("img");
+    const img = await page.$(".imgScan");
 
     // get the img src
     const imgSrc = await img.evaluate((node) => node.getAttribute("src"));
