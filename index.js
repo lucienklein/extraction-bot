@@ -8,6 +8,7 @@ require("dotenv").config();
   const password = process.env.PASSWORD;
 
   const browser = await puppeteer.launch({ headless: false });
+
   const page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 800 });
 
@@ -36,11 +37,7 @@ require("dotenv").config();
 
   await page.select("#idSiteNew", idSite);
 
-  let submit = await page.$$(
-    ".displayAction.displayActionSmall.qtipOn.skinBgVert"
-  );
-
-  await submit[1].click();
+  await page.click(`'input[value="\u00A0Enregistrer\u00A0"]'`);
 
   await page.waitForSelector("#login");
 
@@ -55,9 +52,13 @@ require("dotenv").config();
 
   await page.type("#password", password);
 
-  submit = await page.$$(".displayAction.displayActionSmall.qtipOn.skinBgBleu");
+  await page.click(
+    `input[value="\u00A0\u00A0\u00A0Se\u00A0connecter\u00A0\u00A0\u00A0"]`
+  );
 
-  await submit[0].click();
+  await page.waitForSelector(`'input[title="Demandes du jour"]'`);
+
+  await page.click(`'input[title="Demandes du jour"]'`);
 
   //   await browser.close();
 })();
