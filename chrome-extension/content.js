@@ -29,26 +29,16 @@ const addButton = () => {
   if (url.pathname === "/kalilab.php" && title.innerText === "RECHERCHE DE DEMANDE") {
     var iframe = document.getElementById("iframePrincipal");
     var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
-    var table = innerDoc.querySelector(".tableau.tableDemande");
     var rows = innerDoc.querySelectorAll(".tableau.tableDemande .dj");
 
-    var button = document.createElement("button");
-    button.innerHTML = "Click me";
-    button.onclick = function () {
-      console.log("clicked");
-    };
-    table.parentNode.insertBefore(button, table);
-
     rows.forEach((row) => {
-      var checkbox = document.createElement("input");
-      checkbox.type = "checkbox";
-      row.insertBefore(checkbox, row.firstChild);
+      var button = document.createElement("button");
+      button.innerHTML = "✨";
+      button.onclick = function () {
+        console.log("clicked");
+      };
+      row.appendChild(button);
     });
-
-    // var firstRow = innerDoc.querySelector(".tableau.tableDemande tr:first-child");
-    // var th = document.createElement("th");
-    // th.innerText = "";
-    // firstRow.insertBefore(th, firstRow.firstChild);
   }
 };
 
