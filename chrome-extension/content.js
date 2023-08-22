@@ -21,19 +21,19 @@
 // // Execute the function after the DOM is fully loaded
 // document.addEventListener("DOMContentLoaded", addButtonInIframe, false);
 
-// Get the current URL
-var url = new URL(window.location.href);
-const title = document.querySelector("#pageTitle");
+const addButton = () => {
+  var url = new URL(window.location.href);
+  const title = document.querySelector("#pageTitle");
 
-console.log("extension");
+  console.log("extension");
+  if (url.pathname === "/kalilab.php" && title.innerText === "Recherche de demande") {
+    var button = document.createElement("button");
+    button.innerHTML = "Click me";
+    button.onclick = function () {
+      console.log("clicked");
+    };
+    document.body.appendChild(button);
+  }
+};
 
-// Check the pathname (route) of the URL
-if (url.pathname === "/kalilab.php" || title.innerText === "Recherche de demande") {
-  var button = document.createElement("button");
-  button.innerHTML = "Click me";
-  button.onclick = function () {
-    console.log("clicked");
-    // Your code for what you want the button to do
-  };
-  document.body.appendChild(button);
-}
+document.addEventListener("DOMContentLoaded", addButton, false);
