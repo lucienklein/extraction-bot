@@ -37,7 +37,7 @@ const addButton = () => {
     button.onclick = function () {
       console.log("clicked");
     };
-    table.insertBefore(button, table.firstChild);
+    table.parentNode.insertBefore(button, table);
 
     rows.forEach((row) => {
       var checkbox = document.createElement("input");
@@ -47,8 +47,9 @@ const addButton = () => {
 
     var otherRows = innerDoc.querySelectorAll(".tableau.tableDemande :not(.dj)");
     otherRows.forEach((row) => {
-      var emptyTh = document.createElement("th");
-      row.insertBefore(emptyTh, row.firstChild);
+      var th = document.createElement("th");
+      th.innerText = "Auto";
+      row.insertBefore(th, row.firstChild);
     });
   }
 };
