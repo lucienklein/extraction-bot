@@ -26,7 +26,7 @@ const addButton = () => {
   const title = document.querySelector("#pageTitle");
 
   console.log("extension", url.pathname, title.innerText);
-  if (url.pathname === "/kalilab.php" && title.innerText === "Recherche de demande") {
+  if (url.pathname === "/kalilab.php" && title.innerText === "RECHERCHE DE DEMANDE") {
     var button = document.createElement("button");
     button.innerHTML = "Click me";
     button.onclick = function () {
