@@ -39,7 +39,7 @@ const addButton = () => {
       button.style = "cursor: pointer;";
 
       button.onclick = function () {
-        button.innerHTML = "Loading...";
+        button.innerHTML = "🔄";
         // fetch("http://example.com/dataId", {
         //   method: "POST",
         //   headers: {
@@ -54,9 +54,9 @@ const addButton = () => {
         //   .catch((error) => {
         //     console.error("Error:", error);
         //   });
-        new Notification("Request Completed", {
-          body: "The request has been completed successfully.",
-        });
+        var toastHTML =
+          '<span>Request Completed. The request has been completed successfully.</span><button class="btn-flat toast-action">Undo</button>';
+        M.toast({ html: toastHTML });
       };
 
       row.appendChild(button);
