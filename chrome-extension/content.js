@@ -32,11 +32,16 @@ const addButton = () => {
     var rows = innerDoc.querySelectorAll(".tableau.tableDemande .dj");
 
     rows.forEach((row) => {
+      const dataId = row.getAttribute("data-id");
       var button = document.createElement("button");
+
       button.innerHTML = "✨";
+      button.style = "cursor: pointer;";
+
       button.onclick = function () {
-        console.log("clicked");
+        console.log("clicked", dataId);
       };
+
       row.appendChild(button);
     });
   }
