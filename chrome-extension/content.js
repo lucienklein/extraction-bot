@@ -23,14 +23,15 @@
 
 // Get the current URL
 var url = new URL(window.location.href);
+const title = document.querySelector("#pageTitle");
 
 // Check the pathname (route) of the URL
-if (url.pathname === "/kalilab.php") {
-  var button = document.createElement("button");
-  button.innerHTML = "Click me";
-  button.onclick = function () {
-    console.log("clicked");
-    // Your code for what you want the button to do
-  };
-  document.body.appendChild(button);
-}
+if (url.pathname !== "/kalilab.php" || title.innerText !== "Recherche de demande") return;
+
+var button = document.createElement("button");
+button.innerHTML = "Click me";
+button.onclick = function () {
+  console.log("clicked");
+  // Your code for what you want the button to do
+};
+document.body.appendChild(button);
