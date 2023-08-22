@@ -25,6 +25,8 @@
 var url = new URL(window.location.href);
 const title = document.querySelector("#pageTitle");
 
+console.log("extension", url);
+
 // Check the pathname (route) of the URL
 if (url.pathname !== "/kalilab.php" || title.innerText !== "Recherche de demande") return;
 
