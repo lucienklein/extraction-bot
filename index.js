@@ -4,7 +4,7 @@ require("./mongo");
 const puppeteer = require("puppeteer");
 
 const { uploadToS3FromBuffer } = require("./s3");
-const Prescription = require("./models/prescription");
+const Prescription = require("./models/request");
 
 const login = async (page) => {
   const url = process.env.URL;
@@ -172,6 +172,8 @@ const getRequestInfo = async (id, page) => {
   const id = requestsId[0];
 
   const requestInfo = await getRequestInfo(id, page);
+
+
 
   //   await browser.close();
 })();
