@@ -39,7 +39,24 @@ const addButton = () => {
       button.style = "cursor: pointer;";
 
       button.onclick = function () {
-        console.log("clicked", dataId);
+        button.innerHTML = "Loading...";
+        // fetch("http://example.com/dataId", {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify({ dataId: dataId }),
+        // })
+        //   .then((response) => response.json())
+        //   .then((data) => {
+        //     button.innerHTML = "✨";
+        //   })
+        //   .catch((error) => {
+        //     console.error("Error:", error);
+        //   });
+        new Notification("Request Completed", {
+          body: "The request has been completed successfully.",
+        });
       };
 
       row.appendChild(button);
