@@ -27,12 +27,18 @@ const addButton = () => {
 
   console.log("extension", url.pathname, title.innerText);
   if (url.pathname === "/kalilab.php" && title.innerText === "RECHERCHE DE DEMANDE") {
-    var button = document.createElement("button");
-    button.innerHTML = "Click me";
-    button.onclick = function () {
-      console.log("clicked");
-    };
-    document.body.appendChild(button);
+    var iframe = document.getElementById("iframePrincipal");
+    var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+    var rows = innerDoc.querySelectorAll(".tableau.tableDemande .dj");
+
+    rows.forEach((row) => {
+      var button = document.createElement("button");
+      button.innerHTML = "Click me";
+      button.onclick = function () {
+        console.log("clicked");
+      };
+      row.appendChild(button);
+    });
   }
 };
 
