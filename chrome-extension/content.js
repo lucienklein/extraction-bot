@@ -54,9 +54,26 @@ const addButton = () => {
         //   .catch((error) => {
         //     console.error("Error:", error);
         //   });
-        var toastHTML =
-          '<span>Request Completed. The request has been completed successfully.</span><button class="btn-flat toast-action">Undo</button>';
-        M.toast({ html: toastHTML });
+        //     console.error("Error:", error);
+        //   });
+
+        // Create a div for the message
+        var messageDiv = document.createElement("div");
+        messageDiv.style.position = "fixed";
+        messageDiv.style.right = "20px";
+        messageDiv.style.top = "20px";
+        messageDiv.style.padding = "10px";
+        messageDiv.style.backgroundColor = "#4CAF50";
+        messageDiv.style.color = "white";
+        messageDiv.innerHTML = "Ok";
+
+        // Append the message to the body
+        document.body.appendChild(messageDiv);
+
+        // Remove the message after 5 seconds
+        setTimeout(function () {
+          document.body.removeChild(messageDiv);
+        }, 5000);
       };
 
       row.appendChild(button);
