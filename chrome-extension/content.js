@@ -45,10 +45,10 @@ const addButton = () => {
       row.insertBefore(checkbox, row.firstChild);
     });
 
-    var firstRow = innerDoc.querySelector(".tableau.tableDemande tr:first-child");
-    var th = document.createElement("th");
-    th.innerText = "";
-    firstRow.insertBefore(th, firstRow.firstChild);
+    // var firstRow = innerDoc.querySelector(".tableau.tableDemande tr:first-child");
+    // var th = document.createElement("th");
+    // th.innerText = "";
+    // firstRow.insertBefore(th, firstRow.firstChild);
   }
 };
 
