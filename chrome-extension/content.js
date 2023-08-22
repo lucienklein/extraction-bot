@@ -36,4 +36,4 @@ const addButton = () => {
   }
 };
 
-document.addEventListener("DOMContentLoaded", addButton, false);
+document.addEventListener("click", addButton, false);
