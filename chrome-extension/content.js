@@ -25,7 +25,7 @@ const addButton = () => {
   var url = new URL(window.location.href);
   const title = document.querySelector("#pageTitle");
 
-  console.log("extension");
+  console.log("extension", url.pathname, title.innerText);
   if (url.pathname === "/kalilab.php" && title.innerText === "Recherche de demande") {
     var button = document.createElement("button");
     button.innerHTML = "Click me";
@@ -36,4 +36,7 @@ const addButton = () => {
   }
 };
 
-document.addEventListener("click", addButton, false);
+var iframe = document.getElementById("iframePrincipal");
+iframe.onload = function () {
+  addButton();
+};
