@@ -1,3 +1,5 @@
+const API = "https://app-42a9f51d-0586-42d1-84f2-f0fa9c3f6df2.cleverapps.io";
+
 const addButtonToTable = () => {
   var url = new URL(window.location.href);
   const title = document.querySelector("#pageTitle");
@@ -62,29 +64,42 @@ const addButtonToRequest = async () => {
   const origin = new URL(window.location.href).origin;
   var iframe = document.getElementById("iframePrincipal");
   var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+  const table = innerDoc.querySelector('tr[valign="top"]').parentNode;
+  var firstRow = table.querySelector("tr:first-child");
+
+  var tr = document.createElement("tr");
+  firstRow.parentNode.insertBefore(tr, firstRow.nextSibling);
+
+  var td = document.createElement("td");
+  td.colSpan = 2;
+  tr.appendChild(td);
+
+  var banner = document.createElement("div");
+  banner.style =
+    "background-color: #d5c8f4; padding: 5px 10px; margin: 5px 13px; border-radius: 5px; display: flex; justify-content: space-between; align-items: flex-end;";
+  td.appendChild(banner);
+
+  var text = document.createElement("p");
+  text.innerHTML = "Extraction";
+  text.style = "font-weight: bold; font-size: 1.2em; color: #fff;";
+  banner.appendChild(text);
+
   const form = innerDoc.querySelector(`form[name = "userSelectSiteForm"]`);
   const idRequest = form.getAttribute("action").match(/idDemande=(\d+)/)[1];
+  const info = await fetch(`${API}/request/${idRequest}`);
+  if (info.ok === true) {
+    const message = document.createElement("p");
 
-  const files = innerDoc.querySelectorAll(".scanGrand ");
+    const json = await info.json();
+    if (json.data.status === "done") message.innerHTML = `${json.data.prescriptions.length} Ordonnance(s) extraite(s)`;
+    else if (json.data.status === "processing") message.innerHTML = "En cours d'extraction";
+    else if (json.data.status === "updating") message.innerHTML = "En cours d'actualisation";
+    else message.innerHTML = "Aucune ordonnance extraite";
 
-  let filesInfo = [...files].map((file) => {
-    const fileInfo = file.getAttribute("onclick");
-
-    const matches = fileInfo.match(/remoteScan\(([^)]+)\)/);
-
-    if (!matches || !matches[1]) return null;
-
-    const params = matches[1].split(",").map((param) => param.trim().replace(/['"]/g, ""));
-
-    return {
-      idScan: params[0],
-      idTypeReference: params[1],
-      idTypeScan: params[2],
-      idReference: params[3],
-    };
-  });
-
-  const prescriptionsInfo = filesInfo.filter((fileInfo) => fileInfo !== null && fileInfo.idTypeScan === "1");
+    message.innerHTML = data.message;
+    banner.appendChild(message);
+  }
 
   var button = document.createElement("button");
   button.innerHTML = "Submit";
@@ -98,6 +113,26 @@ const addButtonToRequest = async () => {
     button.innerHTML = "Loading...";
     button.style.cursor = "wait";
     button.style.backgroundColor = "#808080";
+
+    const files = innerDoc.querySelectorAll(".scanGrand ");
+    let filesInfo = [...files].map((file) => {
+      const fileInfo = file.getAttribute("onclick");
+
+      const matches = fileInfo.match(/remoteScan\(([^)]+)\)/);
+
+      if (!matches || !matches[1]) return null;
+
+      const params = matches[1].split(",").map((param) => param.trim().replace(/['"]/g, ""));
+
+      return {
+        idScan: params[0],
+        idTypeReference: params[1],
+        idTypeScan: params[2],
+        idReference: params[3],
+      };
+    });
+
+    const prescriptionsInfo = filesInfo.filter((fileInfo) => fileInfo !== null && fileInfo.idTypeScan === "1");
 
     let prescriptions = [];
     for (const info of prescriptionsInfo) {
@@ -118,46 +153,17 @@ const addButtonToRequest = async () => {
       prescriptions.push({ name: info.idScan, raw: Array.from(new Uint8Array(buffer)) });
     }
 
-    const response = await fetch("https://app-42a9f51d-0586-42d1-84f2-f0fa9c3f6df2.cleverapps.io/request", {
+    const response = await fetch(`${API}/request`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        requestId: idRequest,
-        prescriptions,
-      }),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ requestId: idRequest, prescriptions }),
     });
 
     const data = await response.json();
 
     console.log(data);
   };
-
-  const table = innerDoc.querySelector('tr[valign="top"]').parentNode;
-  var firstRow = table.querySelector("tr:first-child");
-
-  // Create a tr
-  var tr = document.createElement("tr");
-
-  var td = document.createElement("td");
-  td.colSpan = 2;
-
-  var banner = document.createElement("div");
-  banner.style =
-    "background-color: #d5c8f4; padding: 5px 10px; margin: 5px 13px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center;";
-
-  // Add some fake text to the tr
-  var text = document.createElement("p");
-  text.innerHTML = "This is some fake text.";
-  banner.appendChild(text);
-
-  // Add the button to the tr
   banner.appendChild(button);
-
-  td.appendChild(banner);
-  tr.appendChild(td);
-  firstRow.parentNode.insertBefore(tr, firstRow.nextSibling);
 };
 
 var iframe = document.getElementById("iframePrincipal");
