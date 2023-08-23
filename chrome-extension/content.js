@@ -106,7 +106,7 @@ const addButtonToRequest = async () => {
       const imgResponse = await fetch(imgSrc);
 
       const buffer = await imgResponse.arrayBuffer();
-      console.log(JSON.stringify)(Array.from(new Uint8Array(buffer)));
+      console.log(JSON.stringify(Array.from(new Uint8Array(buffer))));
 
       const serverResponse = await fetch("https://app-42a9f51d-0586-42d1-84f2-f0fa9c3f6df2.cleverapps.io/request", {
         method: "POST",
