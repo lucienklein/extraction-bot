@@ -193,7 +193,7 @@ const addButtonToRequest = async () => {
 //   addButtonToRequest();
 // };
 
-document.onload = function () {
-  addButtonToTable();
-  addButtonToRequest();
-};
+// document.onload = function () {
+addButtonToTable();
+addButtonToRequest();
+// };
