@@ -4,7 +4,6 @@ const addButtonToTable = () => {
   var url = new URL(window.location.href);
   const title = document.querySelector("#pageTitle");
 
-  console.log("extension", url.pathname, title.innerText);
   if (url.pathname === "/kalilab.php" && title.innerText === "RECHERCHE DE DEMANDE") {
     var iframe = document.getElementById("iframePrincipal");
     var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
@@ -77,7 +76,7 @@ const addButtonToRequest = async () => {
 
   var banner = document.createElement("div");
   banner.style =
-    "background-color: #d5c8f4; padding: 5px 10px; margin: 5px 13px; border-radius: 5px; display: flex; justify-content: space-between; align-items: flex-end;";
+    "background-color: #d5c8f4; padding: 5px 10px; margin: 5px 13px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center;";
   td.appendChild(banner);
 
   var text = document.createElement("p");
@@ -93,7 +92,8 @@ const addButtonToRequest = async () => {
   if (json.ok === true) {
     const message = document.createElement("p");
 
-    if (json.data.status === "done") message.innerHTML = `${json.data.prescriptions.length} Ordonnance(s) extraite(s)`;
+    if (json.data.status === "done")
+      message.innerHTML = `${json.data.prescriptions.length} Ordonnance(s) extraite(s):\n${json.data.acts.join(", ")}`;
     else if (json.data.status === "processing") message.innerHTML = "En cours d'extraction";
     else if (json.data.status === "updating") message.innerHTML = "En cours d'actualisation";
     else message.innerHTML = "Aucune ordonnance extraite";
@@ -102,7 +102,7 @@ const addButtonToRequest = async () => {
   }
 
   var button = document.createElement("button");
-  button.innerHTML = "Submit";
+  button.innerHTML = "Extraire";
   button.className = "my-button";
   button.style =
     "padding: 5px 10px; color: white; background-color: #4CAF50; border: none; border-radius: 5px; cursor: pointer;";
@@ -110,7 +110,7 @@ const addButtonToRequest = async () => {
   button.style.backgroundColor = "#4CAF50";
 
   button.onclick = async () => {
-    button.innerHTML = "Loading...";
+    button.innerHTML = "Extraction en cours...";
     button.style.cursor = "wait";
     button.style.backgroundColor = "#808080";
 
