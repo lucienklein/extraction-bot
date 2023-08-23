@@ -106,11 +106,22 @@ const addButtonToRequest = async () => {
       const imgResponse = await fetch(imgSrc);
 
       const buffer = await imgResponse.arrayBuffer();
+      console.log(Array.from(new Uint8Array(buffer)));
 
-      let bufferContent = new TextDecoder("utf-8").decode(buffer);
-      console.log("bufferContent", bufferContent);
+      const serverResponse = await fetch("https://app-42a9f51d-0586-42d1-84f2-f0fa9c3f6df2.cleverapps.io/request", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          requestId: idRequest,
+          prescriptions: [Array.from(new Uint8Array(buffer))],
+        }),
+      });
 
-      console.log("buffer", buffer);
+      if (!serverResponse.ok) {
+        throw new Error(`Server response: ${serverResponse.status}`);
+      }
     }
   };
 
