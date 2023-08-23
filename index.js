@@ -138,10 +138,12 @@ const insertRequest = async (request, page) => {
 
   await page.waitForSelector("#analyseCodeAjout");
 
-  for (const act of [...request.acts, "NF"]) {
+  for (const act of request.acts) {
     await page.type("#analyseCodeAjout", act);
     await page.keyboard.press("Enter");
   }
+
+  // TODO:  Save the modifications
 };
 
 (async () => {
