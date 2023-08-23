@@ -189,11 +189,6 @@ const addButtonToRequest = async () => {
 
 // var iframe = document.getElementById("iframePrincipal");
 // iframe.onload = function () {
-//   addButtonToTable();
-//   addButtonToRequest();
-// };
-
-// document.onload = function () {
 addButtonToTable();
 addButtonToRequest();
 // };
