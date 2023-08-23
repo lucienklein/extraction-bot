@@ -4,7 +4,7 @@ require("./mongo");
 const puppeteer = require("puppeteer");
 
 const { uploadToS3FromBuffer } = require("./s3");
-const Prescription = require("./models/request");
+const Request = require("./models/request");
 
 const login = async (page) => {
   const url = process.env.URL;
@@ -131,6 +131,19 @@ const getRequestInfo = async (id, page) => {
   return { prescriptionsInfo, codes };
 };
 
+const insertRequest = async (request, page) => {
+  const url = process.env.URL;
+
+  await page.goto(`${url}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${request.requestId}`);
+
+  await page.waitForSelector("#analyseCodeAjout");
+
+  for (const act of request.acts) {
+    await page.type("#analyseCodeAjout", act);
+    await page.keyboard.press("Enter");
+  }
+};
+
 (async () => {
   const browser = await puppeteer.launch({ headless: false });
 
@@ -145,11 +158,21 @@ const getRequestInfo = async (id, page) => {
 
   await login(page);
 
-  const requestsId = await getRequestsId(page);
+  // const requestsId = await getRequestsId(page);
 
-  const id = requestsId[0];
+  // const id = requestsId[0];
 
-  const requestInfo = await getRequestInfo(id, page);
+  // const requestInfo = await getRequestInfo(id, page);
+
+  // while (true) {
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
+  const requestsToInsert = await Request.find({ status: "pending" });
+
+  for (const request of requestsToInsert) {
+    await insertRequest(request, page);
+  }
+  // }
 
   //   await browser.close();
 })();

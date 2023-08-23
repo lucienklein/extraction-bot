@@ -95,7 +95,7 @@ const addButtonToRequest = async () => {
     if (json.data.status === "done")
       message.innerHTML = `${json.data.prescriptions.length} Ordonnance(s) extraite(s):\n${json.data.acts.join(", ")}`;
     else if (json.data.status === "processing") message.innerHTML = "En cours d'extraction";
-    else if (json.data.status === "updating") message.innerHTML = "En cours d'actualisation";
+    else if (json.data.status === "pending") message.innerHTML = "En cours d'actualisation";
     else message.innerHTML = "Aucune ordonnance extraite";
 
     banner.appendChild(message);
