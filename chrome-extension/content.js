@@ -86,15 +86,35 @@ const addButtonToRequest = () => {
   var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
   var table = innerDoc.querySelector('tr[valign="top"]').parentNode;
   var button = document.createElement("button");
+
+  const files = innerDoc.querySelectorAll(".scanGrand ");
+
+  let filesInfo = [...files].map((file) => {
+    const fileInfo = file.getAttribute("onclick");
+
+    const matches = fileInfo.match(/remoteScan\(([^)]+)\)/);
+
+    if (!matches || !matches[1]) return null;
+
+    const params = matches[1].split(",").map((param) => param.trim().replace(/['"]/g, ""));
+
+    return {
+      idScan: params[0],
+      idTypeReference: params[1],
+      idTypeScan: params[2],
+      idReference: params[3],
+    };
+  });
+
+  console.log(filesInfo);
+
   button.innerHTML = "My Button";
   button.className = "my-button";
-  button.onclick = function () {
-    chrome.runtime.sendMessage({
-      message: "open_new_tab",
-      url: "http://www.google.com",
-    });
-  };
-  table.parentNode.insertBefore(button, table);
+
+  button.onclick = () => {};
+
+  var firstRow = table.querySelector("tr:first-child");
+  firstRow.parentNode.insertBefore(button, firstRow.nextSibling);
 };
 
 var iframe = document.getElementById("iframePrincipal");
