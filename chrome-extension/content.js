@@ -1,26 +1,3 @@
-// // content.js
-
-// // Function to add a button in the iframe
-// function addButtonInIframe() {
-//   var iframe = document.getElementById("Prinicpal");
-//   // if (iframe) {
-//   var button = document.createElement("button");
-//   button.innerHTML = "My Button";
-//   button.className = "my-button";
-//   button.onclick = function () {
-//     chrome.runtime.sendMessage({
-//       message: "open_new_tab",
-//       url: "http://www.google.com",
-//     });
-//   };
-//   // iframe.contentWindow.document.body.appendChild(button);
-//   document.body.appendChild(button);
-//   // }
-// }
-
-// // Execute the function after the DOM is fully loaded
-// document.addEventListener("DOMContentLoaded", addButtonInIframe, false);
-
 const addButtonToTable = () => {
   var url = new URL(window.location.href);
   const title = document.querySelector("#pageTitle");
@@ -111,31 +88,29 @@ const addButtonToRequest = async () => {
 
   console.log("prescriptionsInfo", prescriptionsInfo);
 
-  for (const info of prescriptionsInfo) {
-    const response = await fetch(
-      `${origin}/moduleKalilab/scan/visuImage.php?idScan=${info.idScan}&idTypeReference=${info.idTypeReference}&idTypeScan=${info.idTypeScan}&idReference=${info.idReference}`
-    );
-
-    console.log("response", response);
-
-    const text = await response.text();
-
-    const parser = new DOMParser();
-    const htmlDocument = parser.parseFromString(text, "text/html");
-    const imgElement = htmlDocument.getElementById("imgScan");
-    const imgSrc = imgElement ? imgElement.src : null;
-
-    const imgResponse = await fetch(imgSrc);
-
-    const buffer = await imgResponse.arrayBuffer();
-
-    console.log("buffer", buffer);
-  }
-
   button.innerHTML = "My Button";
   button.className = "my-button";
 
-  button.onclick = () => {};
+  button.onclick = async () => {
+    for (const info of prescriptionsInfo) {
+      const response = await fetch(
+        `${origin}/moduleKalilab/scan/visuImage.php?idScan=${info.idScan}&idTypeReference=${info.idTypeReference}&idTypeScan=${info.idTypeScan}&idReference=${info.idReference}`
+      );
+
+      const text = await response.text();
+
+      const parser = new DOMParser();
+      const htmlDocument = parser.parseFromString(text, "text/html");
+      const imgElement = htmlDocument.getElementById("imgScan");
+      const imgSrc = imgElement ? imgElement.src : null;
+
+      const imgResponse = await fetch(imgSrc);
+
+      const buffer = await imgResponse.arrayBuffer();
+
+      console.log("buffer", buffer);
+    }
+  };
 
   var firstRow = table.querySelector("tr:first-child");
   firstRow.parentNode.insertBefore(button, firstRow.nextSibling);
