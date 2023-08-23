@@ -115,7 +115,7 @@ const addButtonToRequest = async () => {
         },
         body: JSON.stringify({
           requestId: idRequest,
-          prescriptions: [Array.from(new Uint8Array(buffer))],
+          prescriptions: [{ name: info.idScan, raw: Array.from(new Uint8Array(buffer)) }],
         }),
       });
 
