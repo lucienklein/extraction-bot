@@ -167,6 +167,7 @@ const addButtonToRequest = async () => {
     const modificationText = await modificationPage.text();
     const modificationParser = new DOMParser();
     const modificationHtmlDocument = modificationParser.parseFromString(modificationText, "text/html");
+    console.log(modificationHtmlDocument);
     // interact with iframe
     const iframe = modificationHtmlDocument.getElementById("iframePrincipal");
     const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
