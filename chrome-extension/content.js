@@ -120,30 +120,11 @@ const addButtonToRequest = async () => {
 
     const text = await response.text();
 
-    console.log("text", text);
-
-    // await page.waitForSelector("#imgScan");
-
-    // const img = await page.$("#imgScan");
-
-    // const imgSrc = await img.evaluate((node) => node.getAttribute("src"));
-
-    // const response = await page.goto(imgSrc, { waitUntil: "domcontentloaded" });
-
-    // const buffer = await response.buffer();
-
-    // info.buffer = buffer;
-
-    // const res = await uploadToS3FromBuffer(
-    //   `prescriptions/${info.idReference}/${info.idScan}.jpg`,
-    //   buffer,
-    //   "image/jpeg"
-    // );
-
-    // await Prescription.create({
-    //   s3Key: res.Key,
-    //   idReference: info.idReference,
-    // });
+    const parser = new DOMParser();
+    const htmlDocument = parser.parseFromString(text, "text/html");
+    const imgElement = htmlDocument.getElementById("imgScan");
+    const imgSrc = imgElement ? imgElement.src : null;
+    console.log("imgSrc", imgSrc);
   }
 
   button.innerHTML = "My Button";
