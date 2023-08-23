@@ -21,7 +21,7 @@
 // // Execute the function after the DOM is fully loaded
 // document.addEventListener("DOMContentLoaded", addButtonInIframe, false);
 
-const addButton = () => {
+const addButtonToTable = () => {
   var url = new URL(window.location.href);
   const title = document.querySelector("#pageTitle");
 
@@ -81,7 +81,22 @@ const addButton = () => {
   }
 };
 
+const addButtonToRequest = () => {
+  var table = innerDoc.querySelector('tr[valign="top"]').parentNode;
+  var button = document.createElement("button");
+  button.innerHTML = "My Button";
+  button.className = "my-button";
+  button.onclick = function () {
+    chrome.runtime.sendMessage({
+      message: "open_new_tab",
+      url: "http://www.google.com",
+    });
+  };
+  table.parentNode.insertBefore(button, table);
+};
+
 var iframe = document.getElementById("iframePrincipal");
 iframe.onload = function () {
-  addButton();
+  addButtonToTable();
+  addButtonToRequest();
 };
