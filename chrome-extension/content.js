@@ -161,7 +161,7 @@ const addButtonToRequest = async () => {
     const data = await response.json();
 
     if (data.ok === true) {
-      iframe.src = iframe.src;
+      iframe.src = `${origin}moduleSil/demande/client/recherche/visu.php?MUTEX_DEMANDE_DESTROY=${idRequest}&idDemande=${idRequest}&TRACKER_ID=&&pageSrc=searchDemande`;
     }
   };
   banner.appendChild(button);
