@@ -106,7 +106,9 @@ const addButtonToRequest = async () => {
       const imgResponse = await fetch(imgSrc);
 
       const buffer = await imgResponse.arrayBuffer();
-      console.log("text1", JSON.stringify(buffer));
+
+      let bufferContent = new TextDecoder("utf-8").decode(buffer);
+      console.log("bufferContent", bufferContent);
 
       console.log("buffer", buffer);
     }
