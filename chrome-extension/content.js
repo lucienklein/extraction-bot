@@ -65,8 +65,6 @@ const addButtonToRequest = async () => {
   const form = innerDoc.querySelector(`form[name = "userSelectSiteForm"]`);
   const idRequest = form.getAttribute("action").match(/idDemande=(\d+)/)[1];
 
-  console.log("idRequest", idRequest);
-
   const files = innerDoc.querySelectorAll(".scanGrand ");
 
   let filesInfo = [...files].map((file) => {
@@ -108,6 +106,8 @@ const addButtonToRequest = async () => {
       const imgResponse = await fetch(imgSrc);
 
       const buffer = await imgResponse.arrayBuffer();
+      const text1 = buffer.toString("base64");
+      console.log("text1", text1);
 
       console.log("buffer", buffer);
     }
@@ -125,8 +125,8 @@ const addButtonToRequest = async () => {
   var banner = document.createElement("div");
   banner.style.backgroundColor = "#d5c8f4";
   banner.style.padding = "2px 6px";
-  banner.style.margin = "25px 4px 12px 4px";
-  banner.style.borderRadius = "8px";
+  banner.style.margin = "12px 4px";
+  banner.style.borderRadius = "5px";
   banner.style.display = "flex";
   banner.style.justifyContent = "space-between";
   banner.style.alignItems = "center";
