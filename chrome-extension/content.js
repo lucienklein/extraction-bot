@@ -82,6 +82,8 @@ const addButtonToTable = () => {
 };
 
 const addButtonToRequest = () => {
+  var iframe = document.getElementById("iframePrincipal");
+  var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
   var table = innerDoc.querySelector('tr[valign="top"]').parentNode;
   var button = document.createElement("button");
   button.innerHTML = "My Button";
