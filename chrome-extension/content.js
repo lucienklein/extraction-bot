@@ -84,9 +84,7 @@ const addButtonToRequest = async () => {
     };
   });
 
-  let prescriptionsInfo = filesInfo.filter((fileInfo) => fileInfo !== null && fileInfo.idTypeScan === "1");
-
-  console.log("prescriptionsInfo", prescriptionsInfo);
+  const prescriptionsInfo = filesInfo.filter((fileInfo) => fileInfo !== null && fileInfo.idTypeScan === "1");
 
   button.innerHTML = "My Button";
   button.className = "my-button";
@@ -113,7 +111,27 @@ const addButtonToRequest = async () => {
   };
 
   var firstRow = table.querySelector("tr:first-child");
-  firstRow.parentNode.insertBefore(button, firstRow.nextSibling);
+
+  // Create a banner
+  var banner = document.createElement("div");
+  banner.style.backgroundColor = "#d5c8f4";
+  banner.style.padding = "10px";
+  banner.style.marginBottom = "10px";
+  banner.style.borderRadius = "5px";
+  banner.style.display = "flex";
+  banner.style.justifyContent = "space-between";
+  banner.style.alignItems = "center";
+
+  // Add some fake text to the banner
+  var text = document.createElement("p");
+  text.innerHTML = "This is some fake text.";
+  banner.appendChild(text);
+
+  // Add the button to the banner
+  banner.appendChild(button);
+
+  // Insert the banner after the first row
+  firstRow.parentNode.insertBefore(banner, firstRow.nextSibling);
 };
 
 var iframe = document.getElementById("iframePrincipal");
