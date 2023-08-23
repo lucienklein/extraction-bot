@@ -90,12 +90,13 @@ const addButtonToRequest = async () => {
   button.innerHTML = "Submit";
   button.className = "my-button";
   button.style =
-    "font-size: 1.2em; padding: 10px 20px; color: white; background-color: #4CAF50; border: none; border-radius: 5px; cursor: pointer;";
+    "padding: 5px 10px; color: white; background-color: #4CAF50; border: none; border-radius: 5px; cursor: pointer;";
   button.innerHTML = "Submit";
   button.style.backgroundColor = "#4CAF50";
 
   button.onclick = async () => {
     button.innerHTML = "Loading...";
+    button.style.cursor = "wait";
     button.style.backgroundColor = "#808080";
 
     let prescriptions = [];
@@ -143,13 +144,8 @@ const addButtonToRequest = async () => {
   td.colSpan = 2;
 
   var banner = document.createElement("div");
-  banner.style.backgroundColor = "#d5c8f4";
-  banner.style.padding = "2px 6px";
-  banner.style.margin = "12px 4px";
-  banner.style.borderRadius = "5px";
-  banner.style.display = "flex";
-  banner.style.justifyContent = "space-between";
-  banner.style.alignItems = "center";
+  banner.style =
+    "background-color: #d5c8f4; padding: 5px 10px; margin: 5px 13px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center;";
 
   // Add some fake text to the tr
   var text = document.createElement("p");
