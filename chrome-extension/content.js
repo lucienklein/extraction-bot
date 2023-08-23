@@ -112,8 +112,12 @@ const addButtonToRequest = async () => {
 
   var firstRow = table.querySelector("tr:first-child");
 
-  // Create a banner
+  // Create a tr
+  var tr = document.createElement("tr");
+  var td = document.createElement("td");
   var banner = document.createElement("div");
+
+  // Add some styles to the banner
   banner.style.backgroundColor = "#d5c8f4";
   banner.style.padding = "10px";
   banner.style.marginBottom = "10px";
@@ -122,16 +126,17 @@ const addButtonToRequest = async () => {
   banner.style.justifyContent = "space-between";
   banner.style.alignItems = "center";
 
-  // Add some fake text to the banner
+  // Add some fake text to the tr
   var text = document.createElement("p");
   text.innerHTML = "This is some fake text.";
   banner.appendChild(text);
 
-  // Add the button to the banner
+  // Add the button to the tr
   banner.appendChild(button);
 
-  // Insert the banner after the first row
-  firstRow.parentNode.insertBefore(banner, firstRow.nextSibling);
+  td.appendChild(banner);
+  tr.appendChild(td);
+  firstRow.parentNode.insertBefore(tr, firstRow.nextSibling);
 };
 
 var iframe = document.getElementById("iframePrincipal");
