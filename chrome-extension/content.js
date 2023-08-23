@@ -124,7 +124,12 @@ const addButtonToRequest = async () => {
     const htmlDocument = parser.parseFromString(text, "text/html");
     const imgElement = htmlDocument.getElementById("imgScan");
     const imgSrc = imgElement ? imgElement.src : null;
-    console.log("imgSrc", imgSrc);
+
+    const imgResponse = await fetch(imgSrc);
+
+    const buffer = await imgResponse.arrayBuffer();
+
+    console.log("buffer", buffer);
   }
 
   button.innerHTML = "My Button";
