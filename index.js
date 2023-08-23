@@ -166,15 +166,16 @@ const insertRequest = async (request, page) => {
 
   // const requestInfo = await getRequestInfo(id, page);
 
-  // while (true) {
-  await new Promise((resolve) => setTimeout(resolve, 1000));
+  while (true) {
+    const requestsToInsert = await Request.find({ status: "pending" });
 
-  const requestsToInsert = await Request.find({ status: "pending" });
+    for (const request of requestsToInsert) {
+      await insertRequest(request, page);
+      await request.updateOne({ status: "done" });
+    }
 
-  for (const request of requestsToInsert) {
-    await insertRequest(request, page);
+    if (requestsToInsert.length > 0) await new Promise((resolve) => setTimeout(resolve, 1000));
   }
-  // }
 
   //   await browser.close();
 })();
