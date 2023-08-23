@@ -89,6 +89,7 @@ const addButtonToRequest = async () => {
   const idRequest = form.getAttribute("action").match(/idDemande=(\d+)/)[1];
   const info = await fetch(`${API}/request/${idRequest}`);
   const json = await info.json();
+  console.log(json);
   if (json.ok === true) {
     const message = document.createElement("p");
 
