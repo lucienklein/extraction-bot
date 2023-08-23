@@ -168,13 +168,14 @@ const addButtonToRequest = async () => {
     const modificationParser = new DOMParser();
     const modificationHtmlDocument = modificationParser.parseFromString(modificationText, "text/html");
     console.log(modificationHtmlDocument);
-    const btnFermer = modificationHtmlDocument.querySelector('div[title="Arborescence de KaliSil"]');
+    const btnFermer = modificationHtmlDocument.querySelector('input[title="Arborescence de KaliSil"]');
     btnFermer.dispatchEvent(new Event("click"));
 
     // wait 5 seconds
     await new Promise((resolve) => setTimeout(resolve, 5000));
 
     const pageTitle = modificationHtmlDocument.querySelector("#pageTitle");
+    console.log(pageTitle);
     const pageTitleText = pageTitle.innerText;
 
     console.log(pageTitleText);
