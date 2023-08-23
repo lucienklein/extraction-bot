@@ -62,8 +62,10 @@ const addButtonToRequest = async () => {
   const origin = new URL(window.location.href).origin;
   var iframe = document.getElementById("iframePrincipal");
   var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
-  var table = innerDoc.querySelector('tr[valign="top"]').parentNode;
-  var button = document.createElement("button");
+  const form = innerDoc.querySelector(`form[(name = "userSelectSiteForm")]`);
+  const idRequest = form.getAttribute("action").match(/idDemande=(\d+)/)[1];
+
+  console.log("idRequest", idRequest);
 
   const files = innerDoc.querySelectorAll(".scanGrand ");
 
@@ -86,6 +88,7 @@ const addButtonToRequest = async () => {
 
   const prescriptionsInfo = filesInfo.filter((fileInfo) => fileInfo !== null && fileInfo.idTypeScan === "1");
 
+  var button = document.createElement("button");
   button.innerHTML = "My Button";
   button.className = "my-button";
 
@@ -110,18 +113,20 @@ const addButtonToRequest = async () => {
     }
   };
 
+  const table = innerDoc.querySelector('tr[valign="top"]').parentNode;
   var firstRow = table.querySelector("tr:first-child");
 
   // Create a tr
   var tr = document.createElement("tr");
-  var td = document.createElement("td");
-  var banner = document.createElement("div");
 
-  // Add some styles to the banner
+  var td = document.createElement("td");
+  td.colSpan = 2;
+
+  var banner = document.createElement("div");
   banner.style.backgroundColor = "#d5c8f4";
-  banner.style.padding = "10px";
-  banner.style.marginBottom = "10px";
-  banner.style.borderRadius = "5px";
+  banner.style.padding = "2px 6px";
+  banner.style.margin = "25px 4px 12px 4px";
+  banner.style.borderRadius = "8px";
   banner.style.display = "flex";
   banner.style.justifyContent = "space-between";
   banner.style.alignItems = "center";
