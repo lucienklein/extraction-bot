@@ -62,7 +62,7 @@ const addButtonToRequest = async () => {
   const origin = new URL(window.location.href).origin;
   var iframe = document.getElementById("iframePrincipal");
   var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
-  const form = innerDoc.querySelector(`form[(name = "userSelectSiteForm")]`);
+  const form = innerDoc.querySelector(`form[name = "userSelectSiteForm"]`);
   const idRequest = form.getAttribute("action").match(/idDemande=(\d+)/)[1];
 
   console.log("idRequest", idRequest);
