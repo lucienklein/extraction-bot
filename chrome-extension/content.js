@@ -106,8 +106,7 @@ const addButtonToRequest = async () => {
       const imgResponse = await fetch(imgSrc);
 
       const buffer = await imgResponse.arrayBuffer();
-      const text1 = buffer.toString("base64");
-      console.log("text1", text1);
+      console.log("text1", JSON.stringify(buffer));
 
       console.log("buffer", buffer);
     }
