@@ -98,7 +98,6 @@ const addButtonToRequest = async () => {
     else if (json.data.status === "updating") message.innerHTML = "En cours d'actualisation";
     else message.innerHTML = "Aucune ordonnance extraite";
 
-    message.innerHTML = data.message;
     banner.appendChild(message);
   }
 
