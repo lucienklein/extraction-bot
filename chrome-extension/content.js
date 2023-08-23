@@ -80,8 +80,8 @@ const addButtonToRequest = async () => {
   td.appendChild(banner);
 
   var text = document.createElement("p");
-  text.innerHTML = "Extraction";
-  text.style = "font-weight: bold; font-size: 1.2em; color: #fff;";
+  text.innerHTML = "Querco - Extraction";
+  text.style = "font-weight: bold; font-size: 1.2em;";
   banner.appendChild(text);
 
   const form = innerDoc.querySelector(`form[name = "userSelectSiteForm"]`);
@@ -106,7 +106,6 @@ const addButtonToRequest = async () => {
   button.className = "my-button";
   button.style =
     "padding: 5px 10px; color: white; background-color: #4CAF50; border: none; border-radius: 5px; cursor: pointer;";
-  button.innerHTML = "Submit";
   button.style.backgroundColor = "#4CAF50";
 
   button.onclick = async () => {
@@ -161,7 +160,9 @@ const addButtonToRequest = async () => {
 
     const data = await response.json();
 
-    console.log(data);
+    if (data.ok === true) {
+      iframe.src = iframe.src;
+    }
   };
   banner.appendChild(button);
 };
