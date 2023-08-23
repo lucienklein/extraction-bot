@@ -138,7 +138,7 @@ const insertRequest = async (request, page) => {
 
   await page.waitForSelector("#analyseCodeAjout");
 
-  for (const act of request.acts) {
+  for (const act of [...request.acts, "NF"]) {
     await page.type("#analyseCodeAjout", act);
     await page.keyboard.press("Enter");
   }
