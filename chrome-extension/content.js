@@ -62,7 +62,7 @@ const addButtonToTable = () => {
 const addButtonToRequest = async () => {
   const origin = new URL(window.location.href).origin;
   var iframe = document.getElementById("iframePrincipal");
-  var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+  var innerDoc = iframe?.contentDocument || iframe?.contentWindow?.document || document;
 
   const table = innerDoc.querySelector('tr[valign="top"]').parentNode;
   var firstRow = table.querySelector("tr:first-child");
