@@ -160,26 +160,6 @@ const addButtonToRequest = async () => {
 
     const data = await response.json();
 
-    // const modificationPage = await fetch(
-    //   `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`
-    // );
-    const modificationPage = await fetch(`${origin}/kalilab.php`);
-    const modificationText = await modificationPage.text();
-    const modificationParser = new DOMParser();
-    const modificationHtmlDocument = modificationParser.parseFromString(modificationText, "text/html");
-    console.log(modificationHtmlDocument);
-    const btnFermer = modificationHtmlDocument.querySelector('input[title="Arborescence de KaliSil"]');
-    btnFermer.dispatchEvent(new Event("click"));
-
-    // wait 5 seconds
-    await new Promise((resolve) => setTimeout(resolve, 5000));
-
-    const pageTitle = modificationHtmlDocument.querySelector("#pageTitle");
-    console.log(pageTitle);
-    const pageTitleText = pageTitle.innerText;
-
-    console.log(pageTitleText);
-
     if (data.ok === true) {
       iframe.src = `${origin}/moduleSil/demande/client/recherche/visu.php?MUTEX_DEMANDE_DESTROY=${idRequest}&idDemande=${idRequest}&TRACKER_ID=&&pageSrc=searchDemande`;
     }
