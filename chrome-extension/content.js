@@ -106,8 +106,13 @@ const addButtonToRequest = async () => {
       const imgResponse = await fetch(imgSrc);
 
       const buffer = await imgResponse.arrayBuffer();
-      const base64Buffer = Buffer.from(buffer).toString("base64");
-      console.log(base64Buffer);
+      const uint8Array = new Uint8Array(buffer);
+      const binaryString = Array.from(uint8Array)
+        .map((byte) => String.fromCharCode(byte))
+        .join("");
+      const base64String = btoa(binaryString);
+      console.log(base64String);
+      console.log(JSON.stringify(base64String));
 
       // display the image with the buffer
       const img = document.createElement("img");
