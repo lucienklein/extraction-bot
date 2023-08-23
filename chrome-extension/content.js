@@ -168,10 +168,7 @@ const addButtonToRequest = async () => {
     const modificationParser = new DOMParser();
     const modificationHtmlDocument = modificationParser.parseFromString(modificationText, "text/html");
     console.log(modificationHtmlDocument);
-    // interact with iframe
-    const iframe = modificationHtmlDocument.getElementById("iframePrincipal");
-    const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-    const btnFermer = iframeDocument.querySelector('input[title="Demandes du jour"]');
+    const btnFermer = modificationHtmlDocument.querySelector('input[title="Arborescence de KaliSil"]');
     btnFermer.dispatchEvent(new Event("click"));
 
     // wait 5 seconds
