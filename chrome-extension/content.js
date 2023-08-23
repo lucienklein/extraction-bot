@@ -87,16 +87,24 @@ const addButtonToRequest = async () => {
   const prescriptionsInfo = filesInfo.filter((fileInfo) => fileInfo !== null && fileInfo.idTypeScan === "1");
 
   var button = document.createElement("button");
-  button.innerHTML = "My Button";
+  button.innerHTML = "Submit";
   button.className = "my-button";
+  button.style =
+    "font-size: 1.2em; padding: 10px 20px; color: white; background-color: #4CAF50; border: none; border-radius: 5px; cursor: pointer;";
+  button.innerHTML = "Submit";
+  button.style.backgroundColor = "#4CAF50";
 
   button.onclick = async () => {
+    button.innerHTML = "Loading...";
+    button.style.backgroundColor = "#808080";
+
+    let prescriptions = [];
     for (const info of prescriptionsInfo) {
-      const response = await fetch(
+      const imagePage = await fetch(
         `${origin}/moduleKalilab/scan/visuImage.php?idScan=${info.idScan}&idTypeReference=${info.idTypeReference}&idTypeScan=${info.idTypeScan}&idReference=${info.idReference}`
       );
 
-      const text = await response.text();
+      const text = await imagePage.text();
 
       const parser = new DOMParser();
       const htmlDocument = parser.parseFromString(text, "text/html");
@@ -106,34 +114,23 @@ const addButtonToRequest = async () => {
       const imgResponse = await fetch(imgSrc);
 
       const buffer = await imgResponse.arrayBuffer();
-      const uint8Array = new Uint8Array(buffer);
-      const binaryString = Array.from(uint8Array)
-        .map((byte) => String.fromCharCode(byte))
-        .join("");
-      const base64String = btoa(binaryString);
-      console.log(base64String);
-      console.log(JSON.stringify(base64String));
-
-      // display the image with the buffer
-      const img = document.createElement("img");
-      img.src = URL.createObjectURL(new Blob([buffer]));
-      document.body.appendChild(img);
-
-      const serverResponse = await fetch("https://app-42a9f51d-0586-42d1-84f2-f0fa9c3f6df2.cleverapps.io/request", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          requestId: idRequest,
-          prescriptions: [{ name: info.idScan, raw: Array.from(new Uint8Array(buffer)) }],
-        }),
-      });
-
-      if (!serverResponse.ok) {
-        throw new Error(`Server response: ${serverResponse.status}`);
-      }
+      prescriptions.push({ name: info.idScan, raw: Array.from(new Uint8Array(buffer)) });
     }
+
+    const response = await fetch("https://app-42a9f51d-0586-42d1-84f2-f0fa9c3f6df2.cleverapps.io/request", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        requestId: idRequest,
+        prescriptions,
+      }),
+    });
+
+    const data = await response.json();
+
+    console.log(data);
   };
 
   const table = innerDoc.querySelector('tr[valign="top"]').parentNode;
