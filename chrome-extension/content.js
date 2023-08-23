@@ -88,10 +88,10 @@ const addButtonToRequest = async () => {
   const form = innerDoc.querySelector(`form[name = "userSelectSiteForm"]`);
   const idRequest = form.getAttribute("action").match(/idDemande=(\d+)/)[1];
   const info = await fetch(`${API}/request/${idRequest}`);
-  if (info.ok === true) {
+  const json = await info.json();
+  if (json.ok === true) {
     const message = document.createElement("p");
 
-    const json = await info.json();
     if (json.data.status === "done") message.innerHTML = `${json.data.prescriptions.length} Ordonnance(s) extraite(s)`;
     else if (json.data.status === "processing") message.innerHTML = "En cours d'extraction";
     else if (json.data.status === "updating") message.innerHTML = "En cours d'actualisation";
