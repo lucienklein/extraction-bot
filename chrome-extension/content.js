@@ -81,7 +81,8 @@ const addButtonToTable = () => {
   }
 };
 
-const addButtonToRequest = () => {
+const addButtonToRequest = async () => {
+  const origin = new URL(window.location.href).origin;
   var iframe = document.getElementById("iframePrincipal");
   var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
   var table = innerDoc.querySelector('tr[valign="top"]').parentNode;
@@ -106,7 +107,40 @@ const addButtonToRequest = () => {
     };
   });
 
-  console.log(filesInfo);
+  let prescriptionsInfo = filesInfo.filter((fileInfo) => fileInfo !== null && fileInfo.idTypeScan === "1");
+
+  console.log("prescriptionsInfo", prescriptionsInfo);
+
+  for (const info of prescriptionsInfo) {
+    const response = await fetch(
+      `${origin}/moduleKalilab/scan/visuImage.php?idScan=${info.idScan}&idTypeReference=${info.idTypeReference}&idTypeScan=${info.idTypeScan}&idReference=${info.idReference}`
+    );
+
+    console.log("response", response);
+
+    // await page.waitForSelector("#imgScan");
+
+    // const img = await page.$("#imgScan");
+
+    // const imgSrc = await img.evaluate((node) => node.getAttribute("src"));
+
+    // const response = await page.goto(imgSrc, { waitUntil: "domcontentloaded" });
+
+    // const buffer = await response.buffer();
+
+    // info.buffer = buffer;
+
+    // const res = await uploadToS3FromBuffer(
+    //   `prescriptions/${info.idReference}/${info.idScan}.jpg`,
+    //   buffer,
+    //   "image/jpeg"
+    // );
+
+    // await Prescription.create({
+    //   s3Key: res.Key,
+    //   idReference: info.idReference,
+    // });
+  }
 
   button.innerHTML = "My Button";
   button.className = "my-button";

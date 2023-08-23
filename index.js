@@ -14,9 +14,7 @@ const login = async (page) => {
 
   await page.goto(url);
 
-  await page.waitForSelector(
-    "#formulaireCo > div > div.widget_box_buttons > img"
-  );
+  await page.waitForSelector("#formulaireCo > div > div.widget_box_buttons > img");
 
   await page.click("#formulaireCo > div > div.widget_box_buttons > img");
 
@@ -30,18 +28,13 @@ const login = async (page) => {
 
   let dropdownSelector = "#loginSelect";
 
-  const optionValue = await page.$eval(
-    `${dropdownSelector} > option[initial="${user}"]`,
-    (option) => option.value
-  );
+  const optionValue = await page.$eval(`${dropdownSelector} > option[initial="${user}"]`, (option) => option.value);
 
   await page.select(dropdownSelector, optionValue);
 
   await page.type("#password", password);
 
-  await page.click(
-    `input[value="\u00A0\u00A0\u00A0Se\u00A0connecter\u00A0\u00A0\u00A0"]`
-  );
+  await page.click(`input[value="\u00A0\u00A0\u00A0Se\u00A0connecter\u00A0\u00A0\u00A0"]`);
 
   await new Promise((resolve) => setTimeout(resolve, 2000));
 
@@ -77,37 +70,24 @@ const getRequestsId = async (page) => {
 const getRequestInfo = async (id, page) => {
   const url = process.env.URL;
 
-  await page.goto(
-    `${url}/moduleSil/demande/resultat/index.php?idDemande=${id}`
-  );
+  await page.goto(`${url}/moduleSil/demande/resultat/index.php?idDemande=${id}`);
 
-  let codes = await page.$$eval(".dataCode", (spans) =>
-    spans.map((span) => span.innerText)
-  );
+  let codes = await page.$$eval(".dataCode", (spans) => spans.map((span) => span.innerText));
 
   codes = codes.map((code) => code.replace(/(\[\d+(\.\d+)?\])/g, ""));
   codes = [...new Set(codes)];
 
   // get all children div of the the div .scans
-  const files = await page.$$(".scans > div");
+  const files = innerDoc.querySelectorAll(".scanGrand ");
 
-  let filesInfo = await Promise.all(
-    files.map(async (div) => {
-      const fileInfo = await div.evaluate((node) =>
-        node.getAttribute("onclick")
-      );
-      return fileInfo;
-    })
-  );
+  let filesInfo = [...files].map((file) => {
+    const fileInfo = file.getAttribute("onclick");
 
-  filesInfo = filesInfo.map((fileInfo) => {
     const matches = fileInfo.match(/remoteScan\(([^)]+)\)/);
 
     if (!matches || !matches[1]) return null;
 
-    const params = matches[1]
-      .split(",")
-      .map((param) => param.trim().replace(/['"]/g, ""));
+    const params = matches[1].split(",").map((param) => param.trim().replace(/['"]/g, ""));
 
     return {
       idScan: params[0],
@@ -117,9 +97,7 @@ const getRequestInfo = async (id, page) => {
     };
   });
 
-  let prescriptionsInfo = filesInfo.filter(
-    (fileInfo) => fileInfo !== null && fileInfo.idTypeScan === "1"
-  );
+  let prescriptionsInfo = filesInfo.filter((fileInfo) => fileInfo !== null && fileInfo.idTypeScan === "1");
 
   for (const info of prescriptionsInfo) {
     await page.goto(
@@ -172,8 +150,6 @@ const getRequestInfo = async (id, page) => {
   const id = requestsId[0];
 
   const requestInfo = await getRequestInfo(id, page);
-
-
 
   //   await browser.close();
 })();
