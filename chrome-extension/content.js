@@ -118,6 +118,10 @@ const addButtonToRequest = async () => {
 
     console.log("response", response);
 
+    const json = await response.json();
+
+    console.log("json", json);
+
     // await page.waitForSelector("#imgScan");
 
     // const img = await page.$("#imgScan");
