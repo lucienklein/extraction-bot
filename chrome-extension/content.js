@@ -187,8 +187,13 @@ const addButtonToRequest = async () => {
   banner.appendChild(button);
 };
 
-var iframe = document.getElementById("iframePrincipal");
-iframe.onload = function () {
+// var iframe = document.getElementById("iframePrincipal");
+// iframe.onload = function () {
+//   addButtonToTable();
+//   addButtonToRequest();
+// };
+
+document.onload = function () {
   addButtonToTable();
   addButtonToRequest();
 };
