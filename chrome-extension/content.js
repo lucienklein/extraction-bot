@@ -81,14 +81,12 @@ const addButtonToRequest = async () => {
   tr.appendChild(td);
 
   var banner = document.createElement("div");
-  // banner.style =
-  // "background-color: #d5c8f4; padding: 5px 10px; margin: 5px 13px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center;";
   banner.classList.add("flex", "justify-between", "items-center", "bg-purple-200", "p-2", "m-2", "rounded-md");
   td.appendChild(banner);
 
   var text = document.createElement("p");
   text.innerHTML = "Querco - Extraction";
-  text.style = "font-weight: bold; font-size: 1.2em;";
+  text.classList.add("font-bold", "text-lg");
   banner.appendChild(text);
 
   const form = innerDoc.querySelector(`form[name = "userSelectSiteForm"]`);
@@ -115,14 +113,23 @@ const addButtonToRequest = async () => {
   var button = document.createElement("button");
   button.innerHTML = "Extraire";
   button.className = "my-button";
-  button.style =
-    "padding: 5px 10px; color: white; background-color: #4CAF50; border: none; border-radius: 5px; cursor: pointer;";
-  button.style.backgroundColor = "#4CAF50";
+  button.classList.add(
+    "px-4",
+    "py-2",
+    "rounded-md",
+    "text-white",
+    "bg-purple-500",
+    "hover:bg-purple-600",
+    "focus:outline-none",
+    "focus:ring-2",
+    "focus:ring-purple-600",
+    "focus:ring-opacity-50"
+  );
 
   button.onclick = async () => {
     button.innerHTML = "Extraction en cours...";
-    button.style.cursor = "wait";
-    button.style.backgroundColor = "#808080";
+    button.disabled = true;
+    button.classList.add("cursor-not-allowed");
 
     const files = innerDoc.querySelectorAll(".scanGrand ");
     let filesInfo = [...files].map((file) => {
