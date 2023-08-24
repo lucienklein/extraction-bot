@@ -64,12 +64,6 @@ const addButtonToRequest = async () => {
   var iframe = document.getElementById("iframePrincipal");
   var innerDoc = iframe?.contentDocument || iframe?.contentWindow?.document || document;
 
-  const linkElement = document.createElement("link");
-  linkElement.setAttribute("rel", "stylesheet");
-  linkElement.setAttribute("href", "https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css");
-
-  innerDoc.head.appendChild(linkElement);
-
   const table = innerDoc.querySelector('tr[valign="top"]').parentNode;
   var firstRow = table.querySelector("tr:first-child");
 
@@ -81,12 +75,13 @@ const addButtonToRequest = async () => {
   tr.appendChild(td);
 
   var banner = document.createElement("div");
-  banner.classList.add("flex", "justify-between", "items-center", "bg-purple-200", "p-2", "m-2", "rounded-md");
+  banner.style =
+    "background-color: #d5c8f4; padding: 5px 10px; margin: 5px 13px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center;";
   td.appendChild(banner);
 
   var text = document.createElement("p");
   text.innerHTML = "Querco - Extraction";
-  text.classList.add("font-bold", "text-lg");
+  text.style = "font-weight: bold; font-size: 1.2em;";
   banner.appendChild(text);
 
   const form = innerDoc.querySelector(`form[name = "userSelectSiteForm"]`);
@@ -95,17 +90,13 @@ const addButtonToRequest = async () => {
   const json = await info.json();
   console.log(json);
   if (json.ok === true) {
-    const message = document.createElement("pre");
-    message.innerHTML = " ";
+    const message = document.createElement("p");
 
-    // if (json.data.status === "done")
-    //   message.innerHTML = `${json.data.prescriptions.length} Ordonnance(s) extraite(s):\n${json.data.acts.join(", ")}`;
-    // else if (json.data.status === "processing") message.innerHTML = "En cours d'extraction";
-    // else if (json.data.status === "pending") message.innerHTML = "En cours d'actualisation";
-    // else message.innerHTML = "Aucune ordonnance extraite";
-
-    if (json.data.isHandwritten === true) message.innerHTML += "Ordonnance manuscrite \n";
-    if (json.data.warnings?.length > 0) message.innerHTML += json.data.warnings.join("\n");
+    if (json.data.status === "done")
+      message.innerHTML = `${json.data.prescriptions.length} Ordonnance(s) extraite(s):\n${json.data.acts.join(", ")}`;
+    else if (json.data.status === "processing") message.innerHTML = "En cours d'extraction";
+    else if (json.data.status === "pending") message.innerHTML = "En cours d'actualisation";
+    else message.innerHTML = "Aucune ordonnance extraite";
 
     banner.appendChild(message);
   }
@@ -113,23 +104,14 @@ const addButtonToRequest = async () => {
   var button = document.createElement("button");
   button.innerHTML = "Extraire";
   button.className = "my-button";
-  button.classList.add(
-    "px-4",
-    "py-2",
-    "rounded-md",
-    "text-white",
-    "bg-purple-500",
-    "hover:bg-purple-600",
-    "focus:outline-none",
-    "focus:ring-2",
-    "focus:ring-purple-600",
-    "focus:ring-opacity-50"
-  );
+  button.style =
+    "padding: 5px 10px; color: white; background-color: #4CAF50; border: none; border-radius: 5px; cursor: pointer;";
+  button.style.backgroundColor = "#4CAF50";
 
   button.onclick = async () => {
     button.innerHTML = "Extraction en cours...";
-    button.disabled = true;
-    button.classList.add("cursor-not-allowed");
+    button.style.cursor = "wait";
+    button.style.backgroundColor = "#808080";
 
     const files = innerDoc.querySelectorAll(".scanGrand ");
     let filesInfo = [...files].map((file) => {
@@ -185,8 +167,8 @@ const addButtonToRequest = async () => {
   banner.appendChild(button);
 };
 
-var iframe = document.getElementById("iframePrincipal");
-iframe.onload = function () {
-  addButtonToTable();
-  addButtonToRequest();
-};
+// var iframe = document.getElementById("iframePrincipal");
+// iframe.onload = function () {
+addButtonToTable();
+addButtonToRequest();
+// };
