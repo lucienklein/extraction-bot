@@ -99,7 +99,7 @@ const addButtonToRequest = async () => {
     // else message.innerHTML = "Aucune ordonnance extraite";
 
     if (json.data.isHandwritten === true) message.innerHTML = "Ordonnance manuscrite \n";
-    if (json.data.warnings.length > 0) message.innerHTML = json.data.warnings.join("\n");
+    if (json.data.warnings?.length > 0) message.innerHTML = json.data.warnings.join("\n");
 
     banner.appendChild(message);
   }
