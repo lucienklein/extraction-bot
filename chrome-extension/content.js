@@ -170,7 +170,7 @@ const addButtonToRequest = async () => {
   newIframe.id = "iframeQuerco";
   newIframe.src = `http://172.30.69.50/moduleSil/demande/client/recherche/visu.php?MUTEX_DEMANDE_DESTROY=10208461&idDemande=10208461&TRACKER_ID=&&pageSrc=searchDemande`;
   newIframe.style = "width: 100%; height: 100%; border: none;";
-  innerDoc.appendChild(newIframe);
+  innerDoc.body.appendChild(newIframe);
 };
 
 // var iframe = document.getElementById("iframePrincipal");
