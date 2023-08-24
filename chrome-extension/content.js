@@ -64,6 +64,10 @@ const addButtonToRequest = async () => {
   var iframe = document.getElementById("iframePrincipal");
   var innerDoc = iframe?.contentDocument || iframe?.contentWindow?.document || document;
 
+  const script = innerDoc.createElement("script");
+  script.src = "https://cdn.tailwindcss.com";
+  innerDoc.head.appendChild(script);
+
   const table = innerDoc.querySelector('tr[valign="top"]').parentNode;
   var firstRow = table.querySelector("tr:first-child");
 
@@ -75,8 +79,9 @@ const addButtonToRequest = async () => {
   tr.appendChild(td);
 
   var banner = document.createElement("div");
-  banner.style =
-    "background-color: #d5c8f4; padding: 5px 10px; margin: 5px 13px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center;";
+  // banner.style =
+  // "background-color: #d5c8f4; padding: 5px 10px; margin: 5px 13px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center;";
+  banner.classList.add("flex", "justify-between", "items-center", "bg-purple-200", "p-2", "m-2", "rounded-md");
   td.appendChild(banner);
 
   var text = document.createElement("p");
