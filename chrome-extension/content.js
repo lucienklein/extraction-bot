@@ -169,7 +169,8 @@ const addButtonToRequest = async () => {
   const newIframe = document.createElement("iframe");
   newIframe.id = "iframeQuerco";
   newIframe.src = `http://172.30.69.50/moduleSil/demande/client/recherche/visu.php?MUTEX_DEMANDE_DESTROY=10208461&idDemande=10208461&TRACKER_ID=&&pageSrc=searchDemande`;
-  newIframe.style = "width: 100%; height: 100%; border: none;";
+  newIframe.style = "display: none;";
+
   innerDoc.body.appendChild(newIframe);
 };
 
