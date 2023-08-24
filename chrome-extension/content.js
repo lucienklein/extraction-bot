@@ -64,9 +64,11 @@ const addButtonToRequest = async () => {
   var iframe = document.getElementById("iframePrincipal");
   var innerDoc = iframe?.contentDocument || iframe?.contentWindow?.document || document;
 
-  const script = innerDoc.createElement("script");
-  script.src = "https://cdn.tailwindcss.com";
-  innerDoc.head.appendChild(script);
+  const linkElement = document.createElement("link");
+  linkElement.setAttribute("rel", "stylesheet");
+  linkElement.setAttribute("href", "https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css");
+
+  innerDoc.head.appendChild(linkElement);
 
   const table = innerDoc.querySelector('tr[valign="top"]').parentNode;
   var firstRow = table.querySelector("tr:first-child");
