@@ -91,6 +91,7 @@ const addButtonToRequest = async () => {
   console.log(json);
   if (json.ok === true) {
     const message = document.createElement("pre");
+    message.innerHTML = " ";
 
     // if (json.data.status === "done")
     //   message.innerHTML = `${json.data.prescriptions.length} Ordonnance(s) extraite(s):\n${json.data.acts.join(", ")}`;
@@ -98,8 +99,8 @@ const addButtonToRequest = async () => {
     // else if (json.data.status === "pending") message.innerHTML = "En cours d'actualisation";
     // else message.innerHTML = "Aucune ordonnance extraite";
 
-    if (json.data.isHandwritten === true) message.innerHTML = "Ordonnance manuscrite \n";
-    if (json.data.warnings?.length > 0) message.innerHTML = json.data.warnings.join("\n");
+    if (json.data.isHandwritten === true) message.innerHTML += "Ordonnance manuscrite \n";
+    if (json.data.warnings?.length > 0) message.innerHTML += json.data.warnings.join("\n");
 
     banner.appendChild(message);
   }
