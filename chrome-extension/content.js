@@ -62,7 +62,7 @@ const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
 
     popup.alert = function () {};
     popup.document.body.innerHTML = `Clip - Insertion des données dans le SIL`;
-    const iframeHtml = `<iframe id="iframeQuerco" src="${origin}/moduleKalilab/demande/visu.php?idDemande=${idRequest}&TRACKER_ID=&&pageSrc=searchDemande" style="display: none;"></iframe>`;
+    const iframeHtml = `<iframe id="iframeQuerco" src="${origin}/moduleKalilab/demande/visu.php?idDemande=${idRequest}&TRACKER_ID=&&pageSrc=searchDemande" style=""></iframe>`;
     popup.document.body.innerHTML += iframeHtml;
 
     const iframeQuerco = popup.document.getElementById("iframeQuerco");
