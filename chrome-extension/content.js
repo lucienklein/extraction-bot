@@ -23,10 +23,16 @@ const config = {
 
 const createPopupWithIframe = async (iframeSrc, acts) => {
   const iframeHtml = `<iframe id="iframeQuerco" src="${iframeSrc}" style="display: none;"></iframe>`;
-  const popupWidth = 1;
-  const popupHeight = 1;
+  const popupWidth = 10;
+  const popupHeight = 10;
+  const offScreenX = -window.screen.width;
+  const offScreenY = -window.screen.height;
 
-  const popup = window.open("", "_blank", `width=${popupWidth},height=${popupHeight},left=99999,top=99999`);
+  const popup = window.open(
+    "",
+    "_blank",
+    `width=${popupWidth},height=${popupHeight},left=${offScreenX},top=${offScreenY}`
+  );
   if (!popup) return;
 
   popup.alert = function () {};
