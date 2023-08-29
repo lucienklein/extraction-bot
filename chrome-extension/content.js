@@ -93,15 +93,10 @@ const addButtonToRequest = async () => {
   const iframeQuerco = document.createElement("iframe");
   iframeQuerco.setAttribute("id", "iframeQuerco");
   iframeQuerco.setAttribute("src", `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`);
-  iframeQuerco.setAttribute("style", "width: 100%; height: 100%; border: none;");
+  iframeQuerco.setAttribute("style", "display: none;");
   innerDoc.body.appendChild(iframeQuerco);
 
-  await new Promise((resolve) => {
-    iframeQuerco.onload = function () {
-      this.contentWindow.document.write = () => {};
-      resolve();
-    };
-  });
+  await new Promise((resolve) => (iframeQuerco.onload = resolve));
   let innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
 
   const table = innerDoc.querySelector('tr[valign="top"]').parentNode;
