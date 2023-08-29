@@ -36,14 +36,14 @@ const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
     <title>Pop-up d'Alerte</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
-        
-        @keyframes fillCircle {
-            from { background-color: transparent; }
-            to { background-color: #FFDCFF; }
+
+        .checked {
+            opacity: 1 !important;
+            animation: fadeIn 0.5s forwards;
         }
     </style>
 </head>
@@ -56,20 +56,23 @@ const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
             </div>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 40px; color: #333;">
                 <div style="position: relative;">
-                    <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #333; animation: fillCircle 1s forwards;"></div>
-                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 10px; height: 10px; background-color: #FFDCFF; border-radius: 50%;"></div>
+                    <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #333;"></div>
+                    <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 20px; opacity: 0;" class="check">&#x2714;</span>
                 </div>
                 <div style="width: 60px; height: 2px; background-color: #333;"></div>
                 <div style="position: relative;">
                     <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #333;"></div>
+                    <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 20px; opacity: 0;" class="check">&#x2714;</span>
                 </div>
                 <div style="width: 60px; height: 2px; background-color: #333;"></div>
                 <div style="position: relative;">
                     <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #333;"></div>
+                    <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 20px; opacity: 0;" class="check">&#x2714;</span>
                 </div>
                 <div style="width: 60px; height: 2px; background-color: #333;"></div>
                 <div style="position: relative;">
                     <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #333;"></div>
+                    <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 20px; opacity: 0;" class="check">&#x2714;</span>
                 </div>
             </div>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px; color: #333;">
@@ -80,6 +83,23 @@ const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
             </div>
         </div>
     </div>
+
+    <script>
+        // Sélectionnez tous les éléments check
+        const checks = document.querySelectorAll('.check');
+
+        // Fonction pour ajouter le check à une étape
+        function checkStep(stepNumber) {
+            if (stepNumber <= checks.length) {
+                checks[stepNumber - 1].classList.add('checked');
+            }
+        }
+
+        // Exemple : ajoutez un check à la première étape après 2 secondes
+        setTimeout(() => {
+            checkStep(1);
+        }, 2000);
+    </script>
 </body>
 </html>
 
