@@ -90,37 +90,11 @@ const addButtonToRequest = async () => {
     .getAttribute("action")
     .match(/idDemande=(\d+)/)[1];
 
-  const headerDiv = innerDoc.getElementById("header");
-
-  function preventIframeChanges(event) {
-    if (event.source !== window) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
-  }
-
-  // List of events that can modify the content or attributes
-  const events = [
-    "DOMSubtreeModified",
-    "DOMNodeInserted",
-    "DOMNodeRemoved",
-    "DOMCharacterDataModified",
-    "DOMAttributeNameChanged",
-    "DOMElementNameChanged",
-    "DOMAttrModified",
-    "input",
-    "change",
-  ];
-
-  // Add event listeners for each event
-  events.forEach((eventType) => {
-    headerDiv.addEventListener(eventType, preventIframeChanges, true);
-  });
-
   const iframeQuerco = document.createElement("iframe");
   iframeQuerco.setAttribute("id", "iframeQuerco");
   iframeQuerco.setAttribute("src", `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`);
   iframeQuerco.setAttribute("style", "display: none;");
+  iframeQuerco.setAttribute("sandbox", "allow-scripts allow-forms");
   innerDoc.body.appendChild(iframeQuerco);
 
   await new Promise((resolve) => (iframeQuerco.onload = resolve));
