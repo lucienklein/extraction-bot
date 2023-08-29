@@ -7,6 +7,8 @@ const observer = new MutationObserver((mutations) => {
       mutation.addedNodes.forEach((node) => {
         if (node.id === "klModale-overlay-raiseError-all") {
           node.parentNode.removeChild(node);
+        } else if (node.id === "header" && document.querySelectorAll("#header").length > 1) {
+          node.parentNode.removeChild(node);
         }
       });
     }
@@ -92,11 +94,10 @@ const addButtonToRequest = async () => {
   const iframeQuerco = document.createElement("iframe");
   iframeQuerco.setAttribute("id", "iframeQuerco");
   iframeQuerco.setAttribute("src", `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`);
-  iframeQuerco.setAttribute("style", "width: 100%; height: 100%; border: none;");
+  iframeQuerco.setAttribute("style", "display: none;");
   innerDoc.body.appendChild(iframeQuerco);
 
   await new Promise((resolve) => (iframeQuerco.onload = resolve));
-  iframeQuerco.contentWindow.alert = () => {};
   let innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
 
   const table = innerDoc.querySelector('tr[valign="top"]').parentNode;
@@ -221,13 +222,11 @@ const addButtonToRequest = async () => {
       }, 100);
 
       await new Promise((resolve) => (iframeQuerco.onload = resolve));
-      iframeQuerco.contentWindow.alert = () => {};
       innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
       btnSave = innerDocQuerco.querySelector("#continuerForm");
       btnSave.click();
     }
 
-    iframe = document.getElementById("iframePrincipal");
     iframe.src = `${origin}/moduleSil/demande/client/recherche/visu.php?MUTEX_DEMANDE_DESTROY=${idRequest}&idDemande=${idRequest}&TRACKER_ID=&&pageSrc=searchDemande`;
   };
   banner.appendChild(button);
