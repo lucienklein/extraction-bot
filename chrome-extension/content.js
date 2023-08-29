@@ -22,165 +22,165 @@ const config = {
 };
 
 const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
-  const popup = window.open("", "_blank", `width=1000,height=1000`);
+  const popup = window.open("", "_blank", `width=750,height=400`);
   if (!popup) return;
 
   popup.alert = function () {};
   popup.document.body.innerHTML = `
   <!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pop-up d'Alerte</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        body {
-            font-family: 'Roboto', sans-serif;
-        }
-
-        .popup-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #8EC5FC;
-            background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .popup-content {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 50px;
-            border-radius: 20px;
-            width: 80%;
-            max-width: 600px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .header-title {
-            font-weight: 700;
-            color: #444;
-            font-size: 26px;
-        }
-
-        .loading {
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top: 2px solid #555;
-            width: 20px;
-            height: 20px;
-            animation: spin 1s linear infinite;
-        }
-
-        .steps {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 40px;
-            color: #444;
-        }
-
-        .step-item {
-            position: relative;
-        }
-
-        .circle {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            border: 2px solid #333;
-        }
-
-        .check {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -60%);
-            font-size: 24px;
-            opacity: 0;
-            z-index: 1;
-        }
-
-        .checked {
-            opacity: 1 !important;
-            animation: fadeIn 0.5s forwards;
-        }
-
-        .fini {
-            text-align: center;
-            margin-top: 20px;
-            font-weight: 700;
-            color: #444;
-            font-size: 28px;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="popup-bg">
-        <div class="popup-content">
-            <div class="header">
-                <span class="header-title">Clip - Extraction</span>
-                <div class="loading"></div>
-            </div>
-            <div class="steps">
-                <div class="step-item">
-                    <div class="circle"></div>
-                    <span class="check">&#x2714;</span>
-                </div>
-                <span>Récupération des ordonnances</span>
-                <div class="step-item">
-                    <div class="circle"></div>
-                    <span class="check">&#x2714;</span>
-                </div>
-                <span>Récupération des Informations</span>
-                <div class="step-item">
-                    <div class="circle"></div>
-                    <span class="check">&#x2714;</span>
-                </div>
-                <span>Insertions des informations dans le dossier</span>
-            </div>
-            <div class="fini">
-                Fini !
-            </div>
-        </div>
-    </div>
-    <!-- ... The remaining JavaScript code ... -->
-</body>
-
-</html>
-
+  <html lang="fr">
+  
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Pop-up d'Alerte</title>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+      <style>
+          @keyframes spin {
+              0% {
+                  transform: rotate(0deg);
+              }
+  
+              100% {
+                  transform: rotate(360deg);
+              }
+          }
+  
+          @keyframes fadeIn {
+              from {
+                  opacity: 0;
+              }
+  
+              to {
+                  opacity: 1;
+              }
+          }
+  
+          body {
+              font-family: 'Roboto', sans-serif;
+          }
+  
+          .popup-bg {
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background-color: #8EC5FC;
+              background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+              display: flex;
+              justify-content: center;
+              align-items: center;
+          }
+  
+          .popup-content {
+              background-color: rgba(255, 255, 255, 0.1);
+              padding: 50px;
+              border-radius: 20px;
+              width: 80%;
+              max-width: 600px;
+              box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          }
+  
+          .header {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+          }
+  
+          .header-title {
+              font-weight: 700;
+              color: #444;
+              font-size: 26px;
+          }
+  
+          .loading {
+              border: 2px solid rgba(255, 255, 255, 0.3);
+              border-radius: 50%;
+              border-top: 2px solid #555;
+              width: 20px;
+              height: 20px;
+              animation: spin 1s linear infinite;
+          }
+  
+          .steps {
+              margin-top: 40px;
+              color: #444;
+          }
+  
+          .step-item {
+              display: flex;
+              align-items: center;
+              margin-bottom: 15px;
+          }
+  
+          .circle {
+              width: 20px;
+              height: 20px;
+              border-radius: 50%;
+              border: 2px solid #333;
+              margin-right: 10px;
+          }
+  
+          .check {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -60%);
+              font-size: 24px;
+              opacity: 0;
+              z-index: 1;
+          }
+  
+          .checked {
+              opacity: 1 !important;
+              animation: fadeIn 0.5s forwards;
+          }
+  
+          .fini {
+              text-align: center;
+              margin-top: 20px;
+              font-weight: 700;
+              color: #444;
+              font-size: 28px;
+          }
+      </style>
+  </head>
+  
+  <body>
+      <div class="popup-bg">
+          <div class="popup-content">
+              <div class="header">
+                  <span class="header-title">Clip - Extraction</span>
+                  <div class="loading"></div>
+              </div>
+              <div class="steps">
+                  <div class="step-item">
+                      <div class="circle"></div>
+                      <span>Récupération des ordonnances</span>
+                      <span class="check">&#x2714;</span>
+                  </div>
+                  <div class="step-item">
+                      <div class="circle"></div>
+                      <span>Récupération des Informations</span>
+                      <span class="check">&#x2714;</span>
+                  </div>
+                  <div class="step-item">
+                      <div class="circle"></div>
+                      <span>Insertions des informations dans le dossier</span>
+                      <span class="check">&#x2714;</span>
+                  </div>
+              </div>
+              <div class="fini">
+                  Fini !
+              </div>
+          </div>
+      </div>
+      <!-- ... The remaining JavaScript code ... -->
+  </body>
+  
+  </html>
+  
   `;
 
   let prescriptions = [];
