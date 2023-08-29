@@ -174,6 +174,7 @@ const addButtonToRequest = async () => {
 
     if (response.data.status === "pending") {
       const inputAnalyse = IframeQuerco.querySelector("#analyseCodeAjout");
+      console.log(inputAnalyse);
       const eventENTER = new KeyboardEvent("keydown", { keyCode: 13 });
 
       for (const act of response.data.acts) {
