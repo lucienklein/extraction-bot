@@ -1,31 +1,47 @@
 const API = "https://app-42a9f51d-0586-42d1-84f2-f0fa9c3f6df2.cleverapps.io";
 
-// Check if the current window is an iframe
-if (window !== window.top) {
-  // If it's an iframe, block all attempts to modify the parent document
-  window.parent.document.body.addEventListener("DOMNodeInserted", preventModification, true);
-  window.parent.document.body.addEventListener("DOMNodeRemoved", preventModification, true);
-  window.parent.document.body.addEventListener("DOMAttrModified", preventModification, true);
-}
-
-function preventModification(e) {
-  e.stopPropagation();
-  e.preventDefault();
-}
-
-// Optionally, setup a MutationObserver for the parent document as well
-// This could be useful if there are other ways the iframe might try to modify the parent
 if (window === window.top) {
-  const observer = new MutationObserver((mutationsList, observer) => {
-    for (let mutation of mutationsList) {
-      // Check if the mutation is from an iframe and handle it
-      if (mutation.target !== window && mutation.target !== document) {
-        // Handle or revert the mutation
-      }
-    }
-  });
+  // This runs in the main (parent) context
 
-  observer.observe(document, { childList: true, subtree: true, attributes: true });
+  // Save original references
+  const originalParent = window.parent;
+  const originalTop = window.top;
+  const originalDocument = window.document;
+
+  // Redefine properties/methods to prevent iframe access
+  Object.defineProperties(window, {
+    parent: {
+      get: function () {
+        // Check the call stack to see if the access originates from the iframe
+        const stack = new Error().stack;
+        if (stack.includes("iframe")) {
+          console.warn("Blocked iframe access to parent");
+          return null; // or return a proxy or dummy object
+        }
+        return originalParent;
+      },
+    },
+    top: {
+      get: function () {
+        const stack = new Error().stack;
+        if (stack.includes("iframe")) {
+          console.warn("Blocked iframe access to top");
+          return null;
+        }
+        return originalTop;
+      },
+    },
+    document: {
+      get: function () {
+        const stack = new Error().stack;
+        if (stack.includes("iframe")) {
+          console.warn("Blocked iframe access to document");
+          return null;
+        }
+        return originalDocument;
+      },
+    },
+  });
 }
 
 // Create an observer instance
