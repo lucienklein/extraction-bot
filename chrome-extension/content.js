@@ -38,11 +38,11 @@ const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
       <style>
           @keyframes spin {
               0% {
-                  transform: rotate(0deg);
+                  stroke-dashoffset: 280;
               }
   
               100% {
-                  transform: rotate(360deg);
+                  stroke-dashoffset: 0;
               }
           }
   
@@ -71,19 +71,7 @@ const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
               width: 80%;
               max-width: 600px;
               box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-          }
-  
-          .popup-content::before {
-              content: '';
-              position: absolute;
-              top: -8px;
-              right: -8px;
-              bottom: -8px;
-              left: -8px;
-              border-radius: 33px;
-              border: 8px solid transparent;
-              border-top-color: #555;
-              animation: spin 1s linear infinite;
+              overflow: hidden;
           }
   
           .header {
@@ -104,6 +92,23 @@ const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
               text-align: center;
               font-size: 20px;
           }
+  
+          .loader {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              z-index: -1;
+          }
+  
+          .loader-circle {
+              fill: none;
+              stroke: #555;
+              stroke-width: 8;
+              stroke-dasharray: 280;
+              animation: spin 2s linear infinite;
+          }
       </style>
   </head>
   
@@ -116,6 +121,9 @@ const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
               <div class="current-step">
                   Récupération des Informations
               </div>
+              <svg class="loader" viewBox="0 0 100 100">
+                  <circle class="loader-circle" cx="50" cy="50" r="45"></circle>
+              </svg>
           </div>
       </div>
   </body>
