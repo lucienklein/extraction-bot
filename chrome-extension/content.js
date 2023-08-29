@@ -27,6 +27,7 @@ const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
 
   popup.alert = function () {};
   popup.document.body.innerHTML = `
+  
   <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -47,7 +48,7 @@ const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
     </style>
 </head>
 <body>
-    <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, #6473FC, #A082FF, #6CFEFC); backdrop-filter: blur(20px); display: flex; justify-content: center; align-items: center; font-family: 'Roboto', sans-serif;">
+    <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #9796f0; background: -webkit-linear-gradient(to right, #fbc7d4, #9796f0); background: linear-gradient(to right, #fbc7d4, #9796f0); backdrop-filter: blur(20px); display: flex; justify-content: center; align-items: center; font-family: 'Roboto', sans-serif;">
         <div style="background-color: rgba(255, 255, 255, 0.1); padding: 40px; border-radius: 20px; width: 600px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
             <div style="display: flex; justify-content: space-between;">
                 <span style="font-weight: 700; color: #333; font-size: 24px;">Copilot - Extraction</span>
