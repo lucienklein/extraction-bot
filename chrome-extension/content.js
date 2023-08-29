@@ -142,6 +142,34 @@ const addButtonToRequest = async () => {
   innerDoc.body.appendChild(iframeQuerco);
 
   await new Promise((resolve) => (iframeQuerco.onload = resolve));
+  const headerDiv = document.getElementById("header");
+
+  if (headerDiv) {
+    // Store the initial state of the header div
+    const initialHeaderHTML = headerDiv.innerHTML;
+
+    // Create an observer instance
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.target.id === "header") {
+          // Revert changes to the original state
+          headerDiv.innerHTML = initialHeaderHTML;
+          console.warn("Attempt to modify #header was blocked and reverted.");
+        }
+      });
+    });
+
+    // Configuration of the observer
+    const config = {
+      attributes: true,
+      childList: true,
+      characterData: true,
+      subtree: true,
+    };
+
+    // Start observing the header div for configured mutations
+    observer.observe(headerDiv, config);
+  }
   let innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
 
   button.onclick = async () => {
