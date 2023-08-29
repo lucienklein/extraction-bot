@@ -83,21 +83,21 @@ const addButtonToTable = () => {
 const addButtonToRequest = async () => {
   const origin = new URL(window.location.href).origin;
   observer.observe(document, config);
-  var iframe = document.getElementById("iframePrincipal");
-  var innerDoc = iframe?.contentDocument || iframe?.contentWindow?.document || document;
+  let iframe = document.getElementById("iframePrincipal");
+  const innerDoc = iframe?.contentDocument || iframe?.contentWindow?.document || document;
   const idRequest = innerDoc
     .querySelector(`form[name = "userSelectSiteForm"]`)
     .getAttribute("action")
     .match(/idDemande=(\d+)/)[1];
-  const IframeQuerco = document.createElement("iframe");
-  IframeQuerco.setAttribute("id", "iframeQuerco");
-  IframeQuerco.setAttribute("src", `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`);
-  IframeQuerco.setAttribute("style", "width: 100%; height: 100%; border: none;");
-  innerDoc.body.appendChild(IframeQuerco);
+  const iframeQuerco = document.createElement("iframe");
+  iframeQuerco.setAttribute("id", "iframeQuerco");
+  iframeQuerco.setAttribute("src", `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`);
+  iframeQuerco.setAttribute("style", "width: 100%; height: 100%; border: none;");
+  innerDoc.body.appendChild(iframeQuerco);
 
-  await new Promise((resolve) => (IframeQuerco.onload = resolve));
-  IframeQuerco.contentWindow.alert = () => {};
-  let innerDocQuerco = IframeQuerco.contentDocument || IframeQuerco.contentWindow.document;
+  await new Promise((resolve) => (iframeQuerco.onload = resolve));
+  iframeQuerco.contentWindow.alert = () => {};
+  let innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
 
   const table = innerDoc.querySelector('tr[valign="top"]').parentNode;
   const firstRow = table.querySelector("tr:first-child");
@@ -220,12 +220,14 @@ const addButtonToRequest = async () => {
         clearInterval(interval);
       }, 100);
 
-      await new Promise((resolve) => (IframeQuerco.onload = resolve));
-      innerDocQuerco = IframeQuerco.contentDocument || IframeQuerco.contentWindow.document;
+      await new Promise((resolve) => (iframeQuerco.onload = resolve));
+      iframeQuerco.contentWindow.alert = () => {};
+      innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
       btnSave = innerDocQuerco.querySelector("#continuerForm");
       btnSave.click();
     }
 
+    iframe = document.getElementById("iframePrincipal");
     iframe.src = `${origin}/moduleSil/demande/client/recherche/visu.php?MUTEX_DEMANDE_DESTROY=${idRequest}&idDemande=${idRequest}&TRACKER_ID=&&pageSrc=searchDemande`;
   };
   banner.appendChild(button);
