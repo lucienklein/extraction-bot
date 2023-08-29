@@ -22,114 +22,93 @@ const config = {
 };
 
 const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
-  const popup = window.open("", "_blank", `width=750,height=400`);
+  const popup = window.open("", "_blank", `width=750,height=300`);
   if (!popup) return;
 
   popup.alert = function () {};
   popup.document.body.innerHTML = `
   <!DOCTYPE html>
-  <html lang="fr">
-  
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Pop-up d'Alerte</title>
-      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-      <style>
-          @keyframes spin {
-              0% {
-                  stroke-dashoffset: 280;
-              }
-  
-              100% {
-                  stroke-dashoffset: 0;
-              }
-          }
-  
-          body {
-              font-family: 'Roboto', sans-serif;
-          }
-  
-          .popup-bg {
-              position: fixed;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-              background-color: #8EC5FC;
-              background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
-              display: flex;
-              justify-content: center;
-              align-items: center;
-          }
-  
-          .popup-content {
-              position: relative;
-              background-color: rgba(255, 255, 255, 0.1);
-              padding: 50px;
-              border-radius: 25px;
-              width: 80%;
-              max-width: 600px;
-              box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-              overflow: hidden;
-          }
-  
-          .header {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-          }
-  
-          .header-title {
-              font-weight: 700;
-              color: #444;
-              font-size: 26px;
-          }
-  
-          .current-step {
-              margin-top: 40px;
-              color: #444;
-              text-align: center;
-              font-size: 20px;
-          }
-  
-          .loader {
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-              z-index: -1;
-          }
-  
-          .loader-circle {
-              fill: none;
-              stroke: #555;
-              stroke-width: 8;
-              stroke-dasharray: 280;
-              animation: spin 2s linear infinite;
-          }
-      </style>
-  </head>
-  
-  <body>
-      <div class="popup-bg">
-          <div class="popup-content">
-              <div class="header">
-                  <span class="header-title">Clip - Extraction</span>
-              </div>
-              <div class="current-step">
-                  Récupération des Informations
-              </div>
-              <svg class="loader" viewBox="0 0 100 100">
-                  <circle class="loader-circle" cx="50" cy="50" r="45"></circle>
-              </svg>
-          </div>
-      </div>
-  </body>
-  
-  </html>
-   
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pop-up d'Alerte</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        @keyframes movingDashes {
+            to {
+                stroke-dashoffset: -20;
+            }
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .popup-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #8EC5FC;
+            background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 50px;
+            border-radius: 25px;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 8px solid transparent;
+            background-clip: padding-box;
+            background-image: repeating-linear-gradient(0deg, transparent, transparent 10px, #555 10px, #555 20px);
+            animation: movingDashes 1s linear infinite;
+        }
+
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header-title {
+            font-weight: 700;
+            color: #444;
+            font-size: 26px;
+        }
+
+        .current-step {
+            margin-top: 40px;
+            color: #444;
+            text-align: center;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="popup-bg">
+        <div class="popup-content">
+            <div class="header">
+                <span class="header-title">Clip - Extraction</span>
+            </div>
+            <div class="current-step">
+                Récupération des Informations
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
   `;
 
   let prescriptions = [];
