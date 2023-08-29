@@ -46,16 +46,6 @@ const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
               }
           }
   
-          @keyframes fadeIn {
-              from {
-                  opacity: 0;
-              }
-  
-              to {
-                  opacity: 1;
-              }
-          }
-  
           body {
               font-family: 'Roboto', sans-serif;
           }
@@ -122,21 +112,6 @@ const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
               margin-right: 10px;
           }
   
-          .check {
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -60%);
-              font-size: 24px;
-              opacity: 0;
-              z-index: 1;
-          }
-  
-          .checked {
-              opacity: 1 !important;
-              animation: fadeIn 0.5s forwards;
-          }
-  
           .fini {
               text-align: center;
               margin-top: 20px;
@@ -152,23 +127,21 @@ const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
           <div class="popup-content">
               <div class="header">
                   <span class="header-title">Clip - Extraction</span>
-                  <div class="loading"></div>
               </div>
               <div class="steps">
                   <div class="step-item">
-                      <div class="circle"></div>
+                  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 32 32">
+                  <path d="M 16 3 C 8.800781 3 3 8.800781 3 16 C 3 23.199219 8.800781 29 16 29 C 23.199219 29 29 23.199219 29 16 C 29 14.601563 28.8125 13.207031 28.3125 11.90625 L 26.6875 13.5 C 26.886719 14.300781 27 15.101563 27 16 C 27 22.101563 22.101563 27 16 27 C 9.898438 27 5 22.101563 5 16 C 5 9.898438 9.898438 5 16 5 C 19 5 21.695313 6.195313 23.59375 8.09375 L 25 6.6875 C 22.699219 4.386719 19.5 3 16 3 Z M 27.28125 7.28125 L 16 18.5625 L 11.71875 14.28125 L 10.28125 15.71875 L 15.28125 20.71875 L 16 21.40625 L 16.71875 20.71875 L 28.71875 8.71875 Z"></path>
+                  </svg>
                       <span>Récupération des ordonnances</span>
-                      <span class="check">&#x2714;</span>
                   </div>
                   <div class="step-item">
-                      <div class="circle"></div>
+                      <div class="loading"></div>
                       <span>Récupération des Informations</span>
-                      <span class="check">&#x2714;</span>
                   </div>
                   <div class="step-item">
                       <div class="circle"></div>
                       <span>Insertions des informations dans le dossier</span>
-                      <span class="check">&#x2714;</span>
                   </div>
               </div>
               <div class="fini">
@@ -176,7 +149,6 @@ const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
               </div>
           </div>
       </div>
-      <!-- ... The remaining JavaScript code ... -->
   </body>
   
   </html>
