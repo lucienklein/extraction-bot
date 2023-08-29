@@ -72,10 +72,10 @@ const addButtonToRequest = async () => {
   IframeQuerco.setAttribute("src", `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`);
   IframeQuerco.setAttribute("style", "width: 100%; height: 100%; border: none;");
   IframeQuerco.setAttribute("sandbox", "allow-scripts allow-forms");
-  IframeQuerco.contentWindow.alert = () => {};
   innerDoc.body.appendChild(IframeQuerco);
 
   await new Promise((resolve) => (IframeQuerco.onload = resolve));
+  IframeQuerco.contentWindow.alert = () => {};
   const innerDocQuerco = IframeQuerco.contentDocument || IframeQuerco.contentWindow.document;
 
   const table = innerDoc.querySelector('tr[valign="top"]').parentNode;
