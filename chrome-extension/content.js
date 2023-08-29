@@ -1,14 +1,37 @@
 const API = "https://app-42a9f51d-0586-42d1-84f2-f0fa9c3f6df2.cleverapps.io";
 
+// // Create an observer instance
+// const observer = new MutationObserver((mutations) => {
+//   mutations.forEach((mutation) => {
+//     if (mutation.addedNodes) {
+//       mutation.addedNodes.forEach((node) => {
+//         if (node.id === "klModale-overlay-raiseError-all") {
+//           node.parentNode.removeChild(node);
+//         }
+//       });
+//     }
+//   });
+// });
+
+// Function to check if the current call stack involves an iframe
+function isCalledFromIframe() {
+  try {
+    return window.self !== window.top;
+  } catch (e) {
+    return true; // caught an exception, which means we're in an iframe
+  }
+}
+
 // Create an observer instance
 const observer = new MutationObserver((mutations) => {
   mutations.forEach((mutation) => {
-    if (mutation.addedNodes) {
-      mutation.addedNodes.forEach((node) => {
-        if (node.id === "klModale-overlay-raiseError-all") {
-          node.parentNode.removeChild(node);
-        }
-      });
+    if (isCalledFromIframe()) {
+      // Undo the mutation if it's coming from an iframe
+      if (mutation.type === "childList" && mutation.addedNodes.length > 0) {
+        mutation.addedNodes.forEach((node) => node.remove());
+      } else if (mutation.type === "attributes") {
+        mutation.target.setAttribute(mutation.attributeName, mutation.oldValue);
+      }
     }
   });
 });
