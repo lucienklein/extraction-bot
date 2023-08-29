@@ -22,13 +22,14 @@ const config = {
 };
 
 const createPopupWithIframe = async (iframeSrc, acts) => {
-  const iframeHtml = `<iframe id="iframeQuerco" src="${iframeSrc}" width="display: none;"></iframe>`;
+  const iframeHtml = `<iframe id="iframeQuerco" src="${iframeSrc}" style="display: none;"></iframe>`;
   const popupWidth = 1;
   const popupHeight = 1;
 
   const popup = window.open("", "_blank", `width=${popupWidth},height=${popupHeight},left=99999,top=99999`);
   if (!popup) return;
 
+  popup.alert = function () {};
   popup.document.body.innerHTML = iframeHtml;
 
   const iframeQuerco = popup.document.getElementById("iframeQuerco");
