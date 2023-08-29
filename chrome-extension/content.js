@@ -71,7 +71,8 @@ const addButtonToRequest = async () => {
   IframeQuerco.setAttribute("id", "iframeQuerco");
   IframeQuerco.setAttribute("src", `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`);
   IframeQuerco.setAttribute("style", "width: 100%; height: 100%; border: none;");
-  IframeQuerco.setAttribute("sandbox", "allow-scripts allow-forms");
+  IframeQuerco.setAttribute("scrolling", "no");
+  IframeQuerco.setAttribute("sandbox", "allow-same-origin allow-scripts allow-forms");
   innerDoc.body.appendChild(IframeQuerco);
 
   await new Promise((resolve) => (IframeQuerco.onload = resolve));
