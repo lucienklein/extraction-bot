@@ -27,7 +27,8 @@ const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
 
   popup.alert = function () {};
   popup.document.body.innerHTML = `
-  <html lang="fr">
+  <!DOCTYPE html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,35 +47,41 @@ const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
     </style>
 </head>
 <body>
-    <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, #FFDCFF, #E0F7FB); backdrop-filter: blur(20px); display: flex; justify-content: center; align-items: center; font-family: 'Roboto', sans-serif;">
-        <div style="background-color: rgba(255, 255, 255, 0.1); padding: 40px; border-radius: 20px; width: 500px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+    <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, #6473FC, #A082FF, #6CFEFC); backdrop-filter: blur(20px); display: flex; justify-content: center; align-items: center; font-family: 'Roboto', sans-serif;">
+        <div style="background-color: rgba(255, 255, 255, 0.1); padding: 40px; border-radius: 20px; width: 600px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
             <div style="display: flex; justify-content: space-between;">
-                <span style="font-weight: 700; color: white; font-size: 24px;">Copilot - Extraction</span>
-                <span style="cursor: pointer; color: #ffffff;">&times;</span>
+                <span style="font-weight: 700; color: #333; font-size: 24px;">Copilot - Extraction</span>
+                <span style="cursor: pointer; color: #333;">&times;</span>
             </div>
-            <div style="display: flex; flex-direction: column; align-items: center; margin-top: 40px;">
-                <div style="border: 5px solid #f3f3f3; border-top: 5px solid #ffffff; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite;"></div>
-                <div style="display: flex; align-items: center; margin-top: 20px; color: white;">
-                    <div style="width: 10px; height: 10px; border-radius: 50%; border: 2px solid white; margin-right: 15px; animation: fillCircle 1s forwards;"></div>
-                    <span>Récupération d'événance</span>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 40px; color: #333;">
+                <div style="position: relative;">
+                    <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #333; animation: fillCircle 1s forwards;"></div>
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 10px; height: 10px; background-color: #FFDCFF; border-radius: 50%;"></div>
                 </div>
-                <div style="display: flex; align-items: center; margin-top: 10px; color: white;">
-                    <div style="width: 10px; height: 10px; border-radius: 50%; border: 2px solid white; margin-right: 15px;"></div>
-                    <span>Récupération des informations</span>
+                <div style="width: 60px; height: 2px; background-color: #333;"></div>
+                <div style="position: relative;">
+                    <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #333;"></div>
                 </div>
-                <div style="display: flex; align-items: center; margin-top: 10px; color: white;">
-                    <div style="width: 10px; height: 10px; border-radius: 50%; border: 2px solid white; margin-right: 15px;"></div>
-                    <span>Insertion des informations</span>
+                <div style="width: 60px; height: 2px; background-color: #333;"></div>
+                <div style="position: relative;">
+                    <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #333;"></div>
                 </div>
-                <div style="display: flex; align-items: center; margin-top: 10px; color: white;">
-                    <div style="width: 10px; height: 10px; border-radius: 50%; border: 2px solid white; margin-right: 15px;"></div>
-                    <span>Fini</span>
+                <div style="width: 60px; height: 2px; background-color: #333;"></div>
+                <div style="position: relative;">
+                    <div style="width: 20px; height: 20px; border-radius: 50%; border: 2px solid #333;"></div>
                 </div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px; color: #333;">
+                <span>Récupération d'événance</span>
+                <span>Récupération des informations</span>
+                <span>Insertion des informations</span>
+                <span>Fini</span>
             </div>
         </div>
     </div>
 </body>
 </html>
+
   `;
 
   let prescriptions = [];
