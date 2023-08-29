@@ -57,7 +57,7 @@ const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
   }
 
   if (response.data.status === "pending") {
-    const popup = window.open("", "_blank", `width=200,height=100`);
+    const popup = window.open("", "_blank", `width=290,height=34`);
     if (!popup) return;
 
     popup.alert = function () {};
