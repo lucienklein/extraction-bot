@@ -28,130 +28,138 @@ const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
   popup.alert = function () {};
   popup.document.body.innerHTML = `
   <!DOCTYPE html>
-  <html lang="fr">
-  
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Pop-up d'Alerte</title>
-      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-      <style>
-          @keyframes spin {
-              0% {
-                  transform: rotate(0deg);
-              }
-  
-              100% {
-                  transform: rotate(360deg);
-              }
-          }
-  
-          body {
-              font-family: 'Roboto', sans-serif;
-          }
-  
-          .popup-bg {
-              position: fixed;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-              background-color: #8EC5FC;
-              background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
-              display: flex;
-              justify-content: center;
-              align-items: center;
-          }
-  
-          .popup-content {
-              background-color: rgba(255, 255, 255, 0.1);
-              padding: 50px;
-              border-radius: 20px;
-              width: 80%;
-              max-width: 600px;
-              box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-          }
-  
-          .header {
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-          }
-  
-          .header-title {
-              font-weight: 700;
-              color: #444;
-              font-size: 26px;
-          }
-  
-          .loading {
-              border: 2px solid rgba(255, 255, 255, 0.3);
-              border-radius: 50%;
-              border-top: 2px solid #555;
-              width: 20px;
-              height: 20px;
-              animation: spin 1s linear infinite;
-          }
-  
-          .steps {
-              margin-top: 40px;
-              color: #444;
-          }
-  
-          .step-item {
-              display: flex;
-              align-items: center;
-              margin-bottom: 15px;
-          }
-  
-          .circle {
-              width: 20px;
-              height: 20px;
-              border-radius: 50%;
-              border: 2px solid #333;
-              margin-right: 10px;
-          }
-  
-          .fini {
-              text-align: center;
-              margin-top: 20px;
-              font-weight: 700;
-              color: #444;
-              font-size: 28px;
-          }
-      </style>
-  </head>
-  
-  <body>
-      <div class="popup-bg">
-          <div class="popup-content">
-              <div class="header">
-                  <span class="header-title">Clip - Extraction</span>
-              </div>
-              <div class="steps">
-                  <div class="step-item">
-                  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 32 32">
-                  <path d="M 16 3 C 8.800781 3 3 8.800781 3 16 C 3 23.199219 8.800781 29 16 29 C 23.199219 29 29 23.199219 29 16 C 29 14.601563 28.8125 13.207031 28.3125 11.90625 L 26.6875 13.5 C 26.886719 14.300781 27 15.101563 27 16 C 27 22.101563 22.101563 27 16 27 C 9.898438 27 5 22.101563 5 16 C 5 9.898438 9.898438 5 16 5 C 19 5 21.695313 6.195313 23.59375 8.09375 L 25 6.6875 C 22.699219 4.386719 19.5 3 16 3 Z M 27.28125 7.28125 L 16 18.5625 L 11.71875 14.28125 L 10.28125 15.71875 L 15.28125 20.71875 L 16 21.40625 L 16.71875 20.71875 L 28.71875 8.71875 Z"></path>
-                  </svg>
-                      <span>Récupération des ordonnances</span>
-                  </div>
-                  <div class="step-item">
-                      <div class="loading"></div>
-                      <span>Récupération des Informations</span>
-                  </div>
-                  <div class="step-item">
-                      <div class="circle"></div>
-                      <span>Insertions des informations dans le dossier</span>
-                  </div>
-              </div>
-              <div class="fini">
-                  Fini !
-              </div>
-          </div>
-      </div>
-  </body>
-  
-  </html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pop-up d'Alerte</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .popup-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #8EC5FC;
+            background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 50px;
+            border-radius: 20px;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-title {
+            font-weight: 700;
+            color: #444;
+            font-size: 26px;
+        }
+
+        .loading {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 2px solid #555;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+        }
+
+        .steps {
+            margin-top: 40px;
+            color: #444;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .circle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid #333;
+            margin-right: 10px;
+        }
+
+        /* Style for SVG icon */
+        svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .fini {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: 700;
+            color: #444;
+            font-size: 28px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="popup-bg">
+        <div class="popup-content">
+            <div class="header">
+                <span class="header-title">Clip - Extraction</span>
+            </div>
+            <div class="steps">
+                <div class="step-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 32 32">
+                        <path d="M 16 3 C 8.800781 3 3 8.800781 3 16 C 3 23.199219 8.800781 29 16 29 C 23.199219 29 29 23.199219 29 16 C 29 14.601563 28.8125 13.207031 28.3125 11.90625 L 26.6875 13.5 C 26.886719 14.300781 27 15.101563 27 16 C 27 22.101563 22.101563 27 16 27 C 9.898438 27 5 22.101563 5 16 C 5 9.898438 9.898438 5 16 5 C 19 5 21.695313 6.195313 23.59375 8.09375 L 25 6.6875 C 22.699219 4.386719 19.5 3 16 3 Z M 27.28125 7.28125 L 16 18.5625 L 11.71875 14.28125 L 10.28125 15.71875 L 15.28125 20.71875 L 16 21.40625 L 16.71875 20.71875 L 28.71875 8.71875 Z"></path>
+                    </svg>
+                    <span>Récupération des ordonnances</span>
+                </div>
+                <div class="step-item">
+                    <div class="loading"></div>
+                    <span>Récupération des Informations</span>
+                </div>
+                <div class="step-item">
+                    <div class="circle"></div>
+                    <span>Insertions des informations dans le dossier</span>
+                </div>
+            </div>
+            <div class="fini">
+                Fini !
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
   
   `;
 
