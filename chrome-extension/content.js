@@ -133,6 +133,15 @@ const addButtonToRequest = async () => {
     .getAttribute("action")
     .match(/idDemande=(\d+)/)[1];
 
+  // const iframeQuerco = document.createElement("iframe");
+  // iframeQuerco.setAttribute("id", "iframeQuerco");
+  // iframeQuerco.setAttribute("src", `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`);
+  // iframeQuerco.setAttribute("style", "display: none;");
+  // innerDoc.body.appendChild(iframeQuerco);
+
+  // await new Promise((resolve) => (iframeQuerco.onload = resolve));
+  // let innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
+
   const table = innerDoc.querySelector('tr[valign="top"]').parentNode;
   const firstRow = table.querySelector("tr:first-child");
   const tr = document.createElement("tr");
@@ -172,18 +181,6 @@ const addButtonToRequest = async () => {
   button.style =
     "padding: 5px 10px; color: white; background-color: #4CAF50; border: none; border-radius: 5px; cursor: pointer;";
   button.style.backgroundColor = "#4CAF50";
-
-  // wait for 5 seconds
-  await new Promise((resolve) => setTimeout(resolve, 5000));
-
-  const iframeQuerco = document.createElement("iframe");
-  iframeQuerco.setAttribute("id", "iframeQuerco");
-  iframeQuerco.setAttribute("src", `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`);
-  iframeQuerco.setAttribute("style", "display: none;");
-  innerDoc.body.appendChild(iframeQuerco);
-
-  await new Promise((resolve) => (iframeQuerco.onload = resolve));
-  let innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
 
   button.onclick = async () => {
     button.innerHTML = "Extraction en cours...";
