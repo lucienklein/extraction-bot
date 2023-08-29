@@ -36,15 +36,6 @@ const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
       <title>Pop-up d'Alerte</title>
       <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
       <style>
-          @keyframes shimmer {
-              0% {
-                  background-position: -200% 0;
-              }
-              100% {
-                  background-position: 200% 0;
-              }
-          }
-  
           body {
               font-family: 'Roboto', sans-serif;
           }
@@ -66,33 +57,15 @@ const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
               position: relative;
               background-color: rgba(255, 255, 255, 0.1);
               padding: 50px;
-              border-radius: 25px;
+              border-radius: 20px;
               width: 80%;
               max-width: 600px;
               box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-              overflow: hidden;
-          }
-  
-          .popup-content::after {
-              content: "";
-              position: absolute;
-              top: 0;
-              left: 0;
-              right: 0;
-              bottom: 0;
-              z-index: 1;
-              background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.1));
-              background-repeat: no-repeat;
-              background-size: 200% 100%;
-              animation: shimmer 1.5s infinite;
           }
   
           .header {
               display: flex;
-              justify-content: center;
-              align-items: center;
-              position: relative;
-              z-index: 2; /* this ensures the text appears on top of the skeleton screen */
+              justify-content: space-between;
           }
   
           .header-title {
@@ -100,14 +73,11 @@ const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
               color: #444;
               font-size: 26px;
           }
-  
+        
           .current-step {
               margin-top: 40px;
               color: #444;
-              text-align: center;
               font-size: 20px;
-              position: relative;
-              z-index: 2; /* this ensures the text appears on top of the skeleton screen */
           }
       </style>
   </head>
