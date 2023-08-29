@@ -28,87 +28,105 @@ const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
   popup.alert = function () {};
   popup.document.body.innerHTML = `
   <!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pop-up d'Alerte</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-        @keyframes movingDashes {
-            to {
-                stroke-dashoffset: -20;
-            }
-        }
-
-        body {
-            font-family: 'Roboto', sans-serif;
-        }
-
-        .popup-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #8EC5FC;
-            background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .popup-content {
-            position: relative;
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 50px;
-            border-radius: 25px;
-            width: 80%;
-            max-width: 600px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border: 8px solid transparent;
-            background-clip: padding-box;
-            background-image: repeating-linear-gradient(0deg, transparent, transparent 10px, #555 10px, #555 20px);
-            animation: movingDashes 1s linear infinite;
-        }
-
-        .header {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .header-title {
-            font-weight: 700;
-            color: #444;
-            font-size: 26px;
-        }
-
-        .current-step {
-            margin-top: 40px;
-            color: #444;
-            text-align: center;
-            font-size: 20px;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="popup-bg">
-        <div class="popup-content">
-            <div class="header">
-                <span class="header-title">Clip - Extraction</span>
-            </div>
-            <div class="current-step">
-                Récupération des Informations
-            </div>
-        </div>
-    </div>
-</body>
-
-</html>
-
+  <html lang="fr">
+  
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Pop-up d'Alerte</title>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+      <style>
+          @keyframes shimmer {
+              0% {
+                  background-position: -200% 0;
+              }
+              100% {
+                  background-position: 200% 0;
+              }
+          }
+  
+          body {
+              font-family: 'Roboto', sans-serif;
+          }
+  
+          .popup-bg {
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background-color: #8EC5FC;
+              background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+              display: flex;
+              justify-content: center;
+              align-items: center;
+          }
+  
+          .popup-content {
+              position: relative;
+              background-color: rgba(255, 255, 255, 0.1);
+              padding: 50px;
+              border-radius: 25px;
+              width: 80%;
+              max-width: 600px;
+              box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+              overflow: hidden;
+          }
+  
+          .popup-content::after {
+              content: "";
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              z-index: 1;
+              background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.1));
+              background-repeat: no-repeat;
+              background-size: 200% 100%;
+              animation: shimmer 1.5s infinite;
+          }
+  
+          .header {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              position: relative;
+              z-index: 2; /* this ensures the text appears on top of the skeleton screen */
+          }
+  
+          .header-title {
+              font-weight: 700;
+              color: #444;
+              font-size: 26px;
+          }
+  
+          .current-step {
+              margin-top: 40px;
+              color: #444;
+              text-align: center;
+              font-size: 20px;
+              position: relative;
+              z-index: 2; /* this ensures the text appears on top of the skeleton screen */
+          }
+      </style>
+  </head>
+  
+  <body>
+      <div class="popup-bg">
+          <div class="popup-content">
+              <div class="header">
+                  <span class="header-title">Clip - Extraction</span>
+              </div>
+              <div class="current-step">
+                  Récupération des Informations
+              </div>
+          </div>
+      </div>
+  </body>
+  
+  </html>
+   
   `;
 
   let prescriptions = [];
