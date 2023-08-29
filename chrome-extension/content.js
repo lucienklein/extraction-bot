@@ -191,18 +191,15 @@ const addButtonToRequest = async () => {
       btnSave.click();
 
       // Check every second if a <button/> with the text Valider is present
-      const interval = setInterval(() => {
-        // const overlay = document.querySelector("#klModale-overlay-raiseError-all");
-        // if (overlay) overlay.remove();
+      // const interval = setInterval(() => {
+      //   const btnValider = [...innerDocQuerco.querySelectorAll("button")].find((btn) =>
+      //     btn.textContent.includes("Valider")
+      //   );
+      //   if (!btnValider) return;
 
-        const btnValider = [...innerDocQuerco.querySelectorAll("button")].find((btn) =>
-          btn.textContent.includes("Valider")
-        );
-        if (!btnValider) return;
-
-        btnValider.click();
-        clearInterval(interval);
-      }, 100);
+      //   btnValider.click();
+      //   clearInterval(interval);
+      // }, 100);
 
       await new Promise((resolve) => (IframeQuerco.onload = resolve));
       btnSave = innerDocQuerco.querySelector("#continuerForm");
