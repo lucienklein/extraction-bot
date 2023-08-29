@@ -22,7 +22,7 @@ const config = {
 };
 
 const createPopupWithIframe = async (iframeSrc, acts) => {
-  const iframeHtml = `<iframe id="iframeQuerco" src="${iframeSrc}" width="100%" height="100%"></iframe>`;
+  const iframeHtml = `<iframe id="iframeQuerco" src="${iframeSrc}" width="display: none;"></iframe>`;
   const popupWidth = 1;
   const popupHeight = 1;
 
@@ -242,7 +242,10 @@ const addButtonToRequest = async () => {
     }
 
     if (response.data.status === "pending") {
-      createPopupWithIframe(`${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`);
+      await createPopupWithIframe(
+        `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`,
+        response.data.acts
+      );
     }
 
     iframe.src = `${origin}/moduleSil/demande/client/recherche/visu.php?MUTEX_DEMANDE_DESTROY=${idRequest}&idDemande=${idRequest}&TRACKER_ID=&&pageSrc=searchDemande`;
