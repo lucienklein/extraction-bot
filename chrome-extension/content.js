@@ -28,31 +28,36 @@ const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
   popup.alert = function () {};
   popup.document.body.innerHTML = `
   <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pop-up d'Alerte</title>
-    <style>
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    </style>
-</head>
-<body>
-    <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: flex; justify-content: center; align-items: center;">
-        <div style="background-color: #6A1B9A; padding: 20px; border-radius: 10px; width: 300px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-            <div style="display: flex; justify-content: flex-end;">
-                <span style="cursor: pointer; color: #AB47BC;">&times;</span>
-            </div>
-            <div style="display: flex; flex-direction: column; align-items: center;">
-                <div style="border: 5px solid #f3f3f3; border-top: 5px solid #AB47BC; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite;"></div>
-                <p style="margin-top: 20px; color: white; text-align: center;">Extraction des informations de l'ordonnance en cours...</p>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Pop-up d'Alerte</title>
+      <style>
+          @keyframes spin {
+              0% { transform: rotate(0deg); }
+              100% { transform: rotate(360deg); }
+          }
+      </style>
+  </head>
+  <body>
+      <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, #D4C8F4, #9A88C7); backdrop-filter: blur(10px); display: flex; justify-content: center; align-items: center;">
+          <div style="background-color: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; width: 300px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+              <div style="display: flex; justify-content: flex-end;">
+                  <span style="cursor: pointer; color: #ffffff;">&times;</span>
+              </div>
+              <div style="display: flex; flex-direction: column; align-items: center;">
+                  <div style="border: 5px solid #f3f3f3; border-top: 5px solid #ffffff; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite;"></div>
+                  <ul style="list-style-type: none; padding-left: 0; margin-top: 20px; color: white;">
+                      <li>Récupération d'événance</li>
+                      <li>Récupération des informations</li>
+                      <li>Insertion des informations</li>
+                      <li>Fini</li>
+                  </ul>
+              </div>
+          </div>
+      </div>
+  </body>
+  </html>
   `;
 
   let prescriptions = [];
