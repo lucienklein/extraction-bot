@@ -1,5 +1,26 @@
 const API = "https://app-42a9f51d-0586-42d1-84f2-f0fa9c3f6df2.cleverapps.io";
 
+// Create an observer instance
+const observer = new MutationObserver((mutations) => {
+  mutations.forEach((mutation) => {
+    if (mutation.addedNodes) {
+      mutation.addedNodes.forEach((node) => {
+        if (node.id === "klModale-overlay-raiseError-all") {
+          node.parentNode.removeChild(node);
+        }
+      });
+    }
+  });
+});
+
+// Configuration of the observer
+const config = {
+  childList: true,
+  subtree: true,
+};
+
+// Pass in the target node (in this case, the whole document) and the observer options
+
 const addButtonToTable = () => {
   var url = new URL(window.location.href);
   const title = document.querySelector("#pageTitle");
@@ -61,6 +82,7 @@ const addButtonToTable = () => {
 
 const addButtonToRequest = async () => {
   const origin = new URL(window.location.href).origin;
+  observer.observe(document, config);
   var iframe = document.getElementById("iframePrincipal");
   var innerDoc = iframe?.contentDocument || iframe?.contentWindow?.document || document;
   const idRequest = innerDoc
@@ -71,8 +93,6 @@ const addButtonToRequest = async () => {
   IframeQuerco.setAttribute("id", "iframeQuerco");
   IframeQuerco.setAttribute("src", `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`);
   IframeQuerco.setAttribute("style", "width: 100%; height: 100%; border: none;");
-  IframeQuerco.setAttribute("scrolling", "no");
-  IframeQuerco.setAttribute("sandbox", "allow-same-origin allow-scripts allow-forms");
   innerDoc.body.appendChild(IframeQuerco);
 
   await new Promise((resolve) => (IframeQuerco.onload = resolve));
