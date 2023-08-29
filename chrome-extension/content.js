@@ -67,11 +67,9 @@ const addButtonToRequest = async () => {
     .querySelector(`form[name = "userSelectSiteForm"]`)
     .getAttribute("action")
     .match(/idDemande=(\d+)/)[1];
-  const IframeQuerco = document
-    .createElement("iframe")
-    .setAttribute("id", "iframeQuerco")
-    .setAttribute("src", `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`)
-    .setAttribute("style", "width: 100%; height: 100%; border: none;");
+  const IframeQuerco = document.createElement("iframe").setAttribute("id", "iframeQuerco");
+  IframeQuerco.setAttribute("src", `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`);
+  IframeQuerco.setAttribute("style", "width: 100%; height: 100%; border: none;");
   innerDoc.body.appendChild(IframeQuerco);
 
   const table = innerDoc.querySelector('tr[valign="top"]').parentNode;
