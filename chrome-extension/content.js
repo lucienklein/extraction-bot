@@ -25,6 +25,7 @@ function isCalledFromIframe() {
 // Create an observer instance
 const observer = new MutationObserver((mutations) => {
   mutations.forEach((mutation) => {
+    console.log(isCalledFromIframe());
     if (isCalledFromIframe()) {
       // Undo the mutation if it's coming from an iframe
       if (mutation.type === "childList" && mutation.addedNodes.length > 0) {
