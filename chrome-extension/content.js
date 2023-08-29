@@ -177,13 +177,12 @@ const addButtonToRequest = async () => {
 
     if (response.data.status === "pending") {
       const inputAnalyse = innerDocQuerco.querySelector("#analyseCodeAjout");
-      console.log(inputAnalyse);
       const eventENTER = new KeyboardEvent("keydown", { keyCode: 13 });
 
       for (const act of response.data.acts) {
-        console.log(act);
         inputAnalyse.value = act;
         inputAnalyse.dispatchEvent(eventENTER);
+        // await new Promise((resolve) => setTimeout(resolve, 100));
       }
     }
 
