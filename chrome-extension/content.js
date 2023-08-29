@@ -7,7 +7,7 @@ const observer = new MutationObserver((mutations) => {
       mutation.addedNodes.forEach((node) => {
         if (node.id === "klModale-overlay-raiseError-all") {
           node.parentNode.removeChild(node);
-        } else if (node.id === "header" && document.querySelectorAll("#header").length > 1) {
+        } else if (node.id === "header") {
           node.parentNode.removeChild(node);
         }
       });
@@ -83,8 +83,8 @@ const addButtonToTable = () => {
 };
 
 const addButtonToRequest = async () => {
-  const origin = new URL(window.location.href).origin;
   observer.observe(document, config);
+  const origin = new URL(window.location.href).origin;
   let iframe = document.getElementById("iframePrincipal");
   const innerDoc = iframe?.contentDocument || iframe?.contentWindow?.document || document;
   const idRequest = innerDoc
