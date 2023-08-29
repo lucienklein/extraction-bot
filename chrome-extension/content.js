@@ -7,8 +7,6 @@ const observer = new MutationObserver((mutations) => {
       mutation.addedNodes.forEach((node) => {
         if (node.id === "klModale-overlay-raiseError-all") {
           node.parentNode.removeChild(node);
-        } else if (node.id === "header") {
-          node.parentNode.removeChild(node);
         }
       });
     }
@@ -83,8 +81,8 @@ const addButtonToTable = () => {
 };
 
 const addButtonToRequest = async () => {
-  observer.observe(document, config);
   const origin = new URL(window.location.href).origin;
+  observer.observe(document, config);
   let iframe = document.getElementById("iframePrincipal");
   const innerDoc = iframe?.contentDocument || iframe?.contentWindow?.document || document;
   const idRequest = innerDoc
@@ -92,9 +90,10 @@ const addButtonToRequest = async () => {
     .getAttribute("action")
     .match(/idDemande=(\d+)/)[1];
   const iframeQuerco = document.createElement("iframe");
+  iframe.contentWindow.document.write = () => {};
   iframeQuerco.setAttribute("id", "iframeQuerco");
   iframeQuerco.setAttribute("src", `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`);
-  iframeQuerco.setAttribute("style", "display: none;");
+  iframeQuerco.setAttribute("style", "width: 100%; height: 100%; border: none;");
   innerDoc.body.appendChild(iframeQuerco);
 
   await new Promise((resolve) => (iframeQuerco.onload = resolve));
