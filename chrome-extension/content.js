@@ -21,6 +21,47 @@ const config = {
   subtree: true,
 };
 
+const createPopupWithIframe = async (iframeSrc, acts) => {
+  const iframeHtml = `<iframe id="iframeQuerco" src="${iframeSrc}" width="100%" height="100%"></iframe>`;
+  const popupWidth = 1;
+  const popupHeight = 1;
+
+  const popup = window.open("", "_blank", `width=${popupWidth},height=${popupHeight},left=99999,top=99999`);
+  if (!popup) return;
+
+  popup.document.body.innerHTML = iframeHtml;
+
+  const iframeQuerco = popup.document.getElementById("iframeQuerco");
+  await new Promise((resolve) => (iframeQuerco.onload = resolve));
+  let innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
+
+  const inputAnalyse = innerDocQuerco.querySelector("#analyseCodeAjout");
+  const eventENTER = new KeyboardEvent("keydown", { keyCode: 13 });
+
+  for (const act of acts) {
+    inputAnalyse.value = act;
+    inputAnalyse.dispatchEvent(eventENTER);
+  }
+
+  let btnSave = innerDocQuerco.querySelector("#btnModifierDemande");
+  btnSave.click();
+
+  const interval = setInterval(() => {
+    const btnValider = [...innerDocQuerco.querySelectorAll("button")].find((btn) =>
+      btn.textContent.includes("Valider")
+    );
+    if (!btnValider) return;
+
+    btnValider.click();
+    clearInterval(interval);
+  }, 100);
+
+  await new Promise((resolve) => (iframeQuerco.onload = resolve));
+  innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
+  btnSave = innerDocQuerco.querySelector("#continuerForm");
+  btnSave.click();
+};
+
 // Pass in the target node (in this case, the whole document) and the observer options
 
 const addButtonToTable = () => {
@@ -142,34 +183,6 @@ const addButtonToRequest = async () => {
   innerDoc.body.appendChild(iframeQuerco);
 
   await new Promise((resolve) => (iframeQuerco.onload = resolve));
-  const headerDiv = document.getElementById("header");
-
-  if (headerDiv) {
-    // Store the initial state of the header div
-    const initialHeaderHTML = headerDiv.innerHTML;
-
-    // Create an observer instance
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
-        if (mutation.target.id === "header") {
-          // Revert changes to the original state
-          headerDiv.innerHTML = initialHeaderHTML;
-          console.warn("Attempt to modify #header was blocked and reverted.");
-        }
-      });
-    });
-
-    // Configuration of the observer
-    const config = {
-      attributes: true,
-      childList: true,
-      characterData: true,
-      subtree: true,
-    };
-
-    // Start observing the header div for configured mutations
-    observer.observe(headerDiv, config);
-  }
   let innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
 
   button.onclick = async () => {
@@ -232,31 +245,7 @@ const addButtonToRequest = async () => {
     }
 
     if (response.data.status === "pending") {
-      const inputAnalyse = innerDocQuerco.querySelector("#analyseCodeAjout");
-      const eventENTER = new KeyboardEvent("keydown", { keyCode: 13 });
-
-      for (const act of response.data.acts) {
-        inputAnalyse.value = act;
-        inputAnalyse.dispatchEvent(eventENTER);
-      }
-
-      let btnSave = innerDocQuerco.querySelector("#btnModifierDemande");
-      btnSave.click();
-
-      const interval = setInterval(() => {
-        const btnValider = [...innerDocQuerco.querySelectorAll("button")].find((btn) =>
-          btn.textContent.includes("Valider")
-        );
-        if (!btnValider) return;
-
-        btnValider.click();
-        clearInterval(interval);
-      }, 100);
-
-      await new Promise((resolve) => (iframeQuerco.onload = resolve));
-      innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
-      btnSave = innerDocQuerco.querySelector("#continuerForm");
-      btnSave.click();
+      createPopupWithIframe(`${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`);
     }
 
     iframe.src = `${origin}/moduleSil/demande/client/recherche/visu.php?MUTEX_DEMANDE_DESTROY=${idRequest}&idDemande=${idRequest}&TRACKER_ID=&&pageSrc=searchDemande`;
