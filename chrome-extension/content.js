@@ -63,11 +63,20 @@ const addButtonToRequest = async () => {
   const origin = new URL(window.location.href).origin;
   var iframe = document.getElementById("iframePrincipal");
   var innerDoc = iframe?.contentDocument || iframe?.contentWindow?.document || document;
+  const idRequest = innerDoc
+    .querySelector(`form[name = "userSelectSiteForm"]`)
+    .getAttribute("action")
+    .match(/idDemande=(\d+)/)[1];
+  const IframeQuerco = document
+    .createElement("iframe")
+    .setAttribute("id", "iframeQuerco")
+    .setAttribute("src", `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`)
+    .setAttribute("style", "width: 100%; height: 100%; border: none;");
+  innerDoc.body.appendChild(IframeQuerco);
 
   const table = innerDoc.querySelector('tr[valign="top"]').parentNode;
-  var firstRow = table.querySelector("tr:first-child");
-
-  var tr = document.createElement("tr");
+  const firstRow = table.querySelector("tr:first-child");
+  const tr = document.createElement("tr");
   firstRow.parentNode.insertBefore(tr, firstRow.nextSibling);
 
   var td = document.createElement("td");
@@ -84,11 +93,8 @@ const addButtonToRequest = async () => {
   text.style = "font-weight: bold; font-size: 1.2em;";
   banner.appendChild(text);
 
-  const form = innerDoc.querySelector(`form[name = "userSelectSiteForm"]`);
-  const idRequest = form.getAttribute("action").match(/idDemande=(\d+)/)[1];
   const info = await fetch(`${API}/request/${idRequest}`);
   const json = await info.json();
-  console.log(json);
   if (json.ok === true) {
     const message = document.createElement("p");
 
@@ -152,30 +158,37 @@ const addButtonToRequest = async () => {
       prescriptions.push({ name: info.idScan, raw: Array.from(new Uint8Array(buffer)) });
     }
 
-    const response = await fetch(`${API}/request`, {
+    let response = await fetch(`${API}/request`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ requestId: idRequest, prescriptions }),
     });
 
-    const data = await response.json();
+    response = await response.json();
 
-    if (data.ok === true) {
-      iframe.src = `${origin}/moduleSil/demande/client/recherche/visu.php?MUTEX_DEMANDE_DESTROY=${idRequest}&idDemande=${idRequest}&TRACKER_ID=&&pageSrc=searchDemande`;
+    if (response.ok === false) {
+      button.innerHTML = "Erreur";
+      button.style.backgroundColor = "#ff0000";
+      return;
     }
+
+    if (response.data.status === "pending") {
+      const inputAnalyse = IframeQuerco.$("#analyseCodeAjout");
+      const eventENTER = new KeyboardEvent("keydown", { keyCode: 13 });
+
+      for (const act of response.data.acts) {
+        inputAnalyse.val(act);
+        inputAnalyse.dispatchEvent(eventENTER);
+      }
+    }
+
+    iframe.src = `${origin}/moduleSil/demande/client/recherche/visu.php?MUTEX_DEMANDE_DESTROY=${idRequest}&idDemande=${idRequest}&TRACKER_ID=&&pageSrc=searchDemande`;
   };
   banner.appendChild(button);
-
-  const newIframe = document.createElement("iframe");
-  newIframe.id = "iframeQuerco";
-  newIframe.src = `http://172.30.69.50/moduleSil/demande/client/recherche/visu.php?MUTEX_DEMANDE_DESTROY=10208461&idDemande=10208461&TRACKER_ID=&&pageSrc=searchDemande`;
-  newIframe.style = "display: none;";
-
-  innerDoc.body.appendChild(newIframe);
 };
 
 // var iframe = document.getElementById("iframePrincipal");
 // iframe.onload = function () {
-addButtonToTable();
+// addButtonToTable();
 addButtonToRequest();
 // };
