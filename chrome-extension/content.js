@@ -90,7 +90,13 @@ const addButtonToRequest = async () => {
     .getAttribute("action")
     .match(/idDemande=(\d+)/)[1];
   const iframeQuerco = document.createElement("iframe");
-  iframeQuerco.contentWindow.document.write = () => {};
+  iframeQuerco.contentWindow.document.write = (content) => {
+    if (this.defaultView.parent === window) {
+      console.error("Attempt to modify parent document blocked!");
+      return;
+    }
+    originalDocumentWrite.call(this, content);
+  };
   iframeQuerco.setAttribute("id", "iframeQuerco");
   iframeQuerco.setAttribute("src", `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`);
   iframeQuerco.setAttribute("style", "width: 100%; height: 100%; border: none;");
