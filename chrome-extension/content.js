@@ -1,41 +1,13 @@
 const API = "https://app-42a9f51d-0586-42d1-84f2-f0fa9c3f6df2.cleverapps.io";
 
-if (window === window.top) {
-  // Save original references
-  const originalWindow = window;
-
-  // Create a handler for the proxy
-  const handler = {
-    get(target, prop) {
-      // Block iframe access to certain properties
-      const stack = new Error().stack;
-      if (stack.includes("iframe") && (prop === "parent" || prop === "top" || prop === "document")) {
-        console.warn(`Blocked iframe access to ${prop}`);
-        return null;
-      }
-      return Reflect.get(target, prop);
-    },
-  };
-
-  // Apply the proxy to the window object
-  const proxiedWindow = new Proxy(originalWindow, handler);
-
-  // This is the tricky part. We try to replace the window object with the proxy.
-  // In practice, you can't replace the global window object directly.
-  // But you can redefine properties/methods to use the proxy when accessed.
-  for (let key in window) {
-    if (window.hasOwnProperty(key) && typeof window[key] === "function") {
-      window[key] = window[key].bind(proxiedWindow);
-    }
-  }
-}
-
 // Create an observer instance
 const observer = new MutationObserver((mutations) => {
   mutations.forEach((mutation) => {
     if (mutation.addedNodes) {
       mutation.addedNodes.forEach((node) => {
         if (node.id === "klModale-overlay-raiseError-all") {
+          node.parentNode.removeChild(node);
+        } else if (node.id === "header" && document.querySelectorAll("#header").length > 1) {
           node.parentNode.removeChild(node);
         }
       });
@@ -120,15 +92,6 @@ const addButtonToRequest = async () => {
     .getAttribute("action")
     .match(/idDemande=(\d+)/)[1];
 
-  const iframeQuerco = document.createElement("iframe");
-  iframeQuerco.setAttribute("id", "iframeQuerco");
-  iframeQuerco.setAttribute("src", `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`);
-  iframeQuerco.setAttribute("style", "display: none;");
-  innerDoc.body.appendChild(iframeQuerco);
-
-  await new Promise((resolve) => (iframeQuerco.onload = resolve));
-  let innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
-
   const table = innerDoc.querySelector('tr[valign="top"]').parentNode;
   const firstRow = table.querySelector("tr:first-child");
   const tr = document.createElement("tr");
@@ -168,6 +131,18 @@ const addButtonToRequest = async () => {
   button.style =
     "padding: 5px 10px; color: white; background-color: #4CAF50; border: none; border-radius: 5px; cursor: pointer;";
   button.style.backgroundColor = "#4CAF50";
+
+  // wait for 5 seconds
+  await new Promise((resolve) => setTimeout(resolve, 5000));
+
+  const iframeQuerco = document.createElement("iframe");
+  iframeQuerco.setAttribute("id", "iframeQuerco");
+  iframeQuerco.setAttribute("src", `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`);
+  iframeQuerco.setAttribute("style", "display: none;");
+  innerDoc.body.appendChild(iframeQuerco);
+
+  await new Promise((resolve) => (iframeQuerco.onload = resolve));
+  let innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
 
   button.onclick = async () => {
     button.innerHTML = "Extraction en cours...";
