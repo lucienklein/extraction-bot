@@ -1,47 +1,33 @@
 const API = "https://app-42a9f51d-0586-42d1-84f2-f0fa9c3f6df2.cleverapps.io";
 
 if (window === window.top) {
-  // This runs in the main (parent) context
-
   // Save original references
-  const originalParent = window.parent;
-  const originalTop = window.top;
-  const originalDocument = window.document;
+  const originalWindow = window;
 
-  // Redefine properties/methods to prevent iframe access
-  Object.defineProperties(window, {
-    parent: {
-      get: function () {
-        // Check the call stack to see if the access originates from the iframe
-        const stack = new Error().stack;
-        if (stack.includes("iframe")) {
-          console.warn("Blocked iframe access to parent");
-          return null; // or return a proxy or dummy object
-        }
-        return originalParent;
-      },
+  // Create a handler for the proxy
+  const handler = {
+    get(target, prop) {
+      // Block iframe access to certain properties
+      const stack = new Error().stack;
+      if (stack.includes("iframe") && (prop === "parent" || prop === "top" || prop === "document")) {
+        console.warn(`Blocked iframe access to ${prop}`);
+        return null;
+      }
+      return Reflect.get(target, prop);
     },
-    top: {
-      get: function () {
-        const stack = new Error().stack;
-        if (stack.includes("iframe")) {
-          console.warn("Blocked iframe access to top");
-          return null;
-        }
-        return originalTop;
-      },
-    },
-    document: {
-      get: function () {
-        const stack = new Error().stack;
-        if (stack.includes("iframe")) {
-          console.warn("Blocked iframe access to document");
-          return null;
-        }
-        return originalDocument;
-      },
-    },
-  });
+  };
+
+  // Apply the proxy to the window object
+  const proxiedWindow = new Proxy(originalWindow, handler);
+
+  // This is the tricky part. We try to replace the window object with the proxy.
+  // In practice, you can't replace the global window object directly.
+  // But you can redefine properties/methods to use the proxy when accessed.
+  for (let key in window) {
+    if (window.hasOwnProperty(key) && typeof window[key] === "function") {
+      window[key] = window[key].bind(proxiedWindow);
+    }
+  }
 }
 
 // Create an observer instance
