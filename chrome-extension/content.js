@@ -164,6 +164,7 @@ const addButtonToRequest = async () => {
     });
 
     response = await response.json();
+    console.log(response);
 
     if (response.ok === false) {
       button.innerHTML = "Erreur";
@@ -176,6 +177,7 @@ const addButtonToRequest = async () => {
       const eventENTER = new KeyboardEvent("keydown", { keyCode: 13 });
 
       for (const act of response.data.acts) {
+        console.log(act);
         inputAnalyse.value = act;
         inputAnalyse.dispatchEvent(eventENTER);
       }
