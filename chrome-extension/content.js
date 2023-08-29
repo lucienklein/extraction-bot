@@ -90,7 +90,7 @@ const addButtonToRequest = async () => {
     .getAttribute("action")
     .match(/idDemande=(\d+)/)[1];
   const iframeQuerco = document.createElement("iframe");
-  iframe.contentWindow.document.write = () => {};
+  iframeQuerco.contentWindow.document.write = () => {};
   iframeQuerco.setAttribute("id", "iframeQuerco");
   iframeQuerco.setAttribute("src", `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`);
   iframeQuerco.setAttribute("style", "width: 100%; height: 100%; border: none;");
