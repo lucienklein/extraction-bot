@@ -1,5 +1,33 @@
 const API = "https://app-42a9f51d-0586-42d1-84f2-f0fa9c3f6df2.cleverapps.io";
 
+// Check if the current window is an iframe
+if (window !== window.top) {
+  // If it's an iframe, block all attempts to modify the parent document
+  window.parent.document.body.addEventListener("DOMNodeInserted", preventModification, true);
+  window.parent.document.body.addEventListener("DOMNodeRemoved", preventModification, true);
+  window.parent.document.body.addEventListener("DOMAttrModified", preventModification, true);
+}
+
+function preventModification(e) {
+  e.stopPropagation();
+  e.preventDefault();
+}
+
+// Optionally, setup a MutationObserver for the parent document as well
+// This could be useful if there are other ways the iframe might try to modify the parent
+if (window === window.top) {
+  const observer = new MutationObserver((mutationsList, observer) => {
+    for (let mutation of mutationsList) {
+      // Check if the mutation is from an iframe and handle it
+      if (mutation.target !== window && mutation.target !== document) {
+        // Handle or revert the mutation
+      }
+    }
+  });
+
+  observer.observe(document, { childList: true, subtree: true, attributes: true });
+}
+
 // Create an observer instance
 const observer = new MutationObserver((mutations) => {
   mutations.forEach((mutation) => {
@@ -94,7 +122,6 @@ const addButtonToRequest = async () => {
   iframeQuerco.setAttribute("id", "iframeQuerco");
   iframeQuerco.setAttribute("src", `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`);
   iframeQuerco.setAttribute("style", "display: none;");
-  iframeQuerco.setAttribute("sandbox", "allow-scripts allow-forms");
   innerDoc.body.appendChild(iframeQuerco);
 
   await new Promise((resolve) => (iframeQuerco.onload = resolve));
