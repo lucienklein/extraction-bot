@@ -97,7 +97,7 @@ const addButtonToRequest = async () => {
 
   await new Promise((resolve) => (IframeQuerco.onload = resolve));
   IframeQuerco.contentWindow.alert = () => {};
-  const innerDocQuerco = IframeQuerco.contentDocument || IframeQuerco.contentWindow.document;
+  let innerDocQuerco = IframeQuerco.contentDocument || IframeQuerco.contentWindow.document;
 
   const table = innerDoc.querySelector('tr[valign="top"]').parentNode;
   const firstRow = table.querySelector("tr:first-child");
@@ -210,18 +210,18 @@ const addButtonToRequest = async () => {
       let btnSave = innerDocQuerco.querySelector("#btnModifierDemande");
       btnSave.click();
 
-      // Check every second if a <button/> with the text Valider is present
-      // const interval = setInterval(() => {
-      //   const btnValider = [...innerDocQuerco.querySelectorAll("button")].find((btn) =>
-      //     btn.textContent.includes("Valider")
-      //   );
-      //   if (!btnValider) return;
+      const interval = setInterval(() => {
+        const btnValider = [...innerDocQuerco.querySelectorAll("button")].find((btn) =>
+          btn.textContent.includes("Valider")
+        );
+        if (!btnValider) return;
 
-      //   btnValider.click();
-      //   clearInterval(interval);
-      // }, 100);
+        btnValider.click();
+        clearInterval(interval);
+      }, 100);
 
       await new Promise((resolve) => (IframeQuerco.onload = resolve));
+      innerDocQuerco = IframeQuerco.contentDocument || IframeQuerco.contentWindow.document;
       btnSave = innerDocQuerco.querySelector("#continuerForm");
       btnSave.click();
     }
