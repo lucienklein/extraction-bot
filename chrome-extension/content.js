@@ -89,19 +89,21 @@ const addButtonToRequest = async () => {
     .querySelector(`form[name = "userSelectSiteForm"]`)
     .getAttribute("action")
     .match(/idDemande=(\d+)/)[1];
-  const iframeQuerco = document.createElement("iframe");
-  iframeQuerco.setAttribute("id", "iframeQuerco");
-  iframeQuerco.setAttribute("src", `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`);
-  iframeQuerco.setAttribute("style", "width: 100%; height: 100%; border: none;");
-  innerDoc.body.appendChild(iframeQuerco);
 
-  iframeQuerco.contentWindow.document.write = (content) => {
+  const iframeQuerco = document.createElement("iframe");
+  const originalDocumentWrite = iframeQuerco.contentWindow.document.write;
+  iframeQuerco.contentWindow.document.write = function (content) {
     if (this.defaultView.parent === window) {
       console.error("Attempt to modify parent document blocked!");
       return;
     }
     originalDocumentWrite.call(this, content);
   };
+
+  iframeQuerco.setAttribute("id", "iframeQuerco");
+  iframeQuerco.setAttribute("src", `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`);
+  iframeQuerco.setAttribute("style", "width: 100%; height: 100%; border: none;");
+  innerDoc.body.appendChild(iframeQuerco);
 
   await new Promise((resolve) => (iframeQuerco.onload = resolve));
   let innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
