@@ -71,6 +71,8 @@ const addButtonToRequest = async () => {
   IframeQuerco.setAttribute("id", "iframeQuerco");
   IframeQuerco.setAttribute("src", `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`);
   IframeQuerco.setAttribute("style", "width: 100%; height: 100%; border: none;");
+  const innerDocQuerco = IframeQuerco.contentDocument || IframeQuerco.contentWindow.document;
+
   innerDoc.body.appendChild(IframeQuerco);
 
   const table = innerDoc.querySelector('tr[valign="top"]').parentNode;
@@ -173,7 +175,7 @@ const addButtonToRequest = async () => {
     }
 
     if (response.data.status === "pending") {
-      const inputAnalyse = IframeQuerco.querySelector("#analyseCodeAjout");
+      const inputAnalyse = innerDocQuerco.querySelector("#analyseCodeAjout");
       console.log(inputAnalyse);
       const eventENTER = new KeyboardEvent("keydown", { keyCode: 13 });
 
