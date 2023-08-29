@@ -98,16 +98,7 @@ const addButtonToRequest = async () => {
 
   await new Promise((resolve) => {
     iframeQuerco.onload = function () {
-      // Save the original method
-      const originalDocumentWrite = this.contentWindow.document.write;
-
-      this.contentWindow.document.write = function (content) {
-        if (this.defaultView.parent === window) {
-          console.error("Attempt to modify parent document blocked!");
-          return;
-        }
-        originalDocumentWrite.call(this, content);
-      };
+      this.contentWindow.document.write = () => {};
       resolve();
     };
   });
