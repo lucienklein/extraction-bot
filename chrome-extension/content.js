@@ -182,8 +182,23 @@ const addButtonToRequest = async () => {
       for (const act of response.data.acts) {
         inputAnalyse.value = act;
         inputAnalyse.dispatchEvent(eventENTER);
-        // await new Promise((resolve) => setTimeout(resolve, 100));
       }
+
+      let btnSave = innerDocQuerco.querySelector("#btnModifierDemande");
+      btnSave.click();
+
+      // Check every second if a <button/> with the text Valider is present
+      const interval = setInterval(() => {
+        const btnValider = innerDocQuerco.querySelector('button:contains("Valider")');
+        if (!btnValider) return;
+
+        btnValider.click();
+        clearInterval(interval);
+      }, 100);
+
+      await new Promise((resolve) => (IframeQuerco.onload = resolve));
+      btnSave = innerDocQuerco.querySelector("#continuerForm");
+      btnSave.click();
     }
 
     iframe.src = `${origin}/moduleSil/demande/client/recherche/visu.php?MUTEX_DEMANDE_DESTROY=${idRequest}&idDemande=${idRequest}&TRACKER_ID=&&pageSrc=searchDemande`;
