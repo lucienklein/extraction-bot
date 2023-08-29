@@ -94,6 +94,8 @@ const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
     innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
     btnSave = innerDocQuerco.querySelector("#continuerForm");
     btnSave.click();
+
+    popup.close();
   }
 };
 
