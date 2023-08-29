@@ -71,6 +71,8 @@ const addButtonToRequest = async () => {
   IframeQuerco.setAttribute("id", "iframeQuerco");
   IframeQuerco.setAttribute("src", `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`);
   IframeQuerco.setAttribute("style", "width: 100%; height: 100%; border: none;");
+  IframeQuerco.setAttribute("sandbox", "allow-scripts allow-forms");
+  IframeQuerco.contentWindow.alert = () => {};
   innerDoc.body.appendChild(IframeQuerco);
 
   await new Promise((resolve) => (IframeQuerco.onload = resolve));
@@ -189,8 +191,8 @@ const addButtonToRequest = async () => {
 
       // Check every second if a <button/> with the text Valider is present
       const interval = setInterval(() => {
-        const overlay = document.querySelector("#klModale-overlay-raiseError-all");
-        if (overlay) overlay.remove();
+        // const overlay = document.querySelector("#klModale-overlay-raiseError-all");
+        // if (overlay) overlay.remove();
 
         const btnValider = [...innerDocQuerco.querySelectorAll("button")].find((btn) =>
           btn.textContent.includes("Valider")
@@ -199,7 +201,7 @@ const addButtonToRequest = async () => {
 
         btnValider.click();
         clearInterval(interval);
-      }, 50);
+      }, 100);
 
       await new Promise((resolve) => (IframeQuerco.onload = resolve));
       btnSave = innerDocQuerco.querySelector("#continuerForm");
