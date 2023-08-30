@@ -66,7 +66,19 @@ const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
     popup.document.body.innerHTML += iframeHtml;
 
     const iframeQuerco = popup.document.getElementById("iframeQuerco");
-    await new Promise((resolve) => (iframeQuerco.onload = resolve));
+    await new Promise(
+      (resolve) =>
+        (iframeQuerco.onload = () => {
+          // Check if we can access the iframe's content
+          if (iframe.contentWindow && iframe.contentWindow.parent) {
+            // Override the parent.loadMainTools function inside the iframe
+            iframe.contentWindow.parent.loadMainTools = function () {
+              console.log("The function parent.loadMainTools has been overridden!");
+            };
+          }
+          resolve();
+        })
+    );
     let innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
 
     const inputAnalyse = innerDocQuerco.querySelector("#analyseCodeAjout");
