@@ -179,6 +179,7 @@ const addButtonToRequest = async () => {
     .getAttribute("action")
     .match(/idDemande=(\d+)/)[1];
 
+  // const iframeQuerco = document.createElement("iframe");
   // iframeQuerco.id = "iframeQuerco";
   // iframeQuerco.style = "display: none;";
   // iframeQuerco.src = `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`;
@@ -195,23 +196,27 @@ const addButtonToRequest = async () => {
   //     })
   // );
 
-  const iframeQuerco = document.createElement("iframe");
-  iframeQuerco.id = "iframeQuerco";
-  document.body.appendChild(iframeQuerco);
+  // Create the iframe element
+  var iframeQ = document.createElement("iframe");
 
-  // Fetch the content you want to load into the iframe
-  fetch(`${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`)
-    .then((response) => response.text())
-    .then((content) => {
-      // Modify the content to override someFunction
-      content += '<script>function loadMainTitle() { console.log("Function overridden!"); }</script>';
+  // Attach the load event listener
+  iframeQ.onload = function () {
+    console.log("Iframe content loaded");
+    // Now, the iframe's content is fully loaded.
+    // If you want to perform any other actions after load, you can do it here.
+  };
 
-      // Load the modified content into the iframe
-      let iframeDocument = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
-      iframeDocument.open();
-      iframeDocument.write(content);
-      iframeDocument.close();
-    });
+  // Append the iframe to the body or any other container
+  document.body.appendChild(iframeQ);
+
+  // Override a function within the iframe's contentWindow
+  iframeQ.contentWindow.loadMainTitle = function () {
+    console.log("Overridden function called");
+    // Your overridden function logic here
+  };
+
+  // Start loading the iframe content by setting its src attribute
+  iframeQ.src = `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`;
 
   const table = innerDoc.querySelector('tr[valign="top"]').parentNode;
   const firstRow = table.querySelector("tr:first-child");
