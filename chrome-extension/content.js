@@ -179,22 +179,37 @@ const addButtonToRequest = async () => {
     .getAttribute("action")
     .match(/idDemande=(\d+)/)[1];
 
-  const iframeQuerco = document.createElement("iframe");
-  iframeQuerco.id = "iframeQuerco";
-  iframeQuerco.style = "display: none;";
-  iframeQuerco.src = `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`;
-  document.body.appendChild(iframeQuerco);
+  // iframeQuerco.id = "iframeQuerco";
+  // iframeQuerco.style = "display: none;";
+  // iframeQuerco.src = `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`;
+  // document.body.appendChild(iframeQuerco);
 
-  await new Promise(
-    (resolve) =>
-      (iframeQuerco.onload = () => {
-        if (iframeQuerco.contentWindow) {
-          // Set the window.KALILABROOT variable to true inside the iframe
-          iframeQuerco.contentWindow.KALILABROOT = true;
-        }
-        resolve();
-      })
-  );
+  // await new Promise(
+  //   (resolve) =>
+  //     (iframeQuerco.onload = () => {
+  //       if (iframeQuerco.contentWindow) {
+  //         // Set the window.KALILABROOT variable to true inside the iframe
+  //         iframe.contentWindow.KALILABROOT = true;
+  //       }
+  //       resolve();
+  //     })
+  // );
+
+  const iframeQuerco = document.createElement("iframe");
+
+  // Fetch the content you want to load into the iframe
+  fetch(`${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`)
+    .then((response) => response.text())
+    .then((content) => {
+      // Modify the content to override someFunction
+      content += '<script>function loadMainTitle() { console.log("Function overridden!"); }</script>';
+
+      // Load the modified content into the iframe
+      let iframeDocument = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
+      iframeDocument.open();
+      iframeDocument.write(content);
+      iframeDocument.close();
+    });
 
   const table = innerDoc.querySelector('tr[valign="top"]').parentNode;
   const firstRow = table.querySelector("tr:first-child");
