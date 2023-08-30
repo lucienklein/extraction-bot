@@ -176,7 +176,9 @@ const addButtonToRequest = async () => {
   await new Promise((resolve) => (iframeQ.onload = resolve));
 
   const innerDocQ = iframeQ.contentDocument || iframeQ.contentWindow.document;
-  innerDocQ.body.innerHTML = `<iframe id="iframeQuerco2" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style=""></iframe>`;
+  innerDocQ.write(
+    `<iframe id="iframeQuerco2" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style=""></iframe>`
+  );
 
   const table = innerDoc.querySelector('tr[valign="top"]').parentNode;
   const firstRow = table.querySelector("tr:first-child");
