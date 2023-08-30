@@ -1,106 +1,5 @@
 const API = "https://app-42a9f51d-0586-42d1-84f2-f0fa9c3f6df2.cleverapps.io";
 
-// Create an observer instance
-const observer = new MutationObserver((mutations) => {
-  mutations.forEach((mutation) => {
-    if (mutation.addedNodes) {
-      mutation.addedNodes.forEach((node) => {
-        if (node.id === "klModale-overlay-raiseError-all") {
-          node.parentNode.removeChild(node);
-        } else if (node.id === "header" && document.querySelectorAll("#header").length > 1) {
-          node.parentNode.removeChild(node);
-        }
-      });
-    }
-  });
-});
-
-// Configuration of the observer
-const config = {
-  childList: true,
-  subtree: true,
-};
-
-const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
-  let prescriptions = [];
-  for (const info of prescriptionsInfo) {
-    const imagePage = await fetch(
-      `${origin}/moduleKalilab/scan/visuImage.php?idScan=${info.idScan}&idTypeReference=${info.idTypeReference}&idTypeScan=${info.idTypeScan}&idReference=${info.idReference}`
-    );
-
-    const text = await imagePage.text();
-
-    const parser = new DOMParser();
-    const htmlDocument = parser.parseFromString(text, "text/html");
-    const imgElement = htmlDocument.getElementById("imgScan");
-    const imgSrc = imgElement ? imgElement.src : null;
-
-    const imgResponse = await fetch(imgSrc);
-
-    const buffer = await imgResponse.arrayBuffer();
-    prescriptions.push({ name: info.idScan, raw: Array.from(new Uint8Array(buffer)) });
-  }
-
-  let response = await fetch(`${API}/request`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ requestId: idRequest, prescriptions }),
-  });
-
-  response = await response.json();
-  console.log(response);
-
-  if (response.ok === false) {
-    button.innerHTML = "Erreur";
-    button.style.backgroundColor = "#ff0000";
-    return;
-  }
-
-  if (response.data.status === "pending") {
-    const popup = window.open("", "_blank", `width=290,height=34`);
-    if (!popup) return;
-
-    popup.alert = function () {};
-    popup.document.body.innerHTML = `Clip - Insertion des données dans le SIL`;
-    const iframeHtml = `<iframe id="iframeQuerco" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style=""></iframe>`;
-    popup.document.body.innerHTML += iframeHtml;
-
-    const iframeQuerco = popup.document.getElementById("iframeQuerco");
-    await new Promise((resolve) => (iframeQuerco.onload = resolve));
-    let innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
-
-    const inputAnalyse = innerDocQuerco.querySelector("#analyseCodeAjout");
-    const eventENTER = new KeyboardEvent("keydown", { keyCode: 13 });
-
-    for (const act of response.data.acts) {
-      inputAnalyse.value = act;
-      inputAnalyse.dispatchEvent(eventENTER);
-    }
-
-    let btnSave = innerDocQuerco.querySelector("#btnModifierDemande");
-    btnSave.click();
-
-    const interval = setInterval(() => {
-      const btnValider = [...innerDocQuerco.querySelectorAll("button")].find((btn) =>
-        btn.textContent.includes("Valider")
-      );
-      if (!btnValider) return;
-
-      btnValider.click();
-      clearInterval(interval);
-    }, 100);
-
-    await new Promise((resolve) => (iframeQuerco.onload = resolve));
-    innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
-    btnSave = innerDocQuerco.querySelector("#continuerForm");
-    btnSave.click();
-
-    // popup.close();
-  }
-};
-
-// Pass in the target node (in this case, the whole document) and the observer options
-
 const addButtonToTable = () => {
   var url = new URL(window.location.href);
   const title = document.querySelector("#pageTitle");
@@ -183,8 +82,6 @@ const addButtonToRequest = async () => {
   await new Promise((resolve) => (iframeQuerco.onload = resolve));
   let innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
 
-  console.log("innerDocQuerco", innerDocQuerco);
-
   const table = innerDoc.querySelector('tr[valign="top"]').parentNode;
   const firstRow = table.querySelector("tr:first-child");
   const tr = document.createElement("tr");
@@ -250,9 +147,69 @@ const addButtonToRequest = async () => {
 
     const prescriptionsInfo = filesInfo.filter((fileInfo) => fileInfo !== null && fileInfo.idTypeScan === "1");
 
-    await createPopupWithIframe(origin, idRequest, prescriptionsInfo);
+    let prescriptions = [];
+    for (const info of prescriptionsInfo) {
+      const imagePage = await fetch(
+        `${origin}/moduleKalilab/scan/visuImage.php?idScan=${info.idScan}&idTypeReference=${info.idTypeReference}&idTypeScan=${info.idTypeScan}&idReference=${info.idReference}`
+      );
 
-    iframe.src = `${origin}/moduleSil/demande/client/recherche/visu.php?MUTEX_DEMANDE_DESTROY=${idRequest}&idDemande=${idRequest}&TRACKER_ID=&&pageSrc=searchDemande`;
+      const text = await imagePage.text();
+
+      const parser = new DOMParser();
+      const htmlDocument = parser.parseFromString(text, "text/html");
+      const imgElement = htmlDocument.getElementById("imgScan");
+      const imgSrc = imgElement ? imgElement.src : null;
+
+      const imgResponse = await fetch(imgSrc);
+
+      const buffer = await imgResponse.arrayBuffer();
+      prescriptions.push({ name: info.idScan, raw: Array.from(new Uint8Array(buffer)) });
+    }
+
+    let response = await fetch(`${API}/request`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ requestId: idRequest, prescriptions }),
+    });
+
+    response = await response.json();
+    console.log(response);
+
+    if (response.ok === false) {
+      button.innerHTML = "Erreur";
+      button.style.backgroundColor = "#ff0000";
+      return;
+    }
+
+    if (response.data.status === "pending") {
+      const inputAnalyse = innerDocQuerco.querySelector("#analyseCodeAjout");
+      const eventENTER = new KeyboardEvent("keydown", { keyCode: 13 });
+
+      for (const act of response.data.acts) {
+        inputAnalyse.value = act;
+        inputAnalyse.dispatchEvent(eventENTER);
+      }
+
+      let btnSave = innerDocQuerco.querySelector("#btnModifierDemande");
+      btnSave.click();
+
+      const interval = setInterval(() => {
+        const btnValider = [...innerDocQuerco.querySelectorAll("button")].find((btn) =>
+          btn.textContent.includes("Valider")
+        );
+        if (!btnValider) return;
+
+        btnValider.click();
+        clearInterval(interval);
+      }, 100);
+
+      await new Promise((resolve) => (iframeQuerco.onload = resolve));
+      innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
+      btnSave = innerDocQuerco.querySelector("#continuerForm");
+      btnSave.click();
+
+      iframe.src = `${origin}/moduleSil/demande/client/recherche/visu.php?MUTEX_DEMANDE_DESTROY=${idRequest}&idDemande=${idRequest}&TRACKER_ID=&&pageSrc=searchDemande`;
+    }
   };
   banner.appendChild(button);
 };
