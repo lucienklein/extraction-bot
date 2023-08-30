@@ -170,14 +170,20 @@ const addButtonToRequest = async () => {
     .getAttribute("action")
     .match(/idDemande=(\d+)/)[1];
 
-  const iframeQ = document.createElement("iframe");
-  iframeQ.id = "iframeQuerco";
-  document.body.appendChild(iframeQ);
+  const iframeBlank = document.createElement("iframe");
+  iframeBlank.style.display = "none";
+  document.body.appendChild(iframeBlank);
 
-  const innerDocQ = iframeQ.contentDocument || iframeQ.contentWindow.document;
+  const innerDocQ = iframeBlank.contentDocument || iframeBlank.contentWindow.document;
   innerDocQ.write(
-    `<iframe id="iframeQuerco2" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style=""></iframe>`
+    `<iframe id="iframeQuerco" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style=""></iframe>`
   );
+
+  const iframeQuerco = innerDocQ.getElementById("iframeQuerco");
+  await new Promise((resolve) => (iframeQuerco.onload = resolve));
+  let innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
+
+  console.log("innerDocQuerco", innerDocQuerco);
 
   const table = innerDoc.querySelector('tr[valign="top"]').parentNode;
   const firstRow = table.querySelector("tr:first-child");
