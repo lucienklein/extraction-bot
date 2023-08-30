@@ -69,9 +69,9 @@ const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
     await new Promise(
       (resolve) =>
         (iframeQuerco.onload = () => {
-          if (iframe.contentWindow) {
+          if (iframeQuerco.contentWindow) {
             // Set the window.KALILABROOT variable to true inside the iframe
-            iframe.contentWindow.KALILABROOT = true;
+            iframeQuerco.contentWindow.KALILABROOT = true;
           }
           resolve();
         })
@@ -188,9 +188,9 @@ const addButtonToRequest = async () => {
   await new Promise(
     (resolve) =>
       (iframeQuerco.onload = () => {
-        if (iframe.contentWindow) {
+        if (iframeQuerco.contentWindow) {
           // Set the window.KALILABROOT variable to true inside the iframe
-          iframe.contentWindow.KALILABROOT = true;
+          iframeQuerco.contentWindow.KALILABROOT = true;
         }
         resolve();
       })
