@@ -69,6 +69,7 @@ const addButtonToRequest = async () => {
     .match(/idDemande=(\d+)/)[1];
 
   const iframeBlank = document.createElement("iframe");
+  iframeBlank.src = "data:text/html;charset=utf-8,";
   iframeBlank.style.display = "none";
   document.body.appendChild(iframeBlank);
 
