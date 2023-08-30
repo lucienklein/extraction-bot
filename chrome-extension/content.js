@@ -61,7 +61,6 @@ const addButtonToTable = () => {
 
 const addButtonToRequest = async () => {
   const origin = new URL(window.location.href).origin;
-  observer.observe(document, config);
   let iframe = document.getElementById("iframePrincipal");
   const innerDoc = iframe?.contentDocument || iframe?.contentWindow?.document || document;
   const idRequest = innerDoc
