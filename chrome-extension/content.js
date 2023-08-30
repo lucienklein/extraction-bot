@@ -66,16 +66,7 @@ const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
     popup.document.body.innerHTML += iframeHtml;
 
     const iframeQuerco = popup.document.getElementById("iframeQuerco");
-    await new Promise(
-      (resolve) =>
-        (iframeQuerco.onload = () => {
-          if (iframeQuerco.contentWindow) {
-            // Set the window.KALILABROOT variable to true inside the iframe
-            iframeQuerco.contentWindow.KALILABROOT = true;
-          }
-          resolve();
-        })
-    );
+    await new Promise((resolve) => (iframeQuerco.onload = resolve));
     let innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
 
     const inputAnalyse = innerDocQuerco.querySelector("#analyseCodeAjout");
@@ -179,44 +170,11 @@ const addButtonToRequest = async () => {
     .getAttribute("action")
     .match(/idDemande=(\d+)/)[1];
 
-  // const iframeQuerco = document.createElement("iframe");
-  // iframeQuerco.id = "iframeQuerco";
-  // iframeQuerco.style = "display: none;";
-  // iframeQuerco.src = `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`;
-  // document.body.appendChild(iframeQuerco);
+  const iframeQ = document.createElement("iframe");
+  iframeQ.id = "iframeQuerco";
 
-  // await new Promise(
-  //   (resolve) =>
-  //     (iframeQuerco.onload = () => {
-  //       if (iframeQuerco.contentWindow) {
-  //         // Set the window.KALILABROOT variable to true inside the iframe
-  //         iframe.contentWindow.KALILABROOT = true;
-  //       }
-  //       resolve();
-  //     })
-  // );
-
-  // Create the iframe element
-  var iframeQ = document.createElement("iframe");
-
-  // Attach the load event listener
-  iframeQ.onload = function () {
-    console.log("Iframe content loaded");
-    // Now, the iframe's content is fully loaded.
-    // If you want to perform any other actions after load, you can do it here.
-  };
-
-  // Append the iframe to the body or any other container
-  document.body.appendChild(iframeQ);
-
-  // Override a function within the iframe's contentWindow
-  iframeQ.contentWindow.loadMainTitle = function () {
-    console.log("Overridden function called");
-    // Your overridden function logic here
-  };
-
-  // Start loading the iframe content by setting its src attribute
-  iframeQ.src = `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`;
+  const iframeHtml = `<iframe id="iframeQuerco2" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style=""></iframe>`;
+  popup.document.body.innerHTML += iframeHtml;
 
   const table = innerDoc.querySelector('tr[valign="top"]').parentNode;
   const firstRow = table.querySelector("tr:first-child");
