@@ -81,6 +81,7 @@ const addButtonToRequest = async () => {
 
   const iframeQuerco = innerDocQ.getElementById("iframeQuerco");
   await new Promise((resolve) => (iframeQuerco.onload = resolve));
+  iframeQuerco.contentWindow.alert = () => {};
   let innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
 
   const table = innerDoc.querySelector('tr[valign="top"]').parentNode;
@@ -209,7 +210,9 @@ const addButtonToRequest = async () => {
       btnSave = innerDocQuerco.querySelector("#continuerForm");
       btnSave.click();
 
+      console.log("pending");
       iframe.src = `${origin}/moduleSil/demande/client/recherche/visu.php?MUTEX_DEMANDE_DESTROY=${idRequest}&idDemande=${idRequest}&TRACKER_ID=&&pageSrc=searchDemande`;
+      console.log("end");
     }
   };
   banner.appendChild(button);
