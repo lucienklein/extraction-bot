@@ -69,13 +69,9 @@ const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
     await new Promise(
       (resolve) =>
         (iframeQuerco.onload = () => {
-          if (iframe.contentWindow && iframe.contentWindow.parent) {
-            iframe.contentWindow.parent.loadMainTools = function () {
-              console.log("The function parent.loadMainTools has been overridden!");
-            };
-            iframe.contentWindow.parent.loadMainTitle = function () {
-              console.log("The function parent.loadMainTitle has been overridden!");
-            };
+          if (iframe.contentWindow) {
+            // Set the window.KALILABROOT variable to true inside the iframe
+            iframe.contentWindow.KALILABROOT = true;
           }
           resolve();
         })
@@ -192,13 +188,9 @@ const addButtonToRequest = async () => {
   await new Promise(
     (resolve) =>
       (iframeQuerco.onload = () => {
-        if (iframeQuerco.contentWindow && iframeQuerco.contentWindow.parent) {
-          iframeQuerco.contentWindow.parent.loadMainTools = function () {
-            console.log("The function parent.loadMainTools has been overridden!");
-          };
-          iframeQuerco.contentWindow.parent.loadMainTitle = function () {
-            console.log("The function parent.loadMainTitle has been overridden!");
-          };
+        if (iframe.contentWindow) {
+          // Set the window.KALILABROOT variable to true inside the iframe
+          iframe.contentWindow.KALILABROOT = true;
         }
         resolve();
       })
