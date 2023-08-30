@@ -172,9 +172,7 @@ const addButtonToRequest = async () => {
 
   const iframeQ = document.createElement("iframe");
   iframeQ.id = "iframeQuerco";
-
-  const iframeHtml = `<iframe id="iframeQuerco2" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style=""></iframe>`;
-  popup.document.body.innerHTML += iframeHtml;
+  iframeQ.innerHTML = `<iframe id="iframeQuerco2" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style=""></iframe>`;
 
   const table = innerDoc.querySelector('tr[valign="top"]').parentNode;
   const firstRow = table.querySelector("tr:first-child");
