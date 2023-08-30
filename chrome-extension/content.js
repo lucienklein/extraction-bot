@@ -94,7 +94,7 @@ const addButtonToRequest = async () => {
 
   var banner = document.createElement("div");
   banner.style =
-    "padding: 0px 10px; margin: 5px 13px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center;";
+    "padding: 0px 10px; margin: 5px 13px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #808080;";
   td.appendChild(banner);
 
   var text = document.createElement("p");
