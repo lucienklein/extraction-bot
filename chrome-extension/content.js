@@ -197,7 +197,6 @@ const addButtonToRequest = async () => {
 
   const iframeQuerco = document.createElement("iframe");
   iframeQuerco.id = "iframeQuerco";
-  iframeQuerco.src = "about:blank";
   document.body.appendChild(iframeQuerco);
 
   // Fetch the content you want to load into the iframe
