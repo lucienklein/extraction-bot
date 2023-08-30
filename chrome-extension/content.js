@@ -104,17 +104,17 @@ const addButtonToRequest = async () => {
 
   const info = await fetch(`${API}/request/${idRequest}`);
   const json = await info.json();
-  if (json.ok === true) {
-    const message = document.createElement("p");
+  // if (json.ok === true) {
+  //   const message = document.createElement("p");
 
-    if (json.data.status === "done")
-      message.innerHTML = `${json.data.prescriptions.length} Ordonnance(s) extraite(s):\n${json.data.acts.join(", ")}`;
-    else if (json.data.status === "processing") message.innerHTML = "En cours d'extraction";
-    else if (json.data.status === "pending") message.innerHTML = "En cours d'actualisation";
-    else message.innerHTML = "Aucune ordonnance extraite";
+  //   if (json.data.status === "done")
+  //     message.innerHTML = `${json.data.prescriptions.length} Ordonnance(s) extraite(s):\n${json.data.acts.join(", ")}`;
+  //   else if (json.data.status === "processing") message.innerHTML = "En cours d'extraction";
+  //   else if (json.data.status === "pending") message.innerHTML = "En cours d'actualisation";
+  //   else message.innerHTML = "Aucune ordonnance extraite";
 
-    banner.appendChild(message);
-  }
+  //   banner.appendChild(message);
+  // }
 
   var button = document.createElement("button");
   button.innerHTML = "Extraire";
