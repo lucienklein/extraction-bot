@@ -97,10 +97,14 @@ const addButtonToRequest = async () => {
     "padding: 0px 10px; margin: 5px 13px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #808080;";
   td.appendChild(banner);
 
-  var text = document.createElement("p");
-  text.innerHTML = "Extraction des ordonnances";
-  text.style = "font-weight: bold; font-size: 1.2em;";
-  banner.appendChild(text);
+  // Add to banner raw html
+
+  banner.innerHTML = `
+    <div>
+      <p style="font-weight: bold; font-size: 1.2em;">Clip</p>
+      <p>0 Ordonnance(s) extraite(s)</p>
+    </div>
+    `;
 
   const info = await fetch(`${API}/request/${idRequest}`);
   const json = await info.json();
