@@ -81,7 +81,6 @@ const addButtonToRequest = async () => {
 
   const iframeQuerco = innerDocQ.getElementById("iframeQuerco");
   await new Promise((resolve) => (iframeQuerco.onload = resolve));
-  iframeQuerco.contentWindow.alert = () => {};
   let innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
 
   const table = innerDoc.querySelector('tr[valign="top"]').parentNode;
@@ -95,11 +94,11 @@ const addButtonToRequest = async () => {
 
   var banner = document.createElement("div");
   banner.style =
-    "background-color: #d5c8f4; padding: 5px 10px; margin: 5px 13px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center;";
+    "padding: 0px 10px; margin: 5px 13px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center;";
   td.appendChild(banner);
 
   var text = document.createElement("p");
-  text.innerHTML = "Querco - Extraction";
+  text.innerHTML = "Extraction des ordonnances";
   text.style = "font-weight: bold; font-size: 1.2em;";
   banner.appendChild(text);
 
@@ -121,8 +120,7 @@ const addButtonToRequest = async () => {
   button.innerHTML = "Extraire";
   button.className = "my-button";
   button.style =
-    "padding: 5px 10px; color: white; background-color: #4CAF50; border: none; border-radius: 5px; cursor: pointer;";
-  button.style.backgroundColor = "#4CAF50";
+    "background: linear-gradient(62deg, #8ac4ff 0%, #e1c2ff 100%); padding: 5px 10px; border: none; border-radius: 10px;";
 
   button.onclick = async () => {
     button.innerHTML = "Extraction en cours...";
