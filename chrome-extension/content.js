@@ -69,11 +69,12 @@ const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
     await new Promise(
       (resolve) =>
         (iframeQuerco.onload = () => {
-          // Check if we can access the iframe's content
           if (iframe.contentWindow && iframe.contentWindow.parent) {
-            // Override the parent.loadMainTools function inside the iframe
             iframe.contentWindow.parent.loadMainTools = function () {
               console.log("The function parent.loadMainTools has been overridden!");
+            };
+            iframe.contentWindow.parent.loadMainTitle = function () {
+              console.log("The function parent.loadMainTitle has been overridden!");
             };
           }
           resolve();
@@ -181,6 +182,27 @@ const addButtonToRequest = async () => {
     .querySelector(`form[name = "userSelectSiteForm"]`)
     .getAttribute("action")
     .match(/idDemande=(\d+)/)[1];
+
+  const iframeQuerco = document.createElement("iframe");
+  iframeQuerco.id = "iframeQuerco";
+  iframeQuerco.style = "display: none;";
+  iframeQuerco.src = `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`;
+  document.body.appendChild(iframeQuerco);
+
+  await new Promise(
+    (resolve) =>
+      (iframeQuerco.onload = () => {
+        if (iframe.contentWindow && iframe.contentWindow.parent) {
+          iframe.contentWindow.parent.loadMainTools = function () {
+            console.log("The function parent.loadMainTools has been overridden!");
+          };
+          iframe.contentWindow.parent.loadMainTitle = function () {
+            console.log("The function parent.loadMainTitle has been overridden!");
+          };
+        }
+        resolve();
+      })
+  );
 
   const table = innerDoc.querySelector('tr[valign="top"]').parentNode;
   const firstRow = table.querySelector("tr:first-child");
