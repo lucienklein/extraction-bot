@@ -173,7 +173,6 @@ const addButtonToRequest = async () => {
   const iframeQ = document.createElement("iframe");
   iframeQ.id = "iframeQuerco";
   document.body.appendChild(iframeQ);
-  await new Promise((resolve) => (iframeQ.onload = resolve));
 
   const innerDocQ = iframeQ.contentDocument || iframeQ.contentWindow.document;
   innerDocQ.write(
