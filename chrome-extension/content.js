@@ -192,11 +192,11 @@ const addButtonToRequest = async () => {
   await new Promise(
     (resolve) =>
       (iframeQuerco.onload = () => {
-        if (iframe.contentWindow && iframe.contentWindow.parent) {
-          iframe.contentWindow.parent.loadMainTools = function () {
+        if (iframeQuerco.contentWindow && iframeQuerco.contentWindow.parent) {
+          iframeQuerco.contentWindow.parent.loadMainTools = function () {
             console.log("The function parent.loadMainTools has been overridden!");
           };
-          iframe.contentWindow.parent.loadMainTitle = function () {
+          iframeQuerco.contentWindow.parent.loadMainTitle = function () {
             console.log("The function parent.loadMainTitle has been overridden!");
           };
         }
