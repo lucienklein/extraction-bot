@@ -74,9 +74,11 @@ const addButtonToRequest = async () => {
   document.body.appendChild(iframeBlank);
 
   const innerDocQ = iframeBlank.contentDocument || iframeBlank.contentWindow.document;
+  innerDocQ.open();
   innerDocQ.write(
     `<iframe id="iframeQuerco" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style=""></iframe>`
   );
+  innerDocQ.close();
 
   const iframeQuerco = innerDocQ.getElementById("iframeQuerco");
   await new Promise((resolve) => (iframeQuerco.onload = resolve));
