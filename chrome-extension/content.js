@@ -62,7 +62,7 @@ const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
 
     popup.alert = function () {};
     popup.document.body.innerHTML = `Clip - Insertion des données dans le SIL`;
-    const iframeHtml = `<iframe id="iframeQuerco" src="${origin}/moduleKalilab/demande/visu.php?idDemande=${idRequest}&TRACKER_ID=&&pageSrc=searchDemande" style=""></iframe>`;
+    const iframeHtml = `<iframe id="iframeQuerco" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style=""></iframe>`;
     popup.document.body.innerHTML += iframeHtml;
 
     const iframeQuerco = popup.document.getElementById("iframeQuerco");
@@ -95,7 +95,7 @@ const createPopupWithIframe = async (origin, idRequest, prescriptionsInfo) => {
     btnSave = innerDocQuerco.querySelector("#continuerForm");
     btnSave.click();
 
-    popup.close();
+    // popup.close();
   }
 };
 
