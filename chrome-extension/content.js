@@ -145,42 +145,30 @@ const validateDialog = (doc) => {
 
 const openPopupForMoreInfo = async (idRequest) => {
   const origin = new URL(window.location.href).origin;
+  const url = `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`;
 
   // Create a new window
-  const popupWindow = window.open("", "_blank", "width=800,height=800,scrollbars=yes");
+  const popupWindow = window.open(
+    url,
+    "_blank",
+    "width=600,height=600,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no"
+  );
 
   // Check if the window is opened
   if (!popupWindow) return alert("Merci d'autoriser les popups pour ce site");
 
-  // Create a new iframe
-  let iframe = document.createElement("iframe");
+  await new Promise((resolve) => (window.onload = resolve));
 
-  iframe.style = "width: 800px; height: 800px; display: none; border: none; overflow: hidden; margin: 0; padding: 0;";
+  window.document.querySelector("#btnModifierDemande").click();
 
-  // Set the source of the iframe
-  iframe.src = `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`;
+  const interval = validateDialog(window.document);
 
-  // Append the iframe to the popup window
-  popupWindow.document.body.appendChild(iframe);
-
-  await new Promise((resolve) => (iframe.onload = resolve));
-
-  let innerDoc = iframe.contentDocument || iframe.contentWindow.document;
-
-  innerDoc.querySelector("#btnModifierDemande").click();
-
-  const interval = validateDialog(innerDoc);
-
-  await new Promise((resolve) => (iframe.onload = resolve));
-
-  innerDoc = iframe.contentDocument || iframe.contentWindow.document;
-
-  iframe.style.display = "block";
+  await new Promise((resolve) => (window.onload = resolve));
 
   if (interval !== undefined) clearInterval(interval);
 
-  innerDoc.querySelector("#continuerForm").onclick = () => {
-    iframe.onload = popupWindow.close;
+  window.querySelector("#continuerForm").onclick = () => {
+    window.onload = popupWindow.close;
   };
 
   return;
