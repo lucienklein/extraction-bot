@@ -155,7 +155,7 @@ const openPopupForMoreInfo = async (idRequest) => {
   // Create a new iframe
   let iframe = document.createElement("iframe");
 
-  iframe.style = "width: 100%; height: 100%; display: none;";
+  iframe.style = "width: 600px; height: 600px; display: none; border: none; overflow: hidden; margin: 0; padding: 0;";
 
   // Set the source of the iframe
   iframe.src = `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`;
@@ -203,6 +203,7 @@ const addButtonToRequest = async () => {
   innerDocQ.close();
 
   const iframeQuerco = innerDocQ.getElementById("iframeQuerco");
+  iframeQuerco.contentWindow.alert = () => {};
   await new Promise((resolve) => (iframeQuerco.onload = resolve));
   let innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
 
@@ -296,9 +297,6 @@ const addButtonToRequest = async () => {
       btnSave.click();
 
       const interval = validateDialog(innerDocQuerco);
-
-      iframeQuerco.contentWindow.alert = () => {};
-      iframeQuerco.contentWindow.confirm = () => true;
 
       await new Promise((resolve) => (iframeQuerco.onload = resolve));
 
