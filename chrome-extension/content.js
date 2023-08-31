@@ -13,7 +13,7 @@ const styleQButton = `
     cursor: pointer;
     display: inline-block;
     font-family: din-round,sans-serif;
-    font-size: 15px;
+    font-size: 1.2rem;
     font-weight: 700;
     letter-spacing: .8px;
     line-height: 20px;
@@ -128,6 +128,60 @@ const addButtonToTable = () => {
   }
 };
 
+const validateDialog = (doc) => {
+  const interval = setInterval(() => {
+    const btnsDialog = [...doc.querySelectorAll(`[role="dialog"] button`)];
+    const btnValider = btnsDialog.find((btn) => btn.innerText === "Valider");
+
+    if (!btnValider) return;
+
+    btnValider.click();
+    clearInterval(interval);
+    interval = undefined;
+  }, 100);
+
+  return interval;
+};
+
+const openPopupForMoreInfo = async (idRequest) => {
+  const origin = new URL(window.location.href).origin;
+
+  // Create a new window
+  let popupWindow = window.open("", "_blank");
+
+  // Check if the window is opened
+  if (!popupWindow) return alert("Merci d'autoriser les popups pour ce site");
+
+  // Create a new iframe
+  let iframe = document.createElement("iframe");
+
+  iframe.style = "width: 100%; height: 100%; display: none;";
+
+  // Set the source of the iframe
+  iframe.src = `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`;
+
+  // Append the iframe to the popup window
+  popupWindow.document.body.appendChild(iframe);
+
+  await new Promise((resolve) => (iframe.onload = resolve));
+
+  let innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+  innerDoc.querySelector("#btnModifierDemande").click();
+
+  const interval = validateDialog(innerDoc);
+
+  await new Promise((resolve) => (iframe.onload = resolve));
+
+  innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+  iframe.style.display = "block";
+
+  if (interval !== undefined) clearInterval(interval);
+
+  return;
+};
+
 const addButtonToRequest = async () => {
   const origin = new URL(window.location.href).origin;
   let iframe = document.getElementById("iframePrincipal");
@@ -168,7 +222,7 @@ const addButtonToRequest = async () => {
 
   var button = document.createElement("button");
   button.className = "q-button";
-  button.innerHTML = "Extraction";
+  button.innerHTML = "Extraire le(s) ordonnance(s)";
 
   button.onclick = async () => {
     button.innerHTML = "Extraction en cours...";
@@ -231,8 +285,9 @@ const addButtonToRequest = async () => {
     if (response.data.status === "pending") {
       const inputAnalyse = innerDocQuerco.querySelector("#analyseCodeAjout");
       const eventENTER = new KeyboardEvent("keydown", { keyCode: 13 });
+      const acts = response.data.prescriptions.reduce((acc, cur) => [...acc, ...cur.acts], []);
 
-      for (const act of response.data.prescriptions.reduce((acc, cur) => [...acc, ...cur.acts], [])) {
+      for (const act of acts) {
         inputAnalyse.value = act.code;
         inputAnalyse.dispatchEvent(eventENTER);
       }
@@ -240,20 +295,11 @@ const addButtonToRequest = async () => {
       let btnSave = innerDocQuerco.querySelector("#btnModifierDemande");
       btnSave.click();
 
-      const interval = setInterval(() => {
-        const btnValider = [...innerDocQuerco.querySelectorAll("button")].find((btn) =>
-          btn.textContent.includes("Valider")
-        );
-        if (!btnValider) return;
-
-        btnValider.click();
-        clearInterval(interval);
-      }, 100);
+      const interval = validateDialog(innerDoc);
 
       await new Promise((resolve) => (iframeQuerco.onload = resolve));
       innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
-      btnSave = innerDocQuerco.querySelector("#continuerForm");
-      btnSave.click();
+      if (innerDocQuerco.querySelector("#continuerForm")) openPopupForMoreInfo(idRequest, acts);
 
       console.log("pending");
       iframe.src = `${origin}/moduleSil/demande/client/recherche/visu.php?MUTEX_DEMANDE_DESTROY=${idRequest}&idDemande=${idRequest}&TRACKER_ID=&&pageSrc=searchDemande`;
