@@ -1,5 +1,74 @@
 const API = "https://app-42a9f51d-0586-42d1-84f2-f0fa9c3f6df2.cleverapps.io";
 
+const styleQButton = `
+  <style>
+  .q-button {
+    appearance: button;
+    background-color: #1899D6;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: din-round,sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    line-height: 20px;
+    margin: 0;
+    outline: none;
+    overflow: visible;
+    padding: 13px 16px;
+    text-align: center;
+    text-transform: uppercase;
+    touch-action: manipulation;
+    transform: translateZ(0);
+    transition: filter .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: auto;
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+  }
+  
+  .q-button:after {
+    background-clip: padding-box;
+    background-color: #1CB0F6;
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+    bottom: -4px;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+  }
+  
+  .q-button:main,
+  .q-button:focus {
+    user-select: auto;
+  }
+  
+  .q-button:hover:not(:disabled) {
+    filter: brightness(1.1);
+    -webkit-filter: brightness(1.1);
+  }
+  
+  .q-button:disabled {
+    cursor: auto;
+    filter: brightness(0.9);
+    -webkit-filter: brightness(0.9);
+  }
+  </style>
+`;
+
 const addButtonToTable = () => {
   var url = new URL(window.location.href);
   const title = document.querySelector("#pageTitle");
@@ -83,28 +152,6 @@ const addButtonToRequest = async () => {
   await new Promise((resolve) => (iframeQuerco.onload = resolve));
   let innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
 
-  const table = innerDoc.querySelector('tr[valign="top"]').parentNode;
-  const firstRow = table.querySelector("tr:first-child");
-  const tr = document.createElement("tr");
-  firstRow.parentNode.insertBefore(tr, firstRow.nextSibling);
-
-  var td = document.createElement("td");
-  td.colSpan = 2;
-  tr.appendChild(td);
-
-  var banner = document.createElement("div");
-  banner.style =
-    "padding: 0px 10px; margin: 5px 13px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #808080;";
-  td.appendChild(banner);
-
-  // Add to banner raw html
-
-  banner.innerHTML = `
-    <div>
-      <p style="font-weight: bold; font-size: 1.2em;">Clip</p>
-    </div>
-    `;
-
   const info = await fetch(`${API}/request/${idRequest}`);
   const json = await info.json();
   // if (json.ok === true) {
@@ -120,15 +167,12 @@ const addButtonToRequest = async () => {
   // }
 
   var button = document.createElement("button");
+  button.className = "q-button";
   button.innerHTML = "Extraire";
-  button.className = "my-button";
-  button.style =
-    "background: linear-gradient(62deg, #8ac4ff 0%, #e1c2ff 100%); padding: 5px 10px; border: none; border-radius: 10px;";
 
   button.onclick = async () => {
     button.innerHTML = "Extraction en cours...";
-    button.style.cursor = "wait";
-    button.style.backgroundColor = "#808080";
+    button.disabled = true;
 
     const files = innerDoc.querySelectorAll(".scanGrand ");
     let filesInfo = [...files].map((file) => {
@@ -216,7 +260,8 @@ const addButtonToRequest = async () => {
       console.log("end");
     }
   };
-  banner.appendChild(button);
+  document.head.innerHTML += styleQButton;
+  document.body.appendChild(button);
 };
 
 // var iframe = document.getElementById("iframePrincipal");
