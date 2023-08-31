@@ -147,7 +147,7 @@ const openPopupForMoreInfo = async (idRequest) => {
   const origin = new URL(window.location.href).origin;
 
   // Create a new window
-  const popupWindow = window.open("", "_blank", "width=600,height=600,scrollbars=yes");
+  const popupWindow = window.open("", "_blank", "width=800,height=800,scrollbars=yes");
 
   // Check if the window is opened
   if (!popupWindow) return alert("Merci d'autoriser les popups pour ce site");
@@ -155,7 +155,7 @@ const openPopupForMoreInfo = async (idRequest) => {
   // Create a new iframe
   let iframe = document.createElement("iframe");
 
-  iframe.style = "width: 600px; height: 600px; display: none; border: none; overflow: hidden; margin: 0; padding: 0;";
+  iframe.style = "width: 800px; height: 800px; display: none; border: none; overflow: hidden; margin: 0; padding: 0;";
 
   // Set the source of the iframe
   iframe.src = `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`;
@@ -178,6 +178,8 @@ const openPopupForMoreInfo = async (idRequest) => {
   iframe.style.display = "block";
 
   if (interval !== undefined) clearInterval(interval);
+
+  innerDoc.querySelector("#continuerForm").onclick = () => popupWindow.close();
 
   return;
 };
