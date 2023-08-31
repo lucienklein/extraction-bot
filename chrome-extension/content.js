@@ -102,7 +102,6 @@ const addButtonToRequest = async () => {
   banner.innerHTML = `
     <div>
       <p style="font-weight: bold; font-size: 1.2em;">Clip</p>
-      <p>0 Ordonnance(s) extraite(s)</p>
     </div>
     `;
 
@@ -189,8 +188,8 @@ const addButtonToRequest = async () => {
       const inputAnalyse = innerDocQuerco.querySelector("#analyseCodeAjout");
       const eventENTER = new KeyboardEvent("keydown", { keyCode: 13 });
 
-      for (const act of response.data.acts) {
-        inputAnalyse.value = act;
+      for (const act of response.data.prescriptions.reduce((acc, cur) => [...acc, ...cur.acts], [])) {
+        inputAnalyse.value = act.code;
         inputAnalyse.dispatchEvent(eventENTER);
       }
 
