@@ -147,28 +147,26 @@ const openPopupForMoreInfo = async (idRequest) => {
   const origin = new URL(window.location.href).origin;
   const url = `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`;
 
-  // Create a new window
   const popupWindow = window.open(
     url,
     "_blank",
     "width=600,height=600,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no"
   );
 
-  // Check if the window is opened
   if (!popupWindow) return alert("Merci d'autoriser les popups pour ce site");
 
-  await new Promise((resolve) => (window.onload = resolve));
+  await new Promise((resolve) => (popupWindow.onload = resolve));
 
-  window.document.querySelector("#btnModifierDemande").click();
+  popupWindow.document.querySelector("#btnModifierDemande").click();
 
-  const interval = validateDialog(window.document);
+  const interval = validateDialog(popupWindow.document);
 
-  await new Promise((resolve) => (window.onload = resolve));
+  await new Promise((resolve) => (popupWindow.onload = resolve));
 
   if (interval !== undefined) clearInterval(interval);
 
-  window.querySelector("#continuerForm").onclick = () => {
-    window.onload = popupWindow.close;
+  popupWindow.querySelector("#continuerForm").onclick = () => {
+    popupWindow.onload = popupWindow.close;
   };
 
   return;
