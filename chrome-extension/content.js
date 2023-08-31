@@ -129,7 +129,7 @@ const addButtonToTable = () => {
 };
 
 const validateDialog = (doc) => {
-  const interval = setInterval(() => {
+  let interval = setInterval(() => {
     const btnsDialog = [...doc.querySelectorAll(`[role="dialog"] button`)];
     const btnValider = btnsDialog.find((btn) => btn.innerText === "Valider");
 
