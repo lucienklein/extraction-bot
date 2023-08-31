@@ -179,7 +179,9 @@ const openPopupForMoreInfo = async (idRequest) => {
 
   if (interval !== undefined) clearInterval(interval);
 
-  innerDoc.querySelector("#continuerForm").onclick = () => popupWindow.close();
+  innerDoc.querySelector("#continuerForm").onclick = () => {
+    iframe.onload = popupWindow.close();
+  };
 
   return;
 };
@@ -205,7 +207,6 @@ const addButtonToRequest = async () => {
   innerDocQ.close();
 
   const iframeQuerco = innerDocQ.getElementById("iframeQuerco");
-  iframeQuerco.contentWindow.alert = () => {};
   await new Promise((resolve) => (iframeQuerco.onload = resolve));
   let innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
 
@@ -298,6 +299,7 @@ const addButtonToRequest = async () => {
       let btnSave = innerDocQuerco.querySelector("#btnModifierDemande");
       btnSave.click();
 
+      iframeQuerco.contentWindow.alert = () => {};
       const interval = validateDialog(innerDocQuerco);
 
       await new Promise((resolve) => (iframeQuerco.onload = resolve));
