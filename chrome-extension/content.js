@@ -168,7 +168,7 @@ const addButtonToRequest = async () => {
 
   var button = document.createElement("button");
   button.className = "q-button";
-  button.innerHTML = "Extraire";
+  button.innerHTML = "Extraction";
 
   button.onclick = async () => {
     button.innerHTML = "Extraction en cours...";
