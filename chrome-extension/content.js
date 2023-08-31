@@ -180,7 +180,7 @@ const openPopupForMoreInfo = async (idRequest) => {
   if (interval !== undefined) clearInterval(interval);
 
   innerDoc.querySelector("#continuerForm").onclick = () => {
-    iframe.onload = popupWindow.close();
+    iframe.onload = popupWindow.close;
   };
 
   return;
