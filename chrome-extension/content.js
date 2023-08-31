@@ -207,6 +207,7 @@ const addButtonToRequest = async () => {
   innerDocQ.close();
 
   const iframeQuerco = innerDocQ.getElementById("iframeQuerco");
+  iframeQuerco.contentWindow.confirm = () => true;
   await new Promise((resolve) => (iframeQuerco.onload = resolve));
   let innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
 
@@ -299,7 +300,6 @@ const addButtonToRequest = async () => {
       let btnSave = innerDocQuerco.querySelector("#btnModifierDemande");
       btnSave.click();
 
-      iframeQuerco.contentWindow.alert = () => {};
       const interval = validateDialog(innerDocQuerco);
 
       await new Promise((resolve) => (iframeQuerco.onload = resolve));
