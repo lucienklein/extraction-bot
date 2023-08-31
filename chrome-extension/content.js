@@ -295,10 +295,14 @@ const addButtonToRequest = async () => {
       let btnSave = innerDocQuerco.querySelector("#btnModifierDemande");
       btnSave.click();
 
-      const interval = validateDialog(innerDoc);
+      const interval = validateDialog(innerDocQuerco);
 
       await new Promise((resolve) => (iframeQuerco.onload = resolve));
+
+      if (interval !== undefined) clearInterval(interval);
+
       innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
+
       if (innerDocQuerco.querySelector("#continuerForm")) openPopupForMoreInfo(idRequest, acts);
 
       console.log("pending");
