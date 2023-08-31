@@ -144,6 +144,7 @@ const validateDialog = (doc) => {
 };
 
 const openPopupForMoreInfo = async (idRequest) => {
+  console.log("openPopupForMoreInfo");
   const origin = new URL(window.location.href).origin;
 
   // Create a new window
