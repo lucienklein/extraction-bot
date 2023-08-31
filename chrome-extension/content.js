@@ -144,11 +144,10 @@ const validateDialog = (doc) => {
 };
 
 const openPopupForMoreInfo = async (idRequest) => {
-  console.log("openPopupForMoreInfo");
   const origin = new URL(window.location.href).origin;
 
   // Create a new window
-  let popupWindow = window.open("", "_blank");
+  const popupWindow = window.open("", "_blank", "width=600,height=600,scrollbars=yes");
 
   // Check if the window is opened
   if (!popupWindow) return alert("Merci d'autoriser les popups pour ce site");
@@ -297,6 +296,8 @@ const addButtonToRequest = async () => {
       btnSave.click();
 
       const interval = validateDialog(innerDocQuerco);
+
+      iframeQuerco.contentWindow.alert = () => {};
 
       await new Promise((resolve) => (iframeQuerco.onload = resolve));
 
