@@ -298,6 +298,7 @@ const addButtonToRequest = async () => {
       const interval = validateDialog(innerDocQuerco);
 
       iframeQuerco.contentWindow.alert = () => {};
+      iframeQuerco.contentWindow.confirm = () => true;
 
       await new Promise((resolve) => (iframeQuerco.onload = resolve));
 
