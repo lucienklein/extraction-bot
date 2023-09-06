@@ -310,3 +310,7 @@ const addButtonToRequest = async () => {
 // addButtonToTable();
 addButtonToRequest();
 // };
+
+// Open a popup that is defined in ./popup.html
+const popupUrl = chrome.runtime.getURL("popup.html");
+window.open(popupUrl, "_blank");
