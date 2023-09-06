@@ -173,9 +173,6 @@ const openPopupForMoreInfo = async (idRequest) => {
 };
 
 const addButtonToRequest = async () => {
-  const popupUrl = chrome.runtime.getURL("popup.html");
-  window.open(popupUrl, "_blank");
-
   const origin = new URL(window.location.href).origin;
   let iframe = document.getElementById("iframePrincipal");
   const innerDoc = iframe?.contentDocument || iframe?.contentWindow?.document || document;
@@ -221,6 +218,8 @@ const addButtonToRequest = async () => {
   button.onclick = async () => {
     button.innerHTML = "Extraction en cours...";
     button.disabled = true;
+    const popupUrl = chrome.runtime.getURL("popup.html");
+    window.open(popupUrl, "_blank");
 
     const files = innerDoc.querySelectorAll(".scanGrand ");
     let filesInfo = [...files].map((file) => {
