@@ -219,7 +219,11 @@ const addButtonToRequest = async () => {
     button.innerHTML = "Extraction en cours...";
     button.disabled = true;
     const popupUrl = chrome.runtime.getURL("popup.html");
-    window.open(popupUrl, "_blank");
+    window.open(
+      popupUrl,
+      "_blank",
+      "width=600,height=600,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no"
+    );
 
     const files = innerDoc.querySelectorAll(".scanGrand ");
     let filesInfo = [...files].map((file) => {
