@@ -234,7 +234,7 @@ const addButtonToRequest = async () => {
 
     innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
 
-    if (innerDocQuerco.querySelector("#continuerForm")) openPopupForMoreInfo(idRequest, acts);
+    // if (innerDocQuerco.querySelector("#continuerForm")) openPopupForMoreInfo(idRequest, acts);
 
     if (!iframe) return window.location.reload();
 
