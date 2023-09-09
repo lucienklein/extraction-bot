@@ -214,33 +214,31 @@ const addButtonToRequest = async () => {
       return;
     }
 
-    if (response.data.status === "pending") {
-      const inputAnalyse = innerDocQuerco.querySelector("#analyseCodeAjout");
-      const eventENTER = new KeyboardEvent("keydown", { keyCode: 13 });
-      const acts = response.data.prescriptions.reduce((acc, cur) => [...acc, ...cur.acts], []);
+    const inputAnalyse = innerDocQuerco.querySelector("#analyseCodeAjout");
+    const eventENTER = new KeyboardEvent("keydown", { keyCode: 13 });
+    const acts = response.data.prescriptions.reduce((acc, cur) => [...acc, ...cur.acts], []);
 
-      for (const act of acts) {
-        inputAnalyse.value = act.code;
-        inputAnalyse.dispatchEvent(eventENTER);
-      }
-
-      let btnSave = innerDocQuerco.querySelector("#btnModifierDemande");
-      btnSave.click();
-
-      const interval = validateDialog(innerDocQuerco);
-
-      await new Promise((resolve) => (iframeQuerco.onload = resolve));
-
-      if (interval !== undefined) clearInterval(interval);
-
-      innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
-
-      if (innerDocQuerco.querySelector("#continuerForm")) openPopupForMoreInfo(idRequest, acts);
-
-      if (!iframe) return window.location.reload();
-
-      iframe.src = `${origin}/moduleSil/demande/client/recherche/visu.php?MUTEX_DEMANDE_DESTROY=${idRequest}&idDemande=${idRequest}&TRACKER_ID=&&pageSrc=searchDemande`;
+    for (const act of acts) {
+      inputAnalyse.value = act.code;
+      inputAnalyse.dispatchEvent(eventENTER);
     }
+
+    let btnSave = innerDocQuerco.querySelector("#btnModifierDemande");
+    btnSave.click();
+
+    const interval = validateDialog(innerDocQuerco);
+
+    await new Promise((resolve) => (iframeQuerco.onload = resolve));
+
+    if (interval !== undefined) clearInterval(interval);
+
+    innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
+
+    if (innerDocQuerco.querySelector("#continuerForm")) openPopupForMoreInfo(idRequest, acts);
+
+    if (!iframe) return window.location.reload();
+
+    iframe.src = `${origin}/moduleSil/demande/client/recherche/visu.php?MUTEX_DEMANDE_DESTROY=${idRequest}&idDemande=${idRequest}&TRACKER_ID=&&pageSrc=searchDemande`;
   };
   document.head.innerHTML += styleQButton;
   document.body.appendChild(button);
