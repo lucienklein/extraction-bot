@@ -126,13 +126,16 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
   popup.document.write(
     `
     <div style="width: 100%; height: 100%; position: fixed; top: 0; left: 0; display: flex; justify-content: center; align-items: center; background-color: #fff;">
-      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #000; opacity: 0.5;"></div>
-      <iframe id="iframeQuerco" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style="width: 100%; height: 100%; border: none;"></iframe>
+      <div style="width: 100%; height: 100%;" id="divQuerco">
+        Récupération des ordonnances...
+      </div>
+      <iframe id="iframeQuerco" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style="width: 100%; height: 100%; border: none; display: none;"></iframe>
     </div>
     `
   );
   popup.document.close();
 
+  const divQuerco = popup.document.getElementById("divQuerco");
   const iframeQuerco = popup.document.getElementById("iframeQuerco");
   iframeQuerco.contentWindow.confirm = () => true;
   await new Promise((resolve) => (iframeQuerco.onload = resolve));
@@ -157,6 +160,7 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
     prescriptions.push({ name: info.idScan, raw: Array.from(new Uint8Array(buffer)) });
   }
 
+  divQuerco.innerText = "Extraction en cours des informations...";
   let response = await fetch(`${API}/request`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
