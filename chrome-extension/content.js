@@ -134,21 +134,21 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
 
   if (!popup) return alert("Merci d'autoriser les popups pour ce site");
 
-  popup.document.head += style;
   popup.document.open();
   popup.document.write(
     `
     <div id="mainDivQuerco"  style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; column-gap: 10px; background-color: #fff;">
-      <div id="divOrdonnanceQuerco" style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;font-size: 20px; font-weight: bold;">
-        Récupération des ordonnances...
-      </div>
-      <div id="divInfoQuerco" style="width: 100%; height: 100%">
-        <iframe id="iframeQuerco" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style="width: 100%; height: 100%; border: none; display: none;"></iframe>
-      </div>
+    <div id="divOrdonnanceQuerco" style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;font-size: 20px; font-weight: bold;">
+    Récupération des ordonnances...
+    </div>
+    <div id="divInfoQuerco" style="width: 100%; height: 100%">
+    <iframe id="iframeQuerco" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style="width: 100%; height: 100%; border: none; display: none;"></iframe>
+    </div>
     </div>
     `
   );
   popup.document.close();
+  popup.document.head += style;
 
   const mainDivQuerco = popup.document.getElementById("mainDivQuerco");
   const divOrdonnanceQuerco = popup.document.getElementById("divOrdonnanceQuerco");
