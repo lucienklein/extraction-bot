@@ -124,7 +124,12 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
 
   popup.document.open();
   popup.document.write(
-    `<iframe id="iframeQuerco" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style=""></iframe>`
+    `
+    <div style="width: 100%; height: 100%; position: fixed; top: 0; left: 0; display: flex; justify-content: center; align-items: center; background-color: #fff;">
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #000; opacity: 0.5;"></div>
+      <iframe id="iframeQuerco" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style="width: 100%; height: 100%; border: none;"></iframe>
+    </div>
+    `
   );
   popup.document.close();
 
