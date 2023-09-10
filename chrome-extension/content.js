@@ -148,7 +148,6 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
     `
   );
   popup.document.close();
-  popup.document.head += style;
 
   const mainDivQuerco = popup.document.getElementById("mainDivQuerco");
   const divOrdonnanceQuerco = popup.document.getElementById("divOrdonnanceQuerco");
@@ -188,9 +187,9 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
   console.log(response);
 
   divOrdonnanceQuerco.innerHTML = `
-  <div class="image-container">
-    <img src="${prescriptions[0].src}">
-    <svg width="100%" height="100%">
+  <div style="position: relative; display: inline-block;">
+    <img src="${prescriptions[0].src}" style="display: block">
+    <svg width="100%" height="100%" style="position: absolute; top: 0; left: 0;">
       <polygon points="322,39 451,41 449,80 320,77" style="fill:none;stroke:blue;stroke-width:1" />
     </svg>
   </div>
