@@ -134,6 +134,7 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
 
   if (!popup) return alert("Merci d'autoriser les popups pour ce site");
 
+  popup.document.head += style;
   popup.document.open();
   popup.document.write(
     `
