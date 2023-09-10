@@ -66,18 +66,6 @@ const style = `
     filter: brightness(0.9);
     -webkit-filter: brightness(0.9);
   }
-  .image-container {
-    position: relative;
-    display: inline-block;
-  }
-  .image-container img {
-    display: block;
-  }
-  .image-container svg {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
   </style>
 `;
 
