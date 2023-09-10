@@ -113,7 +113,7 @@ const openPopupForMoreInfo = async (idRequest) => {
   return;
 };
 
-const openPopupForExtraction = async (origin, prescriptionsInfo) => {
+const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
   const popup = window.open(
     "",
     "_blank",
@@ -228,7 +228,7 @@ const addButtonToRequest = async () => {
 
     const prescriptionsInfo = filesInfo.filter((fileInfo) => fileInfo !== null && fileInfo.idTypeScan === "1");
 
-    await openPopupForExtraction(origin, prescriptionsInfo);
+    await openPopupForExtraction(origin, prescriptionsInfo, idRequest);
 
     if (!iframe) return window.location.reload();
 
