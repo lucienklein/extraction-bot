@@ -125,17 +125,21 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
   popup.document.open();
   popup.document.write(
     `
-    <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; column-gap: 10px; background-color: #fff;">
-      <div style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; border: 1px solid #000; border-radius: 5px; font-size: 20px; font-weight: bold; padding: 20px;" id="divQuerco">
+    <div id="mainDivQuerco"  style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; column-gap: 10px; background-color: #fff;">
+      <div id="divOrdonnanceQuerco" style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;font-size: 20px; font-weight: bold;">
         Récupération des ordonnances...
       </div>
-      <iframe id="iframeQuerco" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style="width: 100%; height: 100%; border: none; display: none;"></iframe>
+      <div id="divInfoQuerco" style="width: 100%; height: 100%">
+        <iframe id="iframeQuerco" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style="width: 100%; height: 100%; border: none; display: none;"></iframe>
+      </div>
     </div>
     `
   );
   popup.document.close();
 
-  const divQuerco = popup.document.getElementById("divQuerco");
+  const mainDivQuerco = popup.document.getElementById("mainDivQuerco");
+  const divOrdonnanceQuerco = popup.document.getElementById("divOrdonnanceQuerco");
+  const divInfoQuerco = popup.document.getElementById("divInfoQuerco");
   const iframeQuerco = popup.document.getElementById("iframeQuerco");
   iframeQuerco.contentWindow.confirm = () => true;
   await new Promise((resolve) => (iframeQuerco.onload = resolve));
@@ -157,10 +161,10 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
     const imgResponse = await fetch(imgSrc);
 
     const buffer = await imgResponse.arrayBuffer();
-    prescriptions.push({ name: info.idScan, raw: Array.from(new Uint8Array(buffer)) });
+    prescriptions.push({ name: info.idScan, raw: Array.from(new Uint8Array(buffer)), src: imgSrc });
   }
 
-  divQuerco.innerText = "Extraction en cours des informations...";
+  divOrdonnanceQuerco.innerText = "Extraction en cours des informations...";
   let response = await fetch(`${API}/request`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -169,6 +173,15 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
 
   response = await response.json();
   console.log(response);
+
+  divOrdonnanceQuerco.innerHTML = `
+  <div class="image-container">
+    <img src="${prescriptions[0].src}">
+    <svg width="100%" height="100%">
+      <polygon points="322,39 451,41 449,80 320,77" style="fill:none;stroke:blue;stroke-width:1" />
+    </svg>
+  </div>
+  `;
 
   // if (response.ok === false) {
   //   button.innerHTML = "Erreur";
