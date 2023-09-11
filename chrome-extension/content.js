@@ -85,7 +85,7 @@ function updatePolygonPoints(document, viewportHeight, originalWidth, originalHe
 
     const pointsString = adjustedPoints.map((point) => `${point.x},${point.y}`).join(" ");
 
-    const element = document.querySelector(`#${id}`);
+    const element = document.getElementById(id);
 
     if (element) {
       element.setAttribute("points", pointsString);
