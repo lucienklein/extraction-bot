@@ -129,7 +129,7 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
       Récupération des ordonnances...
       </div>
       <div id="divInfoQuerco" style="width: 100%; height: 100%">
-        <iframe id="iframeQuerco" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style="width: 100%; height: 100%; border: none; display: none;"></iframe>
+        <iframe id="iframeQuerco" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style="width: 100%; height: 100%; border: none; display: xnone;"></iframe>
       </div>
     </div>
     `
@@ -205,7 +205,7 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
   for (const act of acts) {
     inputAnalyse.value = act.code;
     do {
-      await new Promise((resolve) => setTimeout(resolve, 100));
+      await new Promise((resolve) => setTimeout(resolve, 250));
     } while (inputAnalyse.classList.contains("ui-autocomplete-loading"));
     inputAnalyse.dispatchEvent(eventENTER);
   }
