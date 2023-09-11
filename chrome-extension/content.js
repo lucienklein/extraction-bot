@@ -213,16 +213,13 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
   </div>
   `;
 
-  const fct = () =>
-    updatePolygonPoints(
-      popup.document,
-      popup.innerHeight,
-      response.data.prescriptions[0].width,
-      response.data.prescriptions[0].height,
-      response.data.prescriptions[0].acts
-    );
-  fct();
-  window.addEventListener("resize", fct);
+  updatePolygonPoints(
+    popup.document,
+    popup.innerHeight,
+    response.data.prescriptions[0].width,
+    response.data.prescriptions[0].height,
+    response.data.prescriptions[0].acts
+  );
 
   // if (response.ok === false) {
   //   button.innerHTML = "Erreur";
