@@ -75,9 +75,11 @@ function updatePolygonPoints(document, viewportHeight, originalWidth, originalHe
   let scaleFactorX = newWidth / originalWidth;
   let scaleFactorY = viewportHeight / originalHeight;
 
+  const svg = document.querySelector(`#svgQuerco`);
+  svg.innerHTML = "";
+
   for (const boxe of boxes) {
     const points = boxe.polygon;
-    const id = points.map((point) => `${point.x}${point.y}`).join("");
     const adjustedPoints = points.map((point) => ({
       x: point.x * scaleFactorX,
       y: point.y * scaleFactorY,
@@ -85,16 +87,8 @@ function updatePolygonPoints(document, viewportHeight, originalWidth, originalHe
 
     const pointsString = adjustedPoints.map((point) => `${point.x},${point.y}`).join(" ");
 
-    const element = document.getElementById(id);
-
-    if (element) {
-      element.setAttribute("points", pointsString);
-      continue;
-    }
-
     const svg = document.querySelector(`#svgQuerco`);
     const polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
-    polygon.setAttribute("id", id);
     polygon.setAttribute("points", pointsString);
     polygon.setAttribute("style", "fill:blue;fill-opacity:0.25;stroke:blue;stroke-width:1");
     svg.appendChild(polygon);
@@ -186,13 +180,17 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
   </div>
   `;
 
-  updatePolygonPoints(
-    popup.document,
-    popup.innerHeight,
-    response.data.prescriptions[0].width,
-    response.data.prescriptions[0].height,
-    response.data.prescriptions[0].acts
-  );
+  const fctRefreshPolygon = () =>
+    updatePolygonPoints(
+      popup.document,
+      popup.innerHeight,
+      response.data.prescriptions[0].width,
+      response.data.prescriptions[0].height,
+      response.data.prescriptions[0].acts
+    );
+
+  popup.addEventListener("resize", fctRefreshPolygon);
+  fctRefreshPolygon();
 
   // if (response.ok === false) {
   //   button.innerHTML = "Erreur";
@@ -206,6 +204,9 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
 
   for (const act of acts) {
     inputAnalyse.value = act.code;
+    while (inputAnalyse.classList.contains("ui-autocomplete-loading")) {
+      await new Promise((resolve) => setTimeout(resolve, 100));
+    }
     inputAnalyse.dispatchEvent(eventENTER);
   }
 
