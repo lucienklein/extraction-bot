@@ -120,7 +120,9 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
   const popup = window.open(
     "",
     "_blank",
-    `width=${screen.width},height=${screen.height},scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no`
+    `width=${screen.width * 0.75},height=${
+      screen.height * 0.9
+    },scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no`
   );
 
   if (!popup) return alert("Merci d'autoriser les popups pour ce site");
