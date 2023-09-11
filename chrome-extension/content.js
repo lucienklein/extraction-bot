@@ -77,8 +77,8 @@ function updatePolygonPoints(originalWidth, originalHeight, boxes) {
   let scaleFactorY = viewportHeight / originalHeight;
 
   for (const boxe of boxes) {
-    const id = JSON.stringify(points);
     const points = boxe.polygon;
+    const id = JSON.stringify(points);
     const adjustedPoints = points.map((point) => ({
       x: point.x * scaleFactorX,
       y: point.y * scaleFactorY,
