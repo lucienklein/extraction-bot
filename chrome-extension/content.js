@@ -69,8 +69,7 @@ const style = `
   </style>
 `;
 
-function updatePolygonPoints(originalWidth, originalHeight, boxes) {
-  let viewportHeight = window.innerHeight;
+function updatePolygonPoints(document, viewportHeight, originalWidth, originalHeight, boxes) {
   let newWidth = (viewportHeight / originalHeight) * originalWidth;
 
   let scaleFactorX = newWidth / originalWidth;
@@ -86,15 +85,15 @@ function updatePolygonPoints(originalWidth, originalHeight, boxes) {
 
     const pointsString = adjustedPoints.map((point) => `${point.x},${point.y}`).join(" ");
 
-    const element = window.parent.document.querySelector(`#${id}`);
+    const element = document.querySelector(`#${id}`);
 
     if (element) {
       element.setAttribute("points", pointsString);
       continue;
     }
 
-    const svg = window.parent.document.querySelector(`#svgQuerco`);
-    const polygon = window.parent.document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+    const svg = document.querySelector(`#svgQuerco`);
+    const polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
     polygon.setAttribute("id", id);
     polygon.setAttribute("points", pointsString);
     polygon.setAttribute("style", "fill:none;stroke:blue;stroke-width:1");
@@ -216,6 +215,8 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
 
   const fct = () =>
     updatePolygonPoints(
+      popup.document,
+      popup.innerHeight,
       response.data.prescriptions[0].width,
       response.data.prescriptions[0].height,
       response.data.prescriptions[0].acts
