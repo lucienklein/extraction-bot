@@ -116,40 +116,11 @@ const validateDialog = (doc) => {
   return interval;
 };
 
-const openPopupForMoreInfo = async (idRequest) => {
-  const origin = new URL(window.location.href).origin;
-  const url = `${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}`;
-
-  const popupWindow = window.open(
-    url,
-    "_blank",
-    "width=600,height=600,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no"
-  );
-
-  if (!popupWindow) return alert("Merci d'autoriser les popups pour ce site");
-
-  await new Promise((resolve) => (popupWindow.onload = resolve));
-
-  popupWindow.document.querySelector("#btnModifierDemande").click();
-
-  const interval = validateDialog(popupWindow.document);
-
-  await new Promise((resolve) => (popupWindow.onload = resolve));
-
-  if (interval !== undefined) clearInterval(interval);
-
-  popupWindow.querySelector("#continuerForm").onclick = () => {
-    popupWindow.onload = popupWindow.close;
-  };
-
-  return;
-};
-
 const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
   const popup = window.open(
     "",
     "_blank",
-    "width=600,height=600,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no"
+    `width=${screen.width},height=${screen.height},scrollbars=no,menubar=no,toolbar=no,location=no,status=no,titlebar=no`
   );
 
   if (!popup) return alert("Merci d'autoriser les popups pour ce site");
