@@ -175,8 +175,8 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
   console.log(response);
 
   divOrdonnanceQuerco.innerHTML = `
-  <div style="position: relative; display: inline-block;">
-    <img src="${prescriptions[0].src}" style="display: block">
+  <div style="position: relative; display: inline-block; height: 100vh; width: auto;">
+    <img src="${prescriptions[0].src}" style="display: block; height: 100vh; width: auto;">
     <svg width="100%" height="100%" style="position: absolute; top: 0; left: 0;">
       <polygon points="322,39 451,41 449,80 320,77" style="fill:none;stroke:blue;stroke-width:1" />
     </svg>
