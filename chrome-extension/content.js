@@ -96,7 +96,7 @@ function updatePolygonPoints(document, viewportHeight, originalWidth, originalHe
     const polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
     polygon.setAttribute("id", id);
     polygon.setAttribute("points", pointsString);
-    polygon.setAttribute("style", "fill:none;stroke:blue;stroke-width:1");
+    polygon.setAttribute("style", "fill:blue;fill-opacity:0.25;stroke:blue;stroke-width:1");
     svg.appendChild(polygon);
   }
 }
