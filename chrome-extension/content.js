@@ -204,9 +204,9 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
 
   for (const act of acts) {
     inputAnalyse.value = act.code;
-    while (inputAnalyse.classList.contains("ui-autocomplete-loading")) {
+    do {
       await new Promise((resolve) => setTimeout(resolve, 100));
-    }
+    } while (inputAnalyse.classList.contains("ui-autocomplete-loading"));
     inputAnalyse.dispatchEvent(eventENTER);
   }
 
