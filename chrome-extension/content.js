@@ -69,6 +69,39 @@ const style = `
   </style>
 `;
 
+function updatePolygonPoints(originalWidth, originalHeight, boxes) {
+  let viewportHeight = window.innerHeight;
+  let newWidth = (viewportHeight / originalHeight) * originalWidth;
+
+  let scaleFactorX = newWidth / originalWidth;
+  let scaleFactorY = viewportHeight / originalHeight;
+
+  for (const boxe of boxes) {
+    const id = JSON.stringify(points);
+    const points = boxe.polygon;
+    const adjustedPoints = points.map((point) => ({
+      x: point.x * scaleFactorX,
+      y: point.y * scaleFactorY,
+    }));
+
+    const pointsString = adjustedPoints.map((point) => `${point.x},${point.y}`).join(" ");
+
+    const element = window.parent.document.querySelector(`#${id}`);
+
+    if (element) {
+      element.setAttribute("points", pointsString);
+      continue;
+    }
+
+    const svg = window.parent.document.querySelector(`#svgQuerco`);
+    const polygon = window.parent.document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+    polygon.setAttribute("id", id);
+    polygon.setAttribute("points", pointsString);
+    polygon.setAttribute("style", "fill:none;stroke:blue;stroke-width:1");
+    svg.appendChild(polygon);
+  }
+}
+
 const validateDialog = (doc) => {
   let interval = setInterval(() => {
     const btnsDialog = [...doc.querySelectorAll(`[role="dialog"] button`)];
@@ -126,12 +159,12 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
   popup.document.write(
     `
     <div id="mainDivQuerco"  style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; column-gap: 10px; background-color: #fff;">
-    <div id="divOrdonnanceQuerco" style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;font-size: 20px; font-weight: bold;">
-    Récupération des ordonnances...
-    </div>
-    <div id="divInfoQuerco" style="width: 100%; height: 100%">
-    <iframe id="iframeQuerco" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style="width: 100%; height: 100%; border: none; display: none;"></iframe>
-    </div>
+      <div id="divOrdonnanceQuerco" style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;font-size: 20px; font-weight: bold;">
+      Récupération des ordonnances...
+      </div>
+      <div id="divInfoQuerco" style="width: 100%; height: 100%">
+        <iframe id="iframeQuerco" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style="width: 100%; height: 100%; border: none; display: none;"></iframe>
+      </div>
     </div>
     `
   );
@@ -177,11 +210,18 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
   divOrdonnanceQuerco.innerHTML = `
   <div style="position: relative; display: inline-block; height: 100vh; width: auto;">
     <img src="${prescriptions[0].src}" style="display: block; height: 100vh; width: auto;">
-    <svg width="100%" height="100%" style="position: absolute; top: 0; left: 0;">
-      <polygon points="322,39 451,41 449,80 320,77" style="fill:none;stroke:blue;stroke-width:1" />
-    </svg>
+    <svg id="svgQuerco" width="100%" height="100%" style="position: absolute; top: 0; left: 0;"></svg>
   </div>
   `;
+
+  const fct = () =>
+    updatePolygonPoints(
+      response.data.prescriptions[0].width,
+      response.data.prescriptions[0].height,
+      response.data.prescriptions[0].acts
+    );
+  fct();
+  window.addEventListener("resize", fct);
 
   // if (response.ok === false) {
   //   button.innerHTML = "Erreur";
