@@ -129,11 +129,14 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
       Récupération des ordonnances...
       </div>
       <div id="divInfoQuerco" style="width: 100%; height: 100%">
-        <div style="display: none;">
-          <div>Alerte(s)</div>
+        <div style="display: xnone;">
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; border: 1px solid #000; border-radius: 5px; margin-bottom: 10px;">
+            <div style="font-size: 20px; font-weight: bold; margin-bottom: 10px; text-align: center;">Alerte(s)</div>
+            <button id="btnValiderAllWarning" style="background-color: green; border: none; border-radius: 5px; color: #fff; padding: 5px 10px; font-size: 12px; font-weight: bold;">Valider tout</button> 
+          </div>
           <div id="divAlerteQuerco"></div>
         </div>
-        <iframe id="iframeQuerco" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style="width: 100%; height: 100%; border: none; display: xnone;"></iframe>
+        <iframe id="iframeQuerco" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style="width: 100%; height: 100%; border: none; display: none;"></iframe>
       </div>
     </div>
     `
@@ -202,11 +205,9 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
   const alertesButtons = alertes.map((alerte) => {
     return `
       <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; border: 1px solid #000; border-radius: 5px; margin-bottom: 10px;">
-        <div style="display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start;">
-          <div style="font-weight: bold;">${alerte.content}</div>
-          <div style="font-size: 12px;">${alerte.code}</div>
-        </div>
-        <button style="background-color: #1899D6; border: none; border-radius: 5px; color: #fff; padding: 5px 10px; font-size: 12px; font-weight: bold;">Refuser</button>
+          <div>${alerte.content}</div>
+          <div style="font-weight: bold;">${alerte.code}</div>
+        <button style="background-color: red; border: none; border-radius: 5px; color: #fff; padding: 5px 10px; font-size: 12px; font-weight: bold;">Refuser</button>
       </div>
       `;
   });
@@ -225,10 +226,25 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
       const response = await fetch(`${API}/request/${idRequest}/alerte/${alerte._id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ correct: true }),
+        body: JSON.stringify({ correct: false }),
       });
     };
   }
+
+  const btnValiderAllWarning = popup.document.getElementById("btnValiderAllWarning");
+  btnValiderAllWarning.onclick = async () => {
+    btnValiderAllWarning.innerHTML = "Validation en cours...";
+    btnValiderAllWarning.disabled = true;
+
+    const response = await fetch(`${API}/request/${idRequest}/alerte`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ correct: true }),
+    });
+
+    btnValiderAllWarning.innerHTML = "Validé";
+    btnValiderAllWarning.style.backgroundColor = "#00ff00";
+  };
 
   // if (response.ok === false) {
   //   button.innerHTML = "Erreur";
