@@ -130,7 +130,7 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
       </div>
       <div id="divInfoQuerco" style="width: 100%; height: 100%">
         <div style="display: xnone;">
-          <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; border: 1px solid #000; border-radius: 5px; margin-bottom: 10px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; margin-bottom: 10px;">
             <div style="font-size: 20px; font-weight: bold;">Alerte(s)</div>
             <button id="btnValiderAllWarning" style="background-color: green; border: none; border-radius: 5px; color: #fff; padding: 5px 10px; font-size: 12px; font-weight: bold;">Valider tout</button> 
           </div>
