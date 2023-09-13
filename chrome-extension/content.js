@@ -129,6 +129,10 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
       Récupération des ordonnances...
       </div>
       <div id="divInfoQuerco" style="width: 100%; height: 100%">
+        <div style="display: none;">
+          <div>Alerte(s)</div>
+          <div id="divAlerteQuerco"></div>
+        </div>
         <iframe id="iframeQuerco" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style="width: 100%; height: 100%; border: none; display: xnone;"></iframe>
       </div>
     </div>
@@ -136,9 +140,8 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
   );
   popup.document.close();
 
-  const mainDivQuerco = popup.document.getElementById("mainDivQuerco");
   const divOrdonnanceQuerco = popup.document.getElementById("divOrdonnanceQuerco");
-  const divInfoQuerco = popup.document.getElementById("divInfoQuerco");
+  const divAlerteQuerco = popup.document.getElementById("divAlerteQuerco");
   const iframeQuerco = popup.document.getElementById("iframeQuerco");
   iframeQuerco.contentWindow.confirm = () => true;
   await new Promise((resolve) => (iframeQuerco.onload = resolve));
@@ -191,6 +194,41 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
 
   popup.addEventListener("resize", fctRefreshPolygon);
   fctRefreshPolygon();
+
+  const alertes = response.data.prescriptions
+    .reduce((acc, cur) => [...acc, ...cur.warnings], [])
+    .filter((alerte) => alerte.controlled === undefined);
+
+  const alertesButtons = alertes.map((alerte) => {
+    return `
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; border: 1px solid #000; border-radius: 5px; margin-bottom: 10px;">
+        <div style="display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start;">
+          <div style="font-weight: bold;">${alerte.content}</div>
+          <div style="font-size: 12px;">${alerte.code}</div>
+        </div>
+        <button style="background-color: #1899D6; border: none; border-radius: 5px; color: #fff; padding: 5px 10px; font-size: 12px; font-weight: bold;">Refuser</button>
+      </div>
+      `;
+  });
+
+  divAlerteQuerco.innerHTML = alertesButtons.join("");
+
+  const buttons = [...divAlerteQuerco.querySelectorAll("button")];
+
+  for (const [index, button] of buttons.entries()) {
+    button.onclick = async () => {
+      button.innerHTML = "Refus en cours...";
+      button.disabled = true;
+
+      const alerte = alertes[index];
+
+      const response = await fetch(`${API}/request/${idRequest}/alerte/${alerte._id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ controlled: true }),
+      });
+    };
+  }
 
   // if (response.ok === false) {
   //   button.innerHTML = "Erreur";
