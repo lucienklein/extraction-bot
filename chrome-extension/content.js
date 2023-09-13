@@ -207,7 +207,7 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
       <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: center; padding: 10px; border: 1px solid #000; border-radius: 5px; margin-bottom: 10px;">
           <div>${alerte.content}</div>
           <div style="font-weight: bold;">${alerte.code}</div>
-        <button style="background-color: red; border: none; border-radius: 5px; color: #fff; padding: 5px 10px; font-size: 12px; font-weight: bold;">Refuser</button>
+        <button style="background-color: red; border: none; border-radius: 5px; color: #fff; padding: 5px 10px; font-size: 12px; font-weight: bold; width: fit-content; margin-left: auto;">Refuser</button>
       </div>
       `;
   });
