@@ -197,7 +197,7 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
 
   const alertes = response.data.prescriptions
     .reduce((acc, cur) => [...acc, ...cur.warnings], [])
-    .filter((alerte) => alerte.controlled === undefined);
+    .filter((alerte) => alerte.correct === undefined);
 
   const alertesButtons = alertes.map((alerte) => {
     return `
@@ -225,7 +225,7 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
       const response = await fetch(`${API}/request/${idRequest}/alerte/${alerte._id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ controlled: true }),
+        body: JSON.stringify({ correct: true }),
       });
     };
   }
