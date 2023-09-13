@@ -131,7 +131,7 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
       <div id="divInfoQuerco" style="width: 100%; height: 100%">
         <div style="display: xnone;">
           <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; border: 1px solid #000; border-radius: 5px; margin-bottom: 10px;">
-            <div style="font-size: 20px; font-weight: bold; margin-bottom: 10px; text-align: center;">Alerte(s)</div>
+            <div style="font-size: 20px; font-weight: bold;">Alerte(s)</div>
             <button id="btnValiderAllWarning" style="background-color: green; border: none; border-radius: 5px; color: #fff; padding: 5px 10px; font-size: 12px; font-weight: bold;">Valider tout</button> 
           </div>
           <div id="divAlerteQuerco"></div>
@@ -204,7 +204,7 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
 
   const alertesButtons = alertes.map((alerte) => {
     return `
-      <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; border: 1px solid #000; border-radius: 5px; margin-bottom: 10px;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: center; padding: 10px; border: 1px solid #000; border-radius: 5px; margin-bottom: 10px;">
           <div>${alerte.content}</div>
           <div style="font-weight: bold;">${alerte.code}</div>
         <button style="background-color: red; border: none; border-radius: 5px; color: #fff; padding: 5px 10px; font-size: 12px; font-weight: bold;">Refuser</button>
