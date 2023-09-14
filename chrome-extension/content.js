@@ -256,10 +256,30 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
   const eventENTER = new KeyboardEvent("keydown", { keyCode: 13 });
   const acts = response.data.prescriptions.reduce((acc, cur) => [...acc, ...cur.acts], []);
 
+  let actInserted = [];
   for (const act of acts) {
     inputAnalyse.value = act.code;
     inputAnalyse.dispatchEvent(eventENTER);
+
+    // Difference between the actInserted and that will be inserted
+
+    const previousActInserted = [...actInserted];
+    actInserted = innerDocQuerco.querySelectorAll(`.analyseBox `).map((act) => act.idanalyse);
+
+    if (!act.ALD) continue;
+
+    const newActInserted = actInserted.filter((act) => !previousActInserted.includes(act));
+
+    for (const idAnalyse of newActInserted) {
+      const el = innerDocQuerco.querySelector(`[idanalyse="${idAnalyse}"]`);
+      el.isselected = true;
+    }
+
+    const el = innerDocQuerco.querySelector(`#ihmBoxAnalyse`);
+    el.boxAnalyse("toggleFact", "ALD");
   }
+
+  return;
 
   let btnSave = innerDocQuerco.querySelector("#btnModifierDemande");
   btnSave.click();
