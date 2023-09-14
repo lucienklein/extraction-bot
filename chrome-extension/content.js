@@ -276,7 +276,7 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
       el.setAttribute("isselected", "true");
     }
 
-    const el = $(`#ihmBoxAnalyse`);
+    const el = window.$(`#ihmBoxAnalyse`);
     el.boxAnalyse.apply("toggleFact", "ALD");
   }
 
