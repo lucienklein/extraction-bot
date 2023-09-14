@@ -276,7 +276,8 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
       el.setAttribute("isselected", "true");
     }
 
-    console.log(iframeQuerco.contentWindow.window.dispatchContextMenuAction);
+    iframeQuerco = popup.document.getElementById("iframeQuerco");
+    console.log(iframeQuerco.contentWindow.dispatchContextMenuAction);
   }
 
   return;
