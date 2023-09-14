@@ -129,14 +129,14 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
       Récupération des ordonnances...
       </div>
       <div id="divInfoQuerco" style="width: 100%; height: 100%">
-        <div style="display: none;">
+        <div style="display: xnone;">
           <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; margin-bottom: 10px;">
             <div style="font-size: 20px; font-weight: bold;">Alerte(s)</div>
             <button id="btnValiderAllWarning" style="background-color: green; border: none; border-radius: 5px; color: #fff; padding: 5px 10px; font-size: 12px; font-weight: bold;">Valider tout</button> 
           </div>
           <div id="divAlerteQuerco"></div>
         </div>
-        <iframe id="iframeQuerco" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style="width: 100%; height: 100%; border: none; display: xnone;"></iframe>
+        <iframe id="iframeQuerco" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style="width: 100%; height: 100%; border: none; display: none;"></iframe>
       </div>
     </div>
     `
@@ -276,7 +276,8 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
       el.setAttribute("isselected", "true");
     }
 
-    console.log(innerDocQuerco.defaultView.dispatchContextMenuAction);
+    const el = $(`#ihmBoxAnalyse`);
+    el.boxAnalyse.apply("toggleFact", "ALD");
   }
 
   return;
