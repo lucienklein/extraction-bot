@@ -145,7 +145,7 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
 
   const divOrdonnanceQuerco = popup.document.getElementById("divOrdonnanceQuerco");
   const divAlerteQuerco = popup.document.getElementById("divAlerteQuerco");
-  let iframeQuerco = popup.document.getElementById("iframeQuerco");
+  const iframeQuerco = popup.document.getElementById("iframeQuerco");
   iframeQuerco.contentWindow.confirm = () => true;
   await new Promise((resolve) => (iframeQuerco.onload = resolve));
   let innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
@@ -276,8 +276,7 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
       el.setAttribute("isselected", "true");
     }
 
-    iframeQuerco = popup.document.getElementById("iframeQuerco");
-    console.log(iframeQuerco.contentWindow.dispatchContextMenuAction);
+    console.log(innerDocQuerco.defaultView.dispatchContextMenuAction);
   }
 
   return;
