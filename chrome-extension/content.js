@@ -272,7 +272,8 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
 
     for (const idAnalyse of newActInserted) {
       const el = innerDocQuerco.querySelector(`[idanalyse="${idAnalyse}"]`);
-      el.isselected = true;
+      if (!el) continue;
+      el.setAttribute("isselected", "true");
     }
 
     const el = innerDocQuerco.querySelector(`#ihmBoxAnalyse`);
