@@ -276,8 +276,7 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
       el.setAttribute("isselected", "true");
     }
 
-    // Run the function dispatchContextMenuAction defined in the code of the iframe
-    iframeQuerco.contentWindow.dispatchContextMenuAction();
+    window.dispatchContextMenuAction("toggleFact", "ALD");
   }
 
   return;
