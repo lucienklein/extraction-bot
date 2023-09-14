@@ -276,7 +276,8 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
       el.setAttribute("isselected", "true");
     }
 
-    window.dispatchContextMenuAction("toggleFact", "ALD");
+    const el = innerDocQuerco.querySelector(`#ihmBoxAnalyse`);
+    console.log(el);
   }
 
   return;
