@@ -264,7 +264,7 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
     // Difference between the actInserted and that will be inserted
 
     const previousActInserted = [...actInserted];
-    actInserted = innerDocQuerco.querySelectorAll(`.analyseBox `).map((act) => act.idanalyse);
+    actInserted = [...innerDocQuerco.querySelectorAll(`.analyseBox `)].map((act) => act.idanalyse);
 
     if (!act.ALD) continue;
 
