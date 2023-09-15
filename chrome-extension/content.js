@@ -150,6 +150,15 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
   await new Promise((resolve) => (iframeQuerco.onload = resolve));
   let innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
 
+  // add insert script to innerDocQuerco
+  const script = document.createElement("script");
+  script.innerHTML = `
+    parent.setLoading = (c) => {
+      console.log(c);
+    }
+    `;
+  innerDocQuerco.body.appendChild(script);
+
   let prescriptions = [];
   for (const info of prescriptionsInfo) {
     const imagePage = await fetch(
@@ -214,44 +223,6 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
 
   divAlerteQuerco.innerHTML = alertesButtons.join("");
 
-  const buttons = [...divAlerteQuerco.querySelectorAll("button")];
-
-  for (const [index, button] of buttons.entries()) {
-    button.onclick = async () => {
-      button.innerHTML = "Refus en cours...";
-      button.disabled = true;
-
-      const alerte = alertes[index];
-
-      const response = await fetch(`${API}/request/${idRequest}/alerte/${alerte._id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ correct: false }),
-      });
-    };
-  }
-
-  const btnValiderAllWarning = popup.document.getElementById("btnValiderAllWarning");
-  btnValiderAllWarning.onclick = async () => {
-    btnValiderAllWarning.innerHTML = "Validation en cours...";
-    btnValiderAllWarning.disabled = true;
-
-    const response = await fetch(`${API}/request/${idRequest}/alerte`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ correct: true }),
-    });
-
-    btnValiderAllWarning.innerHTML = "Validé";
-    btnValiderAllWarning.style.backgroundColor = "#00ff00";
-  };
-
-  // if (response.ok === false) {
-  //   button.innerHTML = "Erreur";
-  //   button.style.backgroundColor = "#ff0000";
-  //   return;
-  // }
-
   const inputAnalyse = innerDocQuerco.querySelector("#analyseCodeAjout");
   const eventENTER = new KeyboardEvent("keydown", { keyCode: 13 });
   const acts = response.data.prescriptions.reduce((acc, cur) => [...acc, ...cur.acts], []);
@@ -273,8 +244,6 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
     if (!act.ALD) continue;
 
     const newActInserted = actInserted.filter((act) => !previousActInserted.includes(act));
-
-    console.log(JSON.stringify({ act, newActInserted }));
 
     for (const idAnalyse of newActInserted) {
       const el = innerDocQuerco.querySelector(`[idanalyse="${idAnalyse}"]`);
