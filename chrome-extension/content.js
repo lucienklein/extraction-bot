@@ -270,8 +270,6 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
 
     const newActInserted = actInserted.filter((act) => !previousActInserted.includes(act));
 
-    console.log(newActInserted);
-
     for (const idAnalyse of newActInserted) {
       const el = innerDocQuerco.querySelector(`[idanalyse="${idAnalyse}"]`);
       console.log(el);
@@ -282,7 +280,7 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
       console.log(inputALD);
       if (!inputALD) continue;
 
-      inputALD.value = "ALD";
+      inputALD.setAttribute("value", "ALD");
     }
   }
 
