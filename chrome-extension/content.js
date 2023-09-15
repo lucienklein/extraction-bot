@@ -270,6 +270,8 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
 
     const newActInserted = actInserted.filter((act) => !previousActInserted.includes(act));
 
+    console.log(newActInserted);
+
     for (const idAnalyse of newActInserted) {
       const el = innerDocQuerco.querySelector(`[idanalyse="${idAnalyse}"]`);
       console.log(el);
