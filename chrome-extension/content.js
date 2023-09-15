@@ -297,11 +297,6 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
 
   if (interval !== undefined) clearInterval(interval);
 
-  // Inject a script to define setLoading on the window object
-  var script = popup.document.createElement("script");
-  script.textContent = "window.setLoading = () => {};";
-  popup.document.body.appendChild(script);
-
   innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
 };
 
@@ -359,3 +354,5 @@ const addButtonToRequest = async () => {
 // iframe.onload = function () {
 addButtonToRequest();
 // };
+
+window.setLoading = () => {};
