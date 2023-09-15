@@ -139,6 +139,7 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
         </div>
         <iframe id="iframeQuerco" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style="width: 100%; height: 100%; border: none; display: xnone;"></iframe>
       </div>
+      http://172.30.69.50/moduleSil/demande/saisie/index.php?choix=modif&idDemande=10270982
     </div>
     `
   );
@@ -297,14 +298,13 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
 
   if (interval !== undefined) clearInterval(interval);
 
-  // add window.setLoading in script of popup
-  const script = popup.document.createElement("script");
+  const script = document.createElement("script");
   script.innerHTML = `
-      window.setLoading = () => {
-        console.log("setLoading");
-      }
-    `;
-  popup.document.head.appendChild(script);
+    parent.setLoading = (loading) => {
+      console.log(loading);
+    }
+  `;
+  innerDocQuerco.head.appendChild(script);
 
   innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
 };
