@@ -144,6 +144,12 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
   );
   popup.document.close();
 
+  popup.onload = () => {
+    popup.setLoading = () => {};
+    popup.window.setLoading = () => {};
+    popup.window.parent.setLoading = () => {};
+  };
+
   const divOrdonnanceQuerco = popup.document.getElementById("divOrdonnanceQuerco");
   const divAlerteQuerco = popup.document.getElementById("divAlerteQuerco");
   const iframeQuerco = popup.document.getElementById("iframeQuerco");
