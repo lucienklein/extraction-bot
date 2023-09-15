@@ -137,7 +137,7 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
           </div>
           <div id="divAlerteQuerco"></div>
         </div>
-        <iframe id="iframeQuerco" sandbox="allow-scripts allow-forms" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style="width: 100%; height: 100%; border: none; display: xnone;"></iframe>
+        <iframe id="iframeQuerco" sandbox="allow-scripts allow-forms allow-same-origin" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style="width: 100%; height: 100%; border: none; display: xnone;"></iframe>
       </div>
     </div>
     `
