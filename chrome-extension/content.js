@@ -120,7 +120,9 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
   );
 
   if (!popup) return alert("Merci d'autoriser les popups pour ce site");
-  // define the fct setLoading in the window
+  popup.onload = () => {
+    popup.setLoading = (c) => {};
+  };
 
   popup.document.open();
   popup.document.write(
@@ -137,7 +139,7 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
           </div>
           <div id="divAlerteQuerco"></div>
         </div>
-        <iframe id="iframeQuerco" sandbox="allow-forms allow-same-origin" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style="width: 100%; height: 100%; border: none; display: xnone;"></iframe>
+        <iframe id="iframeQuerco" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style="width: 100%; height: 100%; border: none; display: xnone;"></iframe>
       </div>
     </div>
     `
