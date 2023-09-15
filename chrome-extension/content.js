@@ -128,21 +128,20 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
       <div id="divOrdonnanceQuerco" style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;font-size: 20px; font-weight: bold;">
       Récupération des ordonnances...
       </div>
+      <div id="divInfoQuerco" style="width: 100%; height: 100%">
+        <div style="display: none;">
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; margin-bottom: 10px;">
+            <div style="font-size: 20px; font-weight: bold;">Alerte(s)</div>
+            <button id="btnValiderAllWarning" style="background-color: green; border: none; border-radius: 5px; color: #fff; padding: 5px 10px; font-size: 12px; font-weight: bold;">Valider tout</button> 
+          </div>
+          <div id="divAlerteQuerco"></div>
+        </div>
+        <iframe id="iframeQuerco" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style="width: 100%; height: 100%; border: none; display: xnone;"></iframe>
+      </div>
     </div>
     `
   );
   popup.document.close();
-  popup.setLoading = () => {};
-  // <div id="divInfoQuerco" style="width: 100%; height: 100%">
-  //   <div style="display: none;">
-  //     <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; margin-bottom: 10px;">
-  //       <div style="font-size: 20px; font-weight: bold;">Alerte(s)</div>
-  //       <button id="btnValiderAllWarning" style="background-color: green; border: none; border-radius: 5px; color: #fff; padding: 5px 10px; font-size: 12px; font-weight: bold;">Valider tout</button>
-  //     </div>
-  //     <div id="divAlerteQuerco"></div>
-  //   </div>
-  //   <iframe id="iframeQuerco" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style="width: 100%; height: 100%; border: none; display: xnone;"></iframe>
-  // </div>
 
   const divOrdonnanceQuerco = popup.document.getElementById("divOrdonnanceQuerco");
   const divAlerteQuerco = popup.document.getElementById("divAlerteQuerco");
