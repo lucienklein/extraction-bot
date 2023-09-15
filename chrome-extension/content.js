@@ -261,6 +261,8 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
     inputAnalyse.value = act.code;
     inputAnalyse.dispatchEvent(eventENTER);
 
+    await new Promise((resolve) => setTimeout(resolve, 250));
+
     const previousActInserted = [...actInserted];
     actInserted = [...innerDocQuerco.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
 
@@ -274,7 +276,6 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
       const el = innerDocQuerco.querySelector(`[idanalyse="${idAnalyse}"]`);
       if (!el) continue;
 
-      // Query input el inside el that has the id "anaFact[X]" where X is a number
       const inputALD = el.querySelector(`input[id^="anaFact"]`);
       if (!inputALD) continue;
 
