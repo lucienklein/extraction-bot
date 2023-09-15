@@ -144,12 +144,6 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
   );
   popup.document.close();
 
-  popup.onload = () => {
-    popup.setLoading = () => {};
-    popup.window.setLoading = () => {};
-    popup.window.parent.setLoading = () => {};
-  };
-
   const divOrdonnanceQuerco = popup.document.getElementById("divOrdonnanceQuerco");
   const divAlerteQuerco = popup.document.getElementById("divAlerteQuerco");
   const iframeQuerco = popup.document.getElementById("iframeQuerco");
@@ -303,7 +297,16 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
 
   if (interval !== undefined) clearInterval(interval);
 
-  popup.parent.setLoading = () => {};
+  innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
+
+  const script = innerDocQuerco.createElement("script");
+  script.textContent = `
+    parent.setLoading = function() {
+        console.log("setLoading called");
+    };
+`;
+
+  innerDocQuerco.head.appendChild(script);
 
   innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
 };
