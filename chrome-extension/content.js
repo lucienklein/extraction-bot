@@ -143,7 +143,6 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
     `
   );
   popup.document.close();
-  popup.window.setLoading = () => {};
 
   const divOrdonnanceQuerco = popup.document.getElementById("divOrdonnanceQuerco");
   const divAlerteQuerco = popup.document.getElementById("divAlerteQuerco");
@@ -297,6 +296,9 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
   await new Promise((resolve) => (iframeQuerco.onload = resolve));
 
   if (interval !== undefined) clearInterval(interval);
+
+  popup.setLoading = () => {};
+  popup.window.setLoading = () => {};
 
   innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
 };
