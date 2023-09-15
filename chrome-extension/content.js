@@ -300,6 +300,7 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
   if (interval !== undefined) clearInterval(interval);
 
   popup.eval(`window.setLoading = (c) => { console.log(c); }`);
+  console.log("ici");
 
   innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
 };
