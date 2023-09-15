@@ -145,6 +145,11 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
     `
   );
   popup.document.close();
+  header = popup.document.getElementsByTagName("head")[0];
+  meta = popup.document.createElement("meta");
+  meta.httpEquiv = "Content-Security-Policy";
+  meta.content = "script-src 'self' 'unsafe-inline' 'unsafe-eval'";
+  header.appendChild(meta);
 
   const divOrdonnanceQuerco = popup.document.getElementById("divOrdonnanceQuerco");
   const divAlerteQuerco = popup.document.getElementById("divAlerteQuerco");
