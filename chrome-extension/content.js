@@ -256,12 +256,10 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
   const eventENTER = new KeyboardEvent("keydown", { keyCode: 13 });
   const acts = response.data.prescriptions.reduce((acc, cur) => [...acc, ...cur.acts], []);
 
-  let actInserted = [];
+  let actInserted = [...innerDocQuerco.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
   for (const act of acts) {
     inputAnalyse.value = act.code;
     inputAnalyse.dispatchEvent(eventENTER);
-
-    // Difference between the actInserted and that will be inserted
 
     const previousActInserted = [...actInserted];
     actInserted = [...innerDocQuerco.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
@@ -270,7 +268,7 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
 
     const newActInserted = actInserted.filter((act) => !previousActInserted.includes(act));
 
-    console.log(act, newActInserted);
+    console.log(JSON.stringify({ act, newActInserted }));
 
     for (const idAnalyse of newActInserted) {
       const el = innerDocQuerco.querySelector(`[idanalyse="${idAnalyse}"]`);
