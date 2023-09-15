@@ -125,6 +125,11 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
   popup.document.open();
   popup.document.write(
     `
+    <script>
+      setLoading = () => {
+        console.log("setLoading");
+      }
+    </script>
     <div id="mainDivQuerco"  style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; column-gap: 10px; background-color: #fff;">
       <div id="divOrdonnanceQuerco" style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;font-size: 20px; font-weight: bold;">
       Récupération des ordonnances...
