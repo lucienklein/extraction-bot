@@ -301,9 +301,13 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
 
   await new Promise((resolve) => setTimeout(resolve, 5000));
 
-  popup.setLoading = (c) => {
-    console.log(c);
-  };
+  const script = document.createElement("script");
+  script.innerHTML = `
+    window.setLoading = (c) => {
+      console.log(c);
+    };
+  `;
+  innerDocQuerco.head.appendChild(script);
 
   innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
 };
