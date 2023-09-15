@@ -261,7 +261,11 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
     inputAnalyse.value = act.code;
     inputAnalyse.dispatchEvent(eventENTER);
 
-    await new Promise((resolve) => setTimeout(resolve, 250));
+    await new Promise((resolve) => {
+      setTimeout(resolve, 50);
+      const el = innerDocQuerco.querySelector(`#analyseCodeAjout`);
+      if (!el.classList.contains("ui-autocomplete-loading")) resolve();
+    });
 
     const previousActInserted = [...actInserted];
     actInserted = [...innerDocQuerco.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
