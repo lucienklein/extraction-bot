@@ -137,9 +137,8 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
           </div>
           <div id="divAlerteQuerco"></div>
         </div>
-        <iframe id="iframeQuerco" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style="width: 100%; height: 100%; border: none; display: xnone;"></iframe>
+        <iframe id="iframeQuerco" sandbox="allow-scripts allow-forms" src="${origin}/moduleSil/demande/saisie/index.php?choix=modif&idDemande=${idRequest}" style="width: 100%; height: 100%; border: none; display: xnone;"></iframe>
       </div>
-      http://172.30.69.50/moduleSil/demande/saisie/index.php?choix=modif&idDemande=10270982
     </div>
     `
   );
@@ -297,14 +296,6 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
   await new Promise((resolve) => (iframeQuerco.onload = resolve));
 
   if (interval !== undefined) clearInterval(interval);
-
-  const script = document.createElement("script");
-  script.innerHTML = `
-    parent.setLoading = (loading) => {
-      console.log(loading);
-    }
-  `;
-  innerDocQuerco.head.appendChild(script);
 
   innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
 };
