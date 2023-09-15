@@ -276,6 +276,7 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
 
       // Query input el inside el that has the id "anaFact[X]" where X is a number
       const inputALD = el.querySelector(`[id^="anaFact"]`);
+      console.log(inputALD);
       if (!inputALD) continue;
 
       inputALD.value = "ALD";
