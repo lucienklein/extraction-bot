@@ -273,11 +273,13 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
     for (const idAnalyse of newActInserted) {
       const el = innerDocQuerco.querySelector(`[idanalyse="${idAnalyse}"]`);
       if (!el) continue;
-      el.setAttribute("isselected", "true");
-    }
 
-    const el = window.$(`#ihmBoxAnalyse`);
-    el.boxAnalyse.apply("toggleFact", "ALD");
+      // Query input el inside el that has the id "anaFact[X]" where X is a number
+      const inputALD = el.querySelector(`[id^="anaFact"]`);
+      if (!inputALD) continue;
+
+      inputALD.value = "ALD";
+    }
   }
 
   return;
