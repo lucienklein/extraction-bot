@@ -299,15 +299,7 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
 
   if (interval !== undefined) clearInterval(interval);
 
-  await new Promise((resolve) => setTimeout(resolve, 5000));
-
-  const script = document.createElement("script");
-  script.innerHTML = `
-    window.setLoading = (c) => {
-      console.log(c);
-    };
-  `;
-  innerDocQuerco.head.appendChild(script);
+  popup.eval(`window.setLoading = (c) => { console.log(c); }`);
 
   innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
 };
