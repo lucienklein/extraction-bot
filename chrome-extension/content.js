@@ -126,7 +126,7 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
   popup.document.write(
     `
     <script>
-      setLoading = () => {
+      window.setLoading = () => {
         console.log("setLoading");
       }
     </script>
