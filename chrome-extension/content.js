@@ -120,10 +120,14 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
   );
 
   if (!popup) return alert("Merci d'autoriser les popups pour ce site");
+  // define the fct setLoading in the window
 
   popup.document.open();
   popup.document.write(
     `
+    <script>
+      window.setLoading = () => {}
+    </script>
     <div id="mainDivQuerco"  style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; column-gap: 10px; background-color: #fff;">
       <div id="divOrdonnanceQuerco" style="width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;font-size: 20px; font-weight: bold;">
       Récupération des ordonnances...
@@ -286,8 +290,6 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
       inputALD.setAttribute("value", "ALD");
     }
   }
-
-  return;
 
   let btnSave = innerDocQuerco.querySelector("#btnModifierDemande");
   btnSave.click();
