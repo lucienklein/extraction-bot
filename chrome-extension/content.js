@@ -120,9 +120,6 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
   );
 
   if (!popup) return alert("Merci d'autoriser les popups pour ce site");
-  popup.onload = () => {
-    popup.setLoading = (c) => {};
-  };
 
   popup.document.open();
   popup.document.write(
@@ -145,11 +142,6 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
     `
   );
   popup.document.close();
-  header = popup.document.getElementsByTagName("head")[0];
-  meta = popup.document.createElement("meta");
-  meta.httpEquiv = "Content-Security-Policy";
-  meta.content = "script-src 'self' 'unsafe-inline' 'unsafe-eval'";
-  header.appendChild(meta);
 
   const divOrdonnanceQuerco = popup.document.getElementById("divOrdonnanceQuerco");
   const divAlerteQuerco = popup.document.getElementById("divAlerteQuerco");
@@ -303,9 +295,6 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
   await new Promise((resolve) => (iframeQuerco.onload = resolve));
 
   if (interval !== undefined) clearInterval(interval);
-
-  popup.eval(`window.setLoading = (c) => { console.log(c); }`);
-  console.log("ici");
 
   innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
 };
