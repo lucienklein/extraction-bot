@@ -354,5 +354,3 @@ const addButtonToRequest = async () => {
 // iframe.onload = function () {
 addButtonToRequest();
 // };
-
-window.setLoading = () => {};
