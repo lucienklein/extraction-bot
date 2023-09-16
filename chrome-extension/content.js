@@ -146,9 +146,9 @@ const openPopupForExtraction = async (origin, prescriptionsInfo, idRequest) => {
   const divOrdonnanceQuerco = popup.document.getElementById("divOrdonnanceQuerco");
   const divAlerteQuerco = popup.document.getElementById("divAlerteQuerco");
   const iframeQuerco = popup.document.getElementById("iframeQuerco");
-  iframeQuerco.contentWindow.confirm = () => true;
   await new Promise((resolve) => (iframeQuerco.onload = resolve));
   let innerDocQuerco = iframeQuerco.contentDocument || iframeQuerco.contentWindow.document;
+  iframeQuerco.contentWindow.confirm = () => true;
 
   let prescriptions = [];
   for (const info of prescriptionsInfo) {
