@@ -5,7 +5,7 @@
   "content_scripts": [
     {
       "matches": ["*://*/*"],
-      "js": ["content.js"]
+      "js": ["dynamsoft.webtwain.min.js", "content.js"]
     }
   ]
 }
