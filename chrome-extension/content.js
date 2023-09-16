@@ -49,6 +49,9 @@ const addButtonToExamsDiv = () => {
   button.addEventListener("click", lancerScan);
 };
 
-const init = () => {};
+const init = () => {
+  console.log("Init");
+  addButtonToExamsDiv();
+};
 
 init();
