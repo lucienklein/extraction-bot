@@ -66,8 +66,8 @@ const uploadScan = async (data) => {
 
   const fctRefreshPolygon = () =>
     updatePolygonPoints(
-      popup.document,
-      popup.innerHeight,
+      window.document,
+      window.innerHeight,
       response.data.prescriptions[0].width,
       response.data.prescriptions[0].height,
       response.data.prescriptions[0].acts
