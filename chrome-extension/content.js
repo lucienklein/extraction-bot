@@ -49,13 +49,12 @@ const addScanToScreen = (data) => {
 };
 
 const uploadScan = async (data) => {
-  const response = await fetch(`${API}/request`, {
+  let response = await fetch(`${API}/request`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ file: data._content }),
   });
-
-  const result = await response.json();
+  response = await response.json();
   console.log(result);
 
   const div = document.querySelector("#displayText");
