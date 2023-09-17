@@ -1,3 +1,1 @@
 DWTChromeExtension.scan();
-
-return true;

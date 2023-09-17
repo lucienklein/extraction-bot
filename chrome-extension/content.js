@@ -7,8 +7,7 @@ const addButtonToExamDiv = () => {
   button.addEventListener("click", (e) => {
     e.preventDefault();
     const resourcesURL = new URL(chrome.runtime.getURL("/Resources"));
-    const res = loadLibrary(resourcesURL + "/scan.js", "text/javascript", "dwt-scan");
-    console.log(res);
+    loadLibrary(resourcesURL + "/scan.js", "text/javascript", "dwt-scan");
   });
   examDiv.appendChild(button);
 };
@@ -27,13 +26,6 @@ async function init() {
   );
   addButtonToExamDiv();
 }
-
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-  if (request.message === "scan") {
-    const resourcesURL = new URL(chrome.runtime.getURL("/Resources"));
-    loadLibrary(resourcesURL + "/scan.js", "text/javascript", "dwt-scan");
-  }
-});
 
 function loadLibrary(src, type, id, data) {
   return new Promise(function (resolve, reject) {

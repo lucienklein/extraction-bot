@@ -5,7 +5,13 @@ chrome.browserAction.onClicked.addListener(function (tab) {
 });
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-  if (request.message === "open_new_tab") {
-    chrome.tabs.create({ url: request.url });
+  if (request.message === "scan_done") {
+    console.log("scan done");
+    const pdf = request.pdf;
+    const blobUrl = URL.createObjectURL(pdf);
+    chrome.downloads.download({
+      url: blobUrl,
+      filename: "scan.pdf",
+    });
   }
 });
