@@ -102,7 +102,7 @@ window.addEventListener(
   "message",
   function (event) {
     if (event.source != window) return;
-    if (event.data.message || event.data.message !== "scan_done") return;
+    if (!event.data.message || event.data.message !== "scan_done") return;
 
     addScanToScreen(event.data.result);
     uploadScan(event.data.result);
