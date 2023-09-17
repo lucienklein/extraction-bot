@@ -7,7 +7,7 @@ const addButtonToExamDiv = (resourcesURL) => {
   button.addEventListener("click", (e) => {
     e.preventDefault();
     loadLibrary(resourcesURL + "/scan.js", "text/javascript", "dwt-scan");
-    // chrome.runtime.sendMessage({ message: "scan_todo" });
+    console.log(test);
   });
   examDiv.appendChild(button);
 };
