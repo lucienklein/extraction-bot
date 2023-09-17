@@ -5,7 +5,7 @@ let DWTChromeExtension = {
     Dynamsoft.DWT.ResourcesPath = resourcesURL;
     this.initDWT();
   },
-  scan: async function () {
+  scan: function () {
     if (!this.DWObject) return console.log("DWT not ready");
 
     this.DWObject.IfShowUI = false;
