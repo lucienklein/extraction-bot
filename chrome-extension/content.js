@@ -37,9 +37,9 @@ const addScanToScreen = (data) => {
   <div style="position: relative; width: 100%; height: 100%;">
     <img id="displayImage" src="${
       "data:image/png;base64," + data._content
-    }" style="width: auto; height: 100vh ; object-fit: contain; position: relative; z-index: 1;">
-    <div id="displayText" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background-color: rgba(0, 0, 0, 0.5); color: white; z-index: 2;">
-      Extraction en cours
+    }" style="width: auto; height: 95vh ; object-fit: contain; position: relative; z-index: 1;">
+    <div id="displayText" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background-color: rgba(0, 0, 0, 0.5); color: white; z-index: 2; font-size: 2rem; font-weight: bold;">
+      Extraction en cours...
     </div>
   </div>`;
 
@@ -57,7 +57,63 @@ const uploadScan = async (data) => {
 
   const result = await response.json();
   console.log(result);
+
+  const div = document.querySelector("#displayText");
+
+  div.innerHTML = `
+    <svg id="svgQuerco" width="100%" height="100%" style="position: absolute; top: 0; left: 0;"></svg>
+  `;
+
+  const fctRefreshPolygon = () =>
+    updatePolygonPoints(
+      popup.document,
+      popup.innerHeight,
+      response.data.prescriptions[0].width,
+      response.data.prescriptions[0].height,
+      response.data.prescriptions[0].acts
+    );
+
+  window.addEventListener("resize", fctRefreshPolygon);
+  fctRefreshPolygon();
 };
+
+window.addEventListener(
+  "message",
+  function (event) {
+    if (event.source != window) return;
+    if (!event.data.message || event.data.message !== "scan_done") return;
+
+    addScanToScreen(event.data.result);
+    // uploadScan(event.data.result);
+  },
+  false
+);
+
+function updatePolygonPoints(document, viewportHeight, originalWidth, originalHeight, boxes) {
+  let newWidth = (viewportHeight / originalHeight) * originalWidth;
+
+  let scaleFactorX = newWidth / originalWidth;
+  let scaleFactorY = viewportHeight / originalHeight;
+
+  const svg = document.querySelector(`#svgQuerco`);
+  svg.innerHTML = "";
+
+  for (const boxe of boxes) {
+    const points = boxe.polygon;
+    const adjustedPoints = points.map((point) => ({
+      x: point.x * scaleFactorX,
+      y: point.y * scaleFactorY,
+    }));
+
+    const pointsString = adjustedPoints.map((point) => `${point.x},${point.y}`).join(" ");
+
+    const svg = document.querySelector(`#svgQuerco`);
+    const polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+    polygon.setAttribute("points", pointsString);
+    polygon.setAttribute("style", "fill:blue;fill-opacity:0.25;stroke:blue;stroke-width:1");
+    svg.appendChild(polygon);
+  }
+}
 
 function loadLibrary(src, type, id, data) {
   return new Promise(function (resolve, reject) {
@@ -83,15 +139,3 @@ function loadLibrary(src, type, id, data) {
     });
   });
 }
-
-window.addEventListener(
-  "message",
-  function (event) {
-    if (event.source != window) return;
-    if (!event.data.message || event.data.message !== "scan_done") return;
-
-    addScanToScreen(event.data.result);
-    // uploadScan(event.data.result);
-  },
-  false
-);
