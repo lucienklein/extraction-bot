@@ -10,10 +10,15 @@ let DWTChromeExtension = {
       if (Dynamsoft.Lib.env.bMobile) {
         // this.DWObject.Addon.Camera.scanDocument();
       } else {
+        console.log("scan");
         this.DWObject.SelectSourceByIndex(0);
+        console.log("SelectSourceByIndex");
         this.DWObject.OpenSource();
+        console.log("OpenSource");
         this.DWObject.IfShowUI = false;
+        console.log("IfShowUI");
         this.DWObject.AcquireImage();
+        console.log("AcquireImage");
       }
     }
   },
