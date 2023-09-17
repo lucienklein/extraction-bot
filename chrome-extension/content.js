@@ -3,12 +3,9 @@ init();
 window.addEventListener(
   "message",
   function (event) {
-    // We only accept messages from ourselves
     if (event.source != window) return;
 
-    if (event.data.myGlobalVariable) {
-      console.log(event.data.myGlobalVariable); // Outputs: "Hello, world!"
-    }
+    console.log(event.data);
   },
   false
 );

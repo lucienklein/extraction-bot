@@ -1,2 +1,2 @@
-window.postMessage({ myGlobalVariable: "Hello, world!" }, "*");
+window.postMessage(DWTChromeExtension, "*");
 // DWTChromeExtension.scan();
