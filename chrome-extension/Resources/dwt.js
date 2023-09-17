@@ -13,7 +13,8 @@ let DWTChromeExtension = {
     this.DWObject.OpenSource();
     await this.DWObject.AcquireImageAsync();
     this.DWObject.CloseSource();
-    const result = await new Promise((resolve, reject) => {
+
+    return await new Promise((resolve, reject) => {
       this.DWObject.ConvertToBase64(
         [0],
         Dynamsoft.DWT.EnumDWT_ImageType.IT_PDF,
@@ -28,26 +29,6 @@ let DWTChromeExtension = {
         }
       );
     });
-
-    return result;
-  },
-  onSuccessScan: function () {
-    DWTChromeExtension.DWObject.CloseSource();
-    DWTChromeExtension.DWObject.ConvertToBase64(
-      [0],
-      Dynamsoft.DWT.EnumDWT_ImageType.IT_PDF,
-      (result) => {
-        console.log("message sent");
-      },
-      (error) => {
-        console.log("error converting to base64");
-        console.log(error);
-      }
-    );
-  },
-  onErrorScan: function (error) {
-    this.DWObject.CloseSource();
-    console.log(error);
   },
   initDWT: function () {
     const license = document.getElementById("dwt").getAttribute("license");

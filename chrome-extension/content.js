@@ -1,17 +1,5 @@
 init();
 
-window.addEventListener(
-  "message",
-  function (event) {
-    if (event.source != window) return;
-
-    if (event.data.message && event.data.message == "scan_done") {
-      console.log("Content script received: ", event.data.result);
-    }
-  },
-  false
-);
-
 const addButtonToExamDiv = (resourcesURL) => {
   const examDiv = document.querySelector("#ajoutAnalyse");
   const button = document.createElement("button");
@@ -21,6 +9,11 @@ const addButtonToExamDiv = (resourcesURL) => {
     await loadLibrary(resourcesURL + "/scan.js", "text/javascript", "dwt-scan");
   });
   examDiv.appendChild(button);
+};
+
+const scanDone = (data) => {
+  console.log("scan done");
+  console.log(data);
 };
 
 async function init() {
@@ -37,14 +30,6 @@ async function init() {
   );
   addButtonToExamDiv(resourcesURL);
 }
-
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-  console.log(request);
-  if (request.message === "scan_done") {
-    console.log(request);
-    sendResponse({ message: "scan_done" });
-  }
-});
 
 function loadLibrary(src, type, id, data) {
   return new Promise(function (resolve, reject) {
@@ -70,3 +55,12 @@ function loadLibrary(src, type, id, data) {
     });
   });
 }
+
+window.addEventListener(
+  "message",
+  function (event) {
+    if (event.source != window) return;
+    if (event.data.message && event.data.message == "scan_done") scanDone(event.data.result);
+  },
+  false
+);
