@@ -6,6 +6,7 @@ const addButtonToExamDiv = () => {
   button.innerText = "Extraction Automatique";
   button.addEventListener("click", (e) => {
     e.preventDefault();
+    conosle.log(chrome.runtime);
     chrome.runtime.sendMessage({ message: "scan_todo" });
   });
   examDiv.appendChild(button);
