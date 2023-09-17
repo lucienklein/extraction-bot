@@ -79,7 +79,6 @@ let DWTChromeExtension = {
         this.DWObject.SelectSource(
           function () {
             DWTChromeExtension.DWObject.OpenSource();
-            DWTChromeExtension.DWObject.IfShowUI = false;
             DWTChromeExtension.DWObject.AcquireImage();
           },
           function () {
