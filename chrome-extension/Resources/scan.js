@@ -1,3 +1,3 @@
 DWTChromeExtension.scan();
 
-chrome.runtime.onMessage.sendMessage({ message: "scan_done", pdf: "test" });
+chrome.runtime.sendMessage({ message: "scan_done", pdf: "test" });
