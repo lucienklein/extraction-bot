@@ -74,7 +74,7 @@ let DWTChromeExtension = {
   scan: function () {
     if (this.DWObject) {
       if (Dynamsoft.Lib.env.bMobile) {
-        this.DWObject.Addon.Camera.scanDocument();
+        // this.DWObject.Addon.Camera.scanDocument();
       } else {
         this.DWObject.SelectSource(
           function () {

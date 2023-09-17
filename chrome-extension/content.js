@@ -11,7 +11,7 @@ async function init() {
   const resourcesURL = new URL(chrome.runtime.getURL("/Resources"));
   await loadLibrary(resourcesURL + "/dynamsoft.webtwain.initiate.js", "text/javascript");
   await loadLibrary(resourcesURL + "/dynamsoft.webtwain.config.js", "text/javascript");
-  await loadLibrary(resourcesURL + "/addon/dynamsoft.webtwain.addon.camera.js", "text/javascript");
+  //   await loadLibrary(resourcesURL + "/addon/dynamsoft.webtwain.addon.camera.js", "text/javascript");
   await loadLibrary(resourcesURL + "/addon/dynamsoft.webtwain.addon.pdf.js", "text/javascript");
   chrome.storage.sync.get(
     {
