@@ -32,34 +32,21 @@ const addScanToScreen = (data) => {
   console.log("scan done");
   console.log(data);
 
-  const img = document.createElement("img");
-  img.src = "data:image/png;base64," + data._content;
-  img.style.width = "100%";
-  img.style.height = "100%";
-  img.style.objectFit = "contain";
-  img.style.marginTop = "10px";
-  img.style.marginBottom = "10px";
-  img.style.border = "1px solid black";
+  const div = document.createElement("div");
+  div.innerHTML = `
+  <div style="position: relative; width: 100%; height: 100%;">
+    <img id="displayImage" style="width: 100%; height: 100%; object-fit: contain; position: relative; z-index: 1;">
+    <div id="displayText" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background-color: rgba(0, 0, 0, 0.5); color: white; z-index: 2;">
+      Extraction en cours
+    </div>
+  </div>`;
 
-  const messageDiv = document.createElement("div");
-  messageDiv.innerText = "Extraction en cours";
-  messageDiv.style.position = "absolute";
-  messageDiv.style.top = "0";
-  messageDiv.style.left = "0";
-  messageDiv.style.width = "100%";
-  messageDiv.style.height = "100%";
-  messageDiv.style.display = "flex";
-  messageDiv.style.justifyContent = "center";
-  messageDiv.style.alignItems = "center";
-  messageDiv.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
-  messageDiv.style.color = "white";
-  messageDiv.style.zIndex = "1";
-  img.style.position = "relative";
-  img.appendChild(messageDiv);
+  const img = document.getElementById("displayImage");
+  img.src = "data:image/png;base64," + data._content;
 
   const principalDiv = document.querySelector("#principalContent");
   principalDiv.style.display = "flex";
-  principalDiv.appendChild(img);
+  principalDiv.appendChild(div);
 };
 
 const uploadScan = async (data) => {
