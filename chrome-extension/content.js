@@ -4,9 +4,9 @@ const addButtonToExamDiv = (resourcesURL) => {
   const examDiv = document.querySelector("#ajoutAnalyse");
   const button = document.createElement("button");
   button.innerText = "Extraction Automatique";
-  button.addEventListener("click", (e) => {
+  button.addEventListener("click", async (e) => {
     e.preventDefault();
-    loadLibrary(resourcesURL + "/scan.js", "text/javascript", "dwt-scan");
+    await loadLibrary(resourcesURL + "/scan.js", "text/javascript", "dwt-scan");
     console.log(test);
   });
   examDiv.appendChild(button);
