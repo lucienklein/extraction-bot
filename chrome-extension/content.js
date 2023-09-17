@@ -6,7 +6,7 @@ window.addEventListener(
     if (event.source != window) return;
 
     if (event.data.message && event.data.message == "scan_done") {
-      console.log("Content script received: " + event.data.result);
+      console.log("Content script received: ", event.data.result);
     }
   },
   false
