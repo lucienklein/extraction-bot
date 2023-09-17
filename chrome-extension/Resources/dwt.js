@@ -48,4 +48,4 @@ let DWTChromeExtension = {
 
 DWTChromeExtension.load();
 
-module.exports = DWTChromeExtension;
+export default DWTChromeExtension;
