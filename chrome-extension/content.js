@@ -88,26 +88,25 @@ const uploadScan = async (data) => {
     await new Promise((resolve) => {
       setTimeout(resolve, 100);
       const el = document.querySelector(`#analyseCodeAjout`);
-      // if (!el.classList.contains("ui-autocomplete-loading")) resolve();
-      resolve();
+      if (!el.classList.contains("ui-autocomplete-loading")) resolve();
     });
 
-    const previousActInserted = [...actInserted];
-    actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
+    // const previousActInserted = [...actInserted];
+    // actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
 
-    if (!act.ALD) continue;
+    // if (!act.ALD) continue;
 
-    const newActInserted = actInserted.filter((act) => !previousActInserted.includes(act));
+    // const newActInserted = actInserted.filter((act) => !previousActInserted.includes(act));
 
-    for (const idAnalyse of newActInserted) {
-      const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
-      if (!el) continue;
+    // for (const idAnalyse of newActInserted) {
+    //   const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
+    //   if (!el) continue;
 
-      const inputALD = el.querySelector(`input[id^="anaFact"]`);
-      if (!inputALD) continue;
+    //   const inputALD = el.querySelector(`input[id^="anaFact"]`);
+    //   if (!inputALD) continue;
 
-      inputALD.setAttribute("value", "ALD");
-    }
+    //   inputALD.setAttribute("value", "ALD");
+    // }
   }
 };
 
