@@ -19,14 +19,6 @@ const addButtonToExamDiv = (resourcesURL) => {
     await loadLibrary(resourcesURL + "/scan.js", "text/javascript", "dwt-scan");
   });
   examDiv.appendChild(button);
-
-  const button2 = document.createElement("button");
-  button2.innerText = "Extraction Manuelle";
-  button2.addEventListener("click", async (e) => {
-    e.preventDefault();
-    console.log(window.myGlobalVariable);
-  });
-  examDiv.appendChild(button2);
 };
 
 async function init() {

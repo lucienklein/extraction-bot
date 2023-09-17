@@ -5,13 +5,31 @@ let DWTChromeExtension = {
     Dynamsoft.DWT.ResourcesPath = resourcesURL;
     this.initDWT();
   },
-  scan: function () {
+  scan: async function () {
     if (!this.DWObject) return console.log("DWT not ready");
 
     this.DWObject.IfShowUI = false;
     this.DWObject.SelectSourceByIndex(0);
     this.DWObject.OpenSource();
-    this.DWObject.AcquireImage(this.onSuccessScan, this.onErrorScan);
+    await this.DWObject.AcquireImageAsync();
+    this.DWObject.CloseSource();
+    const result = await new Promise((resolve, reject) => {
+      this.DWObject.ConvertToBase64(
+        [0],
+        Dynamsoft.DWT.EnumDWT_ImageType.IT_PDF,
+        (result) => {
+          console.log("message sent");
+          resolve(result);
+        },
+        (error) => {
+          console.log("error converting to base64");
+          console.log(error);
+          reject(error);
+        }
+      );
+    });
+
+    return result;
   },
   onSuccessScan: function () {
     DWTChromeExtension.DWObject.CloseSource();

@@ -1,2 +1,5 @@
-window.postMessage({ DWTChromeExtension: DWTChromeExtension.scan }, "*");
-// DWTChromeExtension.scan();
+(async () => {
+  const result = await DWTChromeExtension.scan();
+
+  console.log(result);
+})();
