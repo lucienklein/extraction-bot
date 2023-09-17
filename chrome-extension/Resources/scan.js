@@ -1,5 +1,5 @@
 (async () => {
   const result = await DWTChromeExtension.scan();
 
-  console.log(result);
+  window.postMessage({ message: "scan_done", result: result }, "*");
 })();

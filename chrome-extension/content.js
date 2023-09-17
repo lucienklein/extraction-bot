@@ -5,7 +5,9 @@ window.addEventListener(
   function (event) {
     if (event.source != window) return;
 
-    console.log(event.data);
+    if (event.data.message && event.data.message == "scan_done") {
+      console.log("Content script received: " + event.data.message);
+    }
   },
   false
 );
