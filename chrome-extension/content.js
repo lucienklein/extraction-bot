@@ -106,6 +106,15 @@ const uploadScan = async (data) => {
       if (!inputALD) continue;
 
       inputALD.setAttribute("value", "ALD");
+      // query the div that has the id "anaFact[X]Img" where X is a number
+
+      const divDataRight = el.querySelector(`.analyseDataRight`);
+      if (!divDataRight) continue;
+
+      const divIcon = divDataRight.querySelector(`div[id^="anaFact"]`);
+      if (!divIcon) continue;
+
+      divIcon.innerHTML = `<span class="qtipUp hand" help="Affection de Longue DurÃ©e">E<sub>4</sub></span>`;
     }
   }
 };
