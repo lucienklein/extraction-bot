@@ -6,8 +6,7 @@ const addButtonToExamDiv = () => {
   button.innerText = "Extraction Automatique";
   button.addEventListener("click", (e) => {
     e.preventDefault();
-    const resourcesURL = new URL(chrome.runtime.getURL("/Resources"));
-    loadLibrary(resourcesURL + "/scan.js", "text/javascript", "dwt-scan");
+    chrome.runtime.sendMessage({ message: "scan_todo" });
   });
   examDiv.appendChild(button);
 };

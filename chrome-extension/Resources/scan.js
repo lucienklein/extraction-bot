@@ -1,5 +1,5 @@
-console.log(chrome.runtime);
-
-DWTChromeExtension.scan();
-
-chrome.runtime.sendMessage({ message: "scan_done", pdf: "test" });
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  if (request.message === "scan_todo") {
+    DWTChromeExtension.scan();
+  }
+});
