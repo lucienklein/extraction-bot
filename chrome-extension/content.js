@@ -1,5 +1,18 @@
 init();
 
+window.addEventListener(
+  "message",
+  function (event) {
+    // We only accept messages from ourselves
+    if (event.source != window) return;
+
+    if (event.data.myGlobalVariable) {
+      console.log(event.data.myGlobalVariable); // Outputs: "Hello, world!"
+    }
+  },
+  false
+);
+
 const addButtonToExamDiv = (resourcesURL) => {
   const examDiv = document.querySelector("#ajoutAnalyse");
   const button = document.createElement("button");
