@@ -64,12 +64,10 @@ const uploadScan = async (data) => {
   `;
   div.style.backgroundColor = "transparent";
 
-  const svgQuery = document.querySelector("#svgQuerco");
-
   const fctRefreshPolygon = () =>
     updatePolygonPoints(
       window.document,
-      svgQuery.clientHeight,
+      window.innerHeight,
       response.data.prescriptions[0].width,
       response.data.prescriptions[0].height,
       response.data.prescriptions[0].acts
