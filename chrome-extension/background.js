@@ -1,5 +1,7 @@
 // background.js
 
+import DWTChromeExtension from "./Resources/dwt.js";
+
 chrome.action.onClicked.addListener(function (tab) {
   chrome.tabs.executeScript(null, { file: "content.js" });
 });
