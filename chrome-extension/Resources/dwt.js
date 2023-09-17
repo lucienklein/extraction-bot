@@ -14,13 +14,16 @@ let DWTChromeExtension = {
     this.DWObject.AcquireImage();
     this.DWObject.CloseSource();
 
-    this.DWObject.ConvertToBlob([0], Dynamsoft.DWT.EnumDWT_ImageType.IT_PDF)
-      .then((blob) => {
-        chrome.runtime.sendMessage({ message: "scan_done", pdf: blob });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    this.DWObject.ConvertToBlob(
+      [0],
+      Dynamsoft.DWT.EnumDWT_ImageType.IT_PDF,
+      function (result, indices, type) {
+        chrome.runtime.sendMessage({ message: "scan_done", pdf: result });
+      },
+      function (errorCode, errorString) {
+        console.log(errorString);
+      }
+    );
   },
   initDWT: function () {
     Dynamsoft.DWT.RegisterEvent("OnWebTwainReady", () => {
