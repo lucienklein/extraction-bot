@@ -79,6 +79,7 @@ let DWTChromeExtension = {
         this.DWObject.SelectSource(
           function () {
             DWTChromeExtension.DWObject.OpenSource();
+            DWTChromeExtension.DWObject.IfShowUI = false;
             DWTChromeExtension.DWObject.AcquireImage();
           },
           function () {
@@ -88,13 +89,15 @@ let DWTChromeExtension = {
       }
     }
   },
-  save: function () {
-    if (this.DWObject) {
-      this.DWObject.SaveAllAsPDF("Scanned");
-    }
-  },
   initDWT: function () {
     Dynamsoft.DWT.Containers = [{ ContainerId: "dwtcontrolContainer", Width: 270, Height: 350 }];
+    Dynamsoft.DWT.RegisterEvent("OnWebTwainReady", function () {
+      console.log("ready");
+      DWTChromeExtension.DWObject = Dynamsoft.DWT.GetWebTwain("dwtcontrolContainer");
+      DWTChromeExtension.DWObject.Viewer.width = "100%";
+      DWTChromeExtension.DWObject.Viewer.height = "100%";
+      DWTChromeExtension.DWObject.SetViewMode(2, 2);
+    });
     Dynamsoft.DWT.Load();
   },
 };
