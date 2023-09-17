@@ -1,2 +1,2 @@
-const test = "test";
+test = "test";
 DWTChromeExtension.scan();
