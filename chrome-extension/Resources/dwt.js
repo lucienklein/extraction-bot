@@ -76,13 +76,13 @@ let DWTChromeExtension = {
       if (Dynamsoft.Lib.env.bMobile) {
         // this.DWObject.Addon.Camera.scanDocument();
       } else {
-        DWObject.SelectSourceByIndex(0);
-        DWObject.OpenSource();
-        DWObject.IfShowUI = false; // Hide the scanner UI
-        DWObject.PixelType = 2; // Set scan settings as needed (this sets the color mode to color)
-        DWObject.Resolution = 300; // Set the scan resolution to 300 DPI (or other value as needed)
+        this.DWObject.SelectSourceByIndex(0);
+        this.DWObject.OpenSource();
+        this.DWObject.IfShowUI = false; // Hide the scanner UI
+        this.DWObject.PixelType = 2; // Set scan settings as needed (this sets the color mode to color)
+        this.DWObject.Resolution = 300; // Set the scan resolution to 300 DPI (or other value as needed)
 
-        DWObject.AcquireImage();
+        this.DWObject.AcquireImage();
       }
     }
   },
