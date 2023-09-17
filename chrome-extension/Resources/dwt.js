@@ -8,10 +8,11 @@ let DWTChromeExtension = {
   scan: function () {
     if (!this.DWObject) return console.log("DWT not ready");
 
+    this.DWObject.IfShowUI = false;
     this.DWObject.SelectSourceByIndex(0);
     this.DWObject.OpenSource();
-    this.DWObject.IfShowUI = false;
     this.DWObject.AcquireImage();
+    this.DWObject.CloseSource();
   },
   initDWT: function () {
     Dynamsoft.DWT.RegisterEvent("OnWebTwainReady", () => {
