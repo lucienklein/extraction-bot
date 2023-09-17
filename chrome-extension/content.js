@@ -17,7 +17,7 @@ async function init() {
   await loadLibrary(resourcesURL + "/dynamsoft.webtwain.initiate.js", "text/javascript");
   await loadLibrary(resourcesURL + "/dynamsoft.webtwain.config.js", "text/javascript");
   addButtonToExamDiv(resourcesURL);
-  DWTChromeExtension.load();
+  DWTChromeExtension.load(resourcesURL);
 }
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
@@ -54,8 +54,7 @@ function loadLibrary(src, type, id, data) {
 }
 let DWTChromeExtension = {
   DWObject: undefined,
-  load: function () {
-    const resourcesURL = document.getElementById("dwt").getAttribute("resourcesURL");
+  load: function (resourcesURL) {
     Dynamsoft.DWT.ResourcesPath = resourcesURL;
     this.initDWT();
   },
