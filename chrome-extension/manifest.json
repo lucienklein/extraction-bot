@@ -10,8 +10,7 @@
     }
   ],
   "background": {
-    "scripts": ["background.js"],
-    "persistent": false
+    "service_worker": "background.js"
   },
   "action": {
     "default_popup": "popup.html"
