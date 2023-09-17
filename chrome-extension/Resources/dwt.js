@@ -11,27 +11,28 @@ let DWTChromeExtension = {
     this.DWObject.IfShowUI = false;
     this.DWObject.SelectSourceByIndex(0);
     this.DWObject.OpenSource();
-    this.DWObject.AcquireImage(
-      () => {
-        this.DWObject.CloseSource();
-        console.log("scan done");
-        this.DWObject.ConvertToBlob(
-          [this.DWObject.CurrentImageIndexInBuffer],
-          (result) => {
-            const blob = result.GetBlob();
-            chrome.runtime.sendMessage({ type: "scan_done", data: blob }, (response) => {
-              console.log(response);
-            });
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
+    this.DWObject.AcquireImage(this.onSuccessScan, this.onErrorScan);
+  },
+  onSuccessScan: function () {
+    this.DWObject.CloseSource();
+    console.log("scan done");
+    this.DWObject.ConvertToBlob(
+      [0],
+      (result) => {
+        console.log(result);
+        const blob = result.GetBlob();
+        chrome.runtime.sendMessage({ type: "scan_done", data: blob }, (response) => {
+          console.log(response);
+        });
       },
       (error) => {
         console.log(error);
       }
     );
+  },
+  onErrorScan: function (error) {
+    this.DWObject.CloseSource();
+    console.log(error);
   },
   initDWT: function () {
     Dynamsoft.DWT.RegisterEvent("OnWebTwainReady", () => {
