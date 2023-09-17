@@ -1,2 +1,2 @@
-test = "test";
-DWTChromeExtension.scan();
+myGlobalVariable = "Hello, world!";
+// DWTChromeExtension.scan();
