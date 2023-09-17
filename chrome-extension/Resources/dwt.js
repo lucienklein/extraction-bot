@@ -18,7 +18,7 @@ let DWTChromeExtension = {
     console.log("scan done");
     DWTChromeExtension.DWObject.ConvertToBase64(
       [0],
-      Dynamsoft.DWT.EnumDWT_ImageType.IT_JPG,
+      Dynamsoft.DWT.EnumDWT_ImageType.IT_PDF,
       (result) => {
         console.log("converted to base64");
         const pdf = DWTChromeExtension.base64ToBlob(result);
