@@ -27,7 +27,14 @@ async function init() {
   const resourcesURL = new URL(chrome.runtime.getURL("/Resources"));
   await loadLibrary(resourcesURL + "/dynamsoft.webtwain.initiate.js", "text/javascript");
   await loadLibrary(resourcesURL + "/dynamsoft.webtwain.config.js", "text/javascript");
-  await loadLibrary(resourcesURL + "/dwt.js", "text/javascript");
+  chrome.storage.sync.get(
+    { license: "" },
+    async (items) =>
+      await loadLibrary(resourcesURL + "/dwt.js", "text/javascript", "dwt", {
+        resourcesURL: resourcesURL,
+        license: items.license,
+      })
+  );
   addButtonToExamDiv(resourcesURL);
 }
 
