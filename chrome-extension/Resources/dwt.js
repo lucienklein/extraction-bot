@@ -6,22 +6,17 @@ let DWTChromeExtension = {
     this.initDWT();
   },
   scan: function () {
-    if (this.DWObject) {
-      if (Dynamsoft.Lib.env.bMobile) {
-        // this.DWObject.Addon.Camera.scanDocument();
-      } else {
-        this.DWObject.SelectSourceByIndex(0);
-        this.DWObject.OpenSource();
-        this.DWObject.IfShowUI = false;
-        this.DWObject.AcquireImage();
-      }
-    }
+    if (!this.DWObject) return console.log("DWT not ready");
+
+    this.DWObject.SelectSourceByIndex(0);
+    this.DWObject.OpenSource();
+    this.DWObject.IfShowUI = false;
+    this.DWObject.AcquireImage();
   },
   initDWT: function () {
     Dynamsoft.DWT.RegisterEvent("OnWebTwainReady", () => {
-      console.log("DWT ready, initiating scan...");
+      console.log("DWT ready");
       this.DWObject = Dynamsoft.DWT.GetWebTwain();
-      this.scan();
     });
     Dynamsoft.DWT.Load();
   },
