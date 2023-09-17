@@ -16,16 +16,16 @@ let DWTChromeExtension = {
   onSuccessScan: function () {
     DWTChromeExtension.DWObject.CloseSource();
     console.log("scan done");
-    DWTChromeExtension.DWObject.ConvertToBlob(
+    DWTChromeExtension.DWObject.ConvertToBase64(
       [0],
+      Dynamsoft.DWT.EnumDWT_ImageType.IT_JPG,
       (result) => {
-        console.log(result);
-        const blob = result.GetBlob();
-        chrome.runtime.sendMessage({ type: "scan_done", data: blob }, (response) => {
-          console.log(response);
-        });
+        console.log("converted to base64");
+        const pdf = DWTChromeExtension.base64ToBlob(result);
+        chrome.runtime.sendMessage({ message: "scan_done", pdf: pdf });
       },
       (error) => {
+        console.log("error converting to base64");
         console.log(error);
       }
     );
