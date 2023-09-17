@@ -14,6 +14,7 @@ let DWTChromeExtension = {
     this.DWObject.AcquireImage({
       onSuccess: () => {
         this.DWObject.CloseSource();
+        console.log("scan done");
         this.DWObject.ConvertToBlob(
           [this.DWObject.CurrentImageIndexInBuffer],
           (result) => {
