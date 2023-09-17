@@ -1,6 +1,6 @@
 // background.js
 
-importScripts("./Resources/dwt.js");
+// importScripts("./Resources/dwt.js");
 
 chrome.action.onClicked.addListener(function (tab) {
   chrome.tabs.executeScript(null, { file: "content.js" });
