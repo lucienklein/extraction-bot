@@ -27,6 +27,13 @@ async function init() {
   addButtonToExamDiv();
 }
 
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  if (request.message === "scan_done") {
+    console.log(request.pdf);
+    sendResponse({ message: "scan_done" });
+  }
+});
+
 function loadLibrary(src, type, id, data) {
   return new Promise(function (resolve, reject) {
     let scriptEle = document.createElement("script");
