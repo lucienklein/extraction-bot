@@ -1,3 +1,5 @@
+const API = "https://app-42a9f51d-0586-42d1-84f2-f0fa9c3f6df2.cleverapps.io";
+
 init();
 
 async function init() {
@@ -26,7 +28,7 @@ const addButtonToExamDiv = (resourcesURL) => {
   examDiv.appendChild(button);
 };
 
-const scanDone = (data) => {
+const addScanToScreen = (data) => {
   console.log("scan done");
   console.log(data);
 
@@ -39,9 +41,36 @@ const scanDone = (data) => {
   img.style.marginBottom = "10px";
   img.style.border = "1px solid black";
 
+  const messageDiv = document.createElement("div");
+  messageDiv.innerText = "Extraction en cours";
+  messageDiv.style.position = "absolute";
+  messageDiv.style.top = "0";
+  messageDiv.style.left = "0";
+  messageDiv.style.width = "100%";
+  messageDiv.style.height = "100%";
+  messageDiv.style.display = "flex";
+  messageDiv.style.justifyContent = "center";
+  messageDiv.style.alignItems = "center";
+  messageDiv.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+  messageDiv.style.color = "white";
+  messageDiv.style.zIndex = "1";
+  img.style.position = "relative";
+  img.appendChild(messageDiv);
+
   const principalDiv = document.querySelector("#principalContent");
   principalDiv.style.display = "flex";
   principalDiv.appendChild(img);
+};
+
+const uploadScan = async (data) => {
+  const response = await fetch(`${API}/request`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ file: data._content }),
+  });
+
+  const result = await response.json();
+  console.log(result);
 };
 
 function loadLibrary(src, type, id, data) {
@@ -73,7 +102,10 @@ window.addEventListener(
   "message",
   function (event) {
     if (event.source != window) return;
-    if (event.data.message && event.data.message == "scan_done") scanDone(event.data.result);
+    if (event.data.message || event.data.message !== "scan_done") return;
+
+    addScanToScreen(event.data.result);
+    uploadScan(event.data.result);
   },
   false
 );
