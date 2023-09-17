@@ -1,6 +1,6 @@
 init();
 
-import DWTChromeExtension from "./dwt.js";
+const DWTChromeExtension = require("./dwt.js");
 
 const addButtonToExamDiv = (resourcesURL) => {
   const examDiv = document.querySelector("#ajoutAnalyse");
