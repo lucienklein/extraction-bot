@@ -15,7 +15,7 @@ let DWTChromeExtension = {
       onSuccess: () => {
         this.DWObject.CloseSource();
         this.DWObject.ConvertToBlob(
-          {},
+          [this.DWObject.CurrentImageIndexInBuffer],
           (result) => {
             const blob = result.GetBlob();
             chrome.runtime.sendMessage({ type: "scan_done", data: blob }, (response) => {
