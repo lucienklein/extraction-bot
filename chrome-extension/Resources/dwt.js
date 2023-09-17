@@ -47,3 +47,5 @@ let DWTChromeExtension = {
 };
 
 DWTChromeExtension.load();
+
+module.exports = DWTChromeExtension;
