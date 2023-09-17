@@ -15,14 +15,11 @@ let DWTChromeExtension = {
   },
   onSuccessScan: function () {
     DWTChromeExtension.DWObject.CloseSource();
-    console.log("scan done");
     DWTChromeExtension.DWObject.ConvertToBase64(
       [0],
       Dynamsoft.DWT.EnumDWT_ImageType.IT_PDF,
       (result) => {
-        console.log("converted to base64");
-        const pdf = DWTChromeExtension.base64ToBlob(result);
-        chrome.runtime.sendMessage({ message: "scan_done", pdf: pdf });
+        chrome.runtime.sendMessage({ message: "scan_done", pdf: result });
       },
       (error) => {
         console.log("error converting to base64");
