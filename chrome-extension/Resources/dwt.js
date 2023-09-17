@@ -11,12 +11,12 @@ let DWTChromeExtension = {
     this.DWObject.IfShowUI = false;
     this.DWObject.SelectSourceByIndex(0);
     this.DWObject.OpenSource();
-    this.DWObject.AcquireImage(this.onSuccessScan, this.onErrorScan);
+    this.DWObject.AcquireImage(this.onSuccessScan), this.onErrorScan);
   },
   onSuccessScan: function () {
-    this.DWObject.CloseSource();
+    DWTChromeExtension.DWObject.CloseSource();
     console.log("scan done");
-    this.DWObject.ConvertToBlob(
+    DWTChromeExtension.DWObject.ConvertToBlob(
       [0],
       (result) => {
         console.log(result);
