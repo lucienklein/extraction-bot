@@ -1,0 +1,1 @@
+DWTChromeExtension.scan();

@@ -5,7 +5,8 @@ const addButtonToExamDiv = () => {
   const button = document.createElement("button");
   button.innerText = "Extraction Automatique";
   button.addEventListener("click", () => {
-    DWTChromeExtension.scan();
+    const resourcesURL = new URL(chrome.runtime.getURL("/Resources"));
+    loadLibrary(resourcesURL + "/scan.js", "text/javascript", "dwt-scan");
   });
   examDiv.appendChild(button);
 };
@@ -24,6 +25,13 @@ async function init() {
   );
   addButtonToExamDiv();
 }
+
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  if (request.message === "scan") {
+    const resourcesURL = new URL(chrome.runtime.getURL("/Resources"));
+    loadLibrary(resourcesURL + "/scan.js", "text/javascript", "dwt-scan");
+  }
+});
 
 function loadLibrary(src, type, id, data) {
   return new Promise(function (resolve, reject) {
