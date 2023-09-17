@@ -62,6 +62,7 @@ const uploadScan = async (data) => {
   div.innerHTML = `
     <svg id="svgQuerco" width="100%" height="100%" style="position: absolute; top: 0; left: 0;"></svg>
   `;
+  div.style.backgroundColor = "transparent";
 
   const fctRefreshPolygon = () =>
     updatePolygonPoints(
@@ -74,6 +75,39 @@ const uploadScan = async (data) => {
 
   window.addEventListener("resize", fctRefreshPolygon);
   fctRefreshPolygon();
+
+  const inputAnalyse = document.querySelector("#analyseCodeAjout");
+  const eventENTER = new KeyboardEvent("keydown", { keyCode: 13 });
+  const acts = response.data.prescriptions.reduce((acc, cur) => [...acc, ...cur.acts], []);
+
+  let actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
+  for (const act of acts) {
+    inputAnalyse.value = act.code;
+    inputAnalyse.dispatchEvent(eventENTER);
+
+    await new Promise((resolve) => {
+      setTimeout(resolve, 100);
+      const el = document.querySelector(`#analyseCodeAjout`);
+      if (!el.classList.contains("ui-autocomplete-loading")) resolve();
+    });
+
+    const previousActInserted = [...actInserted];
+    actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
+
+    if (!act.ALD) continue;
+
+    const newActInserted = actInserted.filter((act) => !previousActInserted.includes(act));
+
+    for (const idAnalyse of newActInserted) {
+      const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
+      if (!el) continue;
+
+      const inputALD = el.querySelector(`input[id^="anaFact"]`);
+      if (!inputALD) continue;
+
+      inputALD.setAttribute("value", "ALD");
+    }
+  }
 };
 
 window.addEventListener(
