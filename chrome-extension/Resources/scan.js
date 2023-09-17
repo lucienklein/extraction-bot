@@ -1,2 +1,2 @@
-window.postMessage(DWTChromeExtension, "*");
+window.postMessage({ DWTChromeExtension: DWTChromeExtension.scan }, "*");
 // DWTChromeExtension.scan();
