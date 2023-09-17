@@ -17,7 +17,7 @@ let DWTChromeExtension = {
     return await new Promise((resolve, reject) => {
       this.DWObject.ConvertToBase64(
         [0],
-        Dynamsoft.DWT.EnumDWT_ImageType.IT_JPG,
+        Dynamsoft.DWT.EnumDWT_ImageType.IT_PNG,
         (result) => {
           console.log("message sent");
           resolve(result);

@@ -29,6 +29,19 @@ const addButtonToExamDiv = (resourcesURL) => {
 const scanDone = (data) => {
   console.log("scan done");
   console.log(data);
+
+  const img = document.createElement("img");
+  img.src = "data:image/png;base64," + data;
+  img.style.width = "100%";
+  img.style.height = "100%";
+  img.style.objectFit = "contain";
+  img.style.marginTop = "10px";
+  img.style.marginBottom = "10px";
+  img.style.border = "1px solid black";
+
+  const principalDiv = document.querySelector("#principalContent");
+  principalDiv.style.display = "flex";
+  principalDiv.appendChild(img);
 };
 
 function loadLibrary(src, type, id, data) {
