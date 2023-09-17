@@ -76,16 +76,10 @@ let DWTChromeExtension = {
       if (Dynamsoft.Lib.env.bMobile) {
         // this.DWObject.Addon.Camera.scanDocument();
       } else {
-        this.DWObject.SelectSource(
-          function () {
-            DWTChromeExtension.DWObject.OpenSource();
-            DWTChromeExtension.DWObject.IfShowUI = false;
-            DWTChromeExtension.DWObject.AcquireImage();
-          },
-          function () {
-            console.log("SelectSource failed!");
-          }
-        );
+        DWTChromeExtension.DWObject.SelectSourceByIndex(0);
+        DWTChromeExtension.DWObject.OpenSource();
+        DWTChromeExtension.DWObject.IfShowUI = false;
+        DWTChromeExtension.DWObject.AcquireImage();
       }
     }
   },
