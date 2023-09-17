@@ -55,7 +55,7 @@ const uploadScan = async (data) => {
     body: JSON.stringify({ file: data._content }),
   });
   response = await response.json();
-  console.log(result);
+  console.log(response);
 
   const div = document.querySelector("#displayText");
 
