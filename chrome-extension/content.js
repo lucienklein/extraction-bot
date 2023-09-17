@@ -31,7 +31,7 @@ const scanDone = (data) => {
   console.log(data);
 
   const img = document.createElement("img");
-  img.src = "data:image/png;base64," + data;
+  img.src = "data:image/png;base64," + data._content;
   img.style.width = "100%";
   img.style.height = "100%";
   img.style.objectFit = "contain";
