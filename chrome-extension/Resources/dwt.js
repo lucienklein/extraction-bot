@@ -1,75 +1,9 @@
 let DWTChromeExtension = {
-  modal: undefined,
   DWObject: undefined,
   load: function () {
     const resourcesURL = document.getElementById("dwt").getAttribute("resourcesURL");
     Dynamsoft.DWT.ResourcesPath = resourcesURL;
-  },
-  showModal: function () {
-    if (!this.modal) {
-      this.modal = document.createElement("div");
-      this.modal.className = "dwt-modal";
-      document.body.appendChild(this.modal);
-      const header = document.createElement("div");
-      const closeBtn = document.createElement("div");
-      closeBtn.className = "dwt-close-btn";
-      closeBtn.innerText = "x";
-      header.appendChild(closeBtn);
-      header.className = "dwt-header";
-      closeBtn.addEventListener("click", () => {
-        this.hideModal();
-      });
-      const body = document.createElement("div");
-      body.className = "dwt-body";
-      const viewer = document.createElement("div");
-      viewer.id = "dwtcontrolContainer";
-      const controls = document.createElement("div");
-      controls.className = "dwt-controls";
-      const scanBtn = document.createElement("button");
-      scanBtn.innerText = "Scan";
-      scanBtn.addEventListener("click", () => {
-        this.scan();
-      });
-
-      const editBtn = document.createElement("button");
-      editBtn.innerText = "Edit";
-      editBtn.addEventListener("click", () => {
-        this.edit();
-      });
-
-      const copyBtn = document.createElement("button");
-      copyBtn.innerText = "Copy selected";
-      copyBtn.addEventListener("click", () => {
-        this.copy();
-      });
-
-      const saveBtn = document.createElement("button");
-      saveBtn.innerText = "Save";
-      saveBtn.addEventListener("click", () => {
-        this.save();
-      });
-
-      const status = document.createElement("div");
-      status.className = "dwt-status";
-
-      controls.appendChild(scanBtn);
-      controls.appendChild(editBtn);
-      controls.appendChild(copyBtn);
-      controls.appendChild(saveBtn);
-      controls.appendChild(status);
-
-      body.appendChild(viewer);
-      body.appendChild(controls);
-      this.modal.appendChild(header);
-      this.modal.appendChild(body);
-      if (!this.DWObject) {
-        this.initDWT();
-      }
-    }
-    this.modal.style.display = "";
-  },
-  hideModal: function () {
-    this.modal.style.display = "none";
+    this.initDWT();
   },
   scan: function () {
     if (this.DWObject) {
@@ -84,13 +18,10 @@ let DWTChromeExtension = {
     }
   },
   initDWT: function () {
-    Dynamsoft.DWT.Containers = [{ ContainerId: "dwtcontrolContainer", Width: 270, Height: 350 }];
-    Dynamsoft.DWT.RegisterEvent("OnWebTwainReady", function () {
-      console.log("ready");
-      DWTChromeExtension.DWObject = Dynamsoft.DWT.GetWebTwain("dwtcontrolContainer");
-      DWTChromeExtension.DWObject.Viewer.width = "100%";
-      DWTChromeExtension.DWObject.Viewer.height = "100%";
-      DWTChromeExtension.DWObject.SetViewMode(2, 2);
+    Dynamsoft.DWT.RegisterEvent("OnWebTwainReady", () => {
+      console.log("DWT ready, initiating scan...");
+      this.DWObject = Dynamsoft.DWT.GetWebTwain();
+      this.scan();
     });
     Dynamsoft.DWT.Load();
   },
