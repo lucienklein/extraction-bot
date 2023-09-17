@@ -2,13 +2,13 @@ init();
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.message === "scan") {
-    const resourcesURL = new URL(chrome.runtime.getURL("/Resources/"));
+    const resourcesURL = new URL(chrome.runtime.getURL("/Resources"));
     loadLibrary(resourcesURL + "/scan.js", "text/javascript", "dwt-scan");
   }
 });
 
 async function init() {
-  const resourcesURL = new URL(chrome.runtime.getURL("/Resources/"));
+  const resourcesURL = new URL(chrome.runtime.getURL("/Resources"));
   await loadLibrary(resourcesURL + "/dynamsoft.webtwain.initiate.js", "text/javascript");
   await loadLibrary(resourcesURL + "/dynamsoft.webtwain.config.js", "text/javascript");
   await loadLibrary(resourcesURL + "/addon/dynamsoft.webtwain.addon.camera.js", "text/javascript");
