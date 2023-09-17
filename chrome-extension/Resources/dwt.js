@@ -47,5 +47,3 @@ let DWTChromeExtension = {
 };
 
 DWTChromeExtension.load();
-
-export default DWTChromeExtension;
