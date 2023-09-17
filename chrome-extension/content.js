@@ -88,7 +88,8 @@ const uploadScan = async (data) => {
     await new Promise((resolve) => {
       setTimeout(resolve, 100);
       const el = document.querySelector(`#analyseCodeAjout`);
-      if (!el.classList.contains("ui-autocomplete-loading")) resolve();
+      // if (!el.classList.contains("ui-autocomplete-loading")) resolve();
+      resolve();
     });
 
     const previousActInserted = [...actInserted];
