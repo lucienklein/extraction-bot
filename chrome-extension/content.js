@@ -1,13 +1,13 @@
 init();
 
-const addButtonToExamDiv = () => {
+const addButtonToExamDiv = (resourcesURL) => {
   const examDiv = document.querySelector("#ajoutAnalyse");
   const button = document.createElement("button");
   button.innerText = "Extraction Automatique";
   button.addEventListener("click", (e) => {
     e.preventDefault();
-    console.log(chrome.runtime);
-    chrome.runtime.sendMessage({ message: "scan_todo" });
+    // loadLibrary(resourcesURL + "/scan.js", "text/javascript", "dwt-scan");
+    DWTChromeExtension.scan();
   });
   examDiv.appendChild(button);
 };
@@ -24,7 +24,7 @@ async function init() {
         license: items.license,
       })
   );
-  addButtonToExamDiv();
+  addButtonToExamDiv(resourcesURL);
 }
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {

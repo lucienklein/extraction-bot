@@ -5,7 +5,7 @@ let DWTChromeExtension = {
     Dynamsoft.DWT.ResourcesPath = resourcesURL;
     this.initDWT();
   },
-  scan: function () {
+  scan: async function () {
     if (!this.DWObject) return console.log("DWT not ready");
 
     this.DWObject.IfShowUI = false;
@@ -20,7 +20,6 @@ let DWTChromeExtension = {
       Dynamsoft.DWT.EnumDWT_ImageType.IT_PDF,
       (result) => {
         console.log("message sent");
-        chrome.runtime.sendMessage({ message: "scan_done", pdf: result });
       },
       (error) => {
         console.log("error converting to base64");
