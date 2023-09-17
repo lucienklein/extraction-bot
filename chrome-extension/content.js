@@ -84,7 +84,7 @@ window.addEventListener(
     if (!event.data.message || event.data.message !== "scan_done") return;
 
     addScanToScreen(event.data.result);
-    // uploadScan(event.data.result);
+    uploadScan(event.data.result);
   },
   false
 );
