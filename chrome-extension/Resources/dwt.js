@@ -11,8 +11,8 @@ let DWTChromeExtension = {
     this.DWObject.IfShowUI = false;
     this.DWObject.SelectSourceByIndex(0);
     this.DWObject.OpenSource();
-    this.DWObject.AcquireImage({
-      onSuccess: () => {
+    this.DWObject.AcquireImage(
+      () => {
         this.DWObject.CloseSource();
         console.log("scan done");
         this.DWObject.ConvertToBlob(
@@ -28,10 +28,10 @@ let DWTChromeExtension = {
           }
         );
       },
-      onFailure: (error) => {
+      (error) => {
         console.log(error);
-      },
-    });
+      }
+    );
   },
   initDWT: function () {
     Dynamsoft.DWT.RegisterEvent("OnWebTwainReady", () => {
