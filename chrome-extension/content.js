@@ -94,28 +94,30 @@ const uploadScan = async (data) => {
     const previousActInserted = [...actInserted];
     actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
 
-    // if (!act.ALD) continue;
+    await new Promise((resolve) => setTimeout(resolve, 10000));
 
-    // const newActInserted = actInserted.filter((act) => !previousActInserted.includes(act));
+    if (!act.ALD) continue;
 
-    // for (const idAnalyse of newActInserted) {
-    //   const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
-    //   if (!el) continue;
+    const newActInserted = actInserted.filter((act) => !previousActInserted.includes(act));
 
-    //   const inputALD = el.querySelector(`input[id^="anaFact"]`);
-    //   if (!inputALD) continue;
+    for (const idAnalyse of newActInserted) {
+      const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
+      if (!el) continue;
 
-    //   inputALD.setAttribute("value", "ALD");
-    //   // query the div that has the id "anaFact[X]Img" where X is a number
+      const inputALD = el.querySelector(`input[id^="anaFact"]`);
+      if (!inputALD) continue;
 
-    //   const divDataRight = el.querySelector(`.analyseDataRight`);
-    //   if (!divDataRight) continue;
+      inputALD.setAttribute("value", "ALD");
+      // query the div that has the id "anaFact[X]Img" where X is a number
 
-    //   const divIcon = divDataRight.querySelector(`div[id^="anaFact"]`);
-    //   if (!divIcon) continue;
+      const divDataRight = el.querySelector(`.analyseDataRight`);
+      if (!divDataRight) continue;
 
-    //   divIcon.innerHTML = `<span class="qtipUp hand" help="Affection de Longue DurÃ©e">E<sub>4</sub></span>`;
-    // }
+      const divIcon = divDataRight.querySelector(`div[id^="anaFact"]`);
+      if (!divIcon) continue;
+
+      divIcon.innerHTML = `<span class="qtipUp hand" help="Affection de Longue DurÃ©e">E<sub>4</sub></span>`;
+    }
   }
 };
 
