@@ -1,57 +1,52 @@
-Dynamsoft.DWT.ProductKey = "YOUR_LICENSE_KEY_HERE";
+init();
 
-var DWObject;
-
-Dynamsoft.DWT.RegisterEvent("OnWebTwainReady", function () {
-  DWObject = Dynamsoft.DWT.GetWebTwain("dwtcontrolContainer");
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  if (request.message === "scan") {
+    const resourcesURL = new URL(chrome.runtime.getURL("/Resources/"));
+    loadLibrary(resourcesURL + "/scan.js", "text/javascript", "dwt-scan");
+  }
 });
 
-function lancerScan() {
-  if (DWObject) {
-    DWObject.SelectSource(
-      function () {
-        DWObject.OpenSource();
-        DWObject.AcquireImage(
-          function () {
-            var imageIndex = DWObject.HowManyImagesInBuffer - 1;
-            DWObject.GetImageBuffer(
-              imageIndex,
-              function (buffer) {
-                var blob = new Blob([buffer], { type: "image/jpeg" });
-                var url = URL.createObjectURL(blob);
-                console.log("Image URL:", url);
-              },
-              function (errorCode, errorString) {
-                console.log("Error getting image buffer:", errorString);
-              }
-            );
-          },
-          function (errorCode, errorString) {
-            console.log("Error acquiring image:", errorString);
-          }
-        );
-      },
-      function (errorCode, errorString) {
-        console.log("Error selecting source:", errorString);
-      }
-    );
-  } else {
-    console.log("Dynamic Web TWAIN is not initialized yet.");
-  }
+async function init() {
+  const resourcesURL = new URL(chrome.runtime.getURL("/Resources/"));
+  await loadLibrary(resourcesURL + "/dynamsoft.webtwain.initiate.js", "text/javascript");
+  await loadLibrary(resourcesURL + "/dynamsoft.webtwain.config.js", "text/javascript");
+  await loadLibrary(resourcesURL + "/addon/dynamsoft.webtwain.addon.camera.js", "text/javascript");
+  await loadLibrary(resourcesURL + "/addon/dynamsoft.webtwain.addon.pdf.js", "text/javascript");
+  chrome.storage.sync.get(
+    {
+      license: "",
+    },
+    async function (items) {
+      await loadLibrary(resourcesURL + "/dwt.js", "text/javascript", "dwt", {
+        resourcesURL: resourcesURL,
+        license: items.license,
+      });
+    }
+  );
 }
 
-const addButtonToExamsDiv = () => {
-  const examsDiv = document.getElementById("ajoutAnalyse");
-  const button = document.createElement("button");
-  button.innerText = "Extraire les examens";
-  examsDiv.appendChild(button);
-
-  button.addEventListener("click", lancerScan);
-};
-
-const init = () => {
-  console.log("Init");
-  addButtonToExamsDiv();
-};
-
-init();
+function loadLibrary(src, type, id, data) {
+  return new Promise(function (resolve, reject) {
+    let scriptEle = document.createElement("script");
+    scriptEle.setAttribute("type", type);
+    scriptEle.setAttribute("src", src);
+    if (id) {
+      scriptEle.id = id;
+    }
+    if (data) {
+      for (let key in data) {
+        scriptEle.setAttribute(key, data[key]);
+      }
+    }
+    document.body.appendChild(scriptEle);
+    scriptEle.addEventListener("load", () => {
+      console.log(src + " loaded");
+      resolve(true);
+    });
+    scriptEle.addEventListener("error", (ev) => {
+      console.log("Error on loading " + src, ev);
+      reject(ev);
+    });
+  });
+}
