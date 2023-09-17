@@ -20,6 +20,7 @@ let DWTChromeExtension = {
       Dynamsoft.DWT.EnumDWT_ImageType.IT_PDF,
       (result) => {
         chrome.runtime.sendMessage({ message: "scan_done", pdf: result });
+        console.log("message sent");
       },
       (error) => {
         console.log("error converting to base64");

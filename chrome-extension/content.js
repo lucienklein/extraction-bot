@@ -28,6 +28,7 @@ async function init() {
 }
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  console.log(request);
   if (request.message === "scan_done") {
     console.log(request.pdf);
     sendResponse({ message: "scan_done" });
