@@ -1,7 +1,7 @@
 let DWTChromeExtension = {
   DWObject: undefined,
   load: function () {
-    const resourcesURL = document.getElementById("dwt").getAttribute("resourcesURL");
+    const resourcesURL = new URL(chrome.runtime.getURL("/Resources"));
     Dynamsoft.DWT.ResourcesPath = resourcesURL;
     this.initDWT();
   },
