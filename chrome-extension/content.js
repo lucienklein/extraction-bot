@@ -1,5 +1,7 @@
 init();
 
+import DWTChromeExtension from "./dwt.js";
+
 const addButtonToExamDiv = (resourcesURL) => {
   const examDiv = document.querySelector("#ajoutAnalyse");
   const button = document.createElement("button");
@@ -7,7 +9,8 @@ const addButtonToExamDiv = (resourcesURL) => {
   button.addEventListener("click", (e) => {
     e.preventDefault();
     // loadLibrary(resourcesURL + "/scan.js", "text/javascript", "dwt-scan");
-    chrome.runtime.sendMessage({ message: "scan_todo" });
+    // chrome.runtime.sendMessage({ message: "scan_todo" });
+    DWTChromeExtension.scan();
   });
   examDiv.appendChild(button);
 };
