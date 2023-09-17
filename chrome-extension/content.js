@@ -94,7 +94,9 @@ const uploadScan = async (data) => {
     const previousActInserted = [...actInserted];
     actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
 
-    await new Promise((resolve) => setTimeout(resolve, 10000));
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+
+    console.log(act.code);
 
     if (!act.ALD) continue;
 
