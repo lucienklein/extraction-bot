@@ -83,7 +83,7 @@ const uploadScan = async (data) => {
   let actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
   for (const act of acts) {
     inputAnalyse.value = act.code;
-    // inputAnalyse.dispatchEvent(eventENTER);
+    inputAnalyse.dispatchEvent(eventENTER);
 
     await new Promise((resolve) => {
       setTimeout(resolve, 100);
@@ -139,11 +139,11 @@ function updatePolygonPoints(document, viewportHeight, originalWidth, originalHe
     }));
 
     const pointsString = adjustedPoints.map((point) => `${point.x},${point.y}`).join(" ");
-
     const svg = document.querySelector(`#svgQuerco`);
     const polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
     polygon.setAttribute("points", pointsString);
-    polygon.setAttribute("style", "fill:blue;fill-opacity:0.25;stroke:blue;stroke-width:1");
+    polygon.setAttribute("style", "fill:#F7FA13 ;fill-opacity:0.15; stroke:#F7FA13; stroke-width:1");
+    // #FA1313
     svg.appendChild(polygon);
   }
 }
