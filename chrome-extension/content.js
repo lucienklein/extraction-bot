@@ -90,6 +90,15 @@ const uploadScan = async (data) => {
   const eventENTER = new KeyboardEvent("keydown", { keyCode: 13 });
   const acts = response.data.prescriptions.reduce((acc, cur) => [...acc, ...cur.acts], []);
 
+  const boxAnalyse = document.querySelector("#ihmBoxAnalyse");
+  const overlay = document.createElement("div");
+  overlay.setAttribute(
+    "style",
+    "position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1000; display: flex; justify-content: center; align-items: center; color: white; font-size: 2rem; font-weight: bold; pointer-events: none; cursor: wait;"
+  );
+  overlay.innerHTML = "Insertion en cours";
+  boxAnalyse.appendChild(overlay);
+
   let actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
   for (const act of acts) {
     inputAnalyse.value = act.code;
@@ -130,6 +139,8 @@ const uploadScan = async (data) => {
       divIcon.innerHTML = `<span class="qtipUp hand" help="Affection de Longue DurÃ©e">E<sub>4</sub></span>`;
     }
   }
+
+  overlay.remove();
 };
 
 window.addEventListener(
