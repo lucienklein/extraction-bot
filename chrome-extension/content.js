@@ -5,6 +5,17 @@ const utilsURL = new URL(chrome.runtime.getURL("/utils"));
 async function init() {
   if (!window.location.href.includes("moduleSil/demande/saisie/index.php")) return;
 
+  await loadLibrary(dwtURL + "/dynamsoft.webtwain.initiate.js", "text/javascript");
+  await loadLibrary(dwtURL + "/dynamsoft.webtwain.config.js", "text/javascript");
+  chrome.storage.sync.get(
+    { license: "" },
+    async (items) =>
+      await loadLibrary(dwtURL + "/dwt.js", "text/javascript", "dwt", {
+        dwtURL: dwtURL,
+        license: items.license,
+      })
+  );
+
   const examDiv = document.querySelector("#ajoutAnalyse");
   const button = document.createElement("button");
   button.innerText = "Extraction Automatique";
