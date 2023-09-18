@@ -24,7 +24,7 @@ window.addEventListener(
 
     window.postMessage({ message: "displayActs", data: response.data }, "*");
 
-    let acts = data.prescriptions.reduce((acc, cur) => [...acc, ...cur.acts], []);
+    let acts = response.data.prescriptions.reduce((acc, cur) => [...acc, ...cur.acts], []);
     acts = JSON.parse(JSON.stringify(acts));
     window.postMessage({ message: "insertActs", data: acts }, "*");
   },
