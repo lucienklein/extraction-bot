@@ -143,16 +143,12 @@ window.addEventListener(
           return codegroupe === act.code;
         });
 
-        console.log("elThatMatchActWithAnalyse", elThatMatchActWithAnalyse);
-
         if (elThatMatchActWithAnalyse.length === 0 && elThatMatchActWithGroup.length === 0) {
           act.notFound = true;
-          return;
+          continue;
         }
 
-        console.log("Found act", act.code, act.ALD);
-
-        if (!act.ALD) return;
+        if (!act.ALD) continue;
 
         for (const idAnalyse of [...elThatMatchActWithAnalyse, ...elThatMatchActWithGroup]) {
           const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
