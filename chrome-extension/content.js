@@ -100,7 +100,7 @@ const uploadScan = async (data) => {
   let actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
   for (const act of acts) {
     inputAnalyse.value = act.code;
-    inputAnalyse.dispatchEvent(eventENTER);
+    // inputAnalyse.dispatchEvent(eventENTER);
 
     await new Promise((resolve) => {
       setTimeout(resolve, 100);
