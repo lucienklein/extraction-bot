@@ -4,6 +4,21 @@ async function init() {
   if (!window.location.href.includes("moduleSil/demande/saisie/index.php")) return;
   const resourcesURL = new URL(chrome.runtime.getURL("/Resources"));
 
+  const inputAnalyse = document.querySelector("#analyseCodeAjout");
+  const enterKeyEvent = new KeyboardEvent("keydown", {
+    key: "Enter",
+    code: "Enter",
+    keyCode: 13,
+    charCode: 13,
+    shiftKey: false,
+  });
+
+  const liste = ["NF", "GL", "ECBU"];
+  for (const code of liste) {
+    inputAnalyse.value = code;
+    inputAnalyse.dispatchEvent(enterKeyEvent);
+  }
+
   const fileScanned = document.querySelectorAll(
     '[style="background-image:url(http://172.30.69.50/images/icoimage-blanc.png);"]'
   );
