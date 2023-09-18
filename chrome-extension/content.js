@@ -123,6 +123,7 @@ window.addEventListener(
       }, 500);
     });
 
+    let elActsALD = [];
     for (let prescription of data.prescriptions) {
       let actsInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
 
@@ -151,6 +152,7 @@ window.addEventListener(
         for (const idAnalyse of [...elThatMatchActWithAnalyse, ...elThatMatchActWithGroup]) {
           const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
           el.setAttribute("isselected", true);
+          elActsALD.push(el);
         }
 
         // el.addEventListener("mouseover", function () {
@@ -169,10 +171,10 @@ window.addEventListener(
       }
     }
 
-    const scriptElement = document.createElement("script");
-    scriptElement.textContent = `window.dispatchContextMenuAction("toggleFact", "ALD");`;
-    document.head.appendChild(scriptElement);
-    scriptElement.remove();
+    if (elActsALD.length > 0) {
+      // right click on first element
+      elActsALD[0].dispatchEvent(new MouseEvent("contextmenu", { bubbles: true, cancelable: true }));
+    }
 
     const div = document.querySelector("#displayText");
 
