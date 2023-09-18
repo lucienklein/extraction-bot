@@ -11,7 +11,6 @@ boxAnalyse.style.position = "relative";
 // boxAnalyse.appendChild(overlay);
 
 const inputAnalyse = document.querySelector("#analyseCodeAjout");
-inputAnalyse = document.querySelector("#analyseCodeAjout");
 const enterKeyEvent = new KeyboardEvent("keydown", {
   key: "Enter",
   code: "Enter",
