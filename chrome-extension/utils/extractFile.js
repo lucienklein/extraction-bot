@@ -11,6 +11,8 @@ window.addEventListener(
     if (fileScanned.length > 0) data = await getFileFromKalisil();
     else data = await launchScan();
 
+    console.log(data);
+
     window.postMessage({ type: "extractedFile", data: data }, "*");
 
     let response = await fetch(`${API}/request`, {
@@ -19,6 +21,8 @@ window.addEventListener(
       body: JSON.stringify({ file: data }),
     });
     response = await response.json();
+
+    console.log(response);
 
     window.postMessage({ type: "extractedAct", data: response.data }, "*");
   },
