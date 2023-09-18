@@ -52,8 +52,7 @@ window.addEventListener(
 // Display and insert acts
 window.addEventListener(
   "message",
-  async function (event) {
-    console.log(event);
+  function (event) {
     if (event.source != window) return;
     if (!event.data.message || event.data.message !== "extractedAct") return;
     const data = event.data.data;
@@ -99,8 +98,9 @@ window.addEventListener(
 
     const acts = data.prescriptions.reduce((acc, cur) => [...acc, ...cur.acts], []);
     let actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
+    console.log(acts);
     for (const act of acts) {
-      inputAnalyse.value = act;
+      inputAnalyse.value = act.code;
       inputAnalyse.dispatchEvent(enterKeyEvent);
 
       // await new Promise((resolve) => {
