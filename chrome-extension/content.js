@@ -90,9 +90,10 @@ const uploadScan = async (data) => {
   const overlay = document.createElement("div");
   overlay.setAttribute(
     "style",
-    "position: relative; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1000; display: flex; justify-content: center; align-items: center; color: white; font-size: 2rem; font-weight: bold; pointer-events: none; cursor: wait;"
+    "position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1000; display: flex; justify-content: center; align-items: center; color: white; font-size: 2rem; font-weight: bold; pointer-events: none; cursor: wait;"
   );
   overlay.innerHTML = "Insertion en cours";
+  boxAnalyse.style.position = "relative";
   boxAnalyse.appendChild(overlay);
 
   let actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
