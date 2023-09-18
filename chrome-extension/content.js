@@ -93,19 +93,8 @@ window.addEventListener(
     if (event.source != window) return;
     if (!event.data.message || event.data.message !== "file_extracted") return;
 
-    const inputAnalyse = document.querySelector("#analyseCodeAjout");
-    const enterKeyEvent = new KeyboardEvent("keydown", {
-      key: "Enter",
-      code: "Enter",
-      keyCode: 13,
-      charCode: 13,
-      shiftKey: false,
-    });
-
-    const acts = ["NF", "GL", "ECBU"];
-
     addScanToScreen(event.data.result);
-    // const acts = await uploadScan(event.data.result);
+    const acts = await uploadScan(event.data.result);
     window.postMessage({ message: "insertActs.js", data: acts }, "*");
   },
   false
