@@ -49,7 +49,7 @@ window.addEventListener(
   false
 );
 
-// Display and insert acts
+// Display  acts
 window.addEventListener(
   "message",
   function (event) {
@@ -79,9 +79,10 @@ window.addEventListener(
   false
 );
 
+// Insert acts
 window.addEventListener(
   "message",
-  function (event) {
+  async function (event) {
     if (event.source != window) return;
     if (!event.data.message || event.data.message !== "insertActs") return;
 
@@ -110,12 +111,21 @@ window.addEventListener(
       inputAnalyse.value = act.code;
       inputAnalyse.dispatchEvent(enterKeyEvent);
 
+      await new Promise((resolve) => {
+        setTimeout(resolve, 50);
+        if (!inputAnalyse.classList.contains("ui-autocomplete-loading")) resolve();
+      });
+
       const previousActInserted = [...actInserted];
       actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
+
+      console.log(act.ALD);
 
       if (!act.ALD) continue;
 
       const newActInserted = actInserted.filter((act) => !previousActInserted.includes(act));
+
+      console.log(newActInserted);
 
       for (const idAnalyse of newActInserted) {
         const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
