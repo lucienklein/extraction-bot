@@ -58,10 +58,11 @@ window.addEventListener(
     const data = event.data.data;
 
     const div = document.querySelector("#displayText");
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("width", "100%");
+    svg.setAttribute("height", "100%");
+    svg.setAttribute("style", "position: absolute; top: 0; left: 0; z-index: 2;");
 
-    div.innerHTML = `
-      <svg id="svgQuerco" width="100%" height="100%" style="position: absolute; top: 0; left: 0;"></svg>
-    `;
     div.style.backgroundColor = "transparent";
 
     // const fctRefreshPolygon = () =>
