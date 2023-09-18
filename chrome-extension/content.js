@@ -83,7 +83,7 @@ const uploadScan = async (data) => {
   fctRefreshPolygon();
 
   const inputAnalyse = document.querySelector("#analyseCodeAjout");
-  const eventENTER = new KeyboardEvent("keydown", { keyCode: 13 });
+  var enterKeyEvent = new KeyboardEvent("keydown", { key: "Enter" });
   const acts = response.data.prescriptions.reduce((acc, cur) => [...acc, ...cur.acts], []);
 
   const boxAnalyse = document.querySelector("#ihmBoxAnalyse .ihmCboxContent.ihmCboxvert");
@@ -100,7 +100,7 @@ const uploadScan = async (data) => {
   let actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
   for (const act of acts) {
     inputAnalyse.value = act.code;
-    // inputAnalyse.dispatchEvent(eventENTER);
+    inputAnalyse.dispatchEvent(eventENTER);
 
     await new Promise((resolve) => {
       setTimeout(resolve, 100);
