@@ -10,6 +10,7 @@ async function init() {
   );
 
   if (fileScanned.length > 0) {
+    console.log("file scanned");
     const onClick = async () => await loadLibrary(resourcesURL + "/extractFile.js", "text/javascript", "extractFile");
     return addButtonToExamDiv(onClick);
   }
