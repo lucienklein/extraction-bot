@@ -128,7 +128,10 @@ window.addEventListener(
         if (!el) continue;
 
         el.addEventListener("mouseover", function () {
-          console.log(act._id);
+          const polygon = document.querySelector(`#${act._id}`);
+          if (!polygon) return;
+
+          polygon.style.opacity = "0.5";
         });
 
         const inputALD = el.querySelector(`input[id^="anaFact"]`);
