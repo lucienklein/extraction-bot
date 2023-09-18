@@ -13,7 +13,7 @@ window.addEventListener(
 
     console.log(data);
 
-    window.postMessage({ type: "extractedFile", data: data }, "*");
+    window.postMessage({ message: "extractedFile", data: data }, "*");
 
     let response = await fetch(`${API}/request`, {
       method: "POST",
@@ -24,7 +24,7 @@ window.addEventListener(
 
     console.log(response);
 
-    window.postMessage({ type: "extractedAct", data: response.data }, "*");
+    window.postMessage({ message: "extractedAct", data: response.data }, "*");
   },
   false
 );
