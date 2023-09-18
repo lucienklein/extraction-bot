@@ -5,7 +5,7 @@
   "content_scripts": [
     {
       "matches": ["*://*/*"],
-      "js": ["content.js", "utils/insertActs.js"],
+      "js": ["content.js", "utils/extractFile.js"],
       "css": ["style.css"]
     }
   ],

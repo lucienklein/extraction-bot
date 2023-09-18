@@ -5,99 +5,129 @@ const utilsURL = new URL(chrome.runtime.getURL("/utils"));
 async function init() {
   if (!window.location.href.includes("moduleSil/demande/saisie/index.php")) return;
 
-  const fileScanned = document.querySelectorAll(
-    '[style="background-image:url(http://172.30.69.50/images/icoimage-blanc.png);"]'
-  );
-
-  if (fileScanned.length > 0) {
-    const onClick = async () => await loadLibrary(utilsURL + "/extractFile.js", "text/javascript", "extractFile");
-    return addButtonToExamDiv(onClick);
-  }
-
-  await loadLibrary(dwtURL + "/dynamsoft.webtwain.initiate.js", "text/javascript");
-  await loadLibrary(dwtURL + "/dynamsoft.webtwain.config.js", "text/javascript");
-  chrome.storage.sync.get(
-    { license: "" },
-    async (items) =>
-      await loadLibrary(dwtURL + "/dwt.js", "text/javascript", "dwt", {
-        dwtURL: dwtURL,
-        license: items.license,
-      })
-  );
-
-  const onClick = async () => await loadLibrary(utilsURL + "/launchScan.js", "text/javascript", "dwt-scan");
-  return addButtonToExamDiv(onClick);
-}
-
-const addButtonToExamDiv = (onClick) => {
   const examDiv = document.querySelector("#ajoutAnalyse");
   const button = document.createElement("button");
   button.innerText = "Extraction Automatique";
-  button.addEventListener("click", async (e) => {
+  button.addEventListener("click", (e) => {
     e.preventDefault();
-    await onClick();
+    window.postMessage({ message: "extractFile.js" }, "*");
   });
   examDiv.appendChild(button);
-};
+}
 
-const addScanToScreen = (data) => {
-  const div = document.createElement("div");
-  div.innerHTML = `
-  <div style="position: relative; width: 100%; height: 100%;">
-    <img id="displayImage" src="${data}" style="width: auto; height: 100vh ; object-fit: contain; position: relative; z-index: 1;">
-    <div id="displayText" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background-color: rgba(0, 0, 0, 0.5); color: white; z-index: 2; font-size: 2rem; font-weight: bold;">
-      Extraction en cours...
-    </div>
-  </div>`;
-
-  const principalDiv = document.querySelector("#principalContent");
-  principalDiv.style.display = "flex";
-  principalDiv.appendChild(div);
-};
-
-const uploadScan = async (data) => {
-  let response = await fetch(`${API}/request`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ file: data }),
-  });
-  response = await response.json();
-  console.log(response);
-
-  const div = document.querySelector("#displayText");
-
-  div.innerHTML = `
-    <svg id="svgQuerco" width="100%" height="100%" style="position: absolute; top: 0; left: 0;"></svg>
-  `;
-  div.style.backgroundColor = "transparent";
-
-  const fctRefreshPolygon = () =>
-    updatePolygonPoints(
-      window.document,
-      window.innerHeight,
-      response.data.prescriptions[0].width,
-      response.data.prescriptions[0].height,
-      response.data.prescriptions[0].acts
-    );
-
-  window.addEventListener("resize", fctRefreshPolygon);
-  fctRefreshPolygon();
-
-  const acts = response.data.prescriptions.reduce((acc, cur) => [...acc, ...cur.acts], []);
-  return acts;
-};
-
+// Display file
 window.addEventListener(
   "message",
   async function (event) {
     if (event.source != window) return;
-    if (!event.data.message || event.data.message !== "file_extracted") return;
+    if (!event.data.message || event.data.message !== "extractedFile") return;
 
-    const acts = ["NF", "GL", "ECBU"];
+    const div = document.createElement("div");
+    div.innerHTML = `
+    <div style="position: relative; width: 100%; height: 100%;">
+      <img id="displayImage" src="${event.data.data}" style="width: auto; height: 100vh ; object-fit: contain; position: relative; z-index: 1;">
+      <div id="displayText" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background-color: rgba(0, 0, 0, 0.5); color: white; z-index: 2; font-size: 2rem; font-weight: bold;">
+        Extraction en cours...
+      </div>
+    </div>`;
 
-    addScanToScreen(event.data.result);
-    // const acts = await uploadScan(event.data.result);
-    window.postMessage({ message: "insertActs.js", data: acts }, "*");
+    const principalDiv = document.querySelector("#principalContent");
+    principalDiv.style.display = "flex";
+    principalDiv.appendChild(div);
+  },
+  false
+);
+
+// Display and insert acts
+window.addEventListener(
+  "message",
+  async function (event) {
+    if (event.source != window) return;
+    if (!event.data.message || event.data.message !== "extractedAct") return;
+    const data = event.data.data;
+
+    const div = document.querySelector("#displayText");
+
+    div.innerHTML = `
+      <svg id="svgQuerco" width="100%" height="100%" style="position: absolute; top: 0; left: 0;"></svg>
+    `;
+    div.style.backgroundColor = "transparent";
+
+    const fctRefreshPolygon = () =>
+      updatePolygonPoints(
+        window.document,
+        window.innerHeight,
+        data.prescriptions[0].width,
+        data.prescriptions[0].height,
+        data.prescriptions[0].acts
+      );
+
+    window.addEventListener("resize", fctRefreshPolygon);
+    fctRefreshPolygon();
+
+    const acts = data.prescriptions.reduce((acc, cur) => [...acc, ...cur.acts], []);
+    if (event.source != window) return;
+    if (!event.data.message || event.data.message !== "insertActs.js") return;
+
+    const boxAnalyse = document.querySelector("#ihmBoxAnalyse .ihmCboxContent.ihmCboxvert");
+    const overlay = document.createElement("div");
+    overlay.addEventListener("click", (e) => e.stopPropagation(), true);
+    overlay.setAttribute(
+      "style",
+      "position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 9; display: flex; justify-content: center; align-items: center; color: white; font-size: 2rem; font-weight: bold; cursor: progress;"
+    );
+    overlay.innerHTML = "Insertion en cours";
+    boxAnalyse.style.position = "relative";
+    // boxAnalyse.appendChild(overlay);
+
+    const inputAnalyse = document.querySelector("#analyseCodeAjout");
+    const enterKeyEvent = new KeyboardEvent("keydown", {
+      key: "Enter",
+      code: "Enter",
+      keyCode: 13,
+      charCode: 13,
+      shiftKey: false,
+    });
+
+    let actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
+    for (const act of acts) {
+      inputAnalyse.value = act;
+      inputAnalyse.dispatchEvent(enterKeyEvent);
+
+      // await new Promise((resolve) => {
+      //   setTimeout(resolve, 100);
+      //   if (!inputAnalyse.classList.contains("ui-autocomplete-loading")) resolve();
+      // });
+
+      // const previousActInserted = [...actInserted];
+      // actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
+
+      // await new Promise((resolve) => setTimeout(resolve, 2000));
+
+      // if (!act.ALD) continue;
+
+      // const newActInserted = actInserted.filter((act) => !previousActInserted.includes(act));
+
+      // for (const idAnalyse of newActInserted) {
+      //   const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
+      //   if (!el) continue;
+
+      //   const inputALD = el.querySelector(`input[id^="anaFact"]`);
+      //   if (!inputALD) continue;
+
+      //   inputALD.setAttribute("value", "ALD");
+
+      //   const divDataRight = el.querySelector(`.analyseDataRight`);
+      //   if (!divDataRight) continue;
+
+      //   const divIcon = divDataRight.querySelector(`div[id^="anaFact"]`);
+      //   if (!divIcon) continue;
+
+      //   divIcon.innerHTML = `<span class="qtipUp hand" help="Affection de Longue DurÃ©e">E<sub>4</sub></span>`;
+      // }
+    }
+
+    overlay.remove();
   },
   false
 );
