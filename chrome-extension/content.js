@@ -100,18 +100,17 @@ const uploadScan = async (data) => {
   let actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
   for (const act of acts) {
     inputAnalyse.value = act.code;
+    // inputAnalyse.dispatchEvent(eventENTER);
 
     await new Promise((resolve) => {
       setTimeout(resolve, 100);
       if (!inputAnalyse.classList.contains("ui-autocomplete-loading")) resolve();
     });
 
-    inputAnalyse.dispatchEvent(eventENTER);
+    // const previousActInserted = [...actInserted];
+    // actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
 
-    const previousActInserted = [...actInserted];
-    actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
-
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    await new Promise((resolve) => setTimeout(resolve, 2000));
 
     console.log(act.code);
 
