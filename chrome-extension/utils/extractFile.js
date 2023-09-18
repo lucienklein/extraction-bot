@@ -13,6 +13,8 @@ window.addEventListener(
 
     window.postMessage({ message: "extractedFile", data: data }, "*");
 
+    await new Promise((resolve) => setTimeout(resolve, 10000));
+
     // let response = await fetch(`${API}/request`, {
     //   method: "POST",
     //   headers: { "Content-Type": "application/json" },
