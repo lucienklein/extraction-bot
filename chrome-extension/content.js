@@ -49,42 +49,13 @@ window.addEventListener(
   false
 );
 
-// Display  acts
-window.addEventListener(
-  "message",
-  function (event) {
-    if (event.source != window) return;
-    if (!event.data.message || event.data.message !== "displayActs") return;
-    const data = event.data.data;
-
-    const div = document.querySelector("#displayText");
-
-    div.innerHTML = `
-      <div id="quercoContainer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" class="quercoContainer"> </div>
-    `;
-    div.style.backgroundColor = "transparent";
-
-    const fctRefreshPolygon = () =>
-      updatePolygonPoints(
-        window.document,
-        window.innerHeight,
-        data.prescriptions[0].width,
-        data.prescriptions[0].height,
-        data.prescriptions[0].acts
-      );
-
-    window.addEventListener("resize", fctRefreshPolygon);
-    fctRefreshPolygon();
-  },
-  false
-);
-
 // Insert acts
 window.addEventListener(
   "message",
   async function (event) {
     if (event.source != window) return;
     if (!event.data.message || event.data.message !== "insertActs") return;
+    let data = event.data.data;
 
     const boxAnalyse = document.querySelector("#ihmBoxAnalyse .ihmCboxContent.ihmCboxvert");
     const overlay = document.createElement("div");
@@ -106,56 +77,82 @@ window.addEventListener(
       shiftKey: false,
     });
 
-    let actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
-    for (const act of event.data.data) {
-      inputAnalyse.value = act.code;
-      inputAnalyse.dispatchEvent(enterKeyEvent);
+    for (const prescription of data.prescriptions) {
+      let actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
 
-      await new Promise((resolve) => {
-        setTimeout(resolve, 250);
-        if (!inputAnalyse.classList.contains("ui-autocomplete-loading")) resolve();
-      });
+      for (const act of prescription.acts) {
+        inputAnalyse.value = act.code;
+        inputAnalyse.dispatchEvent(enterKeyEvent);
 
-      const previousActInserted = [...actInserted];
-      actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
-
-      const newActInserted = actInserted.filter((act) => !previousActInserted.includes(act));
-
-      for (const idAnalyse of newActInserted) {
-        const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
-        if (!el) continue;
-
-        el.addEventListener("mouseover", function () {
-          const polygons = document.querySelectorAll(`.querco_${act.code}`);
-          console.log(polygons);
-
-          if (!polygons) return;
-          polygons.forEach((polygon) => (polygon.style.opacity = "0.5"));
+        await new Promise((resolve) => {
+          setTimeout(resolve, 250);
+          if (!inputAnalyse.classList.contains("ui-autocomplete-loading")) resolve();
         });
 
-        el.addEventListener("mouseout", function () {
-          const polygons = document.querySelectorAll(`.querco_${act.code}`);
+        const alerteCadreAnalyse = document.querySelector("#alerteCadreAnalyse div");
+        if (alerteCadreAnalyse && alerteCadreAnalyse.textContent.includes("Code inexistant :")) act.notFound = true;
 
-          if (!polygons) return;
-          polygons.forEach((polygon) => (polygon.style.opacity = "0.15"));
-        });
+        const previousActInserted = [...actInserted];
+        actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
 
-        if (!act.ALD) continue;
+        const newActInserted = actInserted.filter((act) => !previousActInserted.includes(act));
 
-        const inputALD = el.querySelector(`input[id^="anaFact"]`);
-        if (!inputALD) continue;
+        if (newActInserted.length === 0)
+          for (const idAnalyse of newActInserted) {
+            const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
+            if (!el) continue;
 
-        inputALD.setAttribute("value", "ALD");
+            el.addEventListener("mouseover", function () {
+              const polygons = document.querySelectorAll(`.querco_${act.code}`);
 
-        const divDataRight = el.querySelector(`.analyseDataRight`);
-        if (!divDataRight) continue;
+              if (!polygons) return;
+              polygons.forEach((polygon) => (polygon.style.opacity = "0.5"));
+            });
 
-        const divIcon = divDataRight.querySelector(`div[id^="anaFact"]`);
-        if (!divIcon) continue;
+            el.addEventListener("mouseout", function () {
+              const polygons = document.querySelectorAll(`.querco_${act.code}`);
 
-        divIcon.innerHTML = `<span class="qtipUp hand" help="Affection de Longue DurÃ©e">E<sub>4</sub></span>`;
+              if (!polygons) return;
+              polygons.forEach((polygon) => (polygon.style.opacity = "0.15"));
+            });
+
+            if (!act.ALD) continue;
+
+            const inputALD = el.querySelector(`input[id^="anaFact"]`);
+            if (!inputALD) continue;
+
+            inputALD.setAttribute("value", "ALD");
+
+            const divDataRight = el.querySelector(`.analyseDataRight`);
+            if (!divDataRight) continue;
+
+            const divIcon = divDataRight.querySelector(`div[id^="anaFact"]`);
+            if (!divIcon) continue;
+
+            divIcon.innerHTML = `<span class="qtipUp hand" help="Affection de Longue DurÃ©e">E<sub>4</sub></span>`;
+          }
       }
     }
+
+    const div = document.querySelector("#displayText");
+
+    div.innerHTML = `
+      <div id="quercoContainer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" class="quercoContainer"> </div>
+    `;
+    div.style.backgroundColor = "transparent";
+
+    const actsWithoutNotFound = data.prescriptions[0].acts.filter((act) => !act.notFound);
+    const fctRefreshPolygon = () =>
+      updatePolygonPoints(
+        window.document,
+        window.innerHeight,
+        data.prescriptions[0].width,
+        data.prescriptions[0].height,
+        actsWithoutNotFound
+      );
+
+    window.addEventListener("resize", fctRefreshPolygon);
+    fctRefreshPolygon();
 
     overlay.remove();
   },

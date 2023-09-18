@@ -7020,12 +7020,7 @@ window.addEventListener(
 
     console.log(response);
 
-    window.postMessage({ message: "displayActs", data: response.data }, "*");
-
-    let acts = response.data.prescriptions.reduce((acc, cur) => [...acc, ...cur.acts], []);
-    acts = JSON.parse(JSON.stringify(acts));
-    console.log(acts);
-    window.postMessage({ message: "insertActs", data: acts }, "*");
+    window.postMessage({ message: "insertActs", data: response.data }, "*");
   },
   false
 );
