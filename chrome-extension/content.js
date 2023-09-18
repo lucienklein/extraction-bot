@@ -90,7 +90,10 @@ window.addEventListener(
         });
 
         const alerteCadreAnalyse = document.querySelector("#alerteCadreAnalyse div");
-        if (alerteCadreAnalyse && alerteCadreAnalyse.textContent.includes("Code inexistant :")) act.notFound = true;
+        if (alerteCadreAnalyse && alerteCadreAnalyse.textContent.includes("Code inexistant :")) {
+          act.notFound = true;
+          continue;
+        }
 
         const previousActInserted = [...actInserted];
         actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
