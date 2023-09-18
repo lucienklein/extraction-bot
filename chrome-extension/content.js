@@ -127,7 +127,7 @@ window.addEventListener(
         const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
         if (!el) continue;
 
-        el.addEventListener("mousein", function () {
+        el.addEventListener("mouseover", function () {
           const polygon = document.querySelector(`#querco_${act._id}`);
           if (!polygon) return;
 
