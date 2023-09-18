@@ -169,7 +169,10 @@ window.addEventListener(
       }
     }
 
-    window.dispatchContextMenuAction("toggleFact", "ALD");
+    const scriptElement = document.createElement("script");
+    scriptElement.textContent = `window.dispatchContextMenuAction("toggleFact", "ALD");`;
+    document.head.appendChild(scriptElement);
+    scriptElement.remove();
 
     const div = document.querySelector("#displayText");
 
