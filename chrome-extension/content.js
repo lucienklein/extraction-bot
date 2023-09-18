@@ -126,17 +126,15 @@ window.addEventListener(
         if (!el) continue;
 
         el.addEventListener("mouseover", function () {
-          const polygon = document.querySelector(`#querco_${act._id}`);
-          if (!polygon) return;
-
-          polygon.style.opacity = 0.5;
+          let polygon = document.querySelector(`.querco_${act.code}`);
+          if (polygon) return;
+          polygon.style.opacity = "0.5";
         });
 
         el.addEventListener("mouseout", function () {
-          const polygon = document.querySelector(`#querco_${act._id}`);
+          let polygon = document.querySelector(`.querco_${act.code}`);
           if (!polygon) return;
-
-          polygon.style.opacity = 0.15;
+          polygon.style.opacity = "0.15";
         });
 
         if (!act.ALD) continue;
@@ -185,7 +183,7 @@ function updatePolygonPoints(document, viewportHeight, originalWidth, originalHe
 
     const polygon = document.createElement("div");
     polygon.style = `position: absolute; clip-path: polygon(${pointsString}); background-color: ${color}; opacity: 0.15; width: 100%; height: 100%;`;
-    polygon.id = `querco_${act._id}`;
+    polygon.className = `querco_${act.code}`;
     container.appendChild(polygon);
   }
 }
