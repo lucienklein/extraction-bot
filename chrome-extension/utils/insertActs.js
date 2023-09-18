@@ -40,8 +40,6 @@ window.addEventListener(
 
       // await new Promise((resolve) => setTimeout(resolve, 2000));
 
-      console.log(act);
-
       // if (!act.ALD) continue;
 
       // const newActInserted = actInserted.filter((act) => !previousActInserted.includes(act));
