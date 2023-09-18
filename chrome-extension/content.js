@@ -131,7 +131,12 @@ window.addEventListener(
           const polygon = document.querySelector(`#querco_${act._id}`);
           if (!polygon) return;
 
-          polygon.style.opacity = 0.5;
+          const polygonCopy = polygon.cloneNode(true);
+          polygonCopy.style.opacity = 0.5;
+
+          const container = document.querySelector(`#quercoContainer`);
+          polygonCopy.remove();
+          container.appendChild(polygonCopy);
         });
 
         const inputALD = el.querySelector(`input[id^="anaFact"]`);
@@ -177,12 +182,7 @@ function updatePolygonPoints(document, viewportHeight, originalWidth, originalHe
     const pointsString = adjustedPoints.map((point) => `${point.x}px ${point.y}px`).join(", ");
 
     const polygon = document.createElement("div");
-    polygon.style.position = "absolute";
-    polygon.style.clipPath = `polygon(${pointsString})`;
-    polygon.style.backgroundColor = color;
-    polygon.style.opacity = "0.15";
-    polygon.style.width = "100%";
-    polygon.style.height = "100%";
+    polygon.style = `position: absolute; clip-path: polygon(${pointsString}); background-color: ${color}; opacity: 0.15; width: 100%; height: 100%;`;
     polygon.id = `querco_${act._id}`;
     container.appendChild(polygon);
   }
