@@ -2,7 +2,7 @@ window.addEventListener(
   "message",
   async (event) => {
     if (event.source != window) return;
-    if (event.data.type && event.data.type !== "extractFile.js") return;
+    if (!event.data.message || event.data.message !== "extractFile.js") return;
 
     const fileScanned = document.querySelectorAll(
       '[style="background-image:url(http://172.30.69.50/images/icoimage-blanc.png);"]'
@@ -10,8 +10,6 @@ window.addEventListener(
 
     if (fileScanned.length > 0) data = await getFileFromKalisil();
     else data = await launchScan();
-
-    console.log(data);
 
     window.postMessage({ message: "extractedFile", data: data }, "*");
 
