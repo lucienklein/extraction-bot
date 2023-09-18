@@ -131,12 +131,14 @@ window.addEventListener(
           const polygon = document.querySelector(`#querco_${act._id}`);
           if (!polygon) return;
 
-          const polygonCopy = polygon.cloneNode(true);
-          polygonCopy.style.opacity = 0.5;
+          polygon.style.opacity = 0.5;
+        });
 
-          const container = document.querySelector(`#quercoContainer`);
-          polygonCopy.remove();
-          container.appendChild(polygonCopy);
+        el.addEventListener("mouseout", function () {
+          const polygon = document.querySelector(`#querco_${act._id}`);
+          if (!polygon) return;
+
+          polygon.style.opacity = 0.15;
         });
 
         const inputALD = el.querySelector(`input[id^="anaFact"]`);
