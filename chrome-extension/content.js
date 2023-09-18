@@ -91,11 +91,13 @@ window.addEventListener(
 
         const alerteCadreAnalyse = document.querySelector("#alerteCadreAnalyse div");
         const alerteCadreAnalyseSpan = this.document.querySelector("#alerteCadreAnalyse div span");
-        console.log(alerteCadreAnalyse, alerteCadreAnalyseSpan);
+        console.log(
+          alerteCadreAnalyse?.textContent.includes("Code inexistant :") &&
+            alerteCadreAnalyseSpan?.textContent.includes(act.code)
+        );
         if (
-          alerteCadreAnalyse &&
-          alerteCadreAnalyse.textContent.includes("Code inexistant :") &&
-          alerteCadreAnalyseSpan.textContent.includes(act.code)
+          alerteCadreAnalyse?.textContent.includes("Code inexistant :") &&
+          alerteCadreAnalyseSpan?.textContent.includes(act.code)
         ) {
           act.notFound = true;
           continue;
