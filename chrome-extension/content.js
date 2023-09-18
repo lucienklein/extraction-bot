@@ -1,7 +1,5 @@
 const API = "https://app-42a9f51d-0586-42d1-84f2-f0fa9c3f6df2.cleverapps.io";
 
-init();
-
 async function init() {
   if (!window.location.href.includes("moduleSil/demande/saisie/index.php")) return;
 
@@ -199,3 +197,5 @@ function loadLibrary(src, type, id, data) {
     });
   });
 }
+
+init();
