@@ -5,14 +5,15 @@
 
   console.log(fileScanned);
 
-  console.log(document);
-
   for (const file of fileScanned) {
     const script = file.nextElementSibling;
     const data = script.innerText;
 
+    console.log(data);
+
     const pattern = /'https?:\/\/[a-zA-Z0-9.-]+\/moduleKalilab\/scan\/visuImage\.php\?[^']+\\'/;
     const result = data.match(pattern);
+    console.log(result);
     if (result || result.length > 0) return;
 
     const url = result[0];
