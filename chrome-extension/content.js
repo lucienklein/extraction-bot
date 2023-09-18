@@ -33,18 +33,25 @@ window.addEventListener(
     if (event.source != window) return;
     if (!event.data.message || event.data.message !== "extractedFile") return;
 
-    const div = document.createElement("div");
-    div.innerHTML = `
-    <div style="position: relative; width: 100%; height: 100%;">
-    <img id="displayImage" src="${event.data.data}" style="width: auto; height: 100vh ; object-fit: contain; position: relative; z-index: 1;">
-    <div id="displayText" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background-color: rgba(0, 0, 0, 0.5); color: white; z-index: 2; font-size: 2rem; font-weight: bold;">
-    Extraction en cours...
-    </div>
-    </div>`;
+    const iframe = document.createElement("iframe");
+    iframe.id = "iframeDisplayImage";
+    iframe.src = "about:blank";
+    iframe.style = "width: 100%; height: 100%; border: none;";
+    iframe.onload = function () {
+      iframe.contentWindow.document.open();
+      iframe.contentWindow.document.write(`
+        <div style="position: relative; width: 100%; height: 100%;">
+          <img id="displayImage" src="${event.data.data}" style="width: auto; height: 100vh ; object-fit: contain; position: relative; z-index: 1;">
+          <div id="displayText" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background-color: rgba(0, 0, 0, 0.5); color: white; z-index: 2; font-size: 2rem; font-weight: bold;">
+            Extraction en cours...
+          </div>
+        </div>`);
+      iframe.contentWindow.document.close();
+    };
 
     const principalDiv = document.querySelector("#principalContent");
     principalDiv.style.display = "flex";
-    principalDiv.appendChild(div);
+    principalDiv.appendChild(iframe);
   },
   false
 );
@@ -57,8 +64,9 @@ window.addEventListener(
     if (!event.data.message || event.data.message !== "displayActs") return;
     const data = event.data.data;
 
-    const div = document.querySelector("#displayText");
-    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    const iframe = document.querySelector("#iframeDisplayImage");
+    const div = iframe.contentWindow.document.querySelector("#displayText");
+    const svg = iframe.contentWindow.document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("width", "100%");
     svg.setAttribute("height", "100%");
     svg.setAttribute("style", "position: absolute; top: 0; left: 0; z-index: 2;");
@@ -68,8 +76,8 @@ window.addEventListener(
 
     const fctRefreshPolygon = () =>
       updatePolygonPoints(
-        window.document,
-        window.innerHeight,
+        iframe.contentWindow.document,
+        iframe.contentWindow.innerHeight,
         data.prescriptions[0].width,
         data.prescriptions[0].height,
         data.prescriptions[0].acts
