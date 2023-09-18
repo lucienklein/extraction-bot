@@ -172,8 +172,10 @@ window.addEventListener(
     }
 
     if (elActsALD.length > 0) {
-      // right click on first element
       elActsALD[0].dispatchEvent(new MouseEvent("contextmenu", { bubbles: true, cancelable: true }));
+      const divToClick = document.querySelector("div[onclick*=\"dispatchContextMenuAction('toggleFact', 'ALD')\"]");
+      if (!divToClick) return;
+      divToClick.click();
     }
 
     const div = document.querySelector("#displayText");
