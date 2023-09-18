@@ -82,46 +82,27 @@ window.addEventListener(
 
       for (let act of prescription.acts) {
         inputAnalyse.value = act.code;
+
+        await new Promise((resolve) => {
+          setTimeout(() => {
+            const inputAnalyse = document.querySelector("#analyseCodeAjout");
+            if (inputAnalyse.classList.contains("ui-autocomplete-loading")) resolve();
+          }, 1000);
+        });
+
         inputAnalyse.dispatchEvent(enterKeyEvent);
+
+        await new Promise((resolve) => {
+          setTimeout(() => {
+            const inputAnalyse = document.querySelector("#analyseCodeAjout");
+            if (inputAnalyse.classList.contains("ui-autocomplete-loading")) resolve();
+          }, 1000);
+        });
 
         const previousactsInserted = [...actsInserted];
         actsInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
         const newactsInserted = actsInserted.filter((act) => !previousactsInserted.includes(act));
 
-        if (newactsInserted.length === 0)
-          for (const idAnalyse of newactsInserted) {
-            const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
-            if (!el) continue;
-
-            if (!act.ALD) continue;
-
-            const inputALD = el.querySelector(`input[id^="anaFact"]`);
-            if (!inputALD) continue;
-
-            inputALD.setAttribute("value", "ALD");
-
-            const divDataRight = el.querySelector(`.analyseDataRight`);
-            if (!divDataRight) continue;
-
-            const divIcon = divDataRight.querySelector(`div[id^="anaFact"]`);
-            if (!divIcon) continue;
-
-            divIcon.innerHTML = `<span class="qtipUp hand" help="Affection de Longue DurÃ©e">E<sub>4</sub></span>`;
-          }
-      }
-    }
-
-    await new Promise((resolve) => {
-      setTimeout(() => {
-        const inputAnalyse = document.querySelector("#analyseCodeAjout");
-        if (inputAnalyse.classList.contains("ui-autocomplete-loading")) resolve();
-      }, 1000);
-    });
-
-    for (const prescription of data.prescriptions) {
-      let actsInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
-
-      for (let act of prescription.acts) {
         let notFound = true;
         const elThatMatchAct = actsInserted.filter((idAnalyse) => {
           const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
@@ -151,6 +132,34 @@ window.addEventListener(
         //   if (!polygons) return;
         //   polygons.forEach((polygon) => (polygon.style.opacity = "0.15"));
         // });
+
+        if (newactsInserted.length === 0)
+          for (const idAnalyse of newactsInserted) {
+            const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
+            if (!el) continue;
+
+            if (!act.ALD) continue;
+
+            const inputALD = el.querySelector(`input[id^="anaFact"]`);
+            if (!inputALD) continue;
+
+            inputALD.setAttribute("value", "ALD");
+
+            const divDataRight = el.querySelector(`.analyseDataRight`);
+            if (!divDataRight) continue;
+
+            const divIcon = divDataRight.querySelector(`div[id^="anaFact"]`);
+            if (!divIcon) continue;
+
+            divIcon.innerHTML = `<span class="qtipUp hand" help="Affection de Longue DurÃ©e">E<sub>4</sub></span>`;
+          }
+      }
+    }
+
+    for (const prescription of data.prescriptions) {
+      let actsInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
+
+      for (let act of prescription.acts) {
       }
     }
 
