@@ -90,7 +90,12 @@ window.addEventListener(
         });
 
         const alerteCadreAnalyse = document.querySelector("#alerteCadreAnalyse div");
-        if (alerteCadreAnalyse && alerteCadreAnalyse.textContent.includes("Code inexistant :")) {
+        const alerteCadreAnalyseSpan = alerteCadreAnalyse.querySelector("span");
+        if (
+          alerteCadreAnalyse &&
+          alerteCadreAnalyse.textContent.includes("Code inexistant :") &&
+          alerteCadreAnalyseSpan.textContent === act.code
+        ) {
           act.notFound = true;
           continue;
         }
