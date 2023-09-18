@@ -95,7 +95,7 @@ window.addEventListener(
     );
     overlay.innerHTML = "Insertion en cours";
     boxAnalyse.style.position = "relative";
-    // boxAnalyse.appendChild(overlay);
+    boxAnalyse.appendChild(overlay);
 
     const inputAnalyse = document.querySelector("#analyseCodeAjout");
     const enterKeyEvent = new KeyboardEvent("keydown", {
@@ -126,6 +126,10 @@ window.addEventListener(
       for (const idAnalyse of newActInserted) {
         const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
         if (!el) continue;
+
+        el.addEventListener("mouseover", function () {
+          console.log(act._id);
+        });
 
         const inputALD = el.querySelector(`input[id^="anaFact"]`);
         if (!inputALD) continue;
@@ -176,6 +180,7 @@ function updatePolygonPoints(document, viewportHeight, originalWidth, originalHe
     polygon.style.opacity = "0.15";
     polygon.style.width = "100%";
     polygon.style.height = "100%";
+    polygon.id = act._id;
     container.appendChild(polygon);
   }
 }
