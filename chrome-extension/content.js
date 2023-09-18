@@ -82,10 +82,6 @@ const uploadScan = async (data) => {
   window.addEventListener("resize", fctRefreshPolygon);
   fctRefreshPolygon();
 
-  const inputAnalyse = document.querySelector("#analyseCodeAjout");
-  const enterKeyEvent = new KeyboardEvent("keydown", { key: "Enter" });
-  const acts = response.data.prescriptions.reduce((acc, cur) => [...acc, ...cur.acts], []);
-
   const boxAnalyse = document.querySelector("#ihmBoxAnalyse .ihmCboxContent.ihmCboxvert");
   const overlay = document.createElement("div");
   overlay.addEventListener("click", (e) => e.stopPropagation(), true);
@@ -97,6 +93,16 @@ const uploadScan = async (data) => {
   boxAnalyse.style.position = "relative";
   // boxAnalyse.appendChild(overlay);
 
+  const inputAnalyse = document.querySelector("#analyseCodeAjout");
+  const enterKeyEvent = new KeyboardEvent("keydown", {
+    key: "Enter",
+    code: "Enter",
+    keyCode: 13,
+    charCode: 13,
+    shiftKey: false,
+  });
+
+  const acts = response.data.prescriptions.reduce((acc, cur) => [...acc, ...cur.acts], []);
   let actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
   for (const act of acts) {
     inputAnalyse.value = act.code;
