@@ -77,10 +77,6 @@ window.addEventListener(
     window.addEventListener("resize", fctRefreshPolygon);
     fctRefreshPolygon();
 
-    const acts = data.prescriptions.reduce((acc, cur) => [...acc, ...cur.acts], []);
-    if (event.source != window) return;
-    if (!event.data.message || event.data.message !== "insertActs.js") return;
-
     const boxAnalyse = document.querySelector("#ihmBoxAnalyse .ihmCboxContent.ihmCboxvert");
     const overlay = document.createElement("div");
     overlay.addEventListener("click", (e) => e.stopPropagation(), true);
@@ -101,6 +97,7 @@ window.addEventListener(
       shiftKey: false,
     });
 
+    const acts = data.prescriptions.reduce((acc, cur) => [...acc, ...cur.acts], []);
     let actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
     for (const act of acts) {
       inputAnalyse.value = act;
