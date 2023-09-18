@@ -3,6 +3,7 @@ const API = "https://app-42a9f51d-0586-42d1-84f2-f0fa9c3f6df2.cleverapps.io";
 init();
 
 async function init() {
+  if (!window.location.href.includes("moduleSil/demande/saisie/index.php")) return;
   const resourcesURL = new URL(chrome.runtime.getURL("/Resources"));
   await loadLibrary(resourcesURL + "/dynamsoft.webtwain.initiate.js", "text/javascript");
   await loadLibrary(resourcesURL + "/dynamsoft.webtwain.config.js", "text/javascript");
@@ -94,7 +95,7 @@ const uploadScan = async (data) => {
     const previousActInserted = [...actInserted];
     actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
 
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    await new Promise((resolve) => setTimeout(resolve, 1500));
 
     console.log(act.code);
 
