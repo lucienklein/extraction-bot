@@ -102,14 +102,14 @@ window.addEventListener(
       shiftKey: false,
     });
 
-    const liste = ["NF", "GL", "ECBU"];
+    const acts = ["NF", "GL", "ECBU"];
     for (const code of liste) {
       inputAnalyse.value = code;
       inputAnalyse.dispatchEvent(enterKeyEvent);
     }
 
     addScanToScreen(event.data.result);
-    const acts = await uploadScan(event.data.result);
+    // const acts = await uploadScan(event.data.result);
     const boxAnalyse = document.querySelector("#ihmBoxAnalyse .ihmCboxContent.ihmCboxvert");
     const overlay = document.createElement("div");
     overlay.addEventListener("click", (e) => e.stopPropagation(), true);
