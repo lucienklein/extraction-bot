@@ -12,9 +12,7 @@
     console.log(result);
     if (!result || result.length <= 0) return;
 
-    const url = result[0];
-    console.log(url);
-    const response = await fetch(url);
+    const response = await fetch(result[0]);
     console.log(response);
   }
 })();
