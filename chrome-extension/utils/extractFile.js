@@ -15,14 +15,14 @@ window.addEventListener(
 
     await new Promise((resolve) => setTimeout(resolve, 10000));
 
-    // let response = await fetch(`${API}/request`, {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({ file: data }),
-    // });
-    // response = await response.json();
+    let response = await fetch(`${API}/request`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ file: data }),
+    });
+    response = await response.json();
 
-    // console.log(response);
+    console.log(response);
 
     // window.postMessage({ message: "displayActs", data: response.data }, "*");
 
