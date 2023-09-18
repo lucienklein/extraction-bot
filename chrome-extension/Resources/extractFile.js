@@ -12,7 +12,8 @@
     console.log(result);
     if (!result || result.length <= 0) return;
 
-    const response = await fetch(result[0]);
+    const url = result[0].replace(/'/g, "");
+    const response = await fetch(url);
     console.log(response);
   }
 })();
