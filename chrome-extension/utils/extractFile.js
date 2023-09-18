@@ -22,7 +22,11 @@ window.addEventListener(
 
     console.log(response);
 
-    window.postMessage({ message: "extractedAct", data: response.data }, "*");
+    window.postMessage({ message: "displayActs", data: response.data }, "*");
+
+    let acts = data.prescriptions.reduce((acc, cur) => [...acc, ...cur.acts], []);
+    acts = JSON.parse(JSON.stringify(acts));
+    window.postMessage({ message: "insertActs", data: acts }, "*");
   },
   false
 );

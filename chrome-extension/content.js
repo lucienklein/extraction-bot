@@ -54,7 +54,7 @@ window.addEventListener(
   "message",
   function (event) {
     if (event.source != window) return;
-    if (!event.data.message || event.data.message !== "extractedAct") return;
+    if (!event.data.message || event.data.message !== "displayActs") return;
     const data = event.data.data;
 
     const div = document.querySelector("#displayText");
@@ -75,6 +75,15 @@ window.addEventListener(
 
     window.addEventListener("resize", fctRefreshPolygon);
     fctRefreshPolygon();
+  },
+  false
+);
+
+window.addEventListener(
+  "message",
+  function (event) {
+    if (event.source != window) return;
+    if (!event.data.message || event.data.message !== "insertActs") return;
 
     const boxAnalyse = document.querySelector("#ihmBoxAnalyse .ihmCboxContent.ihmCboxvert");
     const overlay = document.createElement("div");
