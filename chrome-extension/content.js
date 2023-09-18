@@ -2,29 +2,30 @@ const API = "https://app-42a9f51d-0586-42d1-84f2-f0fa9c3f6df2.cleverapps.io";
 
 async function init() {
   if (!window.location.href.includes("moduleSil/demande/saisie/index.php")) return;
-  const resourcesURL = new URL(chrome.runtime.getURL("/Resources"));
+  const dwtURL = new URL(chrome.runtime.getURL("/dwt"));
+  const utilsURL = new URL(chrome.runtime.getURL("/utils"));
 
   const fileScanned = document.querySelectorAll(
     '[style="background-image:url(http://172.30.69.50/images/icoimage-blanc.png);"]'
   );
 
   if (fileScanned.length > 0) {
-    const onClick = async () => await loadLibrary(resourcesURL + "/extractFile.js", "text/javascript", "extractFile");
+    const onClick = async () => await loadLibrary(utilsURL + "/extractFile.js", "text/javascript", "extractFile");
     return addButtonToExamDiv(onClick);
   }
 
-  await loadLibrary(resourcesURL + "/dynamsoft.webtwain.initiate.js", "text/javascript");
-  await loadLibrary(resourcesURL + "/dynamsoft.webtwain.config.js", "text/javascript");
+  await loadLibrary(dwtURL + "/dynamsoft.webtwain.initiate.js", "text/javascript");
+  await loadLibrary(dwtURL + "/dynamsoft.webtwain.config.js", "text/javascript");
   chrome.storage.sync.get(
     { license: "" },
     async (items) =>
-      await loadLibrary(resourcesURL + "/dwt.js", "text/javascript", "dwt", {
-        resourcesURL: resourcesURL,
+      await loadLibrary(dwtURL + "/dwt.js", "text/javascript", "dwt", {
+        dwtURL: dwtURL,
         license: items.license,
       })
   );
 
-  const onClick = async () => await loadLibrary(resourcesURL + "/scan.js", "text/javascript", "dwt-scan");
+  const onClick = async () => await loadLibrary(utilsURL + "/scan.js", "text/javascript", "dwt-scan");
   return addButtonToExamDiv(onClick);
 }
 
