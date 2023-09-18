@@ -30,6 +30,7 @@ async function init() {
 window.addEventListener(
   "message",
   async function (event) {
+    console.log(event);
     if (event.source != window) return;
     if (!event.data.message || event.data.message !== "extractedFile") return;
 
