@@ -86,7 +86,7 @@ const uploadScan = async (data) => {
   const eventENTER = new KeyboardEvent("keydown", { keyCode: 13 });
   const acts = response.data.prescriptions.reduce((acc, cur) => [...acc, ...cur.acts], []);
 
-  const boxAnalyse = document.querySelector("#ihmBoxAnalyse");
+  const boxAnalyse = document.querySelector("#ihmBoxAnalyse .ihmCboxShow");
   const overlay = document.createElement("div");
   overlay.setAttribute(
     "style",
