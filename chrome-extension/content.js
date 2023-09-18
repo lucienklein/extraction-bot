@@ -103,10 +103,6 @@ window.addEventListener(
     });
 
     const acts = ["NF", "GL", "ECBU"];
-    for (const code of liste) {
-      inputAnalyse.value = code;
-      inputAnalyse.dispatchEvent(enterKeyEvent);
-    }
 
     addScanToScreen(event.data.result);
     // const acts = await uploadScan(event.data.result);
