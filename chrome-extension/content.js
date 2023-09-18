@@ -4,6 +4,9 @@ async function init() {
   if (!window.location.href.includes("moduleSil/demande/saisie/index.php")) return;
   const resourcesURL = new URL(chrome.runtime.getURL("/Resources"));
 
+  // wait 5 seconds for the page to load
+  await new Promise((resolve) => setTimeout(resolve, 5000));
+
   const inputAnalyse = document.querySelector("#analyseCodeAjout");
   const enterKeyEvent = new KeyboardEvent("keydown", {
     key: "Enter",
