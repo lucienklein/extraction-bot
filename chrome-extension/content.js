@@ -87,7 +87,7 @@ window.addEventListener(
         await new Promise((resolve) => {
           setTimeout(() => {
             const inputAnalyse = document.querySelector("#analyseCodeAjout");
-            if (inputAnalyse.classList.contains("ui-autocomplete-loading")) resolve();
+            if (!inputAnalyse.classList.contains("ui-autocomplete-loading")) resolve();
           }, 1000);
         });
 
