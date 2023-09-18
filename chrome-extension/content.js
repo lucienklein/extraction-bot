@@ -123,6 +123,8 @@ window.addEventListener(
       }, 500);
     });
 
+    console.log("Finished inserting acts");
+
     for (let prescription of data.prescriptions) {
       let actsInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
 
@@ -141,10 +143,14 @@ window.addEventListener(
           return codegroupe === act.code;
         });
 
+        console.log("elThatMatchActWithAnalyse", elThatMatchActWithAnalyse);
+
         if (elThatMatchActWithAnalyse.length === 0 && elThatMatchActWithGroup.length === 0) {
           act.notFound = true;
           return;
         }
+
+        console.log("Found act", act.code, act.ALD);
 
         if (!act.ALD) return;
 
