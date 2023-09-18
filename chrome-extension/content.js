@@ -81,7 +81,7 @@ window.addEventListener(
 
 window.addEventListener(
   "message",
-  async function (event) {
+  function (event) {
     if (event.source != window) return;
     if (!event.data.message || event.data.message !== "insertActs") return;
 
