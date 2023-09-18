@@ -82,6 +82,13 @@ window.addEventListener(
 
       for (let act of prescription.acts) {
         inputAnalyse.value = act.code;
+
+        await new Promise((resolve) => {
+          setTimeout(resolve, 500);
+          const el = document.querySelector("#analyseCodeAjout");
+          if (!el.classList.contains("ui-autocomplete-loading")) resolve();
+        });
+
         inputAnalyse.dispatchEvent(enterKeyEvent);
 
         await new Promise((resolve) => {
