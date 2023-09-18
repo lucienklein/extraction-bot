@@ -108,15 +108,15 @@ const uploadScan = async (data) => {
     inputAnalyse.value = act.code;
     inputAnalyse.dispatchEvent(enterKeyEvent);
 
-    await new Promise((resolve) => {
-      setTimeout(resolve, 100);
-      if (!inputAnalyse.classList.contains("ui-autocomplete-loading")) resolve();
-    });
+    // await new Promise((resolve) => {
+    //   setTimeout(resolve, 100);
+    //   if (!inputAnalyse.classList.contains("ui-autocomplete-loading")) resolve();
+    // });
 
     // const previousActInserted = [...actInserted];
     // actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
 
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    // await new Promise((resolve) => setTimeout(resolve, 2000));
 
     console.log(act.code);
 
