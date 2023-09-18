@@ -169,7 +169,7 @@ window.addEventListener(
       }
     }
 
-    this.windodw.dispatchContextMenuAction("toggleFact", "ALD");
+    window.dispatchContextMenuAction("toggleFact", "ALD");
 
     const div = document.querySelector("#displayText");
 
