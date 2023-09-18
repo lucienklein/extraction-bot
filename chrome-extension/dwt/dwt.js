@@ -1,8 +1,8 @@
 let DWTChromeExtension = {
   DWObject: undefined,
   load: function () {
-    const resourcesURL = document.getElementById("dwt").getAttribute("resourcesURL");
-    Dynamsoft.DWT.ResourcesPath = resourcesURL;
+    const dwtURL = document.getElementById("dwt").getAttribute("dwtURL");
+    Dynamsoft.DWT.ResourcesPath = dwtURL;
     this.initDWT();
   },
   scan: async function () {
