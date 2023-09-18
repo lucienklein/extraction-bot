@@ -128,7 +128,7 @@ window.addEventListener(
         if (!el) continue;
 
         el.addEventListener("mouseover", function () {
-          const polygon = document.querySelector(`#${act._id}`);
+          const polygon = document.querySelector(`#querco_${act._id}`);
           if (!polygon) return;
 
           polygon.style.opacity = "0.5";
@@ -183,7 +183,7 @@ function updatePolygonPoints(document, viewportHeight, originalWidth, originalHe
     polygon.style.opacity = "0.15";
     polygon.style.width = "100%";
     polygon.style.height = "100%";
-    polygon.id = act._id;
+    polygon.id = `querco_${act._id}`;
     container.appendChild(polygon);
   }
 }
