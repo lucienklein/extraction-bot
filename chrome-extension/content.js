@@ -112,7 +112,7 @@ window.addEventListener(
       inputAnalyse.dispatchEvent(enterKeyEvent);
 
       await new Promise((resolve) => {
-        setTimeout(resolve, 50);
+        setTimeout(resolve, 100);
         if (!inputAnalyse.classList.contains("ui-autocomplete-loading")) resolve();
       });
 
