@@ -24,13 +24,14 @@
     const imgSrc = imgElement ? imgElement.src : null;
 
     const img = await fetch(imgSrc);
-    const imgBase64 = await img.blob();
-    console.log(imgBase64);
-    const imgBase64Text = await new Promise((resolve) => {
+    const imgBlob = await img.blob();
+    console.log(imgBlob);
+    const imgBase64 = await new Promise((resolve) => {
       const reader = new FileReader();
       reader.onload = () => resolve(reader.result);
-      reader.readAsDataURL(imgBase64);
+      reader.readAsDataURL(imgBlob);
     });
-    console.log(imgBase64Text);
+
+    window.postMessage({ message: "scan_done", result: result._content }, "*");
   }
 })();

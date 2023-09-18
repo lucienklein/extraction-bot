@@ -122,7 +122,6 @@ const uploadScan = async (data) => {
       if (!inputALD) continue;
 
       inputALD.setAttribute("value", "ALD");
-      // query the div that has the id "anaFact[X]Img" where X is a number
 
       const divDataRight = el.querySelector(`.analyseDataRight`);
       if (!divDataRight) continue;
@@ -141,8 +140,8 @@ window.addEventListener(
     if (event.source != window) return;
     if (!event.data.message || event.data.message !== "scan_done") return;
 
-    uploadScan(event.data.result._content);
-    addScanToScreen(event.data.result._content);
+    addScanToScreen(event.data.result);
+    uploadScan(event.data.result);
   },
   false
 );
