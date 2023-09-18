@@ -105,10 +105,9 @@ window.addEventListener(
       shiftKey: false,
     });
 
-    const acts = data.prescriptions.reduce((acc, cur) => [...acc, ...cur.acts], []);
     let actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
-    console.log(acts);
-    for (const act of acts) {
+    console.log(event.data.data);
+    for (const act of event.data.data) {
       inputAnalyse.value = act.code;
       inputAnalyse.dispatchEvent(enterKeyEvent);
 
