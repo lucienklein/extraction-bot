@@ -82,59 +82,16 @@ window.addEventListener(
 
       for (let act of prescription.acts) {
         inputAnalyse.value = act.code;
-
-        await new Promise((resolve) => {
-          setTimeout(resolve, 500);
-          const el = document.querySelector("#analyseCodeAjout");
-          if (!el.classList.contains("ui-autocomplete-loading")) resolve();
-        });
-
         inputAnalyse.dispatchEvent(enterKeyEvent);
-
-        await new Promise((resolve) => {
-          setTimeout(resolve, 500);
-          const el = document.querySelector("#analyseCodeAjout");
-          if (!el.classList.contains("ui-autocomplete-loading")) resolve();
-        });
 
         const previousactsInserted = [...actsInserted];
         actsInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
         const newactsInserted = actsInserted.filter((act) => !previousactsInserted.includes(act));
 
-        let notFound = true;
-        const elThatMatchAct = actsInserted.filter((idAnalyse) => {
-          const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
-          const codeanalyse = el.getAttribute("codeanalyse");
-          const codegroupe = el.getAttribute("codegroupe");
-
-          return codeanalyse === act.code || codegroupe === act.code;
-        });
-
-        console.log("elThatMatchAct", act.code, elThatMatchAct, actsInserted);
-
-        if (elThatMatchAct.length > 0) {
-          notFound = false;
-          console.log("Found act", elThatMatchAct, act.code);
-        }
-
         if (newactsInserted.length === 0)
           for (const idAnalyse of newactsInserted) {
             const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
             if (!el) continue;
-
-            el.addEventListener("mouseover", function () {
-              const polygons = document.querySelectorAll(`.querco_${act.code}`);
-
-              if (!polygons) return;
-              polygons.forEach((polygon) => (polygon.style.opacity = "0.5"));
-            });
-
-            el.addEventListener("mouseout", function () {
-              const polygons = document.querySelectorAll(`.querco_${act.code}`);
-
-              if (!polygons) return;
-              polygons.forEach((polygon) => (polygon.style.opacity = "0.15"));
-            });
 
             if (!act.ALD) continue;
 
@@ -151,6 +108,48 @@ window.addEventListener(
 
             divIcon.innerHTML = `<span class="qtipUp hand" help="Affection de Longue DurÃ©e">E<sub>4</sub></span>`;
           }
+      }
+    }
+
+    await new Promise((resolve) => {
+      setTimeout(() => {}, 1000);
+      const inputAnalyse = document.querySelector("#analyseCodeAjout");
+      if (inputAnalyse.classList.contains("ui-autocomplete-loading")) resolve();
+    });
+
+    for (const prescription of data.prescriptions) {
+      let actsInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
+
+      for (let act of prescription.acts) {
+        let notFound = true;
+        const elThatMatchAct = actsInserted.filter((idAnalyse) => {
+          const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
+          const codeanalyse = el.getAttribute("codeanalyse");
+          const codegroupe = el.getAttribute("codegroupe");
+
+          return codeanalyse === act.code || codegroupe === act.code;
+        });
+
+        console.log("elThatMatchAct", act.code, elThatMatchAct, actsInserted);
+
+        if (elThatMatchAct.length > 0) {
+          notFound = false;
+          console.log("Found act", elThatMatchAct, act.code);
+        }
+
+        // el.addEventListener("mouseover", function () {
+        //   const polygons = document.querySelectorAll(`.querco_${act.code}`);
+
+        //   if (!polygons) return;
+        //   polygons.forEach((polygon) => (polygon.style.opacity = "0.5"));
+        // });
+
+        // el.addEventListener("mouseout", function () {
+        //   const polygons = document.querySelectorAll(`.querco_${act.code}`);
+
+        //   if (!polygons) return;
+        //   polygons.forEach((polygon) => (polygon.style.opacity = "0.15"));
+        // });
       }
     }
 
