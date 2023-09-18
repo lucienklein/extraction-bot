@@ -9,7 +9,6 @@ async function init() {
   );
 
   if (fileScanned.length > 0) {
-    console.log("file scanned");
     const onClick = async () => await loadLibrary(resourcesURL + "/extractFile.js", "text/javascript", "extractFile");
     return addButtonToExamDiv(onClick);
   }
@@ -41,9 +40,6 @@ const addButtonToExamDiv = (onClick) => {
 };
 
 const addScanToScreen = (data) => {
-  console.log("scan done");
-  console.log(data);
-
   const div = document.createElement("div");
   div.innerHTML = `
   <div style="position: relative; width: 100%; height: 100%;">
@@ -94,7 +90,7 @@ const uploadScan = async (data) => {
   const overlay = document.createElement("div");
   overlay.setAttribute(
     "style",
-    "position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1000; display: flex; justify-content: center; align-items: center; color: white; font-size: 2rem; font-weight: bold; pointer-events: none; cursor: wait;"
+    "position: relative; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1000; display: flex; justify-content: center; align-items: center; color: white; font-size: 2rem; font-weight: bold; pointer-events: none; cursor: wait;"
   );
   overlay.innerHTML = "Insertion en cours";
   boxAnalyse.appendChild(overlay);
