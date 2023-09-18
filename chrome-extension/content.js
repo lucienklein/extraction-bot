@@ -84,7 +84,7 @@ const uploadScan = async (data) => {
   fctRefreshPolygon();
 
   const acts = response.data.prescriptions.reduce((acc, cur) => [...acc, ...cur.acts], []);
-  return acts.map((act) => act.code);
+  return acts;
 };
 
 window.addEventListener(
@@ -93,10 +93,10 @@ window.addEventListener(
     if (event.source != window) return;
     if (!event.data.message || event.data.message !== "file_extracted") return;
 
-    addScanToScreen(event.data.result);
-    const acts = await uploadScan(event.data.result);
-    console.log(acts);
+    const acts = ["NF", "GL", "ECBU"];
 
+    addScanToScreen(event.data.result);
+    // const acts = await uploadScan(event.data.result);
     window.postMessage({ message: "insertActs.js", data: acts }, "*");
   },
   false
