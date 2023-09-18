@@ -84,7 +84,7 @@ const uploadScan = async (data) => {
   fctRefreshPolygon();
 
   const acts = response.data.prescriptions.reduce((acc, cur) => [...acc, ...cur.acts], []);
-  return acts;
+  return acts.map((act) => act.code);
 };
 
 window.addEventListener(
