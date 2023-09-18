@@ -113,7 +113,7 @@ window.addEventListener(
     console.log(acts);
 
     await loadLibrary(utilsURL + "/insertActs.js", "text/javascript", "acts", {
-      acts: JSON.stringify(acts),
+      acts: JSON.stringify(liste),
     });
   },
   false

@@ -21,7 +21,7 @@ const enterKeyEvent = new KeyboardEvent("keydown", {
 
 let actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
 for (const act of acts) {
-  inputAnalyse.value = act.code.toString();
+  inputAnalyse.value = act;
   inputAnalyse.dispatchEvent(enterKeyEvent);
 
   // await new Promise((resolve) => {
@@ -34,7 +34,7 @@ for (const act of acts) {
 
   // await new Promise((resolve) => setTimeout(resolve, 2000));
 
-  console.log(act.code);
+  console.log(act);
 
   // if (!act.ALD) continue;
 
