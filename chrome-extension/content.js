@@ -93,6 +93,8 @@ window.addEventListener(
             const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
             if (!el) continue;
 
+            console.log("Found act", el, act.code, act.ALD);
+
             if (!act.ALD) continue;
 
             const inputALD = el.querySelector(`input[id^="anaFact"]`);
@@ -133,8 +135,6 @@ window.addEventListener(
 
           return codeanalyse === act.code || codegroupe === act.code;
         });
-
-        console.log("elThatMatchAct", act.code, elThatMatchAct, actsInserted);
 
         if (elThatMatchAct.length > 0) {
           notFound = false;
