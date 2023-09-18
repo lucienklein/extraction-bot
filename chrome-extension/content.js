@@ -102,6 +102,8 @@ window.addEventListener(
           return codeanalyse === act.code || codegroupe === act.code;
         });
 
+        console.log("elThatMatchAct", act.code, elThatMatchAct, actsInserted);
+
         if (elThatMatchAct.length > 0) {
           notFound = false;
           console.log("Found act", elThatMatchAct, act.code);
