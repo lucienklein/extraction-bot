@@ -126,15 +126,18 @@ window.addEventListener(
         if (!el) continue;
 
         el.addEventListener("mouseover", function () {
-          let polygon = document.querySelector(`.querco_${act.code}`);
-          if (polygon) return;
-          polygon.style.opacity = "0.5";
+          const polygons = document.querySelectorAll(`.querco_${act.code}`);
+          console.log(polygons);
+
+          if (!polygons) return;
+          polygons.forEach((polygon) => (polygon.style.opacity = "0.5"));
         });
 
         el.addEventListener("mouseout", function () {
-          let polygon = document.querySelector(`.querco_${act.code}`);
-          if (!polygon) return;
-          polygon.style.opacity = "0.15";
+          const polygons = document.querySelectorAll(`.querco_${act.code}`);
+
+          if (!polygons) return;
+          polygons.forEach((polygon) => (polygon.style.opacity = "0.15"));
         });
 
         if (!act.ALD) continue;
