@@ -14,6 +14,23 @@
 
     const url = result[0].replace(/'/g, "");
     const response = await fetch(url);
-    console.log(response);
+    if (!response.ok) return;
+
+    const text = await response.text();
+
+    const parser = new DOMParser();
+    const htmlDocument = parser.parseFromString(text, "text/html");
+    const imgElement = htmlDocument.getElementById("imgScan");
+    const imgSrc = imgElement ? imgElement.src : null;
+
+    const img = await fetch(imgSrc);
+    const imgBase64 = await img.blob();
+    console.log(imgBase64);
+    const imgBase64Text = await new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.readAsDataURL(imgBase64);
+    });
+    console.log(imgBase64Text);
   }
 })();
