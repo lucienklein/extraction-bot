@@ -60,21 +60,21 @@ window.addEventListener(
     const div = document.querySelector("#displayText");
 
     div.innerHTML = `
-      <svg id="svgQuerco" width="100%" height="100%" style="position: absolute; top: 0; left: 0;" class="svgQuerco"> </svg>
+      <div id="quercoContainer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" class="quercoContainer"> </div>
     `;
     div.style.backgroundColor = "transparent";
 
-    // const fctRefreshPolygon = () =>
-    //   updatePolygonPoints(
-    //     window.document,
-    //     window.innerHeight,
-    //     data.prescriptions[0].width,
-    //     data.prescriptions[0].height,
-    //     data.prescriptions[0].acts
-    //   );
+    const fctRefreshPolygon = () =>
+      updatePolygonPoints(
+        window.document,
+        window.innerHeight,
+        data.prescriptions[0].width,
+        data.prescriptions[0].height,
+        data.prescriptions[0].acts
+      );
 
-    // window.addEventListener("resize", fctRefreshPolygon);
-    // fctRefreshPolygon();
+    window.addEventListener("resize", fctRefreshPolygon);
+    fctRefreshPolygon();
   },
   false
 );
@@ -147,24 +147,30 @@ function updatePolygonPoints(document, viewportHeight, originalWidth, originalHe
   let scaleFactorX = newWidth / originalWidth;
   let scaleFactorY = viewportHeight / originalHeight;
 
-  const svg = document.querySelector(`#svgQuerco`);
-  svg.innerHTML = "";
+  const container = document.querySelector(`#quercoContainer`);
+  container.innerHTML = "";
 
   for (const act of acts) {
-    // const points = act.polygon;
-    // let color = "#24b337";
-    // if (act.ALD) color = "#F7FA13";
-    // if (act.warning) color = "#FA1313";
-    // const adjustedPoints = points.map((point) => ({
-    //   x: point.x * scaleFactorX,
-    //   y: point.y * scaleFactorY,
-    // }));
-    // const pointsString = adjustedPoints.map((point) => `${point.x},${point.y}`).join(" ");
-    // const svg = document.querySelector(`#svgQuerco`);
-    // const polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
-    // polygon.setAttribute("points", pointsString);
-    // polygon.setAttribute("style", `fill:${color} ; fill-opacity:0.15; stroke:${color}; stroke-width:1`);
-    // svg.appendChild(polygon);
+    const points = act.polygon;
+    let color = "#24b337";
+    if (act.ALD) color = "#F7FA13";
+    if (act.warning) color = "#FA1313";
+
+    const adjustedPoints = points.map((point) => ({
+      x: point.x * scaleFactorX,
+      y: point.y * scaleFactorY,
+    }));
+
+    const pointsString = adjustedPoints.map((point) => `${point.x}px ${point.y}px`).join(", ");
+
+    const polygon = document.createElement("div");
+    polygon.style.position = "absolute";
+    polygon.style.clipPath = `polygon(${pointsString})`;
+    polygon.style.backgroundColor = color;
+    polygon.style.opacity = "0.15";
+    polygon.style.width = "100%";
+    polygon.style.height = "100%";
+    container.appendChild(polygon);
   }
 }
 
