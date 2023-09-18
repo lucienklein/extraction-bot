@@ -2,6 +2,7 @@ const API = "https://app-42a9f51d-0586-42d1-84f2-f0fa9c3f6df2.cleverapps.io";
 
 async function init() {
   if (!window.location.href.includes("moduleSil/demande/saisie/index.php")) return;
+  const resourcesURL = new URL(chrome.runtime.getURL("/Resources"));
 
   const fileScanned = document.querySelectorAll(
     '[style="background-image:url(http://172.30.69.50/images/icoimage-blanc.png);"]'
@@ -13,7 +14,6 @@ async function init() {
     return addButtonToExamDiv(onClick);
   }
 
-  const resourcesURL = new URL(chrome.runtime.getURL("/Resources"));
   await loadLibrary(resourcesURL + "/dynamsoft.webtwain.initiate.js", "text/javascript");
   await loadLibrary(resourcesURL + "/dynamsoft.webtwain.config.js", "text/javascript");
   chrome.storage.sync.get(
