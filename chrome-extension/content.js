@@ -92,6 +92,7 @@ window.addEventListener(
         const alerteCadreAnalyse = document.querySelector("#alerteCadreAnalyse div");
         const alerteCadreAnalyseSpan = this.document.querySelector("#alerteCadreAnalyse div span");
         console.log(
+          act.code,
           alerteCadreAnalyse?.textContent.includes("Code inexistant :") &&
             alerteCadreAnalyseSpan?.textContent.includes(act.code)
         );
