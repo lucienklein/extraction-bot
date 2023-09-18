@@ -82,6 +82,10 @@ const uploadScan = async (data) => {
   window.addEventListener("resize", fctRefreshPolygon);
   fctRefreshPolygon();
 
+  addActsToScreen(response.data.prescriptions[0].acts);
+};
+
+const addActsToScreen = (acts) => {
   const boxAnalyse = document.querySelector("#ihmBoxAnalyse .ihmCboxContent.ihmCboxvert");
   const overlay = document.createElement("div");
   overlay.addEventListener("click", (e) => e.stopPropagation(), true);
