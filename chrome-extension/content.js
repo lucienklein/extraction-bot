@@ -129,10 +129,9 @@ window.addEventListener(
 
         el.addEventListener("mouseover", function () {
           const polygon = document.querySelector(`#querco_${act._id}`);
-          console.log(polygon);
           if (!polygon) return;
 
-          polygon.style.opacity = "0.5";
+          polygon.style.opacity = 0.5;
         });
 
         const inputALD = el.querySelector(`input[id^="anaFact"]`);
