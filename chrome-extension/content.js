@@ -119,13 +119,9 @@ window.addEventListener(
       const previousActInserted = [...actInserted];
       actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
 
-      console.log(act.ALD);
-
       if (!act.ALD) continue;
 
       const newActInserted = actInserted.filter((act) => !previousActInserted.includes(act));
-
-      console.log(newActInserted);
 
       for (const idAnalyse of newActInserted) {
         const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
