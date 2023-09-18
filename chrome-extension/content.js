@@ -100,13 +100,7 @@ const addActsToScreen = (acts) => {
   // boxAnalyse.appendChild(overlay);
 
   const inputAnalyse = document.querySelector("#analyseCodeAjout");
-  const enterKeyEvent = new KeyboardEvent("keydown", {
-    key: "Enter",
-    code: "Enter",
-    keyCode: 13,
-    charCode: 13,
-    shiftKey: false,
-  });
+  const enterKeyEvent = new KeyboardEvent("keydown", { keyCode: 13, charCode: 13, shiftKey: false });
 
   let actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
   for (const act of acts) {
