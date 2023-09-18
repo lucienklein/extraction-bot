@@ -119,8 +119,6 @@ window.addEventListener(
       const previousActInserted = [...actInserted];
       actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
 
-      if (!act.ALD) continue;
-
       const newActInserted = actInserted.filter((act) => !previousActInserted.includes(act));
 
       for (const idAnalyse of newActInserted) {
@@ -140,6 +138,8 @@ window.addEventListener(
 
           polygon.style.opacity = 0.15;
         });
+
+        if (!act.ALD) continue;
 
         const inputALD = el.querySelector(`input[id^="anaFact"]`);
         if (!inputALD) continue;
