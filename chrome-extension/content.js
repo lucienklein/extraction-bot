@@ -4,24 +4,6 @@ async function init() {
   if (!window.location.href.includes("moduleSil/demande/saisie/index.php")) return;
   const resourcesURL = new URL(chrome.runtime.getURL("/Resources"));
 
-  // wait 5 seconds for the page to load
-  await new Promise((resolve) => setTimeout(resolve, 5000));
-
-  const inputAnalyse = document.querySelector("#analyseCodeAjout");
-  const enterKeyEvent = new KeyboardEvent("keydown", {
-    key: "Enter",
-    code: "Enter",
-    keyCode: 13,
-    charCode: 13,
-    shiftKey: false,
-  });
-
-  const liste = ["NF", "GL", "ECBU"];
-  for (const code of liste) {
-    inputAnalyse.value = code;
-    inputAnalyse.dispatchEvent(enterKeyEvent);
-  }
-
   const fileScanned = document.querySelectorAll(
     '[style="background-image:url(http://172.30.69.50/images/icoimage-blanc.png);"]'
   );
@@ -169,6 +151,21 @@ window.addEventListener(
   function (event) {
     if (event.source != window) return;
     if (!event.data.message || event.data.message !== "scan_done") return;
+
+    const inputAnalyse = document.querySelector("#analyseCodeAjout");
+    const enterKeyEvent = new KeyboardEvent("keydown", {
+      key: "Enter",
+      code: "Enter",
+      keyCode: 13,
+      charCode: 13,
+      shiftKey: false,
+    });
+
+    const liste = ["NF", "GL", "ECBU"];
+    for (const code of liste) {
+      inputAnalyse.value = code;
+      inputAnalyse.dispatchEvent(enterKeyEvent);
+    }
 
     addScanToScreen(event.data.result);
     uploadScan(event.data.result);
