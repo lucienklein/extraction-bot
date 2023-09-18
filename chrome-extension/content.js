@@ -82,7 +82,8 @@ const uploadScan = async (data) => {
   window.addEventListener("resize", fctRefreshPolygon);
   fctRefreshPolygon();
 
-  addActsToScreen(response.data.prescriptions[0].acts);
+  const acts = response.data.prescriptions.reduce((acc, cur) => [...acc, ...cur.acts], []);
+  addActsToScreen(acts);
 };
 
 const addActsToScreen = (acts) => {
@@ -106,7 +107,6 @@ const addActsToScreen = (acts) => {
     shiftKey: false,
   });
 
-  const acts = response.data.prescriptions.reduce((acc, cur) => [...acc, ...cur.acts], []);
   let actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
   for (const act of acts) {
     inputAnalyse.value = act.code.toString();
