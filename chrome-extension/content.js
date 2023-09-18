@@ -85,10 +85,13 @@ window.addEventListener(
         inputAnalyse.dispatchEvent(enterKeyEvent);
 
         await new Promise((resolve) => {
-          setTimeout(() => {
+          const interval = setInterval(() => {
             const inputAnalyse = document.querySelector("#analyseCodeAjout");
-            if (!inputAnalyse.classList.contains("ui-autocomplete-loading")) resolve();
-          }, 1000);
+            if (inputAnalyse.classList.contains("ui-autocomplete-loading")) return;
+
+            clearInterval(interval);
+            resolve();
+          }, 500);
         });
 
         const previousactsInserted = [...actsInserted];
