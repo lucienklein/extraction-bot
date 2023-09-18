@@ -144,7 +144,7 @@ window.addEventListener(
   false
 );
 
-function updatePolygonPoints(document, viewportHeight, originalWidth, originalHeight, boxes) {
+function updatePolygonPoints(document, viewportHeight, originalWidth, originalHeight, acts) {
   let newWidth = (viewportHeight / originalHeight) * originalWidth;
 
   let scaleFactorX = newWidth / originalWidth;
@@ -153,8 +153,13 @@ function updatePolygonPoints(document, viewportHeight, originalWidth, originalHe
   const svg = document.querySelector(`#svgQuerco`);
   svg.innerHTML = "";
 
-  for (const boxe of boxes) {
-    const points = boxe.polygon;
+  for (const act of acts) {
+    const points = act.polygon;
+    let color = "#24b337"
+    if (act.ALD) color = "#F7FA13"
+    if(act)
+
+
     const adjustedPoints = points.map((point) => ({
       x: point.x * scaleFactorX,
       y: point.y * scaleFactorY,
@@ -164,7 +169,7 @@ function updatePolygonPoints(document, viewportHeight, originalWidth, originalHe
     const svg = document.querySelector(`#svgQuerco`);
     const polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
     polygon.setAttribute("points", pointsString);
-    polygon.setAttribute("style", "fill:#F7FA13 ;fill-opacity:0.15; stroke:#F7FA13; stroke-width:1");
+    polygon.setAttribute("style", "fill:#F7FA13 ; fill-opacity:0.15; stroke:#F7FA13; stroke-width:1");
     // #FA1313
     svg.appendChild(polygon);
   }
