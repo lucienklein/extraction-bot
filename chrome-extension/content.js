@@ -96,6 +96,7 @@ window.addEventListener(
     addScanToScreen(event.data.result);
     const acts = await uploadScan(event.data.result);
     console.log(acts);
+
     window.postMessage({ message: "insertActs.js", data: acts }, "*");
   },
   false
