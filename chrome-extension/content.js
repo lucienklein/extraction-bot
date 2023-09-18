@@ -123,8 +123,6 @@ window.addEventListener(
       }, 500);
     });
 
-    console.log("Finished inserting acts");
-
     for (let prescription of data.prescriptions) {
       let actsInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
 
