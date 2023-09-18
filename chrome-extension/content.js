@@ -60,7 +60,7 @@ window.addEventListener(
     const div = document.querySelector("#displayText");
 
     div.innerHTML = `
-      <svg id="svgQuerco" width="100%" height="100%" style="position: absolute; top: 0; left: 0;"></svg>
+      <svg id="svgQuerco" width="100%" height="100%" style="position: absolute; top: 0; left: 0;" viewBox="0 0 ${data.prescriptions[0].width} ${data.prescriptions[0].height}" preserveAspectRatio="none"></svg>
     `;
     // div.style.backgroundColor = "transparent";
 
