@@ -78,40 +78,37 @@ window.addEventListener(
     });
 
     for (const prescription of data.prescriptions) {
-      let actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
+      let actsInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
 
-      for (const act of prescription.acts) {
+      for (let act of prescription.acts) {
         inputAnalyse.value = act.code;
         inputAnalyse.dispatchEvent(enterKeyEvent);
 
         await new Promise((resolve) => {
-          setTimeout(resolve, 3000);
+          setTimeout(resolve, 100);
           if (!inputAnalyse.classList.contains("ui-autocomplete-loading")) resolve();
         });
 
-        const alerteCadreAnalyse = document.querySelector("#alerteCadreAnalyse div");
-        const alerteCadreAnalyseSpan = this.document.querySelector("#alerteCadreAnalyse div span");
-        console.log(
-          act.code,
-          alerteCadreAnalyse?.textContent.includes("Code inexistant :"),
-          alerteCadreAnalyseSpan?.textContent.includes(act.code),
-          alerteCadreAnalyseSpan?.textContent
-        );
-        if (
-          alerteCadreAnalyse?.textContent.includes("Code inexistant :") &&
-          alerteCadreAnalyseSpan?.textContent.includes(act.code)
-        ) {
-          act.notFound = true;
-          continue;
+        const previousactsInserted = [...actsInserted];
+        actsInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
+        const newactsInserted = actsInserted.filter((act) => !previousactsInserted.includes(act));
+
+        let notFound = true;
+        const elThatMatchAct = actsInserted.filter((idAnalyse) => {
+          const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
+          const codeanalyse = el.getAttribute("codeanalyse");
+          const codegroupe = el.getAttribute("codegroupe");
+
+          return codeanalyse === act.code || codegroupe === act.code;
+        });
+
+        if (elThatMatchAct.length > 0) {
+          notFound = false;
+          console.log("Found act", elThatMatchAct, act.code);
         }
 
-        const previousActInserted = [...actInserted];
-        actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
-
-        const newActInserted = actInserted.filter((act) => !previousActInserted.includes(act));
-
-        if (newActInserted.length === 0)
-          for (const idAnalyse of newActInserted) {
+        if (newactsInserted.length === 0)
+          for (const idAnalyse of newactsInserted) {
             const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
             if (!el) continue;
 
