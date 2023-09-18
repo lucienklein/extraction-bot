@@ -155,10 +155,9 @@ function updatePolygonPoints(document, viewportHeight, originalWidth, originalHe
 
   for (const act of acts) {
     const points = act.polygon;
-    let color = "#24b337"
-    if (act.ALD) color = "#F7FA13"
-    if(act)
-
+    let color = "#24b337";
+    if (act.ALD) color = "#F7FA13";
+    if (act.warning) color = "#FA1313";
 
     const adjustedPoints = points.map((point) => ({
       x: point.x * scaleFactorX,
@@ -169,8 +168,7 @@ function updatePolygonPoints(document, viewportHeight, originalWidth, originalHe
     const svg = document.querySelector(`#svgQuerco`);
     const polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
     polygon.setAttribute("points", pointsString);
-    polygon.setAttribute("style", "fill:#F7FA13 ; fill-opacity:0.15; stroke:#F7FA13; stroke-width:1");
-    // #FA1313
+    polygon.setAttribute("style", `fill:${color} ; fill-opacity:0.15; stroke:${color}; stroke-width:1`);
     svg.appendChild(polygon);
   }
 }
