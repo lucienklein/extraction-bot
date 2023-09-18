@@ -81,7 +81,7 @@ window.addEventListener(
 
 window.addEventListener(
   "message",
-  function (event) {
+  async function (event) {
     if (event.source != window) return;
     if (!event.data.message || event.data.message !== "insertActs") return;
 
@@ -111,37 +111,37 @@ window.addEventListener(
       inputAnalyse.value = act.code;
       inputAnalyse.dispatchEvent(enterKeyEvent);
 
-      // await new Promise((resolve) => {
-      //   setTimeout(resolve, 100);
-      //   if (!inputAnalyse.classList.contains("ui-autocomplete-loading")) resolve();
-      // });
+      await new Promise((resolve) => {
+        setTimeout(resolve, 100);
+        if (!inputAnalyse.classList.contains("ui-autocomplete-loading")) resolve();
+      });
 
-      // const previousActInserted = [...actInserted];
-      // actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
+      const previousActInserted = [...actInserted];
+      actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
 
-      // await new Promise((resolve) => setTimeout(resolve, 2000));
+      await new Promise((resolve) => setTimeout(resolve, 2000));
 
-      // if (!act.ALD) continue;
+      if (!act.ALD) continue;
 
-      // const newActInserted = actInserted.filter((act) => !previousActInserted.includes(act));
+      const newActInserted = actInserted.filter((act) => !previousActInserted.includes(act));
 
-      // for (const idAnalyse of newActInserted) {
-      //   const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
-      //   if (!el) continue;
+      for (const idAnalyse of newActInserted) {
+        const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
+        if (!el) continue;
 
-      //   const inputALD = el.querySelector(`input[id^="anaFact"]`);
-      //   if (!inputALD) continue;
+        const inputALD = el.querySelector(`input[id^="anaFact"]`);
+        if (!inputALD) continue;
 
-      //   inputALD.setAttribute("value", "ALD");
+        inputALD.setAttribute("value", "ALD");
 
-      //   const divDataRight = el.querySelector(`.analyseDataRight`);
-      //   if (!divDataRight) continue;
+        const divDataRight = el.querySelector(`.analyseDataRight`);
+        if (!divDataRight) continue;
 
-      //   const divIcon = divDataRight.querySelector(`div[id^="anaFact"]`);
-      //   if (!divIcon) continue;
+        const divIcon = divDataRight.querySelector(`div[id^="anaFact"]`);
+        if (!divIcon) continue;
 
-      //   divIcon.innerHTML = `<span class="qtipUp hand" help="Affection de Longue DurÃ©e">E<sub>4</sub></span>`;
-      // }
+        divIcon.innerHTML = `<span class="qtipUp hand" help="Affection de Longue DurÃ©e">E<sub>4</sub></span>`;
+      }
     }
 
     overlay.remove();
@@ -159,22 +159,20 @@ function updatePolygonPoints(document, viewportHeight, originalWidth, originalHe
   svg.innerHTML = "";
 
   for (const act of acts) {
-    const points = act.polygon;
-    let color = "#24b337";
-    if (act.ALD) color = "#F7FA13";
-    if (act.warning) color = "#FA1313";
-
-    const adjustedPoints = points.map((point) => ({
-      x: point.x * scaleFactorX,
-      y: point.y * scaleFactorY,
-    }));
-
-    const pointsString = adjustedPoints.map((point) => `${point.x},${point.y}`).join(" ");
-    const svg = document.querySelector(`#svgQuerco`);
-    const polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
-    polygon.setAttribute("points", pointsString);
-    polygon.setAttribute("style", `fill:${color} ; fill-opacity:0.15; stroke:${color}; stroke-width:1`);
-    svg.appendChild(polygon);
+    // const points = act.polygon;
+    // let color = "#24b337";
+    // if (act.ALD) color = "#F7FA13";
+    // if (act.warning) color = "#FA1313";
+    // const adjustedPoints = points.map((point) => ({
+    //   x: point.x * scaleFactorX,
+    //   y: point.y * scaleFactorY,
+    // }));
+    // const pointsString = adjustedPoints.map((point) => `${point.x},${point.y}`).join(" ");
+    // const svg = document.querySelector(`#svgQuerco`);
+    // const polygon = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+    // polygon.setAttribute("points", pointsString);
+    // polygon.setAttribute("style", `fill:${color} ; fill-opacity:0.15; stroke:${color}; stroke-width:1`);
+    // svg.appendChild(polygon);
   }
 }
 
