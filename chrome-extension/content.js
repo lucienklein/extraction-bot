@@ -112,9 +112,10 @@ window.addEventListener(
     }
 
     await new Promise((resolve) => {
-      setTimeout(() => {}, 1000);
-      const inputAnalyse = document.querySelector("#analyseCodeAjout");
-      if (inputAnalyse.classList.contains("ui-autocomplete-loading")) resolve();
+      setTimeout(() => {
+        const inputAnalyse = document.querySelector("#analyseCodeAjout");
+        if (inputAnalyse.classList.contains("ui-autocomplete-loading")) resolve();
+      }, 1000);
     });
 
     for (const prescription of data.prescriptions) {
