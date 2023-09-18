@@ -105,7 +105,7 @@ const uploadScan = async (data) => {
   const acts = response.data.prescriptions.reduce((acc, cur) => [...acc, ...cur.acts], []);
   let actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
   for (const act of acts) {
-    inputAnalyse.value = act.code;
+    inputAnalyse.value = act.code.toString();
     inputAnalyse.dispatchEvent(enterKeyEvent);
 
     // await new Promise((resolve) => {
