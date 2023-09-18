@@ -86,11 +86,12 @@ const uploadScan = async (data) => {
   const eventENTER = new KeyboardEvent("keydown", { keyCode: 13 });
   const acts = response.data.prescriptions.reduce((acc, cur) => [...acc, ...cur.acts], []);
 
-  const boxAnalyse = document.querySelector("#ihmBoxAnalyse .ihmCboxShow");
+  const boxAnalyse = document.querySelector("#ihmBoxAnalyse .ihmCboxContent.ihmCboxvert");
   const overlay = document.createElement("div");
+  overlay.addEventListener("click", (e) => e.stopPropagation(), true);
   overlay.setAttribute(
     "style",
-    "position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1000; display: flex; justify-content: center; align-items: center; color: white; font-size: 2rem; font-weight: bold; pointer-events: none; cursor: wait;"
+    "position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 9; display: flex; justify-content: center; align-items: center; color: white; font-size: 2rem; font-weight: bold; cursor: progress;"
   );
   overlay.innerHTML = "Insertion en cours";
   boxAnalyse.style.position = "relative";
