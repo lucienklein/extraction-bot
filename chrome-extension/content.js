@@ -95,7 +95,7 @@ const uploadScan = async (data) => {
   );
   overlay.innerHTML = "Insertion en cours";
   boxAnalyse.style.position = "relative";
-  boxAnalyse.appendChild(overlay);
+  // boxAnalyse.appendChild(overlay);
 
   let actInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
   for (const act of acts) {
