@@ -90,7 +90,7 @@ window.addEventListener(
         });
 
         const alerteCadreAnalyse = document.querySelector("#alerteCadreAnalyse div");
-        const alerteCadreAnalyseSpan = alerteCadreAnalyse.querySelector("span");
+        const alerteCadreAnalyseSpan = this.document.querySelector("#alerteCadreAnalyse div span");
         if (
           alerteCadreAnalyse &&
           alerteCadreAnalyse.textContent.includes("Code inexistant :") &&
