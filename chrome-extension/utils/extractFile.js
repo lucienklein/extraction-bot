@@ -32,6 +32,6 @@
       reader.readAsDataURL(imgBlob);
     });
 
-    window.postMessage({ message: "scan_done", result: imgBase64 }, "*");
+    window.postMessage({ message: "file_extracted", result: imgBase64 }, "*");
   }
 })();

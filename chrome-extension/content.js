@@ -25,7 +25,7 @@ async function init() {
       })
   );
 
-  const onClick = async () => await loadLibrary(utilsURL + "/scan.js", "text/javascript", "dwt-scan");
+  const onClick = async () => await loadLibrary(utilsURL + "/launchScan.js", "text/javascript", "dwt-scan");
   return addButtonToExamDiv(onClick);
 }
 
@@ -149,7 +149,7 @@ window.addEventListener(
   "message",
   function (event) {
     if (event.source != window) return;
-    if (!event.data.message || event.data.message !== "scan_done") return;
+    if (!event.data.message || event.data.message !== "file_extracted") return;
 
     const inputAnalyse = document.querySelector("#analyseCodeAjout");
     const enterKeyEvent = new KeyboardEvent("keydown", {
