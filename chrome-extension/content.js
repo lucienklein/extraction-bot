@@ -123,22 +123,34 @@ window.addEventListener(
       }, 500);
     });
 
-    for (const prescription of data.prescriptions) {
+    for (let prescription of data.prescriptions) {
       let actsInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
 
       for (let act of prescription.acts) {
-        let notFound = true;
-        const elThatMatchAct = actsInserted.filter((idAnalyse) => {
+        const elThatMatchActWithAnalyse = actsInserted.filter((idAnalyse) => {
           const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
           const codeanalyse = el.getAttribute("codeanalyse");
-          const codegroupe = el.getAttribute("codegroupe");
 
-          return codeanalyse === act.code || codegroupe === act.code;
+          return codeanalyse === act.code;
         });
 
-        if (elThatMatchAct.length > 0) {
-          notFound = false;
-          console.log("Found act", elThatMatchAct, act.code);
+        const elThatMatchActWithGroup = actsInserted.filter((idAnalyse) => {
+          const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
+          const codegroupe = el.getAttribute("codegroupe");
+
+          return codegroupe === act.code;
+        });
+
+        if (elThatMatchActWithAnalyse.length === 0 && elThatMatchActWithGroup.length === 0) {
+          act.notFound = true;
+          return;
+        }
+
+        if (!act.ALD) return;
+
+        for (const idAnalyse of [...elThatMatchActWithAnalyse, ...elThatMatchActWithGroup]) {
+          const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
+          el.setAttribute("isselected", true);
         }
 
         // el.addEventListener("mouseover", function () {
@@ -156,6 +168,8 @@ window.addEventListener(
         // });
       }
     }
+
+    windodw.dispatchContextMenuAction("toggleFact", "ALD");
 
     const div = document.querySelector("#displayText");
 
