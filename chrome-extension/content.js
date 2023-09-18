@@ -64,6 +64,7 @@ window.addEventListener(
     svg.setAttribute("style", "position: absolute; top: 0; left: 0; z-index: 2;");
     svg.setAttribute("id", "svgQuerco");
     div.style.backgroundColor = "transparent";
+    div.appendChild(svg);
 
     const fctRefreshPolygon = () =>
       updatePolygonPoints(
