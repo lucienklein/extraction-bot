@@ -3,6 +3,10 @@
     '[style="background-image:url(http://172.30.69.50/images/icoimage-blanc.png);"]'
   );
 
+  console.log(fileScanned);
+
+  console.log(document);
+
   for (const file of fileScanned) {
     const script = file.nextElementSibling;
     const data = script.innerText;
