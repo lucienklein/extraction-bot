@@ -141,24 +141,24 @@ window.addEventListener(
           continue;
         }
 
-        if (!act.ALD) continue;
-
-        el.addEventListener("mouseover", function () {
-          const polygons = document.querySelectorAll(`.querco_${act.code}`);
-
-          if (!polygons) return;
-          polygons.forEach((polygon) => (polygon.style.opacity = "0.5"));
-        });
-
-        el.addEventListener("mouseout", function () {
-          const polygons = document.querySelectorAll(`.querco_${act.code}`);
-
-          if (!polygons) return;
-          polygons.forEach((polygon) => (polygon.style.opacity = "0.15"));
-        });
-
         for (const idAnalyse of elThatMatchAct) {
           const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
+
+          el.addEventListener("mouseover", function () {
+            const polygons = document.querySelectorAll(`.querco_${act.code}`);
+
+            if (!polygons) return;
+            polygons.forEach((polygon) => (polygon.style.opacity = "0.5"));
+          });
+
+          el.addEventListener("mouseout", function () {
+            const polygons = document.querySelectorAll(`.querco_${act.code}`);
+
+            if (!polygons) return;
+            polygons.forEach((polygon) => (polygon.style.opacity = "0.15"));
+          });
+
+          if (!act.ALD) continue;
           el.setAttribute("isselected", true);
           elActsALD.push(el);
         }
