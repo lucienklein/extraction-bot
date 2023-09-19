@@ -120,7 +120,7 @@ window.addEventListener(
 
         clearInterval(interval);
         resolve();
-      }, 500);
+      }, 1000);
     });
 
     let elActsALD = [];
@@ -219,7 +219,7 @@ function updatePolygonPoints(document, viewportHeight, originalWidth, originalHe
 
     const polygon = document.createElement("div");
     polygon.style = `position: absolute; clip-path: polygon(${pointsString}); background-color: ${color}; opacity: 0.15; width: 100%; height: 100%;`;
-    polygon.className = `.querco_polygon_${act.code}`;
+    polygon.className = `querco_polygon_${act.code}`;
 
     polygon.addEventListener("mouseover", function () {
       const acts = document.querySelectorAll(`.querco_act_${act.code}`);
