@@ -74,6 +74,8 @@ const getFileFromKalisil = async () => {
       reader.readAsDataURL(imgBlob);
     });
 
+    console.log(imgBase64);
+
     window.postMessage({ message: "file_extracted", result: imgBase64 }, "*");
   }
 };
