@@ -128,46 +128,40 @@ window.addEventListener(
       let actsInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
 
       for (let act of prescription.acts) {
-        const elThatMatchActWithAnalyse = actsInserted.filter((idAnalyse) => {
+        const elThatMatchAct = actsInserted.filter((idAnalyse) => {
           const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
           const codeanalyse = el.getAttribute("codeanalyse");
-
-          return codeanalyse === act.code;
-        });
-
-        const elThatMatchActWithGroup = actsInserted.filter((idAnalyse) => {
-          const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
           const codegroupe = el.getAttribute("codegroupe");
 
-          return codegroupe === act.code;
+          return codeanalyse === act.code || codegroupe === act.code;
         });
 
-        if (elThatMatchActWithAnalyse.length === 0 && elThatMatchActWithGroup.length === 0) {
+        if (elThatMatchAct.length === 0) {
           act.notFound = true;
           continue;
         }
 
         if (!act.ALD) continue;
 
-        for (const idAnalyse of [...elThatMatchActWithAnalyse, ...elThatMatchActWithGroup]) {
+        el.addEventListener("mouseover", function () {
+          const polygons = document.querySelectorAll(`.querco_${act.code}`);
+
+          if (!polygons) return;
+          polygons.forEach((polygon) => (polygon.style.opacity = "0.5"));
+        });
+
+        el.addEventListener("mouseout", function () {
+          const polygons = document.querySelectorAll(`.querco_${act.code}`);
+
+          if (!polygons) return;
+          polygons.forEach((polygon) => (polygon.style.opacity = "0.15"));
+        });
+
+        for (const idAnalyse of elThatMatchAct) {
           const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
           el.setAttribute("isselected", true);
           elActsALD.push(el);
         }
-
-        // el.addEventListener("mouseover", function () {
-        //   const polygons = document.querySelectorAll(`.querco_${act.code}`);
-
-        //   if (!polygons) return;
-        //   polygons.forEach((polygon) => (polygon.style.opacity = "0.5"));
-        // });
-
-        // el.addEventListener("mouseout", function () {
-        //   const polygons = document.querySelectorAll(`.querco_${act.code}`);
-
-        //   if (!polygons) return;
-        //   polygons.forEach((polygon) => (polygon.style.opacity = "0.15"));
-        // });
       }
     }
 
