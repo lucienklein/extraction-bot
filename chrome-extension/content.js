@@ -84,6 +84,8 @@ window.addEventListener(
         inputAnalyse.value = act.code;
         inputAnalyse.dispatchEvent(enterKeyEvent);
 
+        await new Promise((resolve) => setTimeout(resolve, 100));
+
         const previousactsInserted = [...actsInserted];
         actsInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
         const newactsInserted = actsInserted.filter((act) => !previousactsInserted.includes(act));
