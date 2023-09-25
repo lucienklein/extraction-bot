@@ -89,7 +89,6 @@ window.addEventListener(
     );
     for (let act of prescription.acts) {
       if (!act.notFound) continue;
-      console.log("not found", act);
       await insertAct(act, 250);
     }
 
@@ -98,7 +97,7 @@ window.addEventListener(
         if (inputAnalyse.classList.contains("ui-autocomplete-loading")) return;
         clearInterval(interval);
         resolve();
-      }, 1000);
+      }, 2000);
     });
 
     actsInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
