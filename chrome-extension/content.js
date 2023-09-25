@@ -83,6 +83,10 @@ window.addEventListener(
     let actsInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
     prescription.acts = findActNotFound(prescription.acts, actsInserted);
 
+    console.log(
+      "not found",
+      prescription.acts.filter((act) => act.notFound)
+    );
     for (let act of prescription.acts) {
       if (!act.notFound) continue;
       console.log("not found", act);
