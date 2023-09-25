@@ -15,7 +15,7 @@ window.addEventListener(
 
     window.postMessage({ message: "displayFile", data: data }, "*");
 
-    let response = await fetch(`${API}/request`, {
+    let response = await fetch(`${API}/prescription`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ apikey, file: data }),
