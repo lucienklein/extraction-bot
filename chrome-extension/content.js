@@ -259,4 +259,13 @@ function loadLibrary(src, type, id, data) {
   });
 }
 
+const getChromeStorage = (key) => {
+  return new Promise((resolve, reject) => {
+    chrome.storage.sync.get(key, (result) => {
+      if (chrome.runtime.lastError) return reject(chrome.runtime.lastError);
+      resolve(result[key]);
+    });
+  });
+};
+
 init();

@@ -55,11 +55,8 @@ const load = () => {
 const getChromeStorage = (key) => {
   return new Promise((resolve, reject) => {
     chrome.storage.sync.get(key, (result) => {
-      if (chrome.runtime.lastError) {
-        reject(chrome.runtime.lastError);
-      } else {
-        resolve(result[key]);
-      }
+      if (chrome.runtime.lastError) return reject(chrome.runtime.lastError);
+      resolve(result[key]);
     });
   });
 };
@@ -67,11 +64,8 @@ const getChromeStorage = (key) => {
 const setChromeStorage = (values) => {
   return new Promise((resolve, reject) => {
     chrome.storage.sync.set(values, () => {
-      if (chrome.runtime.lastError) {
-        reject(chrome.runtime.lastError);
-      } else {
-        resolve(true);
-      }
+      if (chrome.runtime.lastError) return reject(chrome.runtime.lastError);
+      resolve(true);
     });
   });
 };
