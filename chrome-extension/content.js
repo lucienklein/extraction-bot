@@ -80,15 +80,10 @@ window.addEventListener(
       }, 1000);
     });
 
-    let actsInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
-    prescription.acts = findActNotFound(prescription.acts, actsInserted);
+    prescription.acts = matchActsAndEl(prescription.acts);
 
-    console.log(
-      "not found",
-      prescription.acts.filter((act) => act.notFound)
-    );
     for (let act of prescription.acts) {
-      if (!act.notFound) continue;
+      if (!act.elThatMatchAct.length) continue;
       await insertAct(act, 250);
     }
 
@@ -100,26 +95,11 @@ window.addEventListener(
       }, 1000);
     });
 
-    actsInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
-
-    console.log(actsInserted);
+    prescription.acts = matchActsAndEl(prescription.acts);
 
     let elActsALD = [];
     for (let act of prescription.acts) {
-      const elThatMatchAct = actsInserted.filter((idAnalyse) => {
-        const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
-        const codeanalyse = el.getAttribute("codeanalyse");
-        const codegroupe = el.getAttribute("codegroupe");
-
-        return codeanalyse === act.code || codegroupe === act.code;
-      });
-
-      if (elThatMatchAct.length === 0) {
-        act.notFound = true;
-        continue;
-      }
-
-      for (const idAnalyse of elThatMatchAct) {
+      for (const idAnalyse of act.elThatMatchAct) {
         const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
 
         el.addEventListener("mouseover", function () {
@@ -188,7 +168,8 @@ function insertAct(act, timeout) {
   return new Promise((resolve) => setTimeout(resolve, timeout));
 }
 
-function findActNotFound(acts, actsInserted) {
+function matchActsAndEl(acts) {
+  const actsInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
   for (let act of acts) {
     const elThatMatchAct = actsInserted.filter((idAnalyse) => {
       const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
@@ -198,7 +179,7 @@ function findActNotFound(acts, actsInserted) {
       return codeanalyse === act.code || codegroupe === act.code;
     });
 
-    act.notFound = elThatMatchAct.length === 0;
+    act.elThatMatchAct = elThatMatchAct;
   }
 
   return acts;
