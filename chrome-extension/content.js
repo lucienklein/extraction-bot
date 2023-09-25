@@ -53,7 +53,7 @@ window.addEventListener(
   async function (event) {
     if (event.source != window) return;
     if (!event.data.message || event.data.message !== "insertActs") return;
-    let data = event.data.data;
+    let prescription = event.data.data.prescription;
 
     const boxAnalyse = document.querySelector("#ihmBoxAnalyse .ihmCboxContent.ihmCboxvert");
     const overlay = document.createElement("div");
@@ -66,69 +66,71 @@ window.addEventListener(
     boxAnalyse.style.position = "relative";
     boxAnalyse.appendChild(overlay);
 
-    const inputAnalyse = document.querySelector("#analyseCodeAjout");
-    const enterKeyEvent = new KeyboardEvent("keydown", {
-      key: "Enter",
-      code: "Enter",
-      keyCode: 13,
-      charCode: 13,
-      shiftKey: false,
-    });
-
-    for (const prescription of data.prescriptions) {
-      for (let act of prescription.acts) {
-        if (act.code === "CACOR") continue;
-
-        insertAct(act, 50);
-      }
+    for (let act of prescription.acts) {
+      if (act.code === "CACOR") continue;
+      await insertAct(act, 50);
     }
 
+    const inputAnalyse = document.querySelector("#analyseCodeAjout");
     await new Promise((resolve) => {
       const interval = setInterval(() => {
         if (inputAnalyse.classList.contains("ui-autocomplete-loading")) return;
-
         clearInterval(interval);
         resolve();
       }, 1000);
     });
 
+    let actsInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
+    prescription.acts = findActNotFound(prescription.acts, actsInserted);
+
+    for (let act of prescription.acts) {
+      if (!act.notFound) continue;
+      await insertAct(act, 250);
+    }
+
+    await new Promise((resolve) => {
+      const interval = setInterval(() => {
+        if (inputAnalyse.classList.contains("ui-autocomplete-loading")) return;
+        clearInterval(interval);
+        resolve();
+      }, 1000);
+    });
+
+    actsInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
+
     let elActsALD = [];
-    for (let prescription of data.prescriptions) {
-      let actsInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
+    for (let act of prescription.acts) {
+      const elThatMatchAct = actsInserted.filter((idAnalyse) => {
+        const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
+        const codeanalyse = el.getAttribute("codeanalyse");
+        const codegroupe = el.getAttribute("codegroupe");
 
-      for (let act of prescription.acts) {
-        const elThatMatchAct = actsInserted.filter((idAnalyse) => {
-          const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
-          const codeanalyse = el.getAttribute("codeanalyse");
-          const codegroupe = el.getAttribute("codegroupe");
+        return codeanalyse === act.code || codegroupe === act.code;
+      });
 
-          return codeanalyse === act.code || codegroupe === act.code;
+      if (elThatMatchAct.length === 0) {
+        act.notFound = true;
+        continue;
+      }
+
+      for (const idAnalyse of elThatMatchAct) {
+        const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
+
+        el.addEventListener("mouseover", function () {
+          const polygons = document.querySelectorAll(`.querco_polygon_${act.code}`);
+          polygons.forEach((polygon) => (polygon.style.opacity = "0.5"));
         });
 
-        if (elThatMatchAct.length === 0) {
-          act.notFound = true;
-          continue;
-        }
+        el.addEventListener("mouseout", function () {
+          const polygons = document.querySelectorAll(`.querco_polygon_${act.code}`);
+          polygons.forEach((polygon) => (polygon.style.opacity = "0.15"));
+        });
 
-        for (const idAnalyse of elThatMatchAct) {
-          const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
+        el.classList.add(`querco_act_${act.code}`);
 
-          el.addEventListener("mouseover", function () {
-            const polygons = document.querySelectorAll(`.querco_polygon_${act.code}`);
-            polygons.forEach((polygon) => (polygon.style.opacity = "0.5"));
-          });
-
-          el.addEventListener("mouseout", function () {
-            const polygons = document.querySelectorAll(`.querco_polygon_${act.code}`);
-            polygons.forEach((polygon) => (polygon.style.opacity = "0.15"));
-          });
-
-          el.classList.add(`querco_act_${act.code}`);
-
-          if (!act.ALD) continue;
-          el.setAttribute("isselected", true);
-          elActsALD.push(el);
-        }
+        if (!act.ALD) continue;
+        el.setAttribute("isselected", true);
+        elActsALD.push(el);
       }
     }
 
@@ -146,13 +148,13 @@ window.addEventListener(
     `;
     div.style.backgroundColor = "transparent";
 
-    const actsWithoutNotFound = data.prescriptions[0].acts.filter((act) => !act.notFound);
+    const actsWithoutNotFound = prescription.acts.filter((act) => !act.notFound);
     const fctRefreshPolygon = () =>
       updatePolygonPoints(
         window.document,
         window.innerHeight,
-        data.prescriptions[0].width,
-        data.prescriptions[0].height,
+        prescription.width,
+        prescription.height,
         actsWithoutNotFound
       );
 
@@ -178,6 +180,22 @@ function insertAct(act, timeout) {
   inputAnalyse.dispatchEvent(enterKeyEvent);
 
   return new Promise((resolve) => setTimeout(resolve, timeout));
+}
+
+function findActNotFound(acts, actsInserted) {
+  return acts.map((act) => {
+    const elThatMatchAct = actsInserted.filter((idAnalyse) => {
+      const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
+      const codeanalyse = el.getAttribute("codeanalyse");
+      const codegroupe = el.getAttribute("codegroupe");
+
+      return codeanalyse === act.code || codegroupe === act.code;
+    });
+
+    acts.notFound = elThatMatchAct.length === 0;
+
+    return act;
+  });
 }
 
 function updatePolygonPoints(document, viewportHeight, originalWidth, originalHeight, acts) {
