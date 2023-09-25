@@ -1,11 +1,11 @@
 let DWTChromeExtension = {
   DWObject: undefined,
-  load: function () {
+  load: () => {
     const dwtURL = document.getElementById("dwt").getAttribute("dwtURL");
     Dynamsoft.DWT.ResourcesPath = dwtURL;
     this.initDWT();
   },
-  scan: async function () {
+  scan: async () => {
     if (!this.DWObject) return console.log("DWT not ready");
 
     this.DWObject.IfShowUI = false;
@@ -30,8 +30,8 @@ let DWTChromeExtension = {
       );
     });
   },
-  initDWT: function () {
-    const license = document.getElementById("dwt").getAttribute("license");
+  initDWT: async () => {
+    const license = await getChromeStorage("dwt");
     if (license) {
       console.log("using license: " + license);
       Dynamsoft.DWT.ProductKey = license;
@@ -43,6 +43,18 @@ let DWTChromeExtension = {
     });
     Dynamsoft.DWT.Load();
   },
+};
+
+const getChromeStorage = (key) => {
+  return new Promise((resolve, reject) => {
+    chrome.storage.sync.get(key, (result) => {
+      if (chrome.runtime.lastError) {
+        reject(chrome.runtime.lastError);
+      } else {
+        resolve(result[key]);
+      }
+    });
+  });
 };
 
 DWTChromeExtension.load();

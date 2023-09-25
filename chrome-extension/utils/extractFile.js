@@ -13,10 +13,12 @@ window.addEventListener(
 
     window.postMessage({ message: "extractedFile", data: data }, "*");
 
+    let apikey = await getChromeStorage({ apikey: "" });
+
     let response = await fetch(`${API}/request`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ file: data }),
+      body: JSON.stringify({ apikey, file: data }),
     });
     response = await response.json();
 
@@ -75,4 +77,16 @@ const getFileFromKalisil = async () => {
 
     return imgBase64;
   }
+};
+
+const getChromeStorage = (key) => {
+  return new Promise((resolve, reject) => {
+    chrome.storage.sync.get(key, (result) => {
+      if (chrome.runtime.lastError) {
+        reject(chrome.runtime.lastError);
+      } else {
+        resolve(result[key]);
+      }
+    });
+  });
 };

@@ -1,15 +1,15 @@
 const API = "https://api.extraction.querco.co";
 
-function alertUser(message) {
+const alertUser = (message) => {
   const div = document.getElementById("alertBox");
   div.innerText = message;
   div.style.display = "block";
   setTimeout(() => {
     div.style.display = "none";
   }, 3000);
-}
+};
 
-async function login() {
+const login = async () => {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
@@ -29,42 +29,66 @@ async function login() {
       return alertUser("Une erreur est survenue");
     }
 
-    chrome.storage.sync.set({ apikey: data.user.apikey, dwt: data.dwt }, () => {
-      document.getElementById("form").style.display = "none";
-      document.getElementById("status").style.display = "block";
-      document.getElementById("apikey").value = data.user.apikey;
-      document.getElementById("dwt").value = data.dwt;
-    });
+    await setChromeStorage({ apikey: data.user.apikey, dwt: data.dwt });
+
+    document.getElementById("form").style.display = "none";
+    document.getElementById("status").style.display = "block";
+    document.getElementById("apikey").value = data.user.apikey;
+    document.getElementById("dwt").value = data.dwt;
   } catch (error) {
     console.log(error);
     alertUser("Une erreur est survenue");
   }
-}
+};
 
-function load() {
-  chrome.storage.sync.get({ apikey: "", dwt: "" }, (items) => {
-    if (!items.apikey || !items.dwt) return (document.getElementById("form").style.display = "block");
+const load = () => {
+  const apikey = getChromeStorage("apikey");
+  const dwt = getChromeStorage("dwt");
+  if (!apikey || !dwt) return (document.getElementById("form").style.display = "block");
 
-    document.getElementById("form").style.display = "none";
-    document.getElementById("status").style.display = "block";
-    document.getElementById("apikey").value = items.apikey;
-    document.getElementById("dwt").value = items.dwt;
+  document.getElementById("form").style.display = "none";
+  document.getElementById("status").style.display = "block";
+  document.getElementById("apikey").value = apikey;
+  document.getElementById("dwt").value = dwt;
+};
+
+const getChromeStorage = (key) => {
+  return new Promise((resolve, reject) => {
+    chrome.storage.sync.get(key, (result) => {
+      if (chrome.runtime.lastError) {
+        reject(chrome.runtime.lastError);
+      } else {
+        resolve(result[key]);
+      }
+    });
   });
-}
+};
+
+const setChromeStorage = (values) => {
+  return new Promise((resolve, reject) => {
+    chrome.storage.sync.set(values, () => {
+      if (chrome.runtime.lastError) {
+        reject(chrome.runtime.lastError);
+      } else {
+        resolve(true);
+      }
+    });
+  });
+};
 
 document.getElementById("login").addEventListener("click", () => {
   login();
 });
 
-document.getElementById("logout").addEventListener("click", () => {
-  chrome.storage.sync.set({ apikey: "", dwt: "" }, () => {
-    document.getElementById("form").style.display = "block";
-    document.getElementById("status").style.display = "none";
-    document.getElementById("email").value = "";
-    document.getElementById("password").value = "";
-    document.getElementById("apikey").value = "";
-    document.getElementById("dwt").value = "";
-  });
+document.getElementById("logout").addEventListener("click", async () => {
+  await setChromeStorage({ apikey: "", dwt: "" });
+
+  document.getElementById("form").style.display = "block";
+  document.getElementById("status").style.display = "none";
+  document.getElementById("email").value = "";
+  document.getElementById("password").value = "";
+  document.getElementById("apikey").value = "";
+  document.getElementById("dwt").value = "";
 });
 
 document.addEventListener("DOMContentLoaded", load);
