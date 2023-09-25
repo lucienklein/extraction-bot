@@ -188,7 +188,8 @@ function insertAct(act, timeout) {
 }
 
 function findActNotFound(acts, actsInserted) {
-  return acts.map((act) => {
+  let acts = JSON.parse(JSON.stringify(acts));
+  for (let act of acts) {
     const elThatMatchAct = actsInserted.filter((idAnalyse) => {
       const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
       const codeanalyse = el.getAttribute("codeanalyse");
@@ -198,9 +199,9 @@ function findActNotFound(acts, actsInserted) {
     });
 
     acts.notFound = elThatMatchAct.length === 0;
+  }
 
-    return act;
-  });
+  return acts;
 }
 
 function updatePolygonPoints(document, viewportHeight, originalWidth, originalHeight, acts) {
