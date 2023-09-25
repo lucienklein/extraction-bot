@@ -198,10 +198,10 @@ function findActNotFound(prescription, actsInserted) {
       return codeanalyse === act.code || codegroupe === act.code;
     });
 
-    console.log(act.code, "elThatMatchAct", elThatMatchAct);
-
     acts.notFound = elThatMatchAct.length === 0;
   }
+
+  console.log("acts", acts);
 
   return acts;
 }
