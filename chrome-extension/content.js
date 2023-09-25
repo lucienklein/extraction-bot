@@ -97,10 +97,12 @@ window.addEventListener(
         if (inputAnalyse.classList.contains("ui-autocomplete-loading")) return;
         clearInterval(interval);
         resolve();
-      }, 2000);
+      }, 1000);
     });
 
     actsInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
+
+    console.log(actsInserted);
 
     let elActsALD = [];
     for (let act of prescription.acts) {
