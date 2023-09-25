@@ -83,7 +83,7 @@ window.addEventListener(
     prescription.acts = matchActsAndEl(prescription.acts);
 
     for (let act of prescription.acts) {
-      if (!act.elThatMatchAct.length) continue;
+      if (act.elThatMatchAct.length) continue;
       await insertAct(act, 250);
     }
 
