@@ -2,6 +2,27 @@ const API = "https://api.extraction.querco.co";
 const dwtURL = new URL(chrome.runtime.getURL("/dwt"));
 const utilsURL = new URL(chrome.runtime.getURL("/utils"));
 
+const observer = new MutationObserver((mutations) => {
+  mutations.forEach((mutation) => {
+    if (mutation.addedNodes) {
+      mutation.addedNodes.forEach((node) => {
+        if (node.classList && node.classList.contains("analyseBox")) {
+          const codeanalyse = node.getAttribute("codeanalyse");
+          const codegroupe = node.getAttribute("codegroupe");
+
+          console.log("codeanalyse", codeanalyse);
+          console.log("codegroupe", codegroupe);
+        }
+      });
+    }
+  });
+});
+
+observer.observe(document.body, {
+  childList: true,
+  subtree: true,
+});
+
 async function init() {
   if (!window.location.href.includes("moduleSil/demande/saisie/index.php")) return;
 
