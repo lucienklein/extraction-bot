@@ -31,7 +31,7 @@ let DWTChromeExtension = {
     });
   },
   initDWT: async function () {
-    const license = await getChromeStorage("dwt");
+    const license = document.getElementById("dwt").getAttribute("license");
     if (license) {
       console.log("using license: " + license);
       Dynamsoft.DWT.ProductKey = license;
@@ -43,18 +43,6 @@ let DWTChromeExtension = {
     });
     Dynamsoft.DWT.Load();
   },
-};
-
-const getChromeStorage = (key) => {
-  return new Promise((resolve, reject) => {
-    chrome.storage.sync.get(key, (result) => {
-      if (chrome.runtime.lastError) {
-        reject(chrome.runtime.lastError);
-      } else {
-        resolve(result[key]);
-      }
-    });
-  });
 };
 
 DWTChromeExtension.load();

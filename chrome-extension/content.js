@@ -8,7 +8,8 @@ async function init() {
   await loadLibrary(dwtURL + "/dynamsoft.webtwain.initiate.js", "text/javascript");
   await loadLibrary(dwtURL + "/dynamsoft.webtwain.config.js", "text/javascript");
 
-  await loadLibrary(dwtURL + "/dwt.js", "text/javascript", "dwt", { dwtURL: dwtURL });
+  const license = await getChromeStorage("dwt");
+  await loadLibrary(dwtURL + "/dwt.js", "text/javascript", "dwt", { dwtURL, license });
 
   const examDiv = document.querySelector("#ajoutAnalyse");
   const button = document.createElement("button");
