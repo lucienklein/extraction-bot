@@ -2,7 +2,7 @@ const API = "https://api.extraction.querco.co";
 
 const alertUser = (message) => {
   const div = document.getElementById("alertBox");
-  div.innerText = message;
+  div.innerHTML = message;
   div.style.display = "block";
   setTimeout(() => {
     div.style.display = "none";
@@ -36,7 +36,7 @@ const login = async () => {
     document.getElementById("apikey").value = data.user.apikey;
     document.getElementById("dwt").value = data.dwt;
 
-    alertUser("Connexion r&eacute;ussie - Vous devez rafraichir la page");
+    alertUser(`Connexion r&#233;ussie - Vous devez rafraichir la page`);
   } catch (error) {
     console.log(error);
     alertUser("Une erreur est survenue");
