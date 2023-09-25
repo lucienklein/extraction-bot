@@ -115,8 +115,6 @@ window.addEventListener(
 
     await new Promise((resolve) => {
       const interval = setInterval(() => {
-        const inputAnalyse = document.querySelector("#analyseCodeAjout");
-        console.log(inputAnalyse.classList.contains("ui-autocomplete-loading"));
         if (inputAnalyse.classList.contains("ui-autocomplete-loading")) return;
 
         clearInterval(interval);
