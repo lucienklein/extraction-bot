@@ -15,14 +15,7010 @@ window.addEventListener(
 
     window.postMessage({ message: "displayFile", data: data }, "*");
 
-    let response = await fetch(`${API}/request`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ apikey, file: data }),
-    });
-    response = await response.json();
+    // let response = await fetch(`${API}/request`, {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({ apikey, file: data }),
+    // });
+    // response = await response.json();
 
-    console.log(response);
+    // console.log(response);
+
+    const response = {
+      ok: true,
+      data: {
+        _id: "6511a9685f43f6cd22847b45",
+        createdAt: "2023-09-25T15:38:16.893Z",
+        updatedAt: "2023-09-25T15:38:29.371Z",
+        __v: 0,
+        prescription: {
+          s3Key: "6511a9685f43f6cd22847b45.png",
+          height: 2338,
+          width: 1653,
+          content:
+            "CENTRE DE SANTÉ FILIERIS DE WITTENHEIM 26, rue du Mal de Lattre de Tassigny 68270 Wittenheim Tél : 03.89.52.75.32 Fax :03.89.50.57.81\nFilieris\nConsultations sur rendez-vous Lundi, mercredi et vendredi : après-midi\nDocteur Philippe DOLL Médecine Générale\n680006939\nMardi et jeudi : matin\n10002457751\nphilippe.doll@medecin.mssante.fr philippe.doll.filieris@medical68.apicrypt.org\nMadame\nFemme\nLucien Klein\nNé(e) le 18/08/1934 88 ans\nOrdonnance de laboratoire\n26/05/2023\nA dovale\nPrescriptions relatives au traitement de l'affection de longue durée reconnue (AFFECTION EXONERANTE)\nIonogramme plasmatique Exploration d'une anomalie lipidique (EAL)\nSGOT-SGPT\nLaboratoire BPA - Bassin Potassique SELAS 32A\nGlycémie à jeun Hémoglobine glyquée (HbA1c)\nCréatininémie\n18 Rue de Mindere mim 68270 MMITTENHEIM\nCréatine-phospho-kinase (CPK) totale Gamma GT Microalbuminurie\nSIRET : 433 895 265 00273 laboratoire bassinpotseique@b2a.fr Tél. 03 89 57 33 33 - Fax 03 80 57 16 85\nIonogramme plasmatique\nPrescriptions SANS RAPPORT avec l'affection de longue durée (MALADIES INTERCURRENTES)\nProtéine C reactive (CRP) Ferritine sérique Albuminémie Calcémie corrigée Vitamine D (D2-D3) Uricémie Thyréostimuline sanguine (TSH ultrasensible) NFS - Plaquettes\nDocteur DOLL Philippe Médecin généraliste Centre de santé FILIERIS Nº Finess 68 000 693 9 26, rue Maréchal de Lattre de Tassigny 68270 WITTENHEIM\nMembre d'une association de gestion agréée, le règlement par chèque est accepté.\nEn cas d'urgence, appelez le 15.",
+          words: [
+            {
+              content: "CENTRE",
+              offset: 0,
+              length: 6,
+              confidence: 0.995,
+              polygon: [
+                {
+                  x: 701,
+                  y: 86,
+                  _id: "6511a9745f43f6cd22847b49",
+                },
+                {
+                  x: 815,
+                  y: 83,
+                  _id: "6511a9745f43f6cd22847b4a",
+                },
+                {
+                  x: 815,
+                  y: 114,
+                  _id: "6511a9745f43f6cd22847b4b",
+                },
+                {
+                  x: 702,
+                  y: 114,
+                  _id: "6511a9745f43f6cd22847b4c",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847b48",
+            },
+            {
+              content: "DE",
+              offset: 7,
+              length: 2,
+              confidence: 0.998,
+              polygon: [
+                {
+                  x: 822,
+                  y: 83,
+                  _id: "6511a9745f43f6cd22847b4e",
+                },
+                {
+                  x: 863,
+                  y: 83,
+                  _id: "6511a9745f43f6cd22847b4f",
+                },
+                {
+                  x: 863,
+                  y: 114,
+                  _id: "6511a9745f43f6cd22847b50",
+                },
+                {
+                  x: 822,
+                  y: 114,
+                  _id: "6511a9745f43f6cd22847b51",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847b4d",
+            },
+            {
+              content: "SANTÉ",
+              offset: 10,
+              length: 5,
+              confidence: 0.993,
+              polygon: [
+                {
+                  x: 871,
+                  y: 82,
+                  _id: "6511a9745f43f6cd22847b53",
+                },
+                {
+                  x: 965,
+                  y: 81,
+                  _id: "6511a9745f43f6cd22847b54",
+                },
+                {
+                  x: 965,
+                  y: 114,
+                  _id: "6511a9745f43f6cd22847b55",
+                },
+                {
+                  x: 871,
+                  y: 114,
+                  _id: "6511a9745f43f6cd22847b56",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847b52",
+            },
+            {
+              content: "FILIERIS",
+              offset: 16,
+              length: 8,
+              confidence: 0.991,
+              polygon: [
+                {
+                  x: 974,
+                  y: 81,
+                  _id: "6511a9745f43f6cd22847b58",
+                },
+                {
+                  x: 1095,
+                  y: 81,
+                  _id: "6511a9745f43f6cd22847b59",
+                },
+                {
+                  x: 1095,
+                  y: 114,
+                  _id: "6511a9745f43f6cd22847b5a",
+                },
+                {
+                  x: 974,
+                  y: 114,
+                  _id: "6511a9745f43f6cd22847b5b",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847b57",
+            },
+            {
+              content: "DE",
+              offset: 25,
+              length: 2,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 1101,
+                  y: 81,
+                  _id: "6511a9745f43f6cd22847b5d",
+                },
+                {
+                  x: 1140,
+                  y: 81,
+                  _id: "6511a9745f43f6cd22847b5e",
+                },
+                {
+                  x: 1140,
+                  y: 114,
+                  _id: "6511a9745f43f6cd22847b5f",
+                },
+                {
+                  x: 1101,
+                  y: 114,
+                  _id: "6511a9745f43f6cd22847b60",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847b5c",
+            },
+            {
+              content: "WITTENHEIM",
+              offset: 28,
+              length: 10,
+              confidence: 0.966,
+              polygon: [
+                {
+                  x: 1149,
+                  y: 81,
+                  _id: "6511a9745f43f6cd22847b62",
+                },
+                {
+                  x: 1325,
+                  y: 82,
+                  _id: "6511a9745f43f6cd22847b63",
+                },
+                {
+                  x: 1325,
+                  y: 112,
+                  _id: "6511a9745f43f6cd22847b64",
+                },
+                {
+                  x: 1149,
+                  y: 113,
+                  _id: "6511a9745f43f6cd22847b65",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847b61",
+            },
+            {
+              content: "26,",
+              offset: 39,
+              length: 3,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 742,
+                  y: 125,
+                  _id: "6511a9745f43f6cd22847b67",
+                },
+                {
+                  x: 772,
+                  y: 124,
+                  _id: "6511a9745f43f6cd22847b68",
+                },
+                {
+                  x: 772,
+                  y: 148,
+                  _id: "6511a9745f43f6cd22847b69",
+                },
+                {
+                  x: 742,
+                  y: 148,
+                  _id: "6511a9745f43f6cd22847b6a",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847b66",
+            },
+            {
+              content: "rue",
+              offset: 43,
+              length: 3,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 777,
+                  y: 124,
+                  _id: "6511a9745f43f6cd22847b6c",
+                },
+                {
+                  x: 813,
+                  y: 124,
+                  _id: "6511a9745f43f6cd22847b6d",
+                },
+                {
+                  x: 813,
+                  y: 148,
+                  _id: "6511a9745f43f6cd22847b6e",
+                },
+                {
+                  x: 777,
+                  y: 148,
+                  _id: "6511a9745f43f6cd22847b6f",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847b6b",
+            },
+            {
+              content: "du",
+              offset: 47,
+              length: 2,
+              confidence: 0.995,
+              polygon: [
+                {
+                  x: 818,
+                  y: 124,
+                  _id: "6511a9745f43f6cd22847b71",
+                },
+                {
+                  x: 843,
+                  y: 123,
+                  _id: "6511a9745f43f6cd22847b72",
+                },
+                {
+                  x: 843,
+                  y: 149,
+                  _id: "6511a9745f43f6cd22847b73",
+                },
+                {
+                  x: 818,
+                  y: 148,
+                  _id: "6511a9745f43f6cd22847b74",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847b70",
+            },
+            {
+              content: "Mal",
+              offset: 50,
+              length: 3,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 848,
+                  y: 123,
+                  _id: "6511a9745f43f6cd22847b76",
+                },
+                {
+                  x: 885,
+                  y: 123,
+                  _id: "6511a9745f43f6cd22847b77",
+                },
+                {
+                  x: 885,
+                  y: 149,
+                  _id: "6511a9745f43f6cd22847b78",
+                },
+                {
+                  x: 848,
+                  y: 149,
+                  _id: "6511a9745f43f6cd22847b79",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847b75",
+            },
+            {
+              content: "de",
+              offset: 54,
+              length: 2,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 890,
+                  y: 123,
+                  _id: "6511a9745f43f6cd22847b7b",
+                },
+                {
+                  x: 915,
+                  y: 123,
+                  _id: "6511a9745f43f6cd22847b7c",
+                },
+                {
+                  x: 915,
+                  y: 149,
+                  _id: "6511a9745f43f6cd22847b7d",
+                },
+                {
+                  x: 890,
+                  y: 149,
+                  _id: "6511a9745f43f6cd22847b7e",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847b7a",
+            },
+            {
+              content: "Lattre",
+              offset: 57,
+              length: 6,
+              confidence: 0.996,
+              polygon: [
+                {
+                  x: 920,
+                  y: 123,
+                  _id: "6511a9745f43f6cd22847b80",
+                },
+                {
+                  x: 980,
+                  y: 122,
+                  _id: "6511a9745f43f6cd22847b81",
+                },
+                {
+                  x: 980,
+                  y: 149,
+                  _id: "6511a9745f43f6cd22847b82",
+                },
+                {
+                  x: 920,
+                  y: 149,
+                  _id: "6511a9745f43f6cd22847b83",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847b7f",
+            },
+            {
+              content: "de",
+              offset: 64,
+              length: 2,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 985,
+                  y: 122,
+                  _id: "6511a9745f43f6cd22847b85",
+                },
+                {
+                  x: 1012,
+                  y: 122,
+                  _id: "6511a9745f43f6cd22847b86",
+                },
+                {
+                  x: 1012,
+                  y: 149,
+                  _id: "6511a9745f43f6cd22847b87",
+                },
+                {
+                  x: 985,
+                  y: 149,
+                  _id: "6511a9745f43f6cd22847b88",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847b84",
+            },
+            {
+              content: "Tassigny",
+              offset: 67,
+              length: 8,
+              confidence: 0.994,
+              polygon: [
+                {
+                  x: 1017,
+                  y: 122,
+                  _id: "6511a9745f43f6cd22847b8a",
+                },
+                {
+                  x: 1109,
+                  y: 121,
+                  _id: "6511a9745f43f6cd22847b8b",
+                },
+                {
+                  x: 1109,
+                  y: 148,
+                  _id: "6511a9745f43f6cd22847b8c",
+                },
+                {
+                  x: 1017,
+                  y: 149,
+                  _id: "6511a9745f43f6cd22847b8d",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847b89",
+            },
+            {
+              content: "68270",
+              offset: 76,
+              length: 5,
+              confidence: 0.995,
+              polygon: [
+                {
+                  x: 1114,
+                  y: 121,
+                  _id: "6511a9745f43f6cd22847b8f",
+                },
+                {
+                  x: 1180,
+                  y: 121,
+                  _id: "6511a9745f43f6cd22847b90",
+                },
+                {
+                  x: 1180,
+                  y: 147,
+                  _id: "6511a9745f43f6cd22847b91",
+                },
+                {
+                  x: 1114,
+                  y: 148,
+                  _id: "6511a9745f43f6cd22847b92",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847b8e",
+            },
+            {
+              content: "Wittenheim",
+              offset: 82,
+              length: 10,
+              confidence: 0.968,
+              polygon: [
+                {
+                  x: 1185,
+                  y: 121,
+                  _id: "6511a9745f43f6cd22847b94",
+                },
+                {
+                  x: 1292,
+                  y: 121,
+                  _id: "6511a9745f43f6cd22847b95",
+                },
+                {
+                  x: 1292,
+                  y: 146,
+                  _id: "6511a9745f43f6cd22847b96",
+                },
+                {
+                  x: 1185,
+                  y: 147,
+                  _id: "6511a9745f43f6cd22847b97",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847b93",
+            },
+            {
+              content: "Tél",
+              offset: 93,
+              length: 3,
+              confidence: 0.994,
+              polygon: [
+                {
+                  x: 808,
+                  y: 163,
+                  _id: "6511a9745f43f6cd22847b99",
+                },
+                {
+                  x: 834,
+                  y: 163,
+                  _id: "6511a9745f43f6cd22847b9a",
+                },
+                {
+                  x: 834,
+                  y: 187,
+                  _id: "6511a9745f43f6cd22847b9b",
+                },
+                {
+                  x: 808,
+                  y: 187,
+                  _id: "6511a9745f43f6cd22847b9c",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847b98",
+            },
+            {
+              content: ":",
+              offset: 97,
+              length: 1,
+              confidence: 0.996,
+              polygon: [
+                {
+                  x: 839,
+                  y: 163,
+                  _id: "6511a9745f43f6cd22847b9e",
+                },
+                {
+                  x: 847,
+                  y: 163,
+                  _id: "6511a9745f43f6cd22847b9f",
+                },
+                {
+                  x: 847,
+                  y: 187,
+                  _id: "6511a9745f43f6cd22847ba0",
+                },
+                {
+                  x: 839,
+                  y: 187,
+                  _id: "6511a9745f43f6cd22847ba1",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847b9d",
+            },
+            {
+              content: "03.89.52.75.32",
+              offset: 99,
+              length: 14,
+              confidence: 0.991,
+              polygon: [
+                {
+                  x: 852,
+                  y: 163,
+                  _id: "6511a9745f43f6cd22847ba3",
+                },
+                {
+                  x: 1005,
+                  y: 161,
+                  _id: "6511a9745f43f6cd22847ba4",
+                },
+                {
+                  x: 1005,
+                  y: 187,
+                  _id: "6511a9745f43f6cd22847ba5",
+                },
+                {
+                  x: 852,
+                  y: 187,
+                  _id: "6511a9745f43f6cd22847ba6",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847ba2",
+            },
+            {
+              content: "Fax",
+              offset: 114,
+              length: 3,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 1021,
+                  y: 161,
+                  _id: "6511a9745f43f6cd22847ba8",
+                },
+                {
+                  x: 1060,
+                  y: 161,
+                  _id: "6511a9745f43f6cd22847ba9",
+                },
+                {
+                  x: 1060,
+                  y: 187,
+                  _id: "6511a9745f43f6cd22847baa",
+                },
+                {
+                  x: 1021,
+                  y: 187,
+                  _id: "6511a9745f43f6cd22847bab",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847ba7",
+            },
+            {
+              content: ":03.89.50.57.81",
+              offset: 118,
+              length: 15,
+              confidence: 0.991,
+              polygon: [
+                {
+                  x: 1065,
+                  y: 161,
+                  _id: "6511a9745f43f6cd22847bad",
+                },
+                {
+                  x: 1224,
+                  y: 161,
+                  _id: "6511a9745f43f6cd22847bae",
+                },
+                {
+                  x: 1224,
+                  y: 184,
+                  _id: "6511a9745f43f6cd22847baf",
+                },
+                {
+                  x: 1065,
+                  y: 187,
+                  _id: "6511a9745f43f6cd22847bb0",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847bac",
+            },
+            {
+              content: "Filieris",
+              offset: 134,
+              length: 8,
+              confidence: 0.88,
+              polygon: [
+                {
+                  x: 174,
+                  y: 175,
+                  _id: "6511a9745f43f6cd22847bb2",
+                },
+                {
+                  x: 358,
+                  y: 179,
+                  _id: "6511a9745f43f6cd22847bb3",
+                },
+                {
+                  x: 358,
+                  y: 224,
+                  _id: "6511a9745f43f6cd22847bb4",
+                },
+                {
+                  x: 175,
+                  y: 221,
+                  _id: "6511a9745f43f6cd22847bb5",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847bb1",
+            },
+            {
+              content: "Consultations",
+              offset: 143,
+              length: 13,
+              confidence: 0.991,
+              polygon: [
+                {
+                  x: 1127,
+                  y: 193,
+                  _id: "6511a9745f43f6cd22847bb7",
+                },
+                {
+                  x: 1286,
+                  y: 193,
+                  _id: "6511a9745f43f6cd22847bb8",
+                },
+                {
+                  x: 1286,
+                  y: 219,
+                  _id: "6511a9745f43f6cd22847bb9",
+                },
+                {
+                  x: 1128,
+                  y: 220,
+                  _id: "6511a9745f43f6cd22847bba",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847bb6",
+            },
+            {
+              content: "sur",
+              offset: 157,
+              length: 3,
+              confidence: 0.998,
+              polygon: [
+                {
+                  x: 1292,
+                  y: 193,
+                  _id: "6511a9745f43f6cd22847bbc",
+                },
+                {
+                  x: 1330,
+                  y: 193,
+                  _id: "6511a9745f43f6cd22847bbd",
+                },
+                {
+                  x: 1330,
+                  y: 219,
+                  _id: "6511a9745f43f6cd22847bbe",
+                },
+                {
+                  x: 1292,
+                  y: 219,
+                  _id: "6511a9745f43f6cd22847bbf",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847bbb",
+            },
+            {
+              content: "rendez-vous",
+              offset: 161,
+              length: 11,
+              confidence: 0.993,
+              polygon: [
+                {
+                  x: 1335,
+                  y: 193,
+                  _id: "6511a9745f43f6cd22847bc1",
+                },
+                {
+                  x: 1478,
+                  y: 194,
+                  _id: "6511a9745f43f6cd22847bc2",
+                },
+                {
+                  x: 1477,
+                  y: 219,
+                  _id: "6511a9745f43f6cd22847bc3",
+                },
+                {
+                  x: 1335,
+                  y: 219,
+                  _id: "6511a9745f43f6cd22847bc4",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847bc0",
+            },
+            {
+              content: "Lundi,",
+              offset: 173,
+              length: 6,
+              confidence: 0.996,
+              polygon: [
+                {
+                  x: 1093,
+                  y: 232,
+                  _id: "6511a9745f43f6cd22847bc6",
+                },
+                {
+                  x: 1155,
+                  y: 232,
+                  _id: "6511a9745f43f6cd22847bc7",
+                },
+                {
+                  x: 1155,
+                  y: 256,
+                  _id: "6511a9745f43f6cd22847bc8",
+                },
+                {
+                  x: 1093,
+                  y: 256,
+                  _id: "6511a9745f43f6cd22847bc9",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847bc5",
+            },
+            {
+              content: "mercredi",
+              offset: 180,
+              length: 8,
+              confidence: 0.995,
+              polygon: [
+                {
+                  x: 1160,
+                  y: 232,
+                  _id: "6511a9745f43f6cd22847bcb",
+                },
+                {
+                  x: 1247,
+                  y: 231,
+                  _id: "6511a9745f43f6cd22847bcc",
+                },
+                {
+                  x: 1247,
+                  y: 256,
+                  _id: "6511a9745f43f6cd22847bcd",
+                },
+                {
+                  x: 1160,
+                  y: 256,
+                  _id: "6511a9745f43f6cd22847bce",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847bca",
+            },
+            {
+              content: "et",
+              offset: 189,
+              length: 2,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 1251,
+                  y: 231,
+                  _id: "6511a9745f43f6cd22847bd0",
+                },
+                {
+                  x: 1271,
+                  y: 231,
+                  _id: "6511a9745f43f6cd22847bd1",
+                },
+                {
+                  x: 1271,
+                  y: 256,
+                  _id: "6511a9745f43f6cd22847bd2",
+                },
+                {
+                  x: 1252,
+                  y: 256,
+                  _id: "6511a9745f43f6cd22847bd3",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847bcf",
+            },
+            {
+              content: "vendredi",
+              offset: 192,
+              length: 8,
+              confidence: 0.995,
+              polygon: [
+                {
+                  x: 1276,
+                  y: 231,
+                  _id: "6511a9745f43f6cd22847bd5",
+                },
+                {
+                  x: 1360,
+                  y: 230,
+                  _id: "6511a9745f43f6cd22847bd6",
+                },
+                {
+                  x: 1360,
+                  y: 256,
+                  _id: "6511a9745f43f6cd22847bd7",
+                },
+                {
+                  x: 1276,
+                  y: 256,
+                  _id: "6511a9745f43f6cd22847bd8",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847bd4",
+            },
+            {
+              content: ":",
+              offset: 201,
+              length: 1,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 1364,
+                  y: 230,
+                  _id: "6511a9745f43f6cd22847bda",
+                },
+                {
+                  x: 1373,
+                  y: 230,
+                  _id: "6511a9745f43f6cd22847bdb",
+                },
+                {
+                  x: 1373,
+                  y: 256,
+                  _id: "6511a9745f43f6cd22847bdc",
+                },
+                {
+                  x: 1365,
+                  y: 256,
+                  _id: "6511a9745f43f6cd22847bdd",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847bd9",
+            },
+            {
+              content: "après-midi",
+              offset: 203,
+              length: 10,
+              confidence: 0.98,
+              polygon: [
+                {
+                  x: 1378,
+                  y: 230,
+                  _id: "6511a9745f43f6cd22847bdf",
+                },
+                {
+                  x: 1481,
+                  y: 230,
+                  _id: "6511a9745f43f6cd22847be0",
+                },
+                {
+                  x: 1481,
+                  y: 255,
+                  _id: "6511a9745f43f6cd22847be1",
+                },
+                {
+                  x: 1378,
+                  y: 256,
+                  _id: "6511a9745f43f6cd22847be2",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847bde",
+            },
+            {
+              content: "Docteur",
+              offset: 214,
+              length: 7,
+              confidence: 0.993,
+              polygon: [
+                {
+                  x: 174,
+                  y: 341,
+                  _id: "6511a9745f43f6cd22847be4",
+                },
+                {
+                  x: 270,
+                  y: 341,
+                  _id: "6511a9745f43f6cd22847be5",
+                },
+                {
+                  x: 270,
+                  y: 373,
+                  _id: "6511a9745f43f6cd22847be6",
+                },
+                {
+                  x: 174,
+                  y: 372,
+                  _id: "6511a9745f43f6cd22847be7",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847be3",
+            },
+            {
+              content: "Philippe",
+              offset: 222,
+              length: 8,
+              confidence: 0.995,
+              polygon: [
+                {
+                  x: 276,
+                  y: 341,
+                  _id: "6511a9745f43f6cd22847be9",
+                },
+                {
+                  x: 371,
+                  y: 341,
+                  _id: "6511a9745f43f6cd22847bea",
+                },
+                {
+                  x: 371,
+                  y: 372,
+                  _id: "6511a9745f43f6cd22847beb",
+                },
+                {
+                  x: 276,
+                  y: 373,
+                  _id: "6511a9745f43f6cd22847bec",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847be8",
+            },
+            {
+              content: "DOLL",
+              offset: 231,
+              length: 4,
+              confidence: 0.988,
+              polygon: [
+                {
+                  x: 377,
+                  y: 341,
+                  _id: "6511a9745f43f6cd22847bee",
+                },
+                {
+                  x: 455,
+                  y: 339,
+                  _id: "6511a9745f43f6cd22847bef",
+                },
+                {
+                  x: 455,
+                  y: 370,
+                  _id: "6511a9745f43f6cd22847bf0",
+                },
+                {
+                  x: 377,
+                  y: 372,
+                  _id: "6511a9745f43f6cd22847bf1",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847bed",
+            },
+            {
+              content: "Médecine",
+              offset: 236,
+              length: 8,
+              confidence: 0.993,
+              polygon: [
+                {
+                  x: 173,
+                  y: 375,
+                  _id: "6511a9745f43f6cd22847bf3",
+                },
+                {
+                  x: 299,
+                  y: 376,
+                  _id: "6511a9745f43f6cd22847bf4",
+                },
+                {
+                  x: 300,
+                  y: 406,
+                  _id: "6511a9745f43f6cd22847bf5",
+                },
+                {
+                  x: 174,
+                  y: 409,
+                  _id: "6511a9745f43f6cd22847bf6",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847bf2",
+            },
+            {
+              content: "Générale",
+              offset: 245,
+              length: 8,
+              confidence: 0.995,
+              polygon: [
+                {
+                  x: 306,
+                  y: 376,
+                  _id: "6511a9745f43f6cd22847bf8",
+                },
+                {
+                  x: 422,
+                  y: 374,
+                  _id: "6511a9745f43f6cd22847bf9",
+                },
+                {
+                  x: 422,
+                  y: 406,
+                  _id: "6511a9745f43f6cd22847bfa",
+                },
+                {
+                  x: 306,
+                  y: 406,
+                  _id: "6511a9745f43f6cd22847bfb",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847bf7",
+            },
+            {
+              content: "680006939",
+              offset: 254,
+              length: 9,
+              confidence: 0.992,
+              polygon: [
+                {
+                  x: 711,
+                  y: 352,
+                  _id: "6511a9745f43f6cd22847bfd",
+                },
+                {
+                  x: 824,
+                  y: 352,
+                  _id: "6511a9745f43f6cd22847bfe",
+                },
+                {
+                  x: 823,
+                  y: 373,
+                  _id: "6511a9745f43f6cd22847bff",
+                },
+                {
+                  x: 711,
+                  y: 372,
+                  _id: "6511a9745f43f6cd22847c00",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847bfc",
+            },
+            {
+              content: "Mardi",
+              offset: 264,
+              length: 5,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 1269,
+                  y: 267,
+                  _id: "6511a9745f43f6cd22847c02",
+                },
+                {
+                  x: 1328,
+                  y: 267,
+                  _id: "6511a9745f43f6cd22847c03",
+                },
+                {
+                  x: 1328,
+                  y: 293,
+                  _id: "6511a9745f43f6cd22847c04",
+                },
+                {
+                  x: 1270,
+                  y: 293,
+                  _id: "6511a9745f43f6cd22847c05",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847c01",
+            },
+            {
+              content: "et",
+              offset: 270,
+              length: 2,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 1333,
+                  y: 267,
+                  _id: "6511a9745f43f6cd22847c07",
+                },
+                {
+                  x: 1352,
+                  y: 267,
+                  _id: "6511a9745f43f6cd22847c08",
+                },
+                {
+                  x: 1352,
+                  y: 292,
+                  _id: "6511a9745f43f6cd22847c09",
+                },
+                {
+                  x: 1333,
+                  y: 293,
+                  _id: "6511a9745f43f6cd22847c0a",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847c06",
+            },
+            {
+              content: "jeudi",
+              offset: 273,
+              length: 5,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 1357,
+                  y: 267,
+                  _id: "6511a9745f43f6cd22847c0c",
+                },
+                {
+                  x: 1403,
+                  y: 268,
+                  _id: "6511a9745f43f6cd22847c0d",
+                },
+                {
+                  x: 1403,
+                  y: 292,
+                  _id: "6511a9745f43f6cd22847c0e",
+                },
+                {
+                  x: 1357,
+                  y: 292,
+                  _id: "6511a9745f43f6cd22847c0f",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847c0b",
+            },
+            {
+              content: ":",
+              offset: 279,
+              length: 1,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 1408,
+                  y: 268,
+                  _id: "6511a9745f43f6cd22847c11",
+                },
+                {
+                  x: 1414,
+                  y: 268,
+                  _id: "6511a9745f43f6cd22847c12",
+                },
+                {
+                  x: 1414,
+                  y: 292,
+                  _id: "6511a9745f43f6cd22847c13",
+                },
+                {
+                  x: 1408,
+                  y: 292,
+                  _id: "6511a9745f43f6cd22847c14",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847c10",
+            },
+            {
+              content: "matin",
+              offset: 281,
+              length: 5,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 1419,
+                  y: 268,
+                  _id: "6511a9745f43f6cd22847c16",
+                },
+                {
+                  x: 1479,
+                  y: 270,
+                  _id: "6511a9745f43f6cd22847c17",
+                },
+                {
+                  x: 1479,
+                  y: 292,
+                  _id: "6511a9745f43f6cd22847c18",
+                },
+                {
+                  x: 1419,
+                  y: 292,
+                  _id: "6511a9745f43f6cd22847c19",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847c15",
+            },
+            {
+              content: "10002457751",
+              offset: 287,
+              length: 11,
+              confidence: 0.991,
+              polygon: [
+                {
+                  x: 1139,
+                  y: 350,
+                  _id: "6511a9745f43f6cd22847c1b",
+                },
+                {
+                  x: 1278,
+                  y: 349,
+                  _id: "6511a9745f43f6cd22847c1c",
+                },
+                {
+                  x: 1278,
+                  y: 371,
+                  _id: "6511a9745f43f6cd22847c1d",
+                },
+                {
+                  x: 1140,
+                  y: 373,
+                  _id: "6511a9745f43f6cd22847c1e",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847c1a",
+            },
+            {
+              content: "philippe.doll@medecin.mssante.fr",
+              offset: 299,
+              length: 32,
+              confidence: 0.909,
+              polygon: [
+                {
+                  x: 809,
+                  y: 402,
+                  _id: "6511a9745f43f6cd22847c20",
+                },
+                {
+                  x: 1225,
+                  y: 401,
+                  _id: "6511a9745f43f6cd22847c21",
+                },
+                {
+                  x: 1225,
+                  y: 428,
+                  _id: "6511a9745f43f6cd22847c22",
+                },
+                {
+                  x: 809,
+                  y: 436,
+                  _id: "6511a9745f43f6cd22847c23",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847c1f",
+            },
+            {
+              content: "philippe.doll.filieris@medical68.apicrypt.org",
+              offset: 332,
+              length: 45,
+              confidence: 0.769,
+              polygon: [
+                {
+                  x: 752,
+                  y: 439,
+                  _id: "6511a9745f43f6cd22847c25",
+                },
+                {
+                  x: 1290,
+                  y: 438,
+                  _id: "6511a9745f43f6cd22847c26",
+                },
+                {
+                  x: 1289,
+                  y: 469,
+                  _id: "6511a9745f43f6cd22847c27",
+                },
+                {
+                  x: 753,
+                  y: 472,
+                  _id: "6511a9745f43f6cd22847c28",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847c24",
+            },
+            {
+              content: "Madame",
+              offset: 378,
+              length: 6,
+              confidence: 0.993,
+              polygon: [
+                {
+                  x: 173,
+                  y: 614,
+                  _id: "6511a9745f43f6cd22847c2a",
+                },
+                {
+                  x: 273,
+                  y: 614,
+                  _id: "6511a9745f43f6cd22847c2b",
+                },
+                {
+                  x: 272,
+                  y: 638,
+                  _id: "6511a9745f43f6cd22847c2c",
+                },
+                {
+                  x: 173,
+                  y: 638,
+                  _id: "6511a9745f43f6cd22847c2d",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847c29",
+            },
+            {
+              content: "Femme",
+              offset: 385,
+              length: 5,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 175,
+                  y: 652,
+                  _id: "6511a9745f43f6cd22847c2f",
+                },
+                {
+                  x: 265,
+                  y: 653,
+                  _id: "6511a9745f43f6cd22847c30",
+                },
+                {
+                  x: 264,
+                  y: 679,
+                  _id: "6511a9745f43f6cd22847c31",
+                },
+                {
+                  x: 175,
+                  y: 679,
+                  _id: "6511a9745f43f6cd22847c32",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847c2e",
+            },
+            {
+              content: "Lucien",
+              offset: 391,
+              length: 6,
+              confidence: 0.995,
+              polygon: [
+                {
+                  x: 440,
+                  y: 612,
+                  _id: "6511a9745f43f6cd22847c34",
+                },
+                {
+                  x: 541,
+                  y: 613,
+                  _id: "6511a9745f43f6cd22847c35",
+                },
+                {
+                  x: 542,
+                  y: 646,
+                  _id: "6511a9745f43f6cd22847c36",
+                },
+                {
+                  x: 440,
+                  y: 646,
+                  _id: "6511a9745f43f6cd22847c37",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847c33",
+            },
+            {
+              content: "Klein",
+              offset: 398,
+              length: 5,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 553,
+                  y: 613,
+                  _id: "6511a9745f43f6cd22847c39",
+                },
+                {
+                  x: 631,
+                  y: 612,
+                  _id: "6511a9745f43f6cd22847c3a",
+                },
+                {
+                  x: 632,
+                  y: 645,
+                  _id: "6511a9745f43f6cd22847c3b",
+                },
+                {
+                  x: 553,
+                  y: 646,
+                  _id: "6511a9745f43f6cd22847c3c",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847c38",
+            },
+            {
+              content: "Né(e)",
+              offset: 404,
+              length: 5,
+              confidence: 0.993,
+              polygon: [
+                {
+                  x: 174,
+                  y: 689,
+                  _id: "6511a9745f43f6cd22847c3e",
+                },
+                {
+                  x: 236,
+                  y: 691,
+                  _id: "6511a9745f43f6cd22847c3f",
+                },
+                {
+                  x: 236,
+                  y: 721,
+                  _id: "6511a9745f43f6cd22847c40",
+                },
+                {
+                  x: 174,
+                  y: 722,
+                  _id: "6511a9745f43f6cd22847c41",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847c3d",
+            },
+            {
+              content: "le",
+              offset: 410,
+              length: 2,
+              confidence: 0.994,
+              polygon: [
+                {
+                  x: 242,
+                  y: 690,
+                  _id: "6511a9745f43f6cd22847c43",
+                },
+                {
+                  x: 268,
+                  y: 690,
+                  _id: "6511a9745f43f6cd22847c44",
+                },
+                {
+                  x: 268,
+                  y: 720,
+                  _id: "6511a9745f43f6cd22847c45",
+                },
+                {
+                  x: 242,
+                  y: 721,
+                  _id: "6511a9745f43f6cd22847c46",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847c42",
+            },
+            {
+              content: "18/08/1934",
+              offset: 413,
+              length: 10,
+              confidence: 0.991,
+              polygon: [
+                {
+                  x: 460,
+                  y: 688,
+                  _id: "6511a9745f43f6cd22847c48",
+                },
+                {
+                  x: 588,
+                  y: 689,
+                  _id: "6511a9745f43f6cd22847c49",
+                },
+                {
+                  x: 588,
+                  y: 715,
+                  _id: "6511a9745f43f6cd22847c4a",
+                },
+                {
+                  x: 460,
+                  y: 717,
+                  _id: "6511a9745f43f6cd22847c4b",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847c47",
+            },
+            {
+              content: "88",
+              offset: 424,
+              length: 2,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 593,
+                  y: 689,
+                  _id: "6511a9745f43f6cd22847c4d",
+                },
+                {
+                  x: 623,
+                  y: 690,
+                  _id: "6511a9745f43f6cd22847c4e",
+                },
+                {
+                  x: 623,
+                  y: 716,
+                  _id: "6511a9745f43f6cd22847c4f",
+                },
+                {
+                  x: 594,
+                  y: 716,
+                  _id: "6511a9745f43f6cd22847c50",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847c4c",
+            },
+            {
+              content: "ans",
+              offset: 427,
+              length: 3,
+              confidence: 0.998,
+              polygon: [
+                {
+                  x: 629,
+                  y: 690,
+                  _id: "6511a9745f43f6cd22847c52",
+                },
+                {
+                  x: 674,
+                  y: 690,
+                  _id: "6511a9745f43f6cd22847c53",
+                },
+                {
+                  x: 674,
+                  y: 717,
+                  _id: "6511a9745f43f6cd22847c54",
+                },
+                {
+                  x: 629,
+                  y: 716,
+                  _id: "6511a9745f43f6cd22847c55",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847c51",
+            },
+            {
+              content: "Ordonnance",
+              offset: 431,
+              length: 10,
+              confidence: 0.994,
+              polygon: [
+                {
+                  x: 611,
+                  y: 771,
+                  _id: "6511a9745f43f6cd22847c57",
+                },
+                {
+                  x: 824,
+                  y: 768,
+                  _id: "6511a9745f43f6cd22847c58",
+                },
+                {
+                  x: 824,
+                  y: 807,
+                  _id: "6511a9745f43f6cd22847c59",
+                },
+                {
+                  x: 612,
+                  y: 806,
+                  _id: "6511a9745f43f6cd22847c5a",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847c56",
+            },
+            {
+              content: "de",
+              offset: 442,
+              length: 2,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 834,
+                  y: 768,
+                  _id: "6511a9745f43f6cd22847c5c",
+                },
+                {
+                  x: 881,
+                  y: 768,
+                  _id: "6511a9745f43f6cd22847c5d",
+                },
+                {
+                  x: 881,
+                  y: 807,
+                  _id: "6511a9745f43f6cd22847c5e",
+                },
+                {
+                  x: 835,
+                  y: 807,
+                  _id: "6511a9745f43f6cd22847c5f",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847c5b",
+            },
+            {
+              content: "laboratoire",
+              offset: 445,
+              length: 11,
+              confidence: 0.993,
+              polygon: [
+                {
+                  x: 892,
+                  y: 768,
+                  _id: "6511a9745f43f6cd22847c61",
+                },
+                {
+                  x: 1080,
+                  y: 768,
+                  _id: "6511a9745f43f6cd22847c62",
+                },
+                {
+                  x: 1079,
+                  y: 804,
+                  _id: "6511a9745f43f6cd22847c63",
+                },
+                {
+                  x: 892,
+                  y: 807,
+                  _id: "6511a9745f43f6cd22847c64",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847c60",
+            },
+            {
+              content: "26/05/2023",
+              offset: 457,
+              length: 10,
+              confidence: 0.993,
+              polygon: [
+                {
+                  x: 1143,
+                  y: 567,
+                  _id: "6511a9745f43f6cd22847c66",
+                },
+                {
+                  x: 1273,
+                  y: 566,
+                  _id: "6511a9745f43f6cd22847c67",
+                },
+                {
+                  x: 1273,
+                  y: 593,
+                  _id: "6511a9745f43f6cd22847c68",
+                },
+                {
+                  x: 1143,
+                  y: 594,
+                  _id: "6511a9745f43f6cd22847c69",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847c65",
+            },
+            {
+              content: "A",
+              offset: 468,
+              length: 1,
+              confidence: 0.817,
+              polygon: [
+                {
+                  x: 1179,
+                  y: 664,
+                  _id: "6511a9745f43f6cd22847c6b",
+                },
+                {
+                  x: 1239,
+                  y: 656,
+                  _id: "6511a9745f43f6cd22847c6c",
+                },
+                {
+                  x: 1246,
+                  y: 750,
+                  _id: "6511a9745f43f6cd22847c6d",
+                },
+                {
+                  x: 1186,
+                  y: 758,
+                  _id: "6511a9745f43f6cd22847c6e",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847c6a",
+            },
+            {
+              content: "dovale",
+              offset: 470,
+              length: 6,
+              confidence: 0.176,
+              polygon: [
+                {
+                  x: 1265,
+                  y: 652,
+                  _id: "6511a9745f43f6cd22847c70",
+                },
+                {
+                  x: 1501,
+                  y: 636,
+                  _id: "6511a9745f43f6cd22847c71",
+                },
+                {
+                  x: 1503,
+                  y: 732,
+                  _id: "6511a9745f43f6cd22847c72",
+                },
+                {
+                  x: 1271,
+                  y: 747,
+                  _id: "6511a9745f43f6cd22847c73",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847c6f",
+            },
+            {
+              content: "Prescriptions",
+              offset: 477,
+              length: 13,
+              confidence: 0.981,
+              polygon: [
+                {
+                  x: 322,
+                  y: 884,
+                  _id: "6511a9745f43f6cd22847c75",
+                },
+                {
+                  x: 445,
+                  y: 883,
+                  _id: "6511a9745f43f6cd22847c76",
+                },
+                {
+                  x: 445,
+                  y: 909,
+                  _id: "6511a9745f43f6cd22847c77",
+                },
+                {
+                  x: 322,
+                  y: 910,
+                  _id: "6511a9745f43f6cd22847c78",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847c74",
+            },
+            {
+              content: "relatives",
+              offset: 491,
+              length: 9,
+              confidence: 0.991,
+              polygon: [
+                {
+                  x: 451,
+                  y: 883,
+                  _id: "6511a9745f43f6cd22847c7a",
+                },
+                {
+                  x: 534,
+                  y: 883,
+                  _id: "6511a9745f43f6cd22847c7b",
+                },
+                {
+                  x: 535,
+                  y: 909,
+                  _id: "6511a9745f43f6cd22847c7c",
+                },
+                {
+                  x: 451,
+                  y: 909,
+                  _id: "6511a9745f43f6cd22847c7d",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847c79",
+            },
+            {
+              content: "au",
+              offset: 501,
+              length: 2,
+              confidence: 0.994,
+              polygon: [
+                {
+                  x: 540,
+                  y: 883,
+                  _id: "6511a9745f43f6cd22847c7f",
+                },
+                {
+                  x: 565,
+                  y: 882,
+                  _id: "6511a9745f43f6cd22847c80",
+                },
+                {
+                  x: 565,
+                  y: 909,
+                  _id: "6511a9745f43f6cd22847c81",
+                },
+                {
+                  x: 540,
+                  y: 909,
+                  _id: "6511a9745f43f6cd22847c82",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847c7e",
+            },
+            {
+              content: "traitement",
+              offset: 504,
+              length: 10,
+              confidence: 0.97,
+              polygon: [
+                {
+                  x: 570,
+                  y: 882,
+                  _id: "6511a9745f43f6cd22847c84",
+                },
+                {
+                  x: 673,
+                  y: 882,
+                  _id: "6511a9745f43f6cd22847c85",
+                },
+                {
+                  x: 673,
+                  y: 908,
+                  _id: "6511a9745f43f6cd22847c86",
+                },
+                {
+                  x: 571,
+                  y: 908,
+                  _id: "6511a9745f43f6cd22847c87",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847c83",
+            },
+            {
+              content: "de",
+              offset: 515,
+              length: 2,
+              confidence: 0.994,
+              polygon: [
+                {
+                  x: 678,
+                  y: 882,
+                  _id: "6511a9745f43f6cd22847c89",
+                },
+                {
+                  x: 702,
+                  y: 881,
+                  _id: "6511a9745f43f6cd22847c8a",
+                },
+                {
+                  x: 702,
+                  y: 908,
+                  _id: "6511a9745f43f6cd22847c8b",
+                },
+                {
+                  x: 678,
+                  y: 908,
+                  _id: "6511a9745f43f6cd22847c8c",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847c88",
+            },
+            {
+              content: "l'affection",
+              offset: 518,
+              length: 11,
+              confidence: 0.961,
+              polygon: [
+                {
+                  x: 707,
+                  y: 881,
+                  _id: "6511a9745f43f6cd22847c8e",
+                },
+                {
+                  x: 809,
+                  y: 881,
+                  _id: "6511a9745f43f6cd22847c8f",
+                },
+                {
+                  x: 809,
+                  y: 907,
+                  _id: "6511a9745f43f6cd22847c90",
+                },
+                {
+                  x: 708,
+                  y: 908,
+                  _id: "6511a9745f43f6cd22847c91",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847c8d",
+            },
+            {
+              content: "de",
+              offset: 530,
+              length: 2,
+              confidence: 0.97,
+              polygon: [
+                {
+                  x: 814,
+                  y: 881,
+                  _id: "6511a9745f43f6cd22847c93",
+                },
+                {
+                  x: 839,
+                  y: 880,
+                  _id: "6511a9745f43f6cd22847c94",
+                },
+                {
+                  x: 840,
+                  y: 907,
+                  _id: "6511a9745f43f6cd22847c95",
+                },
+                {
+                  x: 814,
+                  y: 907,
+                  _id: "6511a9745f43f6cd22847c96",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847c92",
+            },
+            {
+              content: "longue",
+              offset: 533,
+              length: 6,
+              confidence: 0.967,
+              polygon: [
+                {
+                  x: 845,
+                  y: 880,
+                  _id: "6511a9745f43f6cd22847c98",
+                },
+                {
+                  x: 915,
+                  y: 880,
+                  _id: "6511a9745f43f6cd22847c99",
+                },
+                {
+                  x: 915,
+                  y: 906,
+                  _id: "6511a9745f43f6cd22847c9a",
+                },
+                {
+                  x: 845,
+                  y: 907,
+                  _id: "6511a9745f43f6cd22847c9b",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847c97",
+            },
+            {
+              content: "durée",
+              offset: 540,
+              length: 5,
+              confidence: 0.969,
+              polygon: [
+                {
+                  x: 920,
+                  y: 880,
+                  _id: "6511a9745f43f6cd22847c9d",
+                },
+                {
+                  x: 976,
+                  y: 879,
+                  _id: "6511a9745f43f6cd22847c9e",
+                },
+                {
+                  x: 977,
+                  y: 906,
+                  _id: "6511a9745f43f6cd22847c9f",
+                },
+                {
+                  x: 920,
+                  y: 906,
+                  _id: "6511a9745f43f6cd22847ca0",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847c9c",
+            },
+            {
+              content: "reconnue",
+              offset: 546,
+              length: 8,
+              confidence: 0.957,
+              polygon: [
+                {
+                  x: 982,
+                  y: 879,
+                  _id: "6511a9745f43f6cd22847ca2",
+                },
+                {
+                  x: 1076,
+                  y: 879,
+                  _id: "6511a9745f43f6cd22847ca3",
+                },
+                {
+                  x: 1076,
+                  y: 905,
+                  _id: "6511a9745f43f6cd22847ca4",
+                },
+                {
+                  x: 982,
+                  y: 906,
+                  _id: "6511a9745f43f6cd22847ca5",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847ca1",
+            },
+            {
+              content: "(AFFECTION",
+              offset: 555,
+              length: 10,
+              confidence: 0.886,
+              polygon: [
+                {
+                  x: 1081,
+                  y: 879,
+                  _id: "6511a9745f43f6cd22847ca7",
+                },
+                {
+                  x: 1209,
+                  y: 878,
+                  _id: "6511a9745f43f6cd22847ca8",
+                },
+                {
+                  x: 1209,
+                  y: 904,
+                  _id: "6511a9745f43f6cd22847ca9",
+                },
+                {
+                  x: 1081,
+                  y: 905,
+                  _id: "6511a9745f43f6cd22847caa",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847ca6",
+            },
+            {
+              content: "EXONERANTE)",
+              offset: 566,
+              length: 11,
+              confidence: 0.961,
+              polygon: [
+                {
+                  x: 1215,
+                  y: 878,
+                  _id: "6511a9745f43f6cd22847cac",
+                },
+                {
+                  x: 1374,
+                  y: 876,
+                  _id: "6511a9745f43f6cd22847cad",
+                },
+                {
+                  x: 1375,
+                  y: 902,
+                  _id: "6511a9745f43f6cd22847cae",
+                },
+                {
+                  x: 1215,
+                  y: 904,
+                  _id: "6511a9745f43f6cd22847caf",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847cab",
+            },
+            {
+              content: "Ionogramme",
+              offset: 578,
+              length: 10,
+              confidence: 0.993,
+              polygon: [
+                {
+                  x: 174,
+                  y: 980,
+                  _id: "6511a9745f43f6cd22847cb1",
+                },
+                {
+                  x: 369,
+                  y: 977,
+                  _id: "6511a9745f43f6cd22847cb2",
+                },
+                {
+                  x: 369,
+                  y: 1015,
+                  _id: "6511a9745f43f6cd22847cb3",
+                },
+                {
+                  x: 174,
+                  y: 1017,
+                  _id: "6511a9745f43f6cd22847cb4",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847cb0",
+            },
+            {
+              content: "plasmatique",
+              offset: 589,
+              length: 11,
+              confidence: 0.993,
+              polygon: [
+                {
+                  x: 377,
+                  y: 977,
+                  _id: "6511a9745f43f6cd22847cb6",
+                },
+                {
+                  x: 562,
+                  y: 975,
+                  _id: "6511a9745f43f6cd22847cb7",
+                },
+                {
+                  x: 562,
+                  y: 1012,
+                  _id: "6511a9745f43f6cd22847cb8",
+                },
+                {
+                  x: 377,
+                  y: 1015,
+                  _id: "6511a9745f43f6cd22847cb9",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847cb5",
+            },
+            {
+              content: "Exploration",
+              offset: 601,
+              length: 11,
+              confidence: 0.991,
+              polygon: [
+                {
+                  x: 178,
+                  y: 1018,
+                  _id: "6511a9745f43f6cd22847cbb",
+                },
+                {
+                  x: 342,
+                  y: 1016,
+                  _id: "6511a9745f43f6cd22847cbc",
+                },
+                {
+                  x: 342,
+                  y: 1053,
+                  _id: "6511a9745f43f6cd22847cbd",
+                },
+                {
+                  x: 177,
+                  y: 1054,
+                  _id: "6511a9745f43f6cd22847cbe",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847cba",
+            },
+            {
+              content: "d'une",
+              offset: 613,
+              length: 5,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 350,
+                  y: 1016,
+                  _id: "6511a9745f43f6cd22847cc0",
+                },
+                {
+                  x: 435,
+                  y: 1015,
+                  _id: "6511a9745f43f6cd22847cc1",
+                },
+                {
+                  x: 435,
+                  y: 1052,
+                  _id: "6511a9745f43f6cd22847cc2",
+                },
+                {
+                  x: 350,
+                  y: 1053,
+                  _id: "6511a9745f43f6cd22847cc3",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847cbf",
+            },
+            {
+              content: "anomalie",
+              offset: 619,
+              length: 8,
+              confidence: 0.995,
+              polygon: [
+                {
+                  x: 442,
+                  y: 1015,
+                  _id: "6511a9745f43f6cd22847cc5",
+                },
+                {
+                  x: 578,
+                  y: 1013,
+                  _id: "6511a9745f43f6cd22847cc6",
+                },
+                {
+                  x: 579,
+                  y: 1051,
+                  _id: "6511a9745f43f6cd22847cc7",
+                },
+                {
+                  x: 442,
+                  y: 1052,
+                  _id: "6511a9745f43f6cd22847cc8",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847cc4",
+            },
+            {
+              content: "lipidique",
+              offset: 628,
+              length: 9,
+              confidence: 0.993,
+              polygon: [
+                {
+                  x: 586,
+                  y: 1013,
+                  _id: "6511a9745f43f6cd22847cca",
+                },
+                {
+                  x: 714,
+                  y: 1012,
+                  _id: "6511a9745f43f6cd22847ccb",
+                },
+                {
+                  x: 715,
+                  y: 1051,
+                  _id: "6511a9745f43f6cd22847ccc",
+                },
+                {
+                  x: 586,
+                  y: 1051,
+                  _id: "6511a9745f43f6cd22847ccd",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847cc9",
+            },
+            {
+              content: "(EAL)",
+              offset: 638,
+              length: 5,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 722,
+                  y: 1012,
+                  _id: "6511a9745f43f6cd22847ccf",
+                },
+                {
+                  x: 812,
+                  y: 1011,
+                  _id: "6511a9745f43f6cd22847cd0",
+                },
+                {
+                  x: 813,
+                  y: 1051,
+                  _id: "6511a9745f43f6cd22847cd1",
+                },
+                {
+                  x: 723,
+                  y: 1051,
+                  _id: "6511a9745f43f6cd22847cd2",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847cce",
+            },
+            {
+              content: "SGOT-SGPT",
+              offset: 644,
+              length: 9,
+              confidence: 0.994,
+              polygon: [
+                {
+                  x: 177,
+                  y: 1058,
+                  _id: "6511a9745f43f6cd22847cd4",
+                },
+                {
+                  x: 358,
+                  y: 1055,
+                  _id: "6511a9745f43f6cd22847cd5",
+                },
+                {
+                  x: 359,
+                  y: 1091,
+                  _id: "6511a9745f43f6cd22847cd6",
+                },
+                {
+                  x: 176,
+                  y: 1094,
+                  _id: "6511a9745f43f6cd22847cd7",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847cd3",
+            },
+            {
+              content: "Laboratoire",
+              offset: 654,
+              length: 11,
+              confidence: 0.991,
+              polygon: [
+                {
+                  x: 946,
+                  y: 1105,
+                  _id: "6511a9745f43f6cd22847cd9",
+                },
+                {
+                  x: 1086,
+                  y: 1094,
+                  _id: "6511a9745f43f6cd22847cda",
+                },
+                {
+                  x: 1087,
+                  y: 1122,
+                  _id: "6511a9745f43f6cd22847cdb",
+                },
+                {
+                  x: 946,
+                  y: 1134,
+                  _id: "6511a9745f43f6cd22847cdc",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847cd8",
+            },
+            {
+              content: "BPA",
+              offset: 666,
+              length: 3,
+              confidence: 0.432,
+              polygon: [
+                {
+                  x: 1092,
+                  y: 1093,
+                  _id: "6511a9745f43f6cd22847cde",
+                },
+                {
+                  x: 1142,
+                  y: 1090,
+                  _id: "6511a9745f43f6cd22847cdf",
+                },
+                {
+                  x: 1143,
+                  y: 1118,
+                  _id: "6511a9745f43f6cd22847ce0",
+                },
+                {
+                  x: 1093,
+                  y: 1122,
+                  _id: "6511a9745f43f6cd22847ce1",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847cdd",
+            },
+            {
+              content: "-",
+              offset: 670,
+              length: 1,
+              confidence: 0.697,
+              polygon: [
+                {
+                  x: 1150,
+                  y: 1089,
+                  _id: "6511a9745f43f6cd22847ce3",
+                },
+                {
+                  x: 1161,
+                  y: 1089,
+                  _id: "6511a9745f43f6cd22847ce4",
+                },
+                {
+                  x: 1162,
+                  y: 1117,
+                  _id: "6511a9745f43f6cd22847ce5",
+                },
+                {
+                  x: 1151,
+                  y: 1118,
+                  _id: "6511a9745f43f6cd22847ce6",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847ce2",
+            },
+            {
+              content: "Bassin",
+              offset: 672,
+              length: 6,
+              confidence: 0.899,
+              polygon: [
+                {
+                  x: 1166,
+                  y: 1088,
+                  _id: "6511a9745f43f6cd22847ce8",
+                },
+                {
+                  x: 1252,
+                  y: 1083,
+                  _id: "6511a9745f43f6cd22847ce9",
+                },
+                {
+                  x: 1253,
+                  y: 1111,
+                  _id: "6511a9745f43f6cd22847cea",
+                },
+                {
+                  x: 1167,
+                  y: 1116,
+                  _id: "6511a9745f43f6cd22847ceb",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847ce7",
+            },
+            {
+              content: "Potassique",
+              offset: 679,
+              length: 10,
+              confidence: 0.994,
+              polygon: [
+                {
+                  x: 1257,
+                  y: 1082,
+                  _id: "6511a9745f43f6cd22847ced",
+                },
+                {
+                  x: 1396,
+                  y: 1074,
+                  _id: "6511a9745f43f6cd22847cee",
+                },
+                {
+                  x: 1398,
+                  y: 1103,
+                  _id: "6511a9745f43f6cd22847cef",
+                },
+                {
+                  x: 1259,
+                  y: 1110,
+                  _id: "6511a9745f43f6cd22847cf0",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847cec",
+            },
+            {
+              content: "SELAS",
+              offset: 690,
+              length: 5,
+              confidence: 0.991,
+              polygon: [
+                {
+                  x: 1102,
+                  y: 1125,
+                  _id: "6511a9745f43f6cd22847cf2",
+                },
+                {
+                  x: 1187,
+                  y: 1118,
+                  _id: "6511a9745f43f6cd22847cf3",
+                },
+                {
+                  x: 1189,
+                  y: 1152,
+                  _id: "6511a9745f43f6cd22847cf4",
+                },
+                {
+                  x: 1105,
+                  y: 1158,
+                  _id: "6511a9745f43f6cd22847cf5",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847cf1",
+            },
+            {
+              content: "32A",
+              offset: 696,
+              length: 3,
+              confidence: 0.632,
+              polygon: [
+                {
+                  x: 1194,
+                  y: 1118,
+                  _id: "6511a9745f43f6cd22847cf7",
+                },
+                {
+                  x: 1249,
+                  y: 1115,
+                  _id: "6511a9745f43f6cd22847cf8",
+                },
+                {
+                  x: 1251,
+                  y: 1149,
+                  _id: "6511a9745f43f6cd22847cf9",
+                },
+                {
+                  x: 1196,
+                  y: 1152,
+                  _id: "6511a9745f43f6cd22847cfa",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847cf6",
+            },
+            {
+              content: "Glycémie",
+              offset: 700,
+              length: 8,
+              confidence: 0.994,
+              polygon: [
+                {
+                  x: 180,
+                  y: 1096,
+                  _id: "6511a9745f43f6cd22847cfc",
+                },
+                {
+                  x: 313,
+                  y: 1095,
+                  _id: "6511a9745f43f6cd22847cfd",
+                },
+                {
+                  x: 313,
+                  y: 1134,
+                  _id: "6511a9745f43f6cd22847cfe",
+                },
+                {
+                  x: 179,
+                  y: 1136,
+                  _id: "6511a9745f43f6cd22847cff",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847cfb",
+            },
+            {
+              content: "à",
+              offset: 709,
+              length: 1,
+              confidence: 0.993,
+              polygon: [
+                {
+                  x: 321,
+                  y: 1095,
+                  _id: "6511a9745f43f6cd22847d01",
+                },
+                {
+                  x: 339,
+                  y: 1095,
+                  _id: "6511a9745f43f6cd22847d02",
+                },
+                {
+                  x: 338,
+                  y: 1134,
+                  _id: "6511a9745f43f6cd22847d03",
+                },
+                {
+                  x: 320,
+                  y: 1134,
+                  _id: "6511a9745f43f6cd22847d04",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847d00",
+            },
+            {
+              content: "jeun",
+              offset: 711,
+              length: 4,
+              confidence: 0.988,
+              polygon: [
+                {
+                  x: 346,
+                  y: 1095,
+                  _id: "6511a9745f43f6cd22847d06",
+                },
+                {
+                  x: 415,
+                  y: 1094,
+                  _id: "6511a9745f43f6cd22847d07",
+                },
+                {
+                  x: 415,
+                  y: 1132,
+                  _id: "6511a9745f43f6cd22847d08",
+                },
+                {
+                  x: 346,
+                  y: 1133,
+                  _id: "6511a9745f43f6cd22847d09",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847d05",
+            },
+            {
+              content: "Hémoglobine",
+              offset: 716,
+              length: 11,
+              confidence: 0.991,
+              polygon: [
+                {
+                  x: 178,
+                  y: 1137,
+                  _id: "6511a9745f43f6cd22847d0b",
+                },
+                {
+                  x: 375,
+                  y: 1136,
+                  _id: "6511a9745f43f6cd22847d0c",
+                },
+                {
+                  x: 376,
+                  y: 1176,
+                  _id: "6511a9745f43f6cd22847d0d",
+                },
+                {
+                  x: 179,
+                  y: 1176,
+                  _id: "6511a9745f43f6cd22847d0e",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847d0a",
+            },
+            {
+              content: "glyquée",
+              offset: 728,
+              length: 7,
+              confidence: 0.993,
+              polygon: [
+                {
+                  x: 383,
+                  y: 1135,
+                  _id: "6511a9745f43f6cd22847d10",
+                },
+                {
+                  x: 501,
+                  y: 1134,
+                  _id: "6511a9745f43f6cd22847d11",
+                },
+                {
+                  x: 501,
+                  y: 1176,
+                  _id: "6511a9745f43f6cd22847d12",
+                },
+                {
+                  x: 384,
+                  y: 1176,
+                  _id: "6511a9745f43f6cd22847d13",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847d0f",
+            },
+            {
+              content: "(HbA1c)",
+              offset: 736,
+              length: 7,
+              confidence: 0.994,
+              polygon: [
+                {
+                  x: 509,
+                  y: 1134,
+                  _id: "6511a9745f43f6cd22847d15",
+                },
+                {
+                  x: 640,
+                  y: 1133,
+                  _id: "6511a9745f43f6cd22847d16",
+                },
+                {
+                  x: 640,
+                  y: 1175,
+                  _id: "6511a9745f43f6cd22847d17",
+                },
+                {
+                  x: 509,
+                  y: 1176,
+                  _id: "6511a9745f43f6cd22847d18",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847d14",
+            },
+            {
+              content: "Créatininémie",
+              offset: 744,
+              length: 13,
+              confidence: 0.991,
+              polygon: [
+                {
+                  x: 178,
+                  y: 1176,
+                  _id: "6511a9745f43f6cd22847d1a",
+                },
+                {
+                  x: 385,
+                  y: 1176,
+                  _id: "6511a9745f43f6cd22847d1b",
+                },
+                {
+                  x: 384,
+                  y: 1211,
+                  _id: "6511a9745f43f6cd22847d1c",
+                },
+                {
+                  x: 179,
+                  y: 1214,
+                  _id: "6511a9745f43f6cd22847d1d",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847d19",
+            },
+            {
+              content: "18",
+              offset: 758,
+              length: 2,
+              confidence: 0.998,
+              polygon: [
+                {
+                  x: 1035,
+                  y: 1166,
+                  _id: "6511a9745f43f6cd22847d1f",
+                },
+                {
+                  x: 1066,
+                  y: 1163,
+                  _id: "6511a9745f43f6cd22847d20",
+                },
+                {
+                  x: 1067,
+                  y: 1189,
+                  _id: "6511a9745f43f6cd22847d21",
+                },
+                {
+                  x: 1037,
+                  y: 1191,
+                  _id: "6511a9745f43f6cd22847d22",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847d1e",
+            },
+            {
+              content: "Rue",
+              offset: 761,
+              length: 3,
+              confidence: 0.733,
+              polygon: [
+                {
+                  x: 1073,
+                  y: 1163,
+                  _id: "6511a9745f43f6cd22847d24",
+                },
+                {
+                  x: 1123,
+                  y: 1159,
+                  _id: "6511a9745f43f6cd22847d25",
+                },
+                {
+                  x: 1124,
+                  y: 1184,
+                  _id: "6511a9745f43f6cd22847d26",
+                },
+                {
+                  x: 1074,
+                  y: 1188,
+                  _id: "6511a9745f43f6cd22847d27",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847d23",
+            },
+            {
+              content: "de",
+              offset: 765,
+              length: 2,
+              confidence: 0.331,
+              polygon: [
+                {
+                  x: 1128,
+                  y: 1158,
+                  _id: "6511a9745f43f6cd22847d29",
+                },
+                {
+                  x: 1158,
+                  y: 1156,
+                  _id: "6511a9745f43f6cd22847d2a",
+                },
+                {
+                  x: 1159,
+                  y: 1182,
+                  _id: "6511a9745f43f6cd22847d2b",
+                },
+                {
+                  x: 1129,
+                  y: 1184,
+                  _id: "6511a9745f43f6cd22847d2c",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847d28",
+            },
+            {
+              content: "Mindere",
+              offset: 768,
+              length: 7,
+              confidence: 0.427,
+              polygon: [
+                {
+                  x: 1165,
+                  y: 1155,
+                  _id: "6511a9745f43f6cd22847d2e",
+                },
+                {
+                  x: 1261,
+                  y: 1149,
+                  _id: "6511a9745f43f6cd22847d2f",
+                },
+                {
+                  x: 1262,
+                  y: 1175,
+                  _id: "6511a9745f43f6cd22847d30",
+                },
+                {
+                  x: 1167,
+                  y: 1181,
+                  _id: "6511a9745f43f6cd22847d31",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847d2d",
+            },
+            {
+              content: "mim",
+              offset: 776,
+              length: 3,
+              confidence: 0.071,
+              polygon: [
+                {
+                  x: 1275,
+                  y: 1148,
+                  _id: "6511a9745f43f6cd22847d33",
+                },
+                {
+                  x: 1316,
+                  y: 1145,
+                  _id: "6511a9745f43f6cd22847d34",
+                },
+                {
+                  x: 1317,
+                  y: 1173,
+                  _id: "6511a9745f43f6cd22847d35",
+                },
+                {
+                  x: 1276,
+                  y: 1175,
+                  _id: "6511a9745f43f6cd22847d36",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847d32",
+            },
+            {
+              content: "68270",
+              offset: 780,
+              length: 5,
+              confidence: 0.887,
+              polygon: [
+                {
+                  x: 1048,
+                  y: 1197,
+                  _id: "6511a9745f43f6cd22847d38",
+                },
+                {
+                  x: 1124,
+                  y: 1191,
+                  _id: "6511a9745f43f6cd22847d39",
+                },
+                {
+                  x: 1125,
+                  y: 1217,
+                  _id: "6511a9745f43f6cd22847d3a",
+                },
+                {
+                  x: 1049,
+                  y: 1222,
+                  _id: "6511a9745f43f6cd22847d3b",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847d37",
+            },
+            {
+              content: "MMITTENHEIM",
+              offset: 786,
+              length: 11,
+              confidence: 0.266,
+              polygon: [
+                {
+                  x: 1130,
+                  y: 1191,
+                  _id: "6511a9745f43f6cd22847d3d",
+                },
+                {
+                  x: 1302,
+                  y: 1178,
+                  _id: "6511a9745f43f6cd22847d3e",
+                },
+                {
+                  x: 1303,
+                  y: 1206,
+                  _id: "6511a9745f43f6cd22847d3f",
+                },
+                {
+                  x: 1131,
+                  y: 1217,
+                  _id: "6511a9745f43f6cd22847d40",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847d3c",
+            },
+            {
+              content: "Créatine-phospho-kinase",
+              offset: 798,
+              length: 23,
+              confidence: 0.959,
+              polygon: [
+                {
+                  x: 180,
+                  y: 1219,
+                  _id: "6511a9745f43f6cd22847d42",
+                },
+                {
+                  x: 545,
+                  y: 1216,
+                  _id: "6511a9745f43f6cd22847d43",
+                },
+                {
+                  x: 544,
+                  y: 1256,
+                  _id: "6511a9745f43f6cd22847d44",
+                },
+                {
+                  x: 180,
+                  y: 1256,
+                  _id: "6511a9745f43f6cd22847d45",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847d41",
+            },
+            {
+              content: "(CPK)",
+              offset: 822,
+              length: 5,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 553,
+                  y: 1215,
+                  _id: "6511a9745f43f6cd22847d47",
+                },
+                {
+                  x: 640,
+                  y: 1214,
+                  _id: "6511a9745f43f6cd22847d48",
+                },
+                {
+                  x: 639,
+                  y: 1255,
+                  _id: "6511a9745f43f6cd22847d49",
+                },
+                {
+                  x: 552,
+                  y: 1256,
+                  _id: "6511a9745f43f6cd22847d4a",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847d46",
+            },
+            {
+              content: "totale",
+              offset: 828,
+              length: 6,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 648,
+                  y: 1214,
+                  _id: "6511a9745f43f6cd22847d4c",
+                },
+                {
+                  x: 736,
+                  y: 1213,
+                  _id: "6511a9745f43f6cd22847d4d",
+                },
+                {
+                  x: 735,
+                  y: 1254,
+                  _id: "6511a9745f43f6cd22847d4e",
+                },
+                {
+                  x: 647,
+                  y: 1255,
+                  _id: "6511a9745f43f6cd22847d4f",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847d4b",
+            },
+            {
+              content: "Gamma",
+              offset: 835,
+              length: 5,
+              confidence: 0.995,
+              polygon: [
+                {
+                  x: 181,
+                  y: 1259,
+                  _id: "6511a9745f43f6cd22847d51",
+                },
+                {
+                  x: 294,
+                  y: 1258,
+                  _id: "6511a9745f43f6cd22847d52",
+                },
+                {
+                  x: 294,
+                  y: 1292,
+                  _id: "6511a9745f43f6cd22847d53",
+                },
+                {
+                  x: 180,
+                  y: 1295,
+                  _id: "6511a9745f43f6cd22847d54",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847d50",
+            },
+            {
+              content: "GT",
+              offset: 841,
+              length: 2,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 301,
+                  y: 1258,
+                  _id: "6511a9745f43f6cd22847d56",
+                },
+                {
+                  x: 346,
+                  y: 1258,
+                  _id: "6511a9745f43f6cd22847d57",
+                },
+                {
+                  x: 346,
+                  y: 1292,
+                  _id: "6511a9745f43f6cd22847d58",
+                },
+                {
+                  x: 301,
+                  y: 1292,
+                  _id: "6511a9745f43f6cd22847d59",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847d55",
+            },
+            {
+              content: "Microalbuminurie",
+              offset: 844,
+              length: 16,
+              confidence: 0.971,
+              polygon: [
+                {
+                  x: 181,
+                  y: 1300,
+                  _id: "6511a9745f43f6cd22847d5b",
+                },
+                {
+                  x: 437,
+                  y: 1297,
+                  _id: "6511a9745f43f6cd22847d5c",
+                },
+                {
+                  x: 437,
+                  y: 1335,
+                  _id: "6511a9745f43f6cd22847d5d",
+                },
+                {
+                  x: 181,
+                  y: 1337,
+                  _id: "6511a9745f43f6cd22847d5e",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847d5a",
+            },
+            {
+              content: "SIRET",
+              offset: 861,
+              length: 5,
+              confidence: 0.994,
+              polygon: [
+                {
+                  x: 1007,
+                  y: 1233,
+                  _id: "6511a9745f43f6cd22847d60",
+                },
+                {
+                  x: 1090,
+                  y: 1226,
+                  _id: "6511a9745f43f6cd22847d61",
+                },
+                {
+                  x: 1093,
+                  y: 1253,
+                  _id: "6511a9745f43f6cd22847d62",
+                },
+                {
+                  x: 1010,
+                  y: 1258,
+                  _id: "6511a9745f43f6cd22847d63",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847d5f",
+            },
+            {
+              content: ":",
+              offset: 867,
+              length: 1,
+              confidence: 0.939,
+              polygon: [
+                {
+                  x: 1096,
+                  y: 1226,
+                  _id: "6511a9745f43f6cd22847d65",
+                },
+                {
+                  x: 1107,
+                  y: 1225,
+                  _id: "6511a9745f43f6cd22847d66",
+                },
+                {
+                  x: 1110,
+                  y: 1252,
+                  _id: "6511a9745f43f6cd22847d67",
+                },
+                {
+                  x: 1099,
+                  y: 1253,
+                  _id: "6511a9745f43f6cd22847d68",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847d64",
+            },
+            {
+              content: "433",
+              offset: 869,
+              length: 3,
+              confidence: 0.969,
+              polygon: [
+                {
+                  x: 1113,
+                  y: 1224,
+                  _id: "6511a9745f43f6cd22847d6a",
+                },
+                {
+                  x: 1160,
+                  y: 1221,
+                  _id: "6511a9745f43f6cd22847d6b",
+                },
+                {
+                  x: 1162,
+                  y: 1249,
+                  _id: "6511a9745f43f6cd22847d6c",
+                },
+                {
+                  x: 1115,
+                  y: 1252,
+                  _id: "6511a9745f43f6cd22847d6d",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847d69",
+            },
+            {
+              content: "895",
+              offset: 873,
+              length: 3,
+              confidence: 0.991,
+              polygon: [
+                {
+                  x: 1166,
+                  y: 1220,
+                  _id: "6511a9745f43f6cd22847d6f",
+                },
+                {
+                  x: 1212,
+                  y: 1216,
+                  _id: "6511a9745f43f6cd22847d70",
+                },
+                {
+                  x: 1215,
+                  y: 1245,
+                  _id: "6511a9745f43f6cd22847d71",
+                },
+                {
+                  x: 1168,
+                  y: 1248,
+                  _id: "6511a9745f43f6cd22847d72",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847d6e",
+            },
+            {
+              content: "265",
+              offset: 877,
+              length: 3,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 1218,
+                  y: 1216,
+                  _id: "6511a9745f43f6cd22847d74",
+                },
+                {
+                  x: 1267,
+                  y: 1212,
+                  _id: "6511a9745f43f6cd22847d75",
+                },
+                {
+                  x: 1270,
+                  y: 1241,
+                  _id: "6511a9745f43f6cd22847d76",
+                },
+                {
+                  x: 1221,
+                  y: 1245,
+                  _id: "6511a9745f43f6cd22847d77",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847d73",
+            },
+            {
+              content: "00273",
+              offset: 881,
+              length: 5,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 1273,
+                  y: 1212,
+                  _id: "6511a9745f43f6cd22847d79",
+                },
+                {
+                  x: 1351,
+                  y: 1206,
+                  _id: "6511a9745f43f6cd22847d7a",
+                },
+                {
+                  x: 1353,
+                  y: 1235,
+                  _id: "6511a9745f43f6cd22847d7b",
+                },
+                {
+                  x: 1275,
+                  y: 1241,
+                  _id: "6511a9745f43f6cd22847d7c",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847d78",
+            },
+            {
+              content: "laboratoire",
+              offset: 887,
+              length: 11,
+              confidence: 0.941,
+              polygon: [
+                {
+                  x: 960,
+                  y: 1270,
+                  _id: "6511a9745f43f6cd22847d7e",
+                },
+                {
+                  x: 1088,
+                  y: 1260,
+                  _id: "6511a9745f43f6cd22847d7f",
+                },
+                {
+                  x: 1090,
+                  y: 1288,
+                  _id: "6511a9745f43f6cd22847d80",
+                },
+                {
+                  x: 962,
+                  y: 1296,
+                  _id: "6511a9745f43f6cd22847d81",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847d7d",
+            },
+            {
+              content: "bassinpotseique@b2a.fr",
+              offset: 899,
+              length: 22,
+              confidence: 0.205,
+              polygon: [
+                {
+                  x: 1094,
+                  y: 1260,
+                  _id: "6511a9745f43f6cd22847d83",
+                },
+                {
+                  x: 1413,
+                  y: 1236,
+                  _id: "6511a9745f43f6cd22847d84",
+                },
+                {
+                  x: 1413,
+                  y: 1265,
+                  _id: "6511a9745f43f6cd22847d85",
+                },
+                {
+                  x: 1095,
+                  y: 1287,
+                  _id: "6511a9745f43f6cd22847d86",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847d82",
+            },
+            {
+              content: "Tél.",
+              offset: 922,
+              length: 4,
+              confidence: 0.967,
+              polygon: [
+                {
+                  x: 936,
+                  y: 1305,
+                  _id: "6511a9745f43f6cd22847d88",
+                },
+                {
+                  x: 981,
+                  y: 1301,
+                  _id: "6511a9745f43f6cd22847d89",
+                },
+                {
+                  x: 982,
+                  y: 1328,
+                  _id: "6511a9745f43f6cd22847d8a",
+                },
+                {
+                  x: 938,
+                  y: 1331,
+                  _id: "6511a9745f43f6cd22847d8b",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847d87",
+            },
+            {
+              content: "03",
+              offset: 927,
+              length: 2,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 986,
+                  y: 1301,
+                  _id: "6511a9745f43f6cd22847d8d",
+                },
+                {
+                  x: 1018,
+                  y: 1298,
+                  _id: "6511a9745f43f6cd22847d8e",
+                },
+                {
+                  x: 1020,
+                  y: 1326,
+                  _id: "6511a9745f43f6cd22847d8f",
+                },
+                {
+                  x: 988,
+                  y: 1328,
+                  _id: "6511a9745f43f6cd22847d90",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847d8c",
+            },
+            {
+              content: "89",
+              offset: 930,
+              length: 2,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 1026,
+                  y: 1298,
+                  _id: "6511a9745f43f6cd22847d92",
+                },
+                {
+                  x: 1057,
+                  y: 1295,
+                  _id: "6511a9745f43f6cd22847d93",
+                },
+                {
+                  x: 1059,
+                  y: 1323,
+                  _id: "6511a9745f43f6cd22847d94",
+                },
+                {
+                  x: 1027,
+                  y: 1325,
+                  _id: "6511a9745f43f6cd22847d95",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847d91",
+            },
+            {
+              content: "57",
+              offset: 933,
+              length: 2,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 1065,
+                  y: 1295,
+                  _id: "6511a9745f43f6cd22847d97",
+                },
+                {
+                  x: 1097,
+                  y: 1292,
+                  _id: "6511a9745f43f6cd22847d98",
+                },
+                {
+                  x: 1098,
+                  y: 1320,
+                  _id: "6511a9745f43f6cd22847d99",
+                },
+                {
+                  x: 1067,
+                  y: 1322,
+                  _id: "6511a9745f43f6cd22847d9a",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847d96",
+            },
+            {
+              content: "33",
+              offset: 936,
+              length: 2,
+              confidence: 0.995,
+              polygon: [
+                {
+                  x: 1103,
+                  y: 1292,
+                  _id: "6511a9745f43f6cd22847d9c",
+                },
+                {
+                  x: 1135,
+                  y: 1289,
+                  _id: "6511a9745f43f6cd22847d9d",
+                },
+                {
+                  x: 1136,
+                  y: 1317,
+                  _id: "6511a9745f43f6cd22847d9e",
+                },
+                {
+                  x: 1104,
+                  y: 1320,
+                  _id: "6511a9745f43f6cd22847d9f",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847d9b",
+            },
+            {
+              content: "33",
+              offset: 939,
+              length: 2,
+              confidence: 0.77,
+              polygon: [
+                {
+                  x: 1142,
+                  y: 1289,
+                  _id: "6511a9745f43f6cd22847da1",
+                },
+                {
+                  x: 1174,
+                  y: 1286,
+                  _id: "6511a9745f43f6cd22847da2",
+                },
+                {
+                  x: 1175,
+                  y: 1314,
+                  _id: "6511a9745f43f6cd22847da3",
+                },
+                {
+                  x: 1143,
+                  y: 1317,
+                  _id: "6511a9745f43f6cd22847da4",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847da0",
+            },
+            {
+              content: "-",
+              offset: 942,
+              length: 1,
+              confidence: 0.991,
+              polygon: [
+                {
+                  x: 1180,
+                  y: 1286,
+                  _id: "6511a9745f43f6cd22847da6",
+                },
+                {
+                  x: 1191,
+                  y: 1285,
+                  _id: "6511a9745f43f6cd22847da7",
+                },
+                {
+                  x: 1192,
+                  y: 1313,
+                  _id: "6511a9745f43f6cd22847da8",
+                },
+                {
+                  x: 1181,
+                  y: 1314,
+                  _id: "6511a9745f43f6cd22847da9",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847da5",
+            },
+            {
+              content: "Fax",
+              offset: 944,
+              length: 3,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 1196,
+                  y: 1285,
+                  _id: "6511a9745f43f6cd22847dab",
+                },
+                {
+                  x: 1245,
+                  y: 1281,
+                  _id: "6511a9745f43f6cd22847dac",
+                },
+                {
+                  x: 1245,
+                  y: 1309,
+                  _id: "6511a9745f43f6cd22847dad",
+                },
+                {
+                  x: 1197,
+                  y: 1313,
+                  _id: "6511a9745f43f6cd22847dae",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847daa",
+            },
+            {
+              content: "03",
+              offset: 948,
+              length: 2,
+              confidence: 0.996,
+              polygon: [
+                {
+                  x: 1250,
+                  y: 1281,
+                  _id: "6511a9745f43f6cd22847db0",
+                },
+                {
+                  x: 1284,
+                  y: 1278,
+                  _id: "6511a9745f43f6cd22847db1",
+                },
+                {
+                  x: 1284,
+                  y: 1306,
+                  _id: "6511a9745f43f6cd22847db2",
+                },
+                {
+                  x: 1251,
+                  y: 1309,
+                  _id: "6511a9745f43f6cd22847db3",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847daf",
+            },
+            {
+              content: "80",
+              offset: 951,
+              length: 2,
+              confidence: 0.884,
+              polygon: [
+                {
+                  x: 1289,
+                  y: 1278,
+                  _id: "6511a9745f43f6cd22847db5",
+                },
+                {
+                  x: 1323,
+                  y: 1275,
+                  _id: "6511a9745f43f6cd22847db6",
+                },
+                {
+                  x: 1324,
+                  y: 1303,
+                  _id: "6511a9745f43f6cd22847db7",
+                },
+                {
+                  x: 1290,
+                  y: 1306,
+                  _id: "6511a9745f43f6cd22847db8",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847db4",
+            },
+            {
+              content: "57",
+              offset: 954,
+              length: 2,
+              confidence: 0.993,
+              polygon: [
+                {
+                  x: 1329,
+                  y: 1275,
+                  _id: "6511a9745f43f6cd22847dba",
+                },
+                {
+                  x: 1363,
+                  y: 1273,
+                  _id: "6511a9745f43f6cd22847dbb",
+                },
+                {
+                  x: 1363,
+                  y: 1300,
+                  _id: "6511a9745f43f6cd22847dbc",
+                },
+                {
+                  x: 1329,
+                  y: 1303,
+                  _id: "6511a9745f43f6cd22847dbd",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847db9",
+            },
+            {
+              content: "16",
+              offset: 957,
+              length: 2,
+              confidence: 0.993,
+              polygon: [
+                {
+                  x: 1370,
+                  y: 1272,
+                  _id: "6511a9745f43f6cd22847dbf",
+                },
+                {
+                  x: 1399,
+                  y: 1270,
+                  _id: "6511a9745f43f6cd22847dc0",
+                },
+                {
+                  x: 1399,
+                  y: 1297,
+                  _id: "6511a9745f43f6cd22847dc1",
+                },
+                {
+                  x: 1371,
+                  y: 1300,
+                  _id: "6511a9745f43f6cd22847dc2",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847dbe",
+            },
+            {
+              content: "85",
+              offset: 960,
+              length: 2,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 1406,
+                  y: 1270,
+                  _id: "6511a9745f43f6cd22847dc4",
+                },
+                {
+                  x: 1438,
+                  y: 1268,
+                  _id: "6511a9745f43f6cd22847dc5",
+                },
+                {
+                  x: 1438,
+                  y: 1294,
+                  _id: "6511a9745f43f6cd22847dc6",
+                },
+                {
+                  x: 1406,
+                  y: 1297,
+                  _id: "6511a9745f43f6cd22847dc7",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847dc3",
+            },
+            {
+              content: "Ionogramme",
+              offset: 963,
+              length: 10,
+              confidence: 0.991,
+              polygon: [
+                {
+                  x: 179,
+                  y: 1341,
+                  _id: "6511a9745f43f6cd22847dc9",
+                },
+                {
+                  x: 374,
+                  y: 1339,
+                  _id: "6511a9745f43f6cd22847dca",
+                },
+                {
+                  x: 373,
+                  y: 1377,
+                  _id: "6511a9745f43f6cd22847dcb",
+                },
+                {
+                  x: 178,
+                  y: 1378,
+                  _id: "6511a9745f43f6cd22847dcc",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847dc8",
+            },
+            {
+              content: "plasmatique",
+              offset: 974,
+              length: 11,
+              confidence: 0.993,
+              polygon: [
+                {
+                  x: 381,
+                  y: 1339,
+                  _id: "6511a9745f43f6cd22847dce",
+                },
+                {
+                  x: 566,
+                  y: 1338,
+                  _id: "6511a9745f43f6cd22847dcf",
+                },
+                {
+                  x: 565,
+                  y: 1375,
+                  _id: "6511a9745f43f6cd22847dd0",
+                },
+                {
+                  x: 380,
+                  y: 1377,
+                  _id: "6511a9745f43f6cd22847dd1",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847dcd",
+            },
+            {
+              content: "Prescriptions",
+              offset: 986,
+              length: 13,
+              confidence: 0.974,
+              polygon: [
+                {
+                  x: 374,
+                  y: 1445,
+                  _id: "6511a9745f43f6cd22847dd3",
+                },
+                {
+                  x: 497,
+                  y: 1445,
+                  _id: "6511a9745f43f6cd22847dd4",
+                },
+                {
+                  x: 497,
+                  y: 1470,
+                  _id: "6511a9745f43f6cd22847dd5",
+                },
+                {
+                  x: 374,
+                  y: 1471,
+                  _id: "6511a9745f43f6cd22847dd6",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847dd2",
+            },
+            {
+              content: "SANS",
+              offset: 1000,
+              length: 4,
+              confidence: 0.986,
+              polygon: [
+                {
+                  x: 502,
+                  y: 1445,
+                  _id: "6511a9745f43f6cd22847dd8",
+                },
+                {
+                  x: 561,
+                  y: 1444,
+                  _id: "6511a9745f43f6cd22847dd9",
+                },
+                {
+                  x: 561,
+                  y: 1470,
+                  _id: "6511a9745f43f6cd22847dda",
+                },
+                {
+                  x: 503,
+                  y: 1470,
+                  _id: "6511a9745f43f6cd22847ddb",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847dd7",
+            },
+            {
+              content: "RAPPORT",
+              offset: 1005,
+              length: 7,
+              confidence: 0.994,
+              polygon: [
+                {
+                  x: 566,
+                  y: 1444,
+                  _id: "6511a9745f43f6cd22847ddd",
+                },
+                {
+                  x: 674,
+                  y: 1444,
+                  _id: "6511a9745f43f6cd22847dde",
+                },
+                {
+                  x: 674,
+                  y: 1469,
+                  _id: "6511a9745f43f6cd22847ddf",
+                },
+                {
+                  x: 566,
+                  y: 1470,
+                  _id: "6511a9745f43f6cd22847de0",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847ddc",
+            },
+            {
+              content: "avec",
+              offset: 1013,
+              length: 4,
+              confidence: 0.982,
+              polygon: [
+                {
+                  x: 680,
+                  y: 1444,
+                  _id: "6511a9745f43f6cd22847de2",
+                },
+                {
+                  x: 724,
+                  y: 1444,
+                  _id: "6511a9745f43f6cd22847de3",
+                },
+                {
+                  x: 724,
+                  y: 1469,
+                  _id: "6511a9745f43f6cd22847de4",
+                },
+                {
+                  x: 680,
+                  y: 1469,
+                  _id: "6511a9745f43f6cd22847de5",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847de1",
+            },
+            {
+              content: "l'affection",
+              offset: 1018,
+              length: 11,
+              confidence: 0.958,
+              polygon: [
+                {
+                  x: 729,
+                  y: 1443,
+                  _id: "6511a9745f43f6cd22847de7",
+                },
+                {
+                  x: 831,
+                  y: 1443,
+                  _id: "6511a9745f43f6cd22847de8",
+                },
+                {
+                  x: 831,
+                  y: 1469,
+                  _id: "6511a9745f43f6cd22847de9",
+                },
+                {
+                  x: 729,
+                  y: 1469,
+                  _id: "6511a9745f43f6cd22847dea",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847de6",
+            },
+            {
+              content: "de",
+              offset: 1030,
+              length: 2,
+              confidence: 0.991,
+              polygon: [
+                {
+                  x: 836,
+                  y: 1443,
+                  _id: "6511a9745f43f6cd22847dec",
+                },
+                {
+                  x: 860,
+                  y: 1443,
+                  _id: "6511a9745f43f6cd22847ded",
+                },
+                {
+                  x: 860,
+                  y: 1469,
+                  _id: "6511a9745f43f6cd22847dee",
+                },
+                {
+                  x: 836,
+                  y: 1469,
+                  _id: "6511a9745f43f6cd22847def",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847deb",
+            },
+            {
+              content: "longue",
+              offset: 1033,
+              length: 6,
+              confidence: 0.967,
+              polygon: [
+                {
+                  x: 865,
+                  y: 1443,
+                  _id: "6511a9745f43f6cd22847df1",
+                },
+                {
+                  x: 938,
+                  y: 1442,
+                  _id: "6511a9745f43f6cd22847df2",
+                },
+                {
+                  x: 937,
+                  y: 1468,
+                  _id: "6511a9745f43f6cd22847df3",
+                },
+                {
+                  x: 865,
+                  y: 1469,
+                  _id: "6511a9745f43f6cd22847df4",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847df0",
+            },
+            {
+              content: "durée",
+              offset: 1040,
+              length: 5,
+              confidence: 0.976,
+              polygon: [
+                {
+                  x: 943,
+                  y: 1442,
+                  _id: "6511a9745f43f6cd22847df6",
+                },
+                {
+                  x: 1000,
+                  y: 1442,
+                  _id: "6511a9745f43f6cd22847df7",
+                },
+                {
+                  x: 999,
+                  y: 1468,
+                  _id: "6511a9745f43f6cd22847df8",
+                },
+                {
+                  x: 943,
+                  y: 1468,
+                  _id: "6511a9745f43f6cd22847df9",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847df5",
+            },
+            {
+              content: "(MALADIES",
+              offset: 1046,
+              length: 9,
+              confidence: 0.956,
+              polygon: [
+                {
+                  x: 1005,
+                  y: 1442,
+                  _id: "6511a9745f43f6cd22847dfb",
+                },
+                {
+                  x: 1123,
+                  y: 1441,
+                  _id: "6511a9745f43f6cd22847dfc",
+                },
+                {
+                  x: 1123,
+                  y: 1467,
+                  _id: "6511a9745f43f6cd22847dfd",
+                },
+                {
+                  x: 1004,
+                  y: 1468,
+                  _id: "6511a9745f43f6cd22847dfe",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847dfa",
+            },
+            {
+              content: "INTERCURRENTES)",
+              offset: 1056,
+              length: 15,
+              confidence: 0.927,
+              polygon: [
+                {
+                  x: 1129,
+                  y: 1441,
+                  _id: "6511a9745f43f6cd22847e00",
+                },
+                {
+                  x: 1337,
+                  y: 1439,
+                  _id: "6511a9745f43f6cd22847e01",
+                },
+                {
+                  x: 1337,
+                  y: 1466,
+                  _id: "6511a9745f43f6cd22847e02",
+                },
+                {
+                  x: 1128,
+                  y: 1467,
+                  _id: "6511a9745f43f6cd22847e03",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847dff",
+            },
+            {
+              content: "Protéine",
+              offset: 1072,
+              length: 8,
+              confidence: 0.994,
+              polygon: [
+                {
+                  x: 182,
+                  y: 1538,
+                  _id: "6511a9745f43f6cd22847e05",
+                },
+                {
+                  x: 304,
+                  y: 1538,
+                  _id: "6511a9745f43f6cd22847e06",
+                },
+                {
+                  x: 305,
+                  y: 1575,
+                  _id: "6511a9745f43f6cd22847e07",
+                },
+                {
+                  x: 183,
+                  y: 1573,
+                  _id: "6511a9745f43f6cd22847e08",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847e04",
+            },
+            {
+              content: "C",
+              offset: 1081,
+              length: 1,
+              confidence: 0.998,
+              polygon: [
+                {
+                  x: 312,
+                  y: 1538,
+                  _id: "6511a9745f43f6cd22847e0a",
+                },
+                {
+                  x: 333,
+                  y: 1538,
+                  _id: "6511a9745f43f6cd22847e0b",
+                },
+                {
+                  x: 334,
+                  y: 1575,
+                  _id: "6511a9745f43f6cd22847e0c",
+                },
+                {
+                  x: 312,
+                  y: 1575,
+                  _id: "6511a9745f43f6cd22847e0d",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847e09",
+            },
+            {
+              content: "reactive",
+              offset: 1083,
+              length: 8,
+              confidence: 0.995,
+              polygon: [
+                {
+                  x: 341,
+                  y: 1537,
+                  _id: "6511a9745f43f6cd22847e0f",
+                },
+                {
+                  x: 459,
+                  y: 1536,
+                  _id: "6511a9745f43f6cd22847e10",
+                },
+                {
+                  x: 460,
+                  y: 1575,
+                  _id: "6511a9745f43f6cd22847e11",
+                },
+                {
+                  x: 342,
+                  y: 1575,
+                  _id: "6511a9745f43f6cd22847e12",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847e0e",
+            },
+            {
+              content: "(CRP)",
+              offset: 1092,
+              length: 5,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 466,
+                  y: 1536,
+                  _id: "6511a9745f43f6cd22847e14",
+                },
+                {
+                  x: 558,
+                  y: 1534,
+                  _id: "6511a9745f43f6cd22847e15",
+                },
+                {
+                  x: 558,
+                  y: 1573,
+                  _id: "6511a9745f43f6cd22847e16",
+                },
+                {
+                  x: 467,
+                  y: 1574,
+                  _id: "6511a9745f43f6cd22847e17",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847e13",
+            },
+            {
+              content: "Ferritine",
+              offset: 1098,
+              length: 9,
+              confidence: 0.994,
+              polygon: [
+                {
+                  x: 182,
+                  y: 1580,
+                  _id: "6511a9745f43f6cd22847e19",
+                },
+                {
+                  x: 304,
+                  y: 1578,
+                  _id: "6511a9745f43f6cd22847e1a",
+                },
+                {
+                  x: 304,
+                  y: 1615,
+                  _id: "6511a9745f43f6cd22847e1b",
+                },
+                {
+                  x: 182,
+                  y: 1615,
+                  _id: "6511a9745f43f6cd22847e1c",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847e18",
+            },
+            {
+              content: "sérique",
+              offset: 1108,
+              length: 7,
+              confidence: 0.991,
+              polygon: [
+                {
+                  x: 311,
+                  y: 1578,
+                  _id: "6511a9745f43f6cd22847e1e",
+                },
+                {
+                  x: 425,
+                  y: 1578,
+                  _id: "6511a9745f43f6cd22847e1f",
+                },
+                {
+                  x: 426,
+                  y: 1614,
+                  _id: "6511a9745f43f6cd22847e20",
+                },
+                {
+                  x: 311,
+                  y: 1615,
+                  _id: "6511a9745f43f6cd22847e21",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847e1d",
+            },
+            {
+              content: "Albuminémie",
+              offset: 1116,
+              length: 11,
+              confidence: 0.991,
+              polygon: [
+                {
+                  x: 182,
+                  y: 1620,
+                  _id: "6511a9745f43f6cd22847e23",
+                },
+                {
+                  x: 382,
+                  y: 1620,
+                  _id: "6511a9745f43f6cd22847e24",
+                },
+                {
+                  x: 382,
+                  y: 1653,
+                  _id: "6511a9745f43f6cd22847e25",
+                },
+                {
+                  x: 182,
+                  y: 1657,
+                  _id: "6511a9745f43f6cd22847e26",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847e22",
+            },
+            {
+              content: "Calcémie",
+              offset: 1128,
+              length: 8,
+              confidence: 0.991,
+              polygon: [
+                {
+                  x: 184,
+                  y: 1661,
+                  _id: "6511a9745f43f6cd22847e28",
+                },
+                {
+                  x: 316,
+                  y: 1660,
+                  _id: "6511a9745f43f6cd22847e29",
+                },
+                {
+                  x: 315,
+                  y: 1698,
+                  _id: "6511a9745f43f6cd22847e2a",
+                },
+                {
+                  x: 182,
+                  y: 1698,
+                  _id: "6511a9745f43f6cd22847e2b",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847e27",
+            },
+            {
+              content: "corrigée",
+              offset: 1137,
+              length: 8,
+              confidence: 0.993,
+              polygon: [
+                {
+                  x: 324,
+                  y: 1660,
+                  _id: "6511a9745f43f6cd22847e2d",
+                },
+                {
+                  x: 449,
+                  y: 1658,
+                  _id: "6511a9745f43f6cd22847e2e",
+                },
+                {
+                  x: 448,
+                  y: 1697,
+                  _id: "6511a9745f43f6cd22847e2f",
+                },
+                {
+                  x: 323,
+                  y: 1698,
+                  _id: "6511a9745f43f6cd22847e30",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847e2c",
+            },
+            {
+              content: "Vitamine",
+              offset: 1146,
+              length: 8,
+              confidence: 0.995,
+              polygon: [
+                {
+                  x: 183,
+                  y: 1703,
+                  _id: "6511a9745f43f6cd22847e32",
+                },
+                {
+                  x: 312,
+                  y: 1701,
+                  _id: "6511a9745f43f6cd22847e33",
+                },
+                {
+                  x: 312,
+                  y: 1739,
+                  _id: "6511a9745f43f6cd22847e34",
+                },
+                {
+                  x: 183,
+                  y: 1739,
+                  _id: "6511a9745f43f6cd22847e35",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847e31",
+            },
+            {
+              content: "D",
+              offset: 1155,
+              length: 1,
+              confidence: 0.998,
+              polygon: [
+                {
+                  x: 319,
+                  y: 1701,
+                  _id: "6511a9745f43f6cd22847e37",
+                },
+                {
+                  x: 341,
+                  y: 1701,
+                  _id: "6511a9745f43f6cd22847e38",
+                },
+                {
+                  x: 341,
+                  y: 1739,
+                  _id: "6511a9745f43f6cd22847e39",
+                },
+                {
+                  x: 319,
+                  y: 1739,
+                  _id: "6511a9745f43f6cd22847e3a",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847e36",
+            },
+            {
+              content: "(D2-D3)",
+              offset: 1157,
+              length: 7,
+              confidence: 0.993,
+              polygon: [
+                {
+                  x: 354,
+                  y: 1701,
+                  _id: "6511a9745f43f6cd22847e3c",
+                },
+                {
+                  x: 481,
+                  y: 1701,
+                  _id: "6511a9745f43f6cd22847e3d",
+                },
+                {
+                  x: 482,
+                  y: 1739,
+                  _id: "6511a9745f43f6cd22847e3e",
+                },
+                {
+                  x: 354,
+                  y: 1739,
+                  _id: "6511a9745f43f6cd22847e3f",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847e3b",
+            },
+            {
+              content: "Uricémie",
+              offset: 1165,
+              length: 8,
+              confidence: 0.993,
+              polygon: [
+                {
+                  x: 181,
+                  y: 1742,
+                  _id: "6511a9745f43f6cd22847e41",
+                },
+                {
+                  x: 316,
+                  y: 1742,
+                  _id: "6511a9745f43f6cd22847e42",
+                },
+                {
+                  x: 316,
+                  y: 1777,
+                  _id: "6511a9745f43f6cd22847e43",
+                },
+                {
+                  x: 181,
+                  y: 1778,
+                  _id: "6511a9745f43f6cd22847e44",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847e40",
+            },
+            {
+              content: "Thyréostimuline",
+              offset: 1174,
+              length: 15,
+              confidence: 0.991,
+              polygon: [
+                {
+                  x: 184,
+                  y: 1784,
+                  _id: "6511a9745f43f6cd22847e46",
+                },
+                {
+                  x: 420,
+                  y: 1781,
+                  _id: "6511a9745f43f6cd22847e47",
+                },
+                {
+                  x: 420,
+                  y: 1821,
+                  _id: "6511a9745f43f6cd22847e48",
+                },
+                {
+                  x: 185,
+                  y: 1821,
+                  _id: "6511a9745f43f6cd22847e49",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847e45",
+            },
+            {
+              content: "sanguine",
+              offset: 1190,
+              length: 8,
+              confidence: 0.996,
+              polygon: [
+                {
+                  x: 428,
+                  y: 1781,
+                  _id: "6511a9745f43f6cd22847e4b",
+                },
+                {
+                  x: 564,
+                  y: 1779,
+                  _id: "6511a9745f43f6cd22847e4c",
+                },
+                {
+                  x: 564,
+                  y: 1820,
+                  _id: "6511a9745f43f6cd22847e4d",
+                },
+                {
+                  x: 428,
+                  y: 1821,
+                  _id: "6511a9745f43f6cd22847e4e",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847e4a",
+            },
+            {
+              content: "(TSH",
+              offset: 1199,
+              length: 4,
+              confidence: 0.979,
+              polygon: [
+                {
+                  x: 572,
+                  y: 1779,
+                  _id: "6511a9745f43f6cd22847e50",
+                },
+                {
+                  x: 648,
+                  y: 1778,
+                  _id: "6511a9745f43f6cd22847e51",
+                },
+                {
+                  x: 648,
+                  y: 1819,
+                  _id: "6511a9745f43f6cd22847e52",
+                },
+                {
+                  x: 571,
+                  y: 1820,
+                  _id: "6511a9745f43f6cd22847e53",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847e4f",
+            },
+            {
+              content: "ultrasensible)",
+              offset: 1204,
+              length: 14,
+              confidence: 0.993,
+              polygon: [
+                {
+                  x: 659,
+                  y: 1778,
+                  _id: "6511a9745f43f6cd22847e55",
+                },
+                {
+                  x: 860,
+                  y: 1776,
+                  _id: "6511a9745f43f6cd22847e56",
+                },
+                {
+                  x: 859,
+                  y: 1815,
+                  _id: "6511a9745f43f6cd22847e57",
+                },
+                {
+                  x: 659,
+                  y: 1818,
+                  _id: "6511a9745f43f6cd22847e58",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847e54",
+            },
+            {
+              content: "NFS",
+              offset: 1219,
+              length: 3,
+              confidence: 0.994,
+              polygon: [
+                {
+                  x: 185,
+                  y: 1825,
+                  _id: "6511a9745f43f6cd22847e5a",
+                },
+                {
+                  x: 244,
+                  y: 1824,
+                  _id: "6511a9745f43f6cd22847e5b",
+                },
+                {
+                  x: 243,
+                  y: 1861,
+                  _id: "6511a9745f43f6cd22847e5c",
+                },
+                {
+                  x: 183,
+                  y: 1862,
+                  _id: "6511a9745f43f6cd22847e5d",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847e59",
+            },
+            {
+              content: "-",
+              offset: 1223,
+              length: 1,
+              confidence: 0.995,
+              polygon: [
+                {
+                  x: 252,
+                  y: 1824,
+                  _id: "6511a9745f43f6cd22847e5f",
+                },
+                {
+                  x: 266,
+                  y: 1824,
+                  _id: "6511a9745f43f6cd22847e60",
+                },
+                {
+                  x: 265,
+                  y: 1861,
+                  _id: "6511a9745f43f6cd22847e61",
+                },
+                {
+                  x: 251,
+                  y: 1861,
+                  _id: "6511a9745f43f6cd22847e62",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847e5e",
+            },
+            {
+              content: "Plaquettes",
+              offset: 1225,
+              length: 10,
+              confidence: 0.994,
+              polygon: [
+                {
+                  x: 274,
+                  y: 1824,
+                  _id: "6511a9745f43f6cd22847e64",
+                },
+                {
+                  x: 429,
+                  y: 1824,
+                  _id: "6511a9745f43f6cd22847e65",
+                },
+                {
+                  x: 429,
+                  y: 1861,
+                  _id: "6511a9745f43f6cd22847e66",
+                },
+                {
+                  x: 273,
+                  y: 1861,
+                  _id: "6511a9745f43f6cd22847e67",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847e63",
+            },
+            {
+              content: "Docteur",
+              offset: 1236,
+              length: 7,
+              confidence: 0.995,
+              polygon: [
+                {
+                  x: 733,
+                  y: 1859,
+                  _id: "6511a9745f43f6cd22847e69",
+                },
+                {
+                  x: 825,
+                  y: 1862,
+                  _id: "6511a9745f43f6cd22847e6a",
+                },
+                {
+                  x: 824,
+                  y: 1889,
+                  _id: "6511a9745f43f6cd22847e6b",
+                },
+                {
+                  x: 732,
+                  y: 1886,
+                  _id: "6511a9745f43f6cd22847e6c",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847e68",
+            },
+            {
+              content: "DOLL",
+              offset: 1244,
+              length: 4,
+              confidence: 0.988,
+              polygon: [
+                {
+                  x: 831,
+                  y: 1863,
+                  _id: "6511a9745f43f6cd22847e6e",
+                },
+                {
+                  x: 897,
+                  y: 1865,
+                  _id: "6511a9745f43f6cd22847e6f",
+                },
+                {
+                  x: 896,
+                  y: 1892,
+                  _id: "6511a9745f43f6cd22847e70",
+                },
+                {
+                  x: 829,
+                  y: 1889,
+                  _id: "6511a9745f43f6cd22847e71",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847e6d",
+            },
+            {
+              content: "Philippe",
+              offset: 1249,
+              length: 8,
+              confidence: 0.995,
+              polygon: [
+                {
+                  x: 902,
+                  y: 1865,
+                  _id: "6511a9745f43f6cd22847e73",
+                },
+                {
+                  x: 1002,
+                  y: 1869,
+                  _id: "6511a9745f43f6cd22847e74",
+                },
+                {
+                  x: 1000,
+                  y: 1897,
+                  _id: "6511a9745f43f6cd22847e75",
+                },
+                {
+                  x: 901,
+                  y: 1892,
+                  _id: "6511a9745f43f6cd22847e76",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847e72",
+            },
+            {
+              content: "Médecin",
+              offset: 1258,
+              length: 7,
+              confidence: 0.991,
+              polygon: [
+                {
+                  x: 755,
+                  y: 1890,
+                  _id: "6511a9745f43f6cd22847e78",
+                },
+                {
+                  x: 847,
+                  y: 1893,
+                  _id: "6511a9745f43f6cd22847e79",
+                },
+                {
+                  x: 847,
+                  y: 1918,
+                  _id: "6511a9745f43f6cd22847e7a",
+                },
+                {
+                  x: 755,
+                  y: 1914,
+                  _id: "6511a9745f43f6cd22847e7b",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847e77",
+            },
+            {
+              content: "généraliste",
+              offset: 1266,
+              length: 11,
+              confidence: 0.991,
+              polygon: [
+                {
+                  x: 854,
+                  y: 1893,
+                  _id: "6511a9745f43f6cd22847e7d",
+                },
+                {
+                  x: 975,
+                  y: 1898,
+                  _id: "6511a9745f43f6cd22847e7e",
+                },
+                {
+                  x: 975,
+                  y: 1922,
+                  _id: "6511a9745f43f6cd22847e7f",
+                },
+                {
+                  x: 854,
+                  y: 1918,
+                  _id: "6511a9745f43f6cd22847e80",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847e7c",
+            },
+            {
+              content: "Centre",
+              offset: 1278,
+              length: 6,
+              confidence: 0.995,
+              polygon: [
+                {
+                  x: 719,
+                  y: 1917,
+                  _id: "6511a9745f43f6cd22847e82",
+                },
+                {
+                  x: 796,
+                  y: 1920,
+                  _id: "6511a9745f43f6cd22847e83",
+                },
+                {
+                  x: 796,
+                  y: 1944,
+                  _id: "6511a9745f43f6cd22847e84",
+                },
+                {
+                  x: 719,
+                  y: 1942,
+                  _id: "6511a9745f43f6cd22847e85",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847e81",
+            },
+            {
+              content: "de",
+              offset: 1285,
+              length: 2,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 802,
+                  y: 1920,
+                  _id: "6511a9745f43f6cd22847e87",
+                },
+                {
+                  x: 832,
+                  y: 1922,
+                  _id: "6511a9745f43f6cd22847e88",
+                },
+                {
+                  x: 831,
+                  y: 1945,
+                  _id: "6511a9745f43f6cd22847e89",
+                },
+                {
+                  x: 801,
+                  y: 1944,
+                  _id: "6511a9745f43f6cd22847e8a",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847e86",
+            },
+            {
+              content: "santé",
+              offset: 1288,
+              length: 5,
+              confidence: 0.985,
+              polygon: [
+                {
+                  x: 837,
+                  y: 1922,
+                  _id: "6511a9745f43f6cd22847e8c",
+                },
+                {
+                  x: 902,
+                  y: 1924,
+                  _id: "6511a9745f43f6cd22847e8d",
+                },
+                {
+                  x: 901,
+                  y: 1948,
+                  _id: "6511a9745f43f6cd22847e8e",
+                },
+                {
+                  x: 836,
+                  y: 1945,
+                  _id: "6511a9745f43f6cd22847e8f",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847e8b",
+            },
+            {
+              content: "FILIERIS",
+              offset: 1294,
+              length: 8,
+              confidence: 0.949,
+              polygon: [
+                {
+                  x: 907,
+                  y: 1924,
+                  _id: "6511a9745f43f6cd22847e91",
+                },
+                {
+                  x: 1006,
+                  y: 1926,
+                  _id: "6511a9745f43f6cd22847e92",
+                },
+                {
+                  x: 1005,
+                  y: 1952,
+                  _id: "6511a9745f43f6cd22847e93",
+                },
+                {
+                  x: 907,
+                  y: 1948,
+                  _id: "6511a9745f43f6cd22847e94",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847e90",
+            },
+            {
+              content: "Nº",
+              offset: 1303,
+              length: 2,
+              confidence: 0.648,
+              polygon: [
+                {
+                  x: 735,
+                  y: 1945,
+                  _id: "6511a9745f43f6cd22847e96",
+                },
+                {
+                  x: 763,
+                  y: 1947,
+                  _id: "6511a9745f43f6cd22847e97",
+                },
+                {
+                  x: 763,
+                  y: 1971,
+                  _id: "6511a9745f43f6cd22847e98",
+                },
+                {
+                  x: 735,
+                  y: 1970,
+                  _id: "6511a9745f43f6cd22847e99",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847e95",
+            },
+            {
+              content: "Finess",
+              offset: 1306,
+              length: 6,
+              confidence: 0.991,
+              polygon: [
+                {
+                  x: 768,
+                  y: 1947,
+                  _id: "6511a9745f43f6cd22847e9b",
+                },
+                {
+                  x: 842,
+                  y: 1950,
+                  _id: "6511a9745f43f6cd22847e9c",
+                },
+                {
+                  x: 842,
+                  y: 1974,
+                  _id: "6511a9745f43f6cd22847e9d",
+                },
+                {
+                  x: 768,
+                  y: 1971,
+                  _id: "6511a9745f43f6cd22847e9e",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847e9a",
+            },
+            {
+              content: "68",
+              offset: 1313,
+              length: 2,
+              confidence: 0.991,
+              polygon: [
+                {
+                  x: 849,
+                  y: 1951,
+                  _id: "6511a9745f43f6cd22847ea0",
+                },
+                {
+                  x: 875,
+                  y: 1952,
+                  _id: "6511a9745f43f6cd22847ea1",
+                },
+                {
+                  x: 875,
+                  y: 1975,
+                  _id: "6511a9745f43f6cd22847ea2",
+                },
+                {
+                  x: 848,
+                  y: 1974,
+                  _id: "6511a9745f43f6cd22847ea3",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847e9f",
+            },
+            {
+              content: "000",
+              offset: 1316,
+              length: 3,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 880,
+                  y: 1952,
+                  _id: "6511a9745f43f6cd22847ea5",
+                },
+                {
+                  x: 923,
+                  y: 1953,
+                  _id: "6511a9745f43f6cd22847ea6",
+                },
+                {
+                  x: 922,
+                  y: 1977,
+                  _id: "6511a9745f43f6cd22847ea7",
+                },
+                {
+                  x: 880,
+                  y: 1975,
+                  _id: "6511a9745f43f6cd22847ea8",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847ea4",
+            },
+            {
+              content: "693",
+              offset: 1320,
+              length: 3,
+              confidence: 0.998,
+              polygon: [
+                {
+                  x: 928,
+                  y: 1953,
+                  _id: "6511a9745f43f6cd22847eaa",
+                },
+                {
+                  x: 970,
+                  y: 1954,
+                  _id: "6511a9745f43f6cd22847eab",
+                },
+                {
+                  x: 970,
+                  y: 1979,
+                  _id: "6511a9745f43f6cd22847eac",
+                },
+                {
+                  x: 928,
+                  y: 1977,
+                  _id: "6511a9745f43f6cd22847ead",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847ea9",
+            },
+            {
+              content: "9",
+              offset: 1324,
+              length: 1,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 975,
+                  y: 1954,
+                  _id: "6511a9745f43f6cd22847eaf",
+                },
+                {
+                  x: 989,
+                  y: 1955,
+                  _id: "6511a9745f43f6cd22847eb0",
+                },
+                {
+                  x: 989,
+                  y: 1980,
+                  _id: "6511a9745f43f6cd22847eb1",
+                },
+                {
+                  x: 975,
+                  y: 1980,
+                  _id: "6511a9745f43f6cd22847eb2",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847eae",
+            },
+            {
+              content: "26,",
+              offset: 1326,
+              length: 3,
+              confidence: 0.648,
+              polygon: [
+                {
+                  x: 653,
+                  y: 1973,
+                  _id: "6511a9745f43f6cd22847eb4",
+                },
+                {
+                  x: 685,
+                  y: 1974,
+                  _id: "6511a9745f43f6cd22847eb5",
+                },
+                {
+                  x: 684,
+                  y: 1998,
+                  _id: "6511a9745f43f6cd22847eb6",
+                },
+                {
+                  x: 653,
+                  y: 1997,
+                  _id: "6511a9745f43f6cd22847eb7",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847eb3",
+            },
+            {
+              content: "rue",
+              offset: 1330,
+              length: 3,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 690,
+                  y: 1974,
+                  _id: "6511a9745f43f6cd22847eb9",
+                },
+                {
+                  x: 727,
+                  y: 1975,
+                  _id: "6511a9745f43f6cd22847eba",
+                },
+                {
+                  x: 727,
+                  y: 2000,
+                  _id: "6511a9745f43f6cd22847ebb",
+                },
+                {
+                  x: 689,
+                  y: 1998,
+                  _id: "6511a9745f43f6cd22847ebc",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847eb8",
+            },
+            {
+              content: "Maréchal",
+              offset: 1334,
+              length: 8,
+              confidence: 0.942,
+              polygon: [
+                {
+                  x: 734,
+                  y: 1975,
+                  _id: "6511a9745f43f6cd22847ebe",
+                },
+                {
+                  x: 835,
+                  y: 1978,
+                  _id: "6511a9745f43f6cd22847ebf",
+                },
+                {
+                  x: 835,
+                  y: 2004,
+                  _id: "6511a9745f43f6cd22847ec0",
+                },
+                {
+                  x: 734,
+                  y: 2000,
+                  _id: "6511a9745f43f6cd22847ec1",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847ebd",
+            },
+            {
+              content: "de",
+              offset: 1343,
+              length: 2,
+              confidence: 0.941,
+              polygon: [
+                {
+                  x: 840,
+                  y: 1979,
+                  _id: "6511a9745f43f6cd22847ec3",
+                },
+                {
+                  x: 869,
+                  y: 1980,
+                  _id: "6511a9745f43f6cd22847ec4",
+                },
+                {
+                  x: 868,
+                  y: 2005,
+                  _id: "6511a9745f43f6cd22847ec5",
+                },
+                {
+                  x: 839,
+                  y: 2004,
+                  _id: "6511a9745f43f6cd22847ec6",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847ec2",
+            },
+            {
+              content: "Lattre",
+              offset: 1346,
+              length: 6,
+              confidence: 0.991,
+              polygon: [
+                {
+                  x: 874,
+                  y: 1980,
+                  _id: "6511a9745f43f6cd22847ec8",
+                },
+                {
+                  x: 938,
+                  y: 1983,
+                  _id: "6511a9745f43f6cd22847ec9",
+                },
+                {
+                  x: 937,
+                  y: 2008,
+                  _id: "6511a9745f43f6cd22847eca",
+                },
+                {
+                  x: 873,
+                  y: 2005,
+                  _id: "6511a9745f43f6cd22847ecb",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847ec7",
+            },
+            {
+              content: "de",
+              offset: 1353,
+              length: 2,
+              confidence: 0.996,
+              polygon: [
+                {
+                  x: 943,
+                  y: 1983,
+                  _id: "6511a9745f43f6cd22847ecd",
+                },
+                {
+                  x: 972,
+                  y: 1984,
+                  _id: "6511a9745f43f6cd22847ece",
+                },
+                {
+                  x: 971,
+                  y: 2010,
+                  _id: "6511a9745f43f6cd22847ecf",
+                },
+                {
+                  x: 942,
+                  y: 2009,
+                  _id: "6511a9745f43f6cd22847ed0",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847ecc",
+            },
+            {
+              content: "Tassigny",
+              offset: 1356,
+              length: 8,
+              confidence: 0.993,
+              polygon: [
+                {
+                  x: 980,
+                  y: 1984,
+                  _id: "6511a9745f43f6cd22847ed2",
+                },
+                {
+                  x: 1075,
+                  y: 1989,
+                  _id: "6511a9745f43f6cd22847ed3",
+                },
+                {
+                  x: 1074,
+                  y: 2015,
+                  _id: "6511a9745f43f6cd22847ed4",
+                },
+                {
+                  x: 978,
+                  y: 2010,
+                  _id: "6511a9745f43f6cd22847ed5",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847ed1",
+            },
+            {
+              content: "68270",
+              offset: 1365,
+              length: 5,
+              confidence: 0.993,
+              polygon: [
+                {
+                  x: 746,
+                  y: 2004,
+                  _id: "6511a9745f43f6cd22847ed7",
+                },
+                {
+                  x: 813,
+                  y: 2005,
+                  _id: "6511a9745f43f6cd22847ed8",
+                },
+                {
+                  x: 812,
+                  y: 2030,
+                  _id: "6511a9745f43f6cd22847ed9",
+                },
+                {
+                  x: 745,
+                  y: 2028,
+                  _id: "6511a9745f43f6cd22847eda",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847ed6",
+            },
+            {
+              content: "WITTENHEIM",
+              offset: 1371,
+              length: 10,
+              confidence: 0.808,
+              polygon: [
+                {
+                  x: 818,
+                  y: 2006,
+                  _id: "6511a9745f43f6cd22847edc",
+                },
+                {
+                  x: 969,
+                  y: 2011,
+                  _id: "6511a9745f43f6cd22847edd",
+                },
+                {
+                  x: 967,
+                  y: 2036,
+                  _id: "6511a9745f43f6cd22847ede",
+                },
+                {
+                  x: 817,
+                  y: 2030,
+                  _id: "6511a9745f43f6cd22847edf",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847edb",
+            },
+            {
+              content: "Membre",
+              offset: 1382,
+              length: 6,
+              confidence: 0.993,
+              polygon: [
+                {
+                  x: 437,
+                  y: 2151,
+                  _id: "6511a9745f43f6cd22847ee1",
+                },
+                {
+                  x: 517,
+                  y: 2150,
+                  _id: "6511a9745f43f6cd22847ee2",
+                },
+                {
+                  x: 517,
+                  y: 2174,
+                  _id: "6511a9745f43f6cd22847ee3",
+                },
+                {
+                  x: 438,
+                  y: 2173,
+                  _id: "6511a9745f43f6cd22847ee4",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847ee0",
+            },
+            {
+              content: "d'une",
+              offset: 1389,
+              length: 5,
+              confidence: 0.994,
+              polygon: [
+                {
+                  x: 522,
+                  y: 2150,
+                  _id: "6511a9745f43f6cd22847ee6",
+                },
+                {
+                  x: 578,
+                  y: 2149,
+                  _id: "6511a9745f43f6cd22847ee7",
+                },
+                {
+                  x: 579,
+                  y: 2174,
+                  _id: "6511a9745f43f6cd22847ee8",
+                },
+                {
+                  x: 522,
+                  y: 2174,
+                  _id: "6511a9745f43f6cd22847ee9",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847ee5",
+            },
+            {
+              content: "association",
+              offset: 1395,
+              length: 11,
+              confidence: 0.991,
+              polygon: [
+                {
+                  x: 584,
+                  y: 2149,
+                  _id: "6511a9745f43f6cd22847eeb",
+                },
+                {
+                  x: 700,
+                  y: 2149,
+                  _id: "6511a9745f43f6cd22847eec",
+                },
+                {
+                  x: 700,
+                  y: 2174,
+                  _id: "6511a9745f43f6cd22847eed",
+                },
+                {
+                  x: 584,
+                  y: 2174,
+                  _id: "6511a9745f43f6cd22847eee",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847eea",
+            },
+            {
+              content: "de",
+              offset: 1407,
+              length: 2,
+              confidence: 0.94,
+              polygon: [
+                {
+                  x: 705,
+                  y: 2149,
+                  _id: "6511a9745f43f6cd22847ef0",
+                },
+                {
+                  x: 730,
+                  y: 2148,
+                  _id: "6511a9745f43f6cd22847ef1",
+                },
+                {
+                  x: 731,
+                  y: 2174,
+                  _id: "6511a9745f43f6cd22847ef2",
+                },
+                {
+                  x: 705,
+                  y: 2174,
+                  _id: "6511a9745f43f6cd22847ef3",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847eef",
+            },
+            {
+              content: "gestion",
+              offset: 1410,
+              length: 7,
+              confidence: 0.991,
+              polygon: [
+                {
+                  x: 735,
+                  y: 2148,
+                  _id: "6511a9745f43f6cd22847ef5",
+                },
+                {
+                  x: 811,
+                  y: 2148,
+                  _id: "6511a9745f43f6cd22847ef6",
+                },
+                {
+                  x: 811,
+                  y: 2175,
+                  _id: "6511a9745f43f6cd22847ef7",
+                },
+                {
+                  x: 736,
+                  y: 2174,
+                  _id: "6511a9745f43f6cd22847ef8",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847ef4",
+            },
+            {
+              content: "agréée,",
+              offset: 1418,
+              length: 7,
+              confidence: 0.993,
+              polygon: [
+                {
+                  x: 816,
+                  y: 2148,
+                  _id: "6511a9745f43f6cd22847efa",
+                },
+                {
+                  x: 893,
+                  y: 2148,
+                  _id: "6511a9745f43f6cd22847efb",
+                },
+                {
+                  x: 893,
+                  y: 2175,
+                  _id: "6511a9745f43f6cd22847efc",
+                },
+                {
+                  x: 816,
+                  y: 2175,
+                  _id: "6511a9745f43f6cd22847efd",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847ef9",
+            },
+            {
+              content: "le",
+              offset: 1426,
+              length: 2,
+              confidence: 0.996,
+              polygon: [
+                {
+                  x: 898,
+                  y: 2148,
+                  _id: "6511a9745f43f6cd22847eff",
+                },
+                {
+                  x: 916,
+                  y: 2147,
+                  _id: "6511a9745f43f6cd22847f00",
+                },
+                {
+                  x: 917,
+                  y: 2175,
+                  _id: "6511a9745f43f6cd22847f01",
+                },
+                {
+                  x: 898,
+                  y: 2175,
+                  _id: "6511a9745f43f6cd22847f02",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847efe",
+            },
+            {
+              content: "règlement",
+              offset: 1429,
+              length: 9,
+              confidence: 0.944,
+              polygon: [
+                {
+                  x: 922,
+                  y: 2147,
+                  _id: "6511a9745f43f6cd22847f04",
+                },
+                {
+                  x: 1021,
+                  y: 2147,
+                  _id: "6511a9745f43f6cd22847f05",
+                },
+                {
+                  x: 1021,
+                  y: 2175,
+                  _id: "6511a9745f43f6cd22847f06",
+                },
+                {
+                  x: 922,
+                  y: 2175,
+                  _id: "6511a9745f43f6cd22847f07",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847f03",
+            },
+            {
+              content: "par",
+              offset: 1439,
+              length: 3,
+              confidence: 0.993,
+              polygon: [
+                {
+                  x: 1026,
+                  y: 2147,
+                  _id: "6511a9745f43f6cd22847f09",
+                },
+                {
+                  x: 1062,
+                  y: 2147,
+                  _id: "6511a9745f43f6cd22847f0a",
+                },
+                {
+                  x: 1062,
+                  y: 2174,
+                  _id: "6511a9745f43f6cd22847f0b",
+                },
+                {
+                  x: 1026,
+                  y: 2175,
+                  _id: "6511a9745f43f6cd22847f0c",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847f08",
+            },
+            {
+              content: "chèque",
+              offset: 1443,
+              length: 6,
+              confidence: 0.967,
+              polygon: [
+                {
+                  x: 1067,
+                  y: 2147,
+                  _id: "6511a9745f43f6cd22847f0e",
+                },
+                {
+                  x: 1143,
+                  y: 2147,
+                  _id: "6511a9745f43f6cd22847f0f",
+                },
+                {
+                  x: 1144,
+                  y: 2174,
+                  _id: "6511a9745f43f6cd22847f10",
+                },
+                {
+                  x: 1067,
+                  y: 2174,
+                  _id: "6511a9745f43f6cd22847f11",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847f0d",
+            },
+            {
+              content: "est",
+              offset: 1450,
+              length: 3,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 1149,
+                  y: 2147,
+                  _id: "6511a9745f43f6cd22847f13",
+                },
+                {
+                  x: 1181,
+                  y: 2147,
+                  _id: "6511a9745f43f6cd22847f14",
+                },
+                {
+                  x: 1181,
+                  y: 2174,
+                  _id: "6511a9745f43f6cd22847f15",
+                },
+                {
+                  x: 1149,
+                  y: 2174,
+                  _id: "6511a9745f43f6cd22847f16",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847f12",
+            },
+            {
+              content: "accepté.",
+              offset: 1454,
+              length: 8,
+              confidence: 0.96,
+              polygon: [
+                {
+                  x: 1186,
+                  y: 2147,
+                  _id: "6511a9745f43f6cd22847f18",
+                },
+                {
+                  x: 1275,
+                  y: 2147,
+                  _id: "6511a9745f43f6cd22847f19",
+                },
+                {
+                  x: 1276,
+                  y: 2174,
+                  _id: "6511a9745f43f6cd22847f1a",
+                },
+                {
+                  x: 1186,
+                  y: 2174,
+                  _id: "6511a9745f43f6cd22847f1b",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847f17",
+            },
+            {
+              content: "En",
+              offset: 1463,
+              length: 2,
+              confidence: 0.994,
+              polygon: [
+                {
+                  x: 697,
+                  y: 2188,
+                  _id: "6511a9745f43f6cd22847f1d",
+                },
+                {
+                  x: 721,
+                  y: 2188,
+                  _id: "6511a9745f43f6cd22847f1e",
+                },
+                {
+                  x: 721,
+                  y: 2213,
+                  _id: "6511a9745f43f6cd22847f1f",
+                },
+                {
+                  x: 697,
+                  y: 2212,
+                  _id: "6511a9745f43f6cd22847f20",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847f1c",
+            },
+            {
+              content: "cas",
+              offset: 1466,
+              length: 3,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 726,
+                  y: 2188,
+                  _id: "6511a9745f43f6cd22847f22",
+                },
+                {
+                  x: 765,
+                  y: 2188,
+                  _id: "6511a9745f43f6cd22847f23",
+                },
+                {
+                  x: 765,
+                  y: 2213,
+                  _id: "6511a9745f43f6cd22847f24",
+                },
+                {
+                  x: 726,
+                  y: 2213,
+                  _id: "6511a9745f43f6cd22847f25",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847f21",
+            },
+            {
+              content: "d'urgence,",
+              offset: 1470,
+              length: 10,
+              confidence: 0.943,
+              polygon: [
+                {
+                  x: 770,
+                  y: 2188,
+                  _id: "6511a9745f43f6cd22847f27",
+                },
+                {
+                  x: 878,
+                  y: 2187,
+                  _id: "6511a9745f43f6cd22847f28",
+                },
+                {
+                  x: 878,
+                  y: 2214,
+                  _id: "6511a9745f43f6cd22847f29",
+                },
+                {
+                  x: 770,
+                  y: 2213,
+                  _id: "6511a9745f43f6cd22847f2a",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847f26",
+            },
+            {
+              content: "appelez",
+              offset: 1481,
+              length: 7,
+              confidence: 0.994,
+              polygon: [
+                {
+                  x: 883,
+                  y: 2187,
+                  _id: "6511a9745f43f6cd22847f2c",
+                },
+                {
+                  x: 963,
+                  y: 2186,
+                  _id: "6511a9745f43f6cd22847f2d",
+                },
+                {
+                  x: 963,
+                  y: 2214,
+                  _id: "6511a9745f43f6cd22847f2e",
+                },
+                {
+                  x: 883,
+                  y: 2214,
+                  _id: "6511a9745f43f6cd22847f2f",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847f2b",
+            },
+            {
+              content: "le",
+              offset: 1489,
+              length: 2,
+              confidence: 0.997,
+              polygon: [
+                {
+                  x: 968,
+                  y: 2186,
+                  _id: "6511a9745f43f6cd22847f31",
+                },
+                {
+                  x: 987,
+                  y: 2186,
+                  _id: "6511a9745f43f6cd22847f32",
+                },
+                {
+                  x: 988,
+                  y: 2213,
+                  _id: "6511a9745f43f6cd22847f33",
+                },
+                {
+                  x: 969,
+                  y: 2214,
+                  _id: "6511a9745f43f6cd22847f34",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847f30",
+            },
+            {
+              content: "15.",
+              offset: 1492,
+              length: 3,
+              confidence: 0.959,
+              polygon: [
+                {
+                  x: 993,
+                  y: 2186,
+                  _id: "6511a9745f43f6cd22847f36",
+                },
+                {
+                  x: 1028,
+                  y: 2186,
+                  _id: "6511a9745f43f6cd22847f37",
+                },
+                {
+                  x: 1028,
+                  y: 2213,
+                  _id: "6511a9745f43f6cd22847f38",
+                },
+                {
+                  x: 993,
+                  y: 2213,
+                  _id: "6511a9745f43f6cd22847f39",
+                },
+              ],
+              _id: "6511a9745f43f6cd22847f35",
+            },
+          ],
+          styles: [
+            {
+              isHandwritten: true,
+              offset: 468,
+              length: 8,
+              confidence: 1,
+              _id: "6511a9745f43f6cd22847f3a",
+            },
+          ],
+          ner: [
+            {
+              content: "10002457751",
+              category: "RPPS",
+              offset: 287,
+              length: 11,
+              confidence: 1,
+              isHandwritten: false,
+              _id: "6511a9745f43f6cd22847f3b",
+            },
+            {
+              content: "26/05/2023",
+              category: "date",
+              offset: 457,
+              length: 10,
+              confidence: 1,
+              isHandwritten: false,
+              _id: "6511a9745f43f6cd22847f3c",
+            },
+            {
+              content: "Prescriptions relatives au traitement de l'affection de longue durée reconnue",
+              category: "prescriptionType",
+              offset: 477,
+              length: 77,
+              confidence: 1,
+              isHandwritten: false,
+              _id: "6511a9745f43f6cd22847f3d",
+            },
+            {
+              content: "AFFECTION EXONERANTE",
+              category: "prescriptionType",
+              offset: 556,
+              length: 20,
+              confidence: 1,
+              isHandwritten: false,
+              _id: "6511a9745f43f6cd22847f3e",
+            },
+            {
+              content: "Ionogramme plasmatique",
+              category: "examinationName",
+              offset: 578,
+              length: 22,
+              confidence: 1,
+              isHandwritten: false,
+              _id: "6511a9745f43f6cd22847f3f",
+            },
+            {
+              content: "Exploration d'une anomalie lipidique",
+              category: "examinationName",
+              offset: 601,
+              length: 36,
+              confidence: 1,
+              isHandwritten: false,
+              _id: "6511a9745f43f6cd22847f40",
+            },
+            {
+              content: "EAL",
+              category: "examinationName",
+              offset: 639,
+              length: 3,
+              confidence: 0.99,
+              isHandwritten: false,
+              _id: "6511a9745f43f6cd22847f41",
+            },
+            {
+              content: "SGOT",
+              category: "examinationName",
+              offset: 644,
+              length: 4,
+              confidence: 1,
+              isHandwritten: false,
+              _id: "6511a9745f43f6cd22847f42",
+            },
+            {
+              content: "SGPT",
+              category: "examinationName",
+              offset: 649,
+              length: 4,
+              confidence: 0.99,
+              isHandwritten: false,
+              _id: "6511a9745f43f6cd22847f43",
+            },
+            {
+              content: "Glycémie",
+              category: "examinationName",
+              offset: 700,
+              length: 8,
+              confidence: 1,
+              isHandwritten: false,
+              _id: "6511a9745f43f6cd22847f44",
+            },
+            {
+              content: "Hémoglobine glyquée",
+              category: "examinationName",
+              offset: 716,
+              length: 19,
+              confidence: 1,
+              isHandwritten: false,
+              _id: "6511a9745f43f6cd22847f45",
+            },
+            {
+              content: "HbA1c",
+              category: "examinationName",
+              offset: 737,
+              length: 5,
+              confidence: 0.72,
+              isHandwritten: false,
+              _id: "6511a9745f43f6cd22847f46",
+            },
+            {
+              content: "Créatininémie",
+              category: "examinationName",
+              offset: 744,
+              length: 13,
+              confidence: 1,
+              isHandwritten: false,
+              _id: "6511a9745f43f6cd22847f47",
+            },
+            {
+              content: "Créatine-phospho-kinase (",
+              category: "examinationName",
+              offset: 798,
+              length: 25,
+              confidence: 0.99,
+              isHandwritten: false,
+              _id: "6511a9745f43f6cd22847f48",
+            },
+            {
+              content: "CPK) totale",
+              category: "examinationName",
+              offset: 823,
+              length: 11,
+              confidence: 0.9,
+              isHandwritten: false,
+              _id: "6511a9745f43f6cd22847f49",
+            },
+            {
+              content: "Gamma GT",
+              category: "examinationName",
+              offset: 835,
+              length: 8,
+              confidence: 1,
+              isHandwritten: false,
+              _id: "6511a9745f43f6cd22847f4a",
+            },
+            {
+              content: "Microalbuminurie",
+              category: "examinationName",
+              offset: 844,
+              length: 16,
+              confidence: 1,
+              isHandwritten: false,
+              _id: "6511a9745f43f6cd22847f4b",
+            },
+            {
+              content: "Ionogramme plasmatique",
+              category: "examinationName",
+              offset: 963,
+              length: 22,
+              confidence: 1,
+              isHandwritten: false,
+              _id: "6511a9745f43f6cd22847f4c",
+            },
+            {
+              content: "Prescriptions SANS RAPPORT avec l'affection de longue durée",
+              category: "prescriptionType",
+              offset: 986,
+              length: 59,
+              confidence: 1,
+              isHandwritten: false,
+              _id: "6511a9745f43f6cd22847f4d",
+            },
+            {
+              content: "MALADIES INTERCURRENTES",
+              category: "prescriptionType",
+              offset: 1047,
+              length: 23,
+              confidence: 1,
+              isHandwritten: false,
+              _id: "6511a9745f43f6cd22847f4e",
+            },
+            {
+              content: "Protéine C reactive",
+              category: "examinationName",
+              offset: 1072,
+              length: 19,
+              confidence: 1,
+              isHandwritten: false,
+              _id: "6511a9745f43f6cd22847f4f",
+            },
+            {
+              content: "CRP",
+              category: "examinationName",
+              offset: 1093,
+              length: 3,
+              confidence: 0.99,
+              isHandwritten: false,
+              _id: "6511a9745f43f6cd22847f50",
+            },
+            {
+              content: "Ferritine sérique",
+              category: "examinationName",
+              offset: 1098,
+              length: 17,
+              confidence: 1,
+              isHandwritten: false,
+              _id: "6511a9745f43f6cd22847f51",
+            },
+            {
+              content: "Albuminémie",
+              category: "examinationName",
+              offset: 1116,
+              length: 11,
+              confidence: 1,
+              isHandwritten: false,
+              _id: "6511a9745f43f6cd22847f52",
+            },
+            {
+              content: "Calcémie corrigée",
+              category: "examinationName",
+              offset: 1128,
+              length: 17,
+              confidence: 1,
+              isHandwritten: false,
+              _id: "6511a9745f43f6cd22847f53",
+            },
+            {
+              content: "Vitamine D (D2-D3)",
+              category: "examinationName",
+              offset: 1146,
+              length: 18,
+              confidence: 1,
+              isHandwritten: false,
+              _id: "6511a9745f43f6cd22847f54",
+            },
+            {
+              content: "Uricémie",
+              category: "examinationName",
+              offset: 1165,
+              length: 8,
+              confidence: 1,
+              isHandwritten: false,
+              _id: "6511a9745f43f6cd22847f55",
+            },
+            {
+              content: "Thyréostimuline sanguine",
+              category: "examinationName",
+              offset: 1174,
+              length: 24,
+              confidence: 1,
+              isHandwritten: false,
+              _id: "6511a9745f43f6cd22847f56",
+            },
+            {
+              content: "TSH ultrasensible",
+              category: "examinationName",
+              offset: 1200,
+              length: 17,
+              confidence: 1,
+              isHandwritten: false,
+              _id: "6511a9745f43f6cd22847f57",
+            },
+            {
+              content: "NFS",
+              category: "examinationName",
+              offset: 1219,
+              length: 3,
+              confidence: 1,
+              isHandwritten: false,
+              _id: "6511a9745f43f6cd22847f58",
+            },
+            {
+              content: "Plaquettes",
+              category: "examinationName",
+              offset: 1225,
+              length: 10,
+              confidence: 1,
+              isHandwritten: false,
+              _id: "6511a9745f43f6cd22847f59",
+            },
+          ],
+          acts: [
+            {
+              content: "Ionogramme plasmatique",
+              offset: 578,
+              length: 22,
+              confidence: 9.327684,
+              code: "IONO",
+              isHandwritten: false,
+              polygon: [
+                {
+                  x: 174,
+                  y: 975,
+                  _id: "6511a9745f43f6cd22847f5b",
+                },
+                {
+                  x: 562,
+                  y: 975,
+                  _id: "6511a9745f43f6cd22847f5c",
+                },
+                {
+                  x: 562,
+                  y: 1017,
+                  _id: "6511a9745f43f6cd22847f5d",
+                },
+                {
+                  x: 174,
+                  y: 1017,
+                  _id: "6511a9745f43f6cd22847f5e",
+                },
+              ],
+              ALD: true,
+              warning: false,
+              _id: "6511a9745f43f6cd22847f5a",
+            },
+            {
+              content: "Exploration d'une anomalie lipidique",
+              offset: 601,
+              length: 36,
+              confidence: 10.979242,
+              code: "LIPI2",
+              isHandwritten: false,
+              polygon: [
+                {
+                  x: 177,
+                  y: 1012,
+                  _id: "6511a9745f43f6cd22847f60",
+                },
+                {
+                  x: 715,
+                  y: 1012,
+                  _id: "6511a9745f43f6cd22847f61",
+                },
+                {
+                  x: 715,
+                  y: 1054,
+                  _id: "6511a9745f43f6cd22847f62",
+                },
+                {
+                  x: 177,
+                  y: 1054,
+                  _id: "6511a9745f43f6cd22847f63",
+                },
+              ],
+              ALD: true,
+              warning: false,
+              _id: "6511a9745f43f6cd22847f5f",
+            },
+            {
+              content: "EAL",
+              offset: 639,
+              length: 3,
+              confidence: 5.3038391670000005,
+              code: "LIPI2",
+              isHandwritten: false,
+              polygon: [
+                {
+                  x: 722,
+                  y: 1011,
+                  _id: "6511a9745f43f6cd22847f65",
+                },
+                {
+                  x: 813,
+                  y: 1011,
+                  _id: "6511a9745f43f6cd22847f66",
+                },
+                {
+                  x: 813,
+                  y: 1051,
+                  _id: "6511a9745f43f6cd22847f67",
+                },
+                {
+                  x: 722,
+                  y: 1051,
+                  _id: "6511a9745f43f6cd22847f68",
+                },
+              ],
+              ALD: true,
+              warning: false,
+              _id: "6511a9745f43f6cd22847f64",
+            },
+            {
+              content: "SGOT",
+              offset: 644,
+              length: 4,
+              confidence: 6.144239,
+              code: "GOT_68",
+              isHandwritten: false,
+              polygon: [
+                {
+                  x: 176,
+                  y: 1055,
+                  _id: "6511a9745f43f6cd22847f6a",
+                },
+                {
+                  x: 359,
+                  y: 1055,
+                  _id: "6511a9745f43f6cd22847f6b",
+                },
+                {
+                  x: 359,
+                  y: 1094,
+                  _id: "6511a9745f43f6cd22847f6c",
+                },
+                {
+                  x: 176,
+                  y: 1094,
+                  _id: "6511a9745f43f6cd22847f6d",
+                },
+              ],
+              ALD: true,
+              warning: false,
+              _id: "6511a9745f43f6cd22847f69",
+            },
+            {
+              content: "SGPT",
+              offset: 649,
+              length: 4,
+              confidence: 6.08279661,
+              code: "GPT_68",
+              isHandwritten: false,
+              polygon: [
+                {
+                  x: 176,
+                  y: 1055,
+                  _id: "6511a9745f43f6cd22847f6f",
+                },
+                {
+                  x: 359,
+                  y: 1055,
+                  _id: "6511a9745f43f6cd22847f70",
+                },
+                {
+                  x: 359,
+                  y: 1094,
+                  _id: "6511a9745f43f6cd22847f71",
+                },
+                {
+                  x: 176,
+                  y: 1094,
+                  _id: "6511a9745f43f6cd22847f72",
+                },
+              ],
+              ALD: true,
+              warning: false,
+              _id: "6511a9745f43f6cd22847f6e",
+            },
+            {
+              content: "Glycémie",
+              offset: 700,
+              length: 8,
+              confidence: 5.750421,
+              code: "GL",
+              isHandwritten: false,
+              polygon: [
+                {
+                  x: 179,
+                  y: 1095,
+                  _id: "6511a9745f43f6cd22847f74",
+                },
+                {
+                  x: 313,
+                  y: 1095,
+                  _id: "6511a9745f43f6cd22847f75",
+                },
+                {
+                  x: 313,
+                  y: 1136,
+                  _id: "6511a9745f43f6cd22847f76",
+                },
+                {
+                  x: 179,
+                  y: 1136,
+                  _id: "6511a9745f43f6cd22847f77",
+                },
+              ],
+              ALD: true,
+              warning: false,
+              _id: "6511a9745f43f6cd22847f73",
+            },
+            {
+              content: "Hémoglobine glyquée",
+              offset: 716,
+              length: 19,
+              confidence: 7.5897765,
+              code: "HGLY_68",
+              isHandwritten: false,
+              polygon: [
+                {
+                  x: 178,
+                  y: 1134,
+                  _id: "6511a9745f43f6cd22847f79",
+                },
+                {
+                  x: 501,
+                  y: 1134,
+                  _id: "6511a9745f43f6cd22847f7a",
+                },
+                {
+                  x: 501,
+                  y: 1176,
+                  _id: "6511a9745f43f6cd22847f7b",
+                },
+                {
+                  x: 178,
+                  y: 1176,
+                  _id: "6511a9745f43f6cd22847f7c",
+                },
+              ],
+              ALD: true,
+              warning: false,
+              _id: "6511a9745f43f6cd22847f78",
+            },
+            {
+              content: "HbA1c",
+              offset: 737,
+              length: 5,
+              confidence: 4.193861472,
+              code: "HGLY_68",
+              isHandwritten: false,
+              polygon: [
+                {
+                  x: 509,
+                  y: 1133,
+                  _id: "6511a9745f43f6cd22847f7e",
+                },
+                {
+                  x: 640,
+                  y: 1133,
+                  _id: "6511a9745f43f6cd22847f7f",
+                },
+                {
+                  x: 640,
+                  y: 1176,
+                  _id: "6511a9745f43f6cd22847f80",
+                },
+                {
+                  x: 509,
+                  y: 1176,
+                  _id: "6511a9745f43f6cd22847f81",
+                },
+              ],
+              ALD: true,
+              warning: true,
+              _id: "6511a9745f43f6cd22847f7d",
+            },
+            {
+              content: "Créatininémie",
+              offset: 744,
+              length: 13,
+              confidence: 5.1989717,
+              code: "CR",
+              isHandwritten: false,
+              polygon: [
+                {
+                  x: 178,
+                  y: 1176,
+                  _id: "6511a9745f43f6cd22847f83",
+                },
+                {
+                  x: 385,
+                  y: 1176,
+                  _id: "6511a9745f43f6cd22847f84",
+                },
+                {
+                  x: 385,
+                  y: 1214,
+                  _id: "6511a9745f43f6cd22847f85",
+                },
+                {
+                  x: 178,
+                  y: 1214,
+                  _id: "6511a9745f43f6cd22847f86",
+                },
+              ],
+              ALD: true,
+              warning: false,
+              _id: "6511a9745f43f6cd22847f82",
+            },
+            {
+              content: "Créatine-phospho-kinase (",
+              offset: 798,
+              length: 25,
+              confidence: 5.8377042900000005,
+              code: "CPK_68",
+              isHandwritten: false,
+              polygon: [
+                {
+                  x: 180,
+                  y: 1214,
+                  _id: "6511a9745f43f6cd22847f88",
+                },
+                {
+                  x: 640,
+                  y: 1214,
+                  _id: "6511a9745f43f6cd22847f89",
+                },
+                {
+                  x: 640,
+                  y: 1256,
+                  _id: "6511a9745f43f6cd22847f8a",
+                },
+                {
+                  x: 180,
+                  y: 1256,
+                  _id: "6511a9745f43f6cd22847f8b",
+                },
+              ],
+              ALD: true,
+              warning: false,
+              _id: "6511a9745f43f6cd22847f87",
+            },
+            {
+              content: "CPK) totale",
+              offset: 823,
+              length: 11,
+              confidence: 5.914719,
+              code: "CPK_68",
+              isHandwritten: false,
+              polygon: [
+                {
+                  x: 552,
+                  y: 1213,
+                  _id: "6511a9745f43f6cd22847f8d",
+                },
+                {
+                  x: 736,
+                  y: 1213,
+                  _id: "6511a9745f43f6cd22847f8e",
+                },
+                {
+                  x: 736,
+                  y: 1256,
+                  _id: "6511a9745f43f6cd22847f8f",
+                },
+                {
+                  x: 552,
+                  y: 1256,
+                  _id: "6511a9745f43f6cd22847f90",
+                },
+              ],
+              ALD: true,
+              warning: false,
+              _id: "6511a9745f43f6cd22847f8c",
+            },
+            {
+              content: "Gamma GT",
+              offset: 835,
+              length: 8,
+              confidence: 10.701513,
+              code: "GGT_68",
+              isHandwritten: false,
+              polygon: [
+                {
+                  x: 180,
+                  y: 1258,
+                  _id: "6511a9745f43f6cd22847f92",
+                },
+                {
+                  x: 346,
+                  y: 1258,
+                  _id: "6511a9745f43f6cd22847f93",
+                },
+                {
+                  x: 346,
+                  y: 1295,
+                  _id: "6511a9745f43f6cd22847f94",
+                },
+                {
+                  x: 180,
+                  y: 1295,
+                  _id: "6511a9745f43f6cd22847f95",
+                },
+              ],
+              ALD: true,
+              warning: false,
+              _id: "6511a9745f43f6cd22847f91",
+            },
+            {
+              content: "Microalbuminurie",
+              offset: 844,
+              length: 16,
+              confidence: 6.57191,
+              code: "MICRAP",
+              isHandwritten: false,
+              polygon: [
+                {
+                  x: 181,
+                  y: 1297,
+                  _id: "6511a9745f43f6cd22847f97",
+                },
+                {
+                  x: 437,
+                  y: 1297,
+                  _id: "6511a9745f43f6cd22847f98",
+                },
+                {
+                  x: 437,
+                  y: 1337,
+                  _id: "6511a9745f43f6cd22847f99",
+                },
+                {
+                  x: 181,
+                  y: 1337,
+                  _id: "6511a9745f43f6cd22847f9a",
+                },
+              ],
+              ALD: true,
+              warning: false,
+              _id: "6511a9745f43f6cd22847f96",
+            },
+            {
+              content: "Ionogramme plasmatique",
+              offset: 963,
+              length: 22,
+              confidence: 9.327684,
+              code: "IONO",
+              isHandwritten: false,
+              polygon: [
+                {
+                  x: 178,
+                  y: 1338,
+                  _id: "6511a9745f43f6cd22847f9c",
+                },
+                {
+                  x: 566,
+                  y: 1338,
+                  _id: "6511a9745f43f6cd22847f9d",
+                },
+                {
+                  x: 566,
+                  y: 1378,
+                  _id: "6511a9745f43f6cd22847f9e",
+                },
+                {
+                  x: 178,
+                  y: 1378,
+                  _id: "6511a9745f43f6cd22847f9f",
+                },
+              ],
+              ALD: true,
+              warning: false,
+              _id: "6511a9745f43f6cd22847f9b",
+            },
+            {
+              content: "Protéine C reactive",
+              offset: 1072,
+              length: 19,
+              confidence: 11.678961,
+              code: "CRP_68",
+              isHandwritten: false,
+              polygon: [
+                {
+                  x: 182,
+                  y: 1536,
+                  _id: "6511a9745f43f6cd22847fa1",
+                },
+                {
+                  x: 460,
+                  y: 1536,
+                  _id: "6511a9745f43f6cd22847fa2",
+                },
+                {
+                  x: 460,
+                  y: 1575,
+                  _id: "6511a9745f43f6cd22847fa3",
+                },
+                {
+                  x: 182,
+                  y: 1575,
+                  _id: "6511a9745f43f6cd22847fa4",
+                },
+              ],
+              ALD: false,
+              warning: false,
+              _id: "6511a9745f43f6cd22847fa0",
+            },
+            {
+              content: "CRP",
+              offset: 1093,
+              length: 3,
+              confidence: 7.148979486,
+              code: "CRP_68",
+              isHandwritten: false,
+              polygon: [
+                {
+                  x: 466,
+                  y: 1534,
+                  _id: "6511a9745f43f6cd22847fa6",
+                },
+                {
+                  x: 558,
+                  y: 1534,
+                  _id: "6511a9745f43f6cd22847fa7",
+                },
+                {
+                  x: 558,
+                  y: 1574,
+                  _id: "6511a9745f43f6cd22847fa8",
+                },
+                {
+                  x: 466,
+                  y: 1574,
+                  _id: "6511a9745f43f6cd22847fa9",
+                },
+              ],
+              ALD: false,
+              warning: false,
+              _id: "6511a9745f43f6cd22847fa5",
+            },
+            {
+              content: "Ferritine sérique",
+              offset: 1098,
+              length: 17,
+              confidence: 8.917185,
+              code: "FERRI_68",
+              isHandwritten: false,
+              polygon: [
+                {
+                  x: 182,
+                  y: 1578,
+                  _id: "6511a9745f43f6cd22847fab",
+                },
+                {
+                  x: 426,
+                  y: 1578,
+                  _id: "6511a9745f43f6cd22847fac",
+                },
+                {
+                  x: 426,
+                  y: 1615,
+                  _id: "6511a9745f43f6cd22847fad",
+                },
+                {
+                  x: 182,
+                  y: 1615,
+                  _id: "6511a9745f43f6cd22847fae",
+                },
+              ],
+              ALD: false,
+              warning: false,
+              _id: "6511a9745f43f6cd22847faa",
+            },
+            {
+              content: "Albuminémie",
+              offset: 1116,
+              length: 11,
+              confidence: 5.9744635,
+              code: "ALBS_68",
+              isHandwritten: false,
+              polygon: [
+                {
+                  x: 182,
+                  y: 1620,
+                  _id: "6511a9745f43f6cd22847fb0",
+                },
+                {
+                  x: 382,
+                  y: 1620,
+                  _id: "6511a9745f43f6cd22847fb1",
+                },
+                {
+                  x: 382,
+                  y: 1657,
+                  _id: "6511a9745f43f6cd22847fb2",
+                },
+                {
+                  x: 182,
+                  y: 1657,
+                  _id: "6511a9745f43f6cd22847fb3",
+                },
+              ],
+              ALD: false,
+              warning: false,
+              _id: "6511a9745f43f6cd22847faf",
+            },
+            {
+              content: "Calcémie corrigée",
+              offset: 1128,
+              length: 17,
+              confidence: 9.208564,
+              code: "CACOR",
+              isHandwritten: false,
+              polygon: [
+                {
+                  x: 182,
+                  y: 1658,
+                  _id: "6511a9745f43f6cd22847fb5",
+                },
+                {
+                  x: 449,
+                  y: 1658,
+                  _id: "6511a9745f43f6cd22847fb6",
+                },
+                {
+                  x: 449,
+                  y: 1698,
+                  _id: "6511a9745f43f6cd22847fb7",
+                },
+                {
+                  x: 182,
+                  y: 1698,
+                  _id: "6511a9745f43f6cd22847fb8",
+                },
+              ],
+              ALD: false,
+              warning: false,
+              _id: "6511a9745f43f6cd22847fb4",
+            },
+            {
+              content: "Vitamine D (D2-D3)",
+              offset: 1146,
+              length: 18,
+              confidence: 7.6030827,
+              code: "VITD",
+              isHandwritten: false,
+              polygon: [
+                {
+                  x: 183,
+                  y: 1701,
+                  _id: "6511a9745f43f6cd22847fba",
+                },
+                {
+                  x: 482,
+                  y: 1701,
+                  _id: "6511a9745f43f6cd22847fbb",
+                },
+                {
+                  x: 482,
+                  y: 1739,
+                  _id: "6511a9745f43f6cd22847fbc",
+                },
+                {
+                  x: 183,
+                  y: 1739,
+                  _id: "6511a9745f43f6cd22847fbd",
+                },
+              ],
+              ALD: false,
+              warning: false,
+              _id: "6511a9745f43f6cd22847fb9",
+            },
+            {
+              content: "Uricémie",
+              offset: 1165,
+              length: 8,
+              confidence: 6.3185425,
+              code: "AU",
+              isHandwritten: false,
+              polygon: [
+                {
+                  x: 181,
+                  y: 1742,
+                  _id: "6511a9745f43f6cd22847fbf",
+                },
+                {
+                  x: 316,
+                  y: 1742,
+                  _id: "6511a9745f43f6cd22847fc0",
+                },
+                {
+                  x: 316,
+                  y: 1778,
+                  _id: "6511a9745f43f6cd22847fc1",
+                },
+                {
+                  x: 181,
+                  y: 1778,
+                  _id: "6511a9745f43f6cd22847fc2",
+                },
+              ],
+              ALD: false,
+              warning: false,
+              _id: "6511a9745f43f6cd22847fbe",
+            },
+            {
+              content: "Thyréostimuline sanguine",
+              offset: 1174,
+              length: 24,
+              confidence: 8.8146305,
+              code: "TSH_68",
+              isHandwritten: false,
+              polygon: [
+                {
+                  x: 184,
+                  y: 1779,
+                  _id: "6511a9745f43f6cd22847fc4",
+                },
+                {
+                  x: 564,
+                  y: 1779,
+                  _id: "6511a9745f43f6cd22847fc5",
+                },
+                {
+                  x: 564,
+                  y: 1821,
+                  _id: "6511a9745f43f6cd22847fc6",
+                },
+                {
+                  x: 184,
+                  y: 1821,
+                  _id: "6511a9745f43f6cd22847fc7",
+                },
+              ],
+              ALD: false,
+              warning: false,
+              _id: "6511a9745f43f6cd22847fc3",
+            },
+            {
+              content: "TSH ultrasensible",
+              offset: 1200,
+              length: 17,
+              confidence: 9.721655,
+              code: "TSH_68",
+              isHandwritten: false,
+              polygon: [
+                {
+                  x: 571,
+                  y: 1776,
+                  _id: "6511a9745f43f6cd22847fc9",
+                },
+                {
+                  x: 860,
+                  y: 1776,
+                  _id: "6511a9745f43f6cd22847fca",
+                },
+                {
+                  x: 860,
+                  y: 1820,
+                  _id: "6511a9745f43f6cd22847fcb",
+                },
+                {
+                  x: 571,
+                  y: 1820,
+                  _id: "6511a9745f43f6cd22847fcc",
+                },
+              ],
+              ALD: false,
+              warning: false,
+              _id: "6511a9745f43f6cd22847fc8",
+            },
+            {
+              content: "NFS",
+              offset: 1219,
+              length: 3,
+              confidence: 5.8248076,
+              code: "NF",
+              isHandwritten: false,
+              polygon: [
+                {
+                  x: 183,
+                  y: 1824,
+                  _id: "6511a9745f43f6cd22847fce",
+                },
+                {
+                  x: 244,
+                  y: 1824,
+                  _id: "6511a9745f43f6cd22847fcf",
+                },
+                {
+                  x: 244,
+                  y: 1862,
+                  _id: "6511a9745f43f6cd22847fd0",
+                },
+                {
+                  x: 183,
+                  y: 1862,
+                  _id: "6511a9745f43f6cd22847fd1",
+                },
+              ],
+              ALD: false,
+              warning: false,
+              _id: "6511a9745f43f6cd22847fcd",
+            },
+            {
+              content: "Plaquettes",
+              offset: 1225,
+              length: 10,
+              confidence: 5.8248076,
+              code: "PLAQ_68",
+              isHandwritten: false,
+              polygon: [
+                {
+                  x: 273,
+                  y: 1824,
+                  _id: "6511a9745f43f6cd22847fd3",
+                },
+                {
+                  x: 429,
+                  y: 1824,
+                  _id: "6511a9745f43f6cd22847fd4",
+                },
+                {
+                  x: 429,
+                  y: 1861,
+                  _id: "6511a9745f43f6cd22847fd5",
+                },
+                {
+                  x: 273,
+                  y: 1861,
+                  _id: "6511a9745f43f6cd22847fd6",
+                },
+              ],
+              ALD: false,
+              warning: false,
+              _id: "6511a9745f43f6cd22847fd2",
+            },
+          ],
+          isHandwritten: true,
+          _id: "6511a9745f43f6cd22847b47",
+        },
+      },
+    };
 
     window.postMessage({ message: "insertActs", data: response.data }, "*");
   },
