@@ -6,7 +6,7 @@ const alertUser = (message) => {
   div.style.display = "block";
   setTimeout(() => {
     div.style.display = "none";
-  }, 3000);
+  }, 5000);
 };
 
 const login = async () => {
