@@ -85,6 +85,7 @@ window.addEventListener(
 
     for (let act of prescription.acts) {
       if (!act.notFound) continue;
+      console.log("not found", act);
       await insertAct(act, 250);
     }
 
