@@ -60,6 +60,10 @@ document.getElementById("logout").addEventListener("click", () => {
   chrome.storage.sync.set({ apikey: "", dwt: "" }, () => {
     document.getElementById("form").style.display = "block";
     document.getElementById("status").style.display = "none";
+    document.getElementById("email").value = "";
+    document.getElementById("password").value = "";
+    document.getElementById("apikey").value = "";
+    document.getElementById("dwt").value = "";
   });
 });
 

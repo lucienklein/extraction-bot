@@ -8,11 +8,11 @@ async function init() {
   await loadLibrary(dwtURL + "/dynamsoft.webtwain.initiate.js", "text/javascript");
   await loadLibrary(dwtURL + "/dynamsoft.webtwain.config.js", "text/javascript");
   chrome.storage.sync.get(
-    { license: "" },
+    { dwt: "" },
     async (items) =>
       await loadLibrary(dwtURL + "/dwt.js", "text/javascript", "dwt", {
         dwtURL: dwtURL,
-        license: items.license,
+        license: items.dwt,
       })
   );
 
