@@ -82,7 +82,7 @@ window.addEventListener(
     prescription.acts = matchActsAndEl(prescription.acts);
 
     for (let act of prescription.acts) {
-      if (act.notFound) continue;
+      if (!act.notFound) continue;
       await insertAct(act, 500);
     }
 
@@ -128,9 +128,9 @@ window.addEventListener(
     }
 
     const div = document.querySelector("#displayText");
-
+    div.style.backgroundColor = "transparent";
     div.innerHTML = `
-      <div id="quercoContainer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: transparent;" > </div>
+      <div id="quercoContainer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" > </div>
     `;
 
     const actsWithoutNotFound = prescription.acts.filter((act) => !act.notFound);
