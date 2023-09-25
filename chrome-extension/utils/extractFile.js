@@ -2,7 +2,9 @@ window.addEventListener(
   "message",
   async (event) => {
     if (event.source != window) return;
-    if (!event.data.message || event.data.message !== "extractFile.js") return;
+    if (!event.data.message || event.data.message !== "extractFile") return;
+
+    const apikey = event.data.apikey;
 
     const fileScanned = document.querySelectorAll(
       '[style="background-image:url(http://172.30.69.50/images/icoimage-blanc.png);"]'
@@ -11,9 +13,7 @@ window.addEventListener(
     if (fileScanned.length > 0) data = await getFileFromKalisil();
     else data = await launchScan();
 
-    window.postMessage({ message: "extractedFile", data: data }, "*");
-
-    let apikey = await getChromeStorage({ apikey: "" });
+    window.postMessage({ message: "displayFile", data: data }, "*");
 
     let response = await fetch(`${API}/request`, {
       method: "POST",
@@ -77,16 +77,4 @@ const getFileFromKalisil = async () => {
 
     return imgBase64;
   }
-};
-
-const getChromeStorage = (key) => {
-  return new Promise((resolve, reject) => {
-    chrome.storage.sync.get(key, (result) => {
-      if (chrome.runtime.lastError) {
-        reject(chrome.runtime.lastError);
-      } else {
-        resolve(result[key]);
-      }
-    });
-  });
 };

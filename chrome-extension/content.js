@@ -14,9 +14,10 @@ async function init() {
   const examDiv = document.querySelector("#ajoutAnalyse");
   const button = document.createElement("button");
   button.innerText = "Extraction Automatique";
-  button.addEventListener("click", (e) => {
+  button.addEventListener("click", async (e) => {
     e.preventDefault();
-    window.postMessage({ message: "extractFile.js" }, "*");
+    const apikey = await getChromeStorage("apikey");
+    window.postMessage({ message: "extractFile", apikey }, "*");
   });
   examDiv.appendChild(button);
 }
@@ -26,7 +27,7 @@ window.addEventListener(
   "message",
   async function (event) {
     if (event.source != window) return;
-    if (!event.data.message || event.data.message !== "extractedFile") return;
+    if (!event.data.message || event.data.message !== "displayFile") return;
 
     const div = document.createElement("div");
     div.innerHTML = `
