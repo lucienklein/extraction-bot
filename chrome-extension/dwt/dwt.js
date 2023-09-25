@@ -1,11 +1,11 @@
 let DWTChromeExtension = {
   DWObject: undefined,
-  load: () => {
+  load: function () {
     const dwtURL = document.getElementById("dwt").getAttribute("dwtURL");
     Dynamsoft.DWT.ResourcesPath = dwtURL;
     this.initDWT();
   },
-  scan: async () => {
+  scan: async function () {
     if (!this.DWObject) return console.log("DWT not ready");
 
     this.DWObject.IfShowUI = false;
@@ -30,7 +30,7 @@ let DWTChromeExtension = {
       );
     });
   },
-  initDWT: async () => {
+  initDWT: async function () {
     const license = await getChromeStorage("dwt");
     if (license) {
       console.log("using license: " + license);
