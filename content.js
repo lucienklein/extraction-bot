@@ -77,7 +77,7 @@ window.addEventListener(
   async function (event) {
     if (event.source != window) return;
     if (!event.data.message || event.data.message !== "insertActs") return;
-    let prescription = event.data.data.prescription;
+    let prescription = event.data.data;
 
     extractedActs = [...extractedActs, ...prescription.acts];
 
