@@ -1,9 +1,23 @@
 <html>
-  <body style="width:250px;">
-    <h1>Document Scanner</h1>
-    <button id="scan">Show Scanner</button>
-    <p>based on <a id="dwtpage" href="https://www.dynamsoft.com/web-twain/overview/">Dynamic Web TWAIN</a></p>
-    <p><a id="optionspage" href="javascript:void();">Configure License</a></p>
+  <body style="width: 300px; max-height: fit-content">
+    <h2>Querco - Extraction</h2>
+    <div id="login" style="display: none">
+      <div style="display: flex; column-gap: 5px">
+        <input type="email" name="email" id="email" placeholder="Email" />
+        <input type="password" name="password" id="password" placeholder="Mot de passe" />
+      </div>
+      <button id="sign" style="margin-top: 10px">Se connecter</button>
+    </div>
+    <div id="status" style="display: none">
+      <div id="status-text">Activ&#233;</div>
+      <input type="text" id="apikey" disabled style="margin-top: 10px" />
+      <input type="text" id="dwt" disabled style="margin-top: 10px; display: none" />
+    </div>
+    <div
+      id="alertBox"
+      style="display: none; background-color: #ffcccc; padding: 10px; margin-top: 10px; border: 1px solid red"
+    ></div>
+
+    <script src="popup.js"></script>
   </body>
-  <script src="popup.js"></script>
 </html>
