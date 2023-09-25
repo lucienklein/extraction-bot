@@ -43,10 +43,10 @@ const login = async () => {
   }
 };
 
-const load = () => {
-  const apikey = getChromeStorage("apikey");
-  const dwt = getChromeStorage("dwt");
-  console.log(apikey, dwt);
+const load = async () => {
+  const apikey = await getChromeStorage("apikey");
+  const dwt = await getChromeStorage("dwt");
+
   if (!apikey || !dwt) return (document.getElementById("form").style.display = "block");
 
   document.getElementById("form").style.display = "none";
