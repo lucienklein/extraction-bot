@@ -67,7 +67,6 @@ window.addEventListener(
     boxAnalyse.appendChild(overlay);
 
     for (let act of prescription.acts) {
-      if (act.code === "CACOR") continue;
       await insertAct(act, 50);
     }
 
@@ -83,8 +82,8 @@ window.addEventListener(
     prescription.acts = matchActsAndEl(prescription.acts);
 
     for (let act of prescription.acts) {
-      if (act.elThatMatchAct.length) continue;
-      await insertAct(act, 250);
+      if (act.notFound) continue;
+      await insertAct(act, 500);
     }
 
     await new Promise((resolve) => {
@@ -99,6 +98,7 @@ window.addEventListener(
 
     let elActsALD = [];
     for (let act of prescription.acts) {
+      if (act.notFound) continue;
       for (const idAnalyse of act.elThatMatchAct) {
         const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
 
@@ -130,9 +130,8 @@ window.addEventListener(
     const div = document.querySelector("#displayText");
 
     div.innerHTML = `
-      <div id="quercoContainer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" class="quercoContainer"> </div>
+      <div id="quercoContainer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: transparent;" > </div>
     `;
-    div.style.backgroundColor = "transparent";
 
     const actsWithoutNotFound = prescription.acts.filter((act) => !act.notFound);
     const fctRefreshPolygon = () =>
@@ -180,6 +179,7 @@ function matchActsAndEl(acts) {
     });
 
     act.elThatMatchAct = elThatMatchAct;
+    act.notFound = elThatMatchAct.length === 0;
   }
 
   return acts;
