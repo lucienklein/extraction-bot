@@ -76,40 +76,10 @@ window.addEventListener(
     });
 
     for (const prescription of data.prescriptions) {
-      let actsInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
-
       for (let act of prescription.acts) {
-        inputAnalyse.value = act.code;
-        inputAnalyse.dispatchEvent(enterKeyEvent);
+        if (act.code === "CACOR") continue;
 
-        await new Promise((resolve) => setTimeout(resolve, 100));
-
-        const previousactsInserted = [...actsInserted];
-        actsInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
-        const newactsInserted = actsInserted.filter((act) => !previousactsInserted.includes(act));
-
-        if (newactsInserted.length === 0)
-          for (const idAnalyse of newactsInserted) {
-            const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
-            if (!el) continue;
-
-            console.log("Found act", el, act.code, act.ALD);
-
-            if (!act.ALD) continue;
-
-            const inputALD = el.querySelector(`input[id^="anaFact"]`);
-            if (!inputALD) continue;
-
-            inputALD.setAttribute("value", "ALD");
-
-            const divDataRight = el.querySelector(`.analyseDataRight`);
-            if (!divDataRight) continue;
-
-            const divIcon = divDataRight.querySelector(`div[id^="anaFact"]`);
-            if (!divIcon) continue;
-
-            divIcon.innerHTML = `<span class="qtipUp hand" help="Affection de Longue DurÃ©e">E<sub>4</sub></span>`;
-          }
+        insertAct(act, 50);
       }
     }
 
@@ -193,6 +163,22 @@ window.addEventListener(
   },
   false
 );
+
+function insertAct(act, timeout) {
+  const inputAnalyse = document.querySelector("#analyseCodeAjout");
+  const enterKeyEvent = new KeyboardEvent("keydown", {
+    key: "Enter",
+    code: "Enter",
+    keyCode: 13,
+    charCode: 13,
+    shiftKey: false,
+  });
+
+  inputAnalyse.value = act.code;
+  inputAnalyse.dispatchEvent(enterKeyEvent);
+
+  return new Promise((resolve) => setTimeout(resolve, timeout));
+}
 
 function updatePolygonPoints(document, viewportHeight, originalWidth, originalHeight, acts) {
   let newWidth = (viewportHeight / originalHeight) * originalWidth;
