@@ -81,7 +81,7 @@ window.addEventListener(
     });
 
     let actsInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
-    prescription.acts = findActNotFound(prescription.acts, actsInserted);
+    prescription.acts = findActNotFound(prescription, actsInserted);
 
     console.log(
       "not found",
@@ -187,8 +187,8 @@ function insertAct(act, timeout) {
   return new Promise((resolve) => setTimeout(resolve, timeout));
 }
 
-function findActNotFound(acts, actsInserted) {
-  let acts = JSON.parse(JSON.stringify(acts));
+function findActNotFound(prescription, actsInserted) {
+  let acts = JSON.parse(JSON.stringify(prescription.acts));
   for (let act of acts) {
     const elThatMatchAct = actsInserted.filter((idAnalyse) => {
       const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
