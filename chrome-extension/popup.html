@@ -1,17 +1,17 @@
 <html>
-  <body style="width: 300px; max-height: fit-content">
+  <body style="width: auto">
     <h2>Querco - Extraction</h2>
-    <div id="login" style="display: none">
+    <div id="form" style="display: none">
       <div style="display: flex; column-gap: 5px">
         <input type="email" name="email" id="email" placeholder="Email" />
         <input type="password" name="password" id="password" placeholder="Mot de passe" />
       </div>
-      <button id="sign" style="margin-top: 10px">Se connecter</button>
+      <button id="login" style="margin-top: 10px">Se connecter</button>
     </div>
     <div id="status" style="display: none">
-      <div id="status-text">Activ&#233;</div>
-      <input type="text" id="apikey" disabled style="margin-top: 10px" />
+      <input type="text" id="apikey" disabled style="margin-top: 10px; display: none" />
       <input type="text" id="dwt" disabled style="margin-top: 10px; display: none" />
+      <button id="logout" style="margin-top: 10px">Se deconnecter</button>
     </div>
     <div
       id="alertBox"

@@ -1,4 +1,4 @@
-const API = "https://app-42a9f51d-0586-42d1-84f2-f0fa9c3f6df2.cleverapps.io";
+const API = "https://api.extraction.querco.co";
 const dwtURL = new URL(chrome.runtime.getURL("/dwt"));
 const utilsURL = new URL(chrome.runtime.getURL("/utils"));
 

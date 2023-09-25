@@ -1,4 +1,4 @@
-const API = "https://app-42a9f51d-0586-42d1-84f2-f0fa9c3f6df2.cleverapps.io";
+const API = "https://api.extraction.querco.co";
 
 function alertUser(message) {
   const div = document.getElementById("alertBox");
@@ -9,7 +9,7 @@ function alertUser(message) {
   }, 3000);
 }
 
-async function sign() {
+async function login() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
@@ -24,10 +24,13 @@ async function sign() {
 
     const data = await response.json();
     if (response.status !== 200 && data.message) return alertUser(data.message);
-    if (response.status !== 200 || data?.user?.apikey) return alertUser("Une erreur est survenue");
+    if (response.status !== 200 || !data?.user?.apikey) {
+      console.log(data);
+      return alertUser("Une erreur est survenue");
+    }
 
     chrome.storage.sync.set({ apikey: data.user.apikey, dwt: data.dwt }, () => {
-      document.getElementById("login").style.display = "none";
+      document.getElementById("form").style.display = "none";
       document.getElementById("status").style.display = "block";
       document.getElementById("apikey").value = data.user.apikey;
       document.getElementById("dwt").value = data.dwt;
@@ -40,17 +43,24 @@ async function sign() {
 
 function load() {
   chrome.storage.sync.get({ apikey: "", dwt: "" }, (items) => {
-    if (!items.apikey) return (document.getElementById("login").style.display = "block");
+    if (!items.apikey || !items.dwt) return (document.getElementById("form").style.display = "block");
 
-    document.getElementById("login").style.display = "none";
+    document.getElementById("form").style.display = "none";
     document.getElementById("status").style.display = "block";
     document.getElementById("apikey").value = items.apikey;
     document.getElementById("dwt").value = items.dwt;
   });
 }
 
-document.getElementById("sign").addEventListener("click", () => {
-  sign();
+document.getElementById("login").addEventListener("click", () => {
+  login();
+});
+
+document.getElementById("logout").addEventListener("click", () => {
+  chrome.storage.sync.set({ apikey: "", dwt: "" }, () => {
+    document.getElementById("form").style.display = "block";
+    document.getElementById("status").style.display = "none";
+  });
 });
 
 document.addEventListener("DOMContentLoaded", load);
