@@ -35,8 +35,9 @@ const observer = new MutationObserver(async (mutations) => {
   if (acts.length === 0) return;
 
   const apikey = await getChromeStorage("apikey");
+  const mongoId = document.querySelector("#displayImage").getAttribute("mongoId");
 
-  const response = await fetch(`${API}/prescription`, {
+  const response = await fetch(`${API}/prescription/${mongoId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -106,8 +107,10 @@ window.addEventListener(
     if (event.source != window) return;
     if (!event.data.message || event.data.message !== "insertActs") return;
     let prescription = event.data.data;
-
     extractedActs = [...extractedActs, ...prescription.acts];
+
+    const image = document.querySelector("#displayImage");
+    image.setAttribute("mongoId", prescription._id.toString());
 
     const boxAnalyse = document.querySelector("#ihmBoxAnalyse .ihmCboxContent.ihmCboxvert");
     const overlay = document.createElement("div");
