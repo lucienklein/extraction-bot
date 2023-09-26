@@ -112,7 +112,7 @@ window.addEventListener(
     boxAnalyse.appendChild(overlay);
 
     for (let act of prescription.acts) {
-      await insertAct(act, 50);
+      await insertAct(act, 100);
     }
 
     const inputAnalyse = document.querySelector("#analyseCodeAjout");
