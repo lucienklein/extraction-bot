@@ -37,6 +37,8 @@ const observer = new MutationObserver(async (mutations) => {
   const apikey = await getChromeStorage("apikey");
   const mongoId = document.querySelector("#displayImage").getAttribute("mongoId");
 
+  console.log(acts);
+
   const response = await fetch(`${API}/prescription/${mongoId}`, {
     method: "PUT",
     headers: {
