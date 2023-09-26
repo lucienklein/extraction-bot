@@ -21,10 +21,13 @@ const observer = new MutationObserver(async (mutations) => {
     }
 
     for (const node of mutation.removedNodes) {
+      console.log(node);
       if (!node.classList || !node.classList.contains("analyseBox")) return;
       const codeanalyse = node.getAttribute("codeanalyse");
       const codegroupe = node.getAttribute("codegroupe");
       const code = codegroupe || codeanalyse;
+
+      console.log(code);
 
       let act = extractedActs.find((act) => act.code === code);
       if (!act) return;
@@ -36,8 +39,6 @@ const observer = new MutationObserver(async (mutations) => {
 
   const apikey = await getChromeStorage("apikey");
   const mongoId = document.querySelector("#displayImage").getAttribute("mongoId");
-
-  console.log(acts);
 
   const response = await fetch(`${API}/prescription/${mongoId}`, {
     method: "PUT",
