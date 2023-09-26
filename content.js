@@ -4,21 +4,49 @@ const utilsURL = new URL(chrome.runtime.getURL("/utils"));
 
 let extractedActs = [];
 
-const observer = new MutationObserver((mutations) => {
-  mutations.forEach((mutation) => {
-    if (mutation.addedNodes) {
-      mutation.addedNodes.forEach((node) => {
-        if (node.classList && node.classList.contains("analyseBox")) {
-          const codeanalyse = node.getAttribute("codeanalyse");
-          const codegroupe = node.getAttribute("codegroupe");
-          const code = codegroupe || codeanalyse;
+const observer = new MutationObserver(async (mutations) => {
+  let acts = [];
 
-          const act = extractedActs.find((act) => act.code === code);
-          if (!act) return;
-        }
-      });
+  for (const mutation of mutations) {
+    for (const node of mutation.addedNodes) {
+      if (!node.classList || !node.classList.contains("analyseBox")) return;
+      const codeanalyse = node.getAttribute("codeanalyse");
+      const codegroupe = node.getAttribute("codegroupe");
+      const code = codegroupe || codeanalyse;
+
+      const act = extractedActs.find((act) => act.code === code);
+      if (act) return;
+
+      acts.push({ code, isAdded: true });
     }
+
+    for (const node of mutation.removedNodes) {
+      if (!node.classList || !node.classList.contains("analyseBox")) return;
+      const codeanalyse = node.getAttribute("codeanalyse");
+      const codegroupe = node.getAttribute("codegroupe");
+      const code = codegroupe || codeanalyse;
+
+      let act = extractedActs.find((act) => act.code === code);
+      if (!act) return;
+
+      act.isDeleted = true;
+    }
+  }
+  if (acts.length === 0) return;
+
+  const apikey = await getChromeStorage("apikey");
+
+  const response = await fetch(`${API}/prescription`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ apikey, acts }),
   });
+
+  if (!response.ok) return;
+  const prescription = await response.json();
+  extractedActs = [...extractedActs, ...prescription.data.acts];
 });
 
 observer.observe(document.body, {
