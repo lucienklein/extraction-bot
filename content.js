@@ -160,17 +160,17 @@ window.addEventListener(
         el.classList.add(`querco_act_${act.code}`);
 
         if (!act.ALD) continue;
-        // el.setAttribute("isselected", true);
-        // actsAld.push(el);
+        el.setAttribute("isselected", true);
+        actsAld.push(el);
       }
     }
 
-    // if (actsAld.length > 0) {
-    //   actsAld[0].dispatchEvent(new MouseEvent("contextmenu", { bubbles: true, cancelable: true }));
-    //   const divToClick = document.querySelector("div[onclick*=\"dispatchContextMenuAction('toggleFact', 'ALD')\"]");
-    //   if (!divToClick) return;
-    //   divToClick.click();
-    // }
+    if (actsAld.length > 0) {
+      actsAld[0].dispatchEvent(new MouseEvent("contextmenu", { bubbles: true, cancelable: true }));
+      const divToClick = document.querySelector("div[onclick*=\"dispatchContextMenuAction('toggleFact', 'ALD')\"]");
+      if (!divToClick) return;
+      divToClick.click();
+    }
 
     console.log("OK");
     const div = document.querySelector("#displayText");
