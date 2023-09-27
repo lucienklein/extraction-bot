@@ -141,6 +141,7 @@ window.addEventListener(
 
     prescription.acts = matchActsAndEl(prescription.acts);
 
+    let actsAld = [];
     for (let act of prescription.acts) {
       if (act.notFound) continue;
       for (const idAnalyse of act.elThatMatchAct) {
@@ -160,16 +161,25 @@ window.addEventListener(
 
         if (!act.ALD) continue;
         el.setAttribute("isselected", true);
+        actsAld.push(el);
+
+        if (actsAld.length < 10) continue;
+
         el.dispatchEvent(new MouseEvent("contextmenu", { bubbles: true, cancelable: true }));
         const divToClick = document.querySelector("div[onclick*=\"dispatchContextMenuAction('toggleFact', 'ALD')\"]");
         if (!divToClick) return;
         divToClick.click();
-        await new Promise((resolve) => setTimeout(resolve, 10));
       }
     }
 
-    console.log("OK");
+    if (actsAld.length > 0) {
+      actsAld[0].dispatchEvent(new MouseEvent("contextmenu", { bubbles: true, cancelable: true }));
+      const divToClick = document.querySelector("div[onclick*=\"dispatchContextMenuAction('toggleFact', 'ALD')\"]");
+      if (!divToClick) return;
+      divToClick.click();
+    }
 
+    console.log("OK");
     const div = document.querySelector("#displayText");
     div.style.backgroundColor = "transparent";
     div.innerHTML = `
