@@ -172,7 +172,6 @@ window.addEventListener(
       divToClick.click();
     }
 
-    console.log("OK");
     const div = document.querySelector("#displayText");
     div.style.backgroundColor = "transparent";
     div.innerHTML = `
