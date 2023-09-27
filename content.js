@@ -141,7 +141,6 @@ window.addEventListener(
 
     prescription.acts = matchActsAndEl(prescription.acts);
 
-    let elActsALD = [];
     for (let act of prescription.acts) {
       if (act.notFound) continue;
       for (const idAnalyse of act.elThatMatchAct) {
@@ -161,15 +160,11 @@ window.addEventListener(
 
         if (!act.ALD) continue;
         el.setAttribute("isselected", true);
-        elActsALD.push(el);
+        el.dispatchEvent(new MouseEvent("contextmenu", { bubbles: true, cancelable: true }));
+        const divToClick = document.querySelector("div[onclick*=\"dispatchContextMenuAction('toggleFact', 'ALD')\"]");
+        if (!divToClick) return;
+        divToClick.click();
       }
-    }
-
-    if (elActsALD.length > 0) {
-      elActsALD[0].dispatchEvent(new MouseEvent("contextmenu", { bubbles: true, cancelable: true }));
-      const divToClick = document.querySelector("div[onclick*=\"dispatchContextMenuAction('toggleFact', 'ALD')\"]");
-      if (!divToClick) return;
-      divToClick.click();
     }
 
     const div = document.querySelector("#displayText");
