@@ -164,7 +164,7 @@ window.addEventListener(
         const divToClick = document.querySelector("div[onclick*=\"dispatchContextMenuAction('toggleFact', 'ALD')\"]");
         if (!divToClick) return;
         divToClick.click();
-        await new Promise((resolve) => setTimeout(resolve, 25));
+        await new Promise((resolve) => setTimeout(resolve, 10));
       }
     }
 
