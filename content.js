@@ -112,7 +112,7 @@ window.addEventListener(
     boxAnalyse.appendChild(overlay);
 
     for (let act of prescription.acts) {
-      await insertAct(act, 100);
+      await insertAct(act, 250);
     }
 
     const inputAnalyse = document.querySelector("#analyseCodeAjout");
@@ -160,24 +160,17 @@ window.addEventListener(
         el.classList.add(`querco_act_${act.code}`);
 
         if (!act.ALD) continue;
-        el.setAttribute("isselected", true);
-        actsAld.push(el);
-
-        if (actsAld.length < 10) continue;
-
-        el.dispatchEvent(new MouseEvent("contextmenu", { bubbles: true, cancelable: true }));
-        const divToClick = document.querySelector("div[onclick*=\"dispatchContextMenuAction('toggleFact', 'ALD')\"]");
-        if (!divToClick) return;
-        divToClick.click();
+        // el.setAttribute("isselected", true);
+        // actsAld.push(el);
       }
     }
 
-    if (actsAld.length > 0) {
-      actsAld[0].dispatchEvent(new MouseEvent("contextmenu", { bubbles: true, cancelable: true }));
-      const divToClick = document.querySelector("div[onclick*=\"dispatchContextMenuAction('toggleFact', 'ALD')\"]");
-      if (!divToClick) return;
-      divToClick.click();
-    }
+    // if (actsAld.length > 0) {
+    //   actsAld[0].dispatchEvent(new MouseEvent("contextmenu", { bubbles: true, cancelable: true }));
+    //   const divToClick = document.querySelector("div[onclick*=\"dispatchContextMenuAction('toggleFact', 'ALD')\"]");
+    //   if (!divToClick) return;
+    //   divToClick.click();
+    // }
 
     console.log("OK");
     const div = document.querySelector("#displayText");
