@@ -172,6 +172,20 @@ window.addEventListener(
       divToClick.click();
     }
 
+    if (prescription.doctor.length === 1) {
+      const doctor = prescription.doctor[0];
+      const doctorInput = document.querySelector("#medecinCodeAjout");
+      const enterKeyEvent = new KeyboardEvent("keydown", {
+        key: "Enter",
+        code: "Enter",
+        keyCode: 13,
+        charCode: 13,
+        shiftKey: false,
+      });
+      doctorInput.value = doctor.content;
+      doctorInput.dispatchEvent(enterKeyEvent);
+    }
+
     const div = document.querySelector("#displayText");
     div.style.backgroundColor = "transparent";
     div.innerHTML = `
