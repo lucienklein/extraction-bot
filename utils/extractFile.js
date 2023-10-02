@@ -32,7 +32,7 @@ window.addEventListener(
 const launchScan = async () => {
   //   const result = await DWTChromeExtension.scan();
 
-  // await new Promise((resolve) => setTimeout(resolve, 3000));
+  // return `data:image/png;base64,${result._content}`;
 
   const fileInput = document.createElement("input");
   fileInput.type = "file";
@@ -53,9 +53,7 @@ const launchScan = async () => {
     });
   });
 
-  console.log(result);
-
-  return `data:image/png;base64,${result._content}`;
+  return result;
 };
 
 const getFileFromKalisil = async () => {
