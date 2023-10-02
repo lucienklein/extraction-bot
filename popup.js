@@ -29,6 +29,8 @@ const login = async () => {
       return alertUser("Une erreur est survenue");
     }
 
+    console.log(data);
+
     await setChromeStorage({ apikey: data.user.apikey, dwt: data.dwt });
 
     document.getElementById("form").style.display = "none";
