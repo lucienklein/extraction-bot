@@ -172,8 +172,10 @@ window.addEventListener(
       divToClick.click();
     }
 
-    if (prescription.doctor.length === 1) {
-      const doctor = prescription.doctor[0];
+    if (prescription.doctor.length === 1 && prescription.doctor[0].data) {
+      const doctor = `${prescription.doctor[0].data["Nom d'exercice"].substring(0, 4)}${prescription.doctor[0].data[
+        "Prénom d'exercice"
+      ].substring(0, 3)}`;
       const doctorInput = document.querySelector("#medecinCodeAjout");
       const enterKeyEvent = new KeyboardEvent("keydown", {
         key: "Enter",
