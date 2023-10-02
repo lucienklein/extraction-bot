@@ -185,6 +185,7 @@ window.addEventListener(
         shiftKey: false,
       });
       doctorInput.value = doctorCode;
+      doctorInput.dispatchEvent(new Event("focus"));
       doctorInput.dispatchEvent(enterKeyEvent);
     }
 
