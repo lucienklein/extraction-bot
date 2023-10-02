@@ -16,7 +16,7 @@ const login = async () => {
   if (!email || !password) return alertUser("Veuillez remplir tous les champs");
 
   try {
-    const response = await fetch(API + "/user/signin", {
+    const response = await fetch(API + "/user/localapikey", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
