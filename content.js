@@ -165,13 +165,6 @@ window.addEventListener(
       }
     }
 
-    if (actsAld.length > 0) {
-      actsAld[0].dispatchEvent(new MouseEvent("contextmenu", { bubbles: true, cancelable: true }));
-      const divToClick = document.querySelector("div[onclick*=\"dispatchContextMenuAction('toggleFact', 'ALD')\"]");
-      if (!divToClick) return;
-      divToClick.click();
-    }
-
     if (prescription.doctor.length === 1 && prescription.doctor[0].data) {
       const doctorCode = `${prescription.doctor[0].data["Nom d'exercice"].substring(0, 4)}${prescription.doctor[0].data[
         "Prénom d'exercice"
@@ -187,6 +180,13 @@ window.addEventListener(
       doctorInput.value = doctorCode;
       doctorInput.dispatchEvent(new Event("focus"));
       doctorInput.dispatchEvent(enterKeyEvent);
+    }
+
+    if (actsAld.length > 0) {
+      actsAld[0].dispatchEvent(new MouseEvent("contextmenu", { bubbles: true, cancelable: true }));
+      const divToClick = document.querySelector("div[onclick*=\"dispatchContextMenuAction('toggleFact', 'ALD')\"]");
+      if (!divToClick) return;
+      divToClick.click();
     }
 
     const div = document.querySelector("#displayText");
