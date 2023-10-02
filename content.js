@@ -180,6 +180,14 @@ window.addEventListener(
       doctorInput.value = doctorCode;
       doctorInput.dispatchEvent(new Event("focus"));
       doctorInput.dispatchEvent(enterKeyEvent);
+
+      await new Promise((resolve) => {
+        const interval = setInterval(() => {
+          if (doctorInput.classList.contains("ui-autocomplete-loading")) return;
+          clearInterval(interval);
+          resolve();
+        }, 1000);
+      });
     }
 
     if (actsAld.length > 0) {
