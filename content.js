@@ -176,6 +176,16 @@ window.addEventListener(
       const doctor = `${prescription.doctor[0].data["Nom d'exercice"].substring(0, 4)}${prescription.doctor[0].data[
         "Prénom d'exercice"
       ].substring(0, 3)}`;
+
+      console.log(
+        prescription.doctor[0].data["Nom d'exercice"],
+        prescription.doctor[0].data["Nom d'exercice"].substring(0, 4)
+      );
+      console.log(
+        prescription.doctor[0].data["Prénom d'exercice"],
+        prescription.doctor[0].data["Prénom d'exercice"].substring(0, 3)
+      );
+
       const doctorInput = document.querySelector("#medecinCodeAjout");
       const enterKeyEvent = new KeyboardEvent("keydown", {
         key: "Enter",
