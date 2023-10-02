@@ -52,7 +52,15 @@ const launchScan = async () => {
     });
   });
 
-  document.body.removeChild(fileInput);
+  const base64File = await new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+  result = base64File.split(",")[1];
+
+  console.log(result);
 
   return `data:image/png;base64,${result._content}`;
 };
