@@ -29,7 +29,7 @@ const login = async () => {
       return alertUser("Une erreur est survenue");
     }
 
-    await setChromeStorage({ apikey: data.user.apikey.toString(), dwt: data.dwt.toString() });
+    await setChromeStorage({ apikey: data.user.apikey, dwt: data.dwt });
 
     document.getElementById("form").style.display = "none";
     document.getElementById("status").style.display = "block";
