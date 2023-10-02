@@ -40,25 +40,18 @@ const launchScan = async () => {
   document.body.appendChild(fileInput);
   fileInput.click();
 
+  let result;
   await new Promise((resolve) => {
     fileInput.addEventListener("change", async (event) => {
       const file = event.target.files[0];
       const reader = new FileReader();
-      reader.onload = () => {
-        result = reader.result.split(",")[1];
+      reader.onload = (event) => {
+        result = event.target.result;
         resolve();
       };
       reader.readAsDataURL(file);
     });
   });
-
-  const base64File = await new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onloadend = () => resolve(reader.result);
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
-  result = base64File.split(",")[1];
 
   console.log(result);
 
