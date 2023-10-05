@@ -24,7 +24,7 @@ const login = async () => {
 
     const data = await response.json();
     if (response.status !== 200 && data.message) return alertUser(data.message);
-    if (response.status !== 200 || !data?.user?.apikey) {
+    if (response.status !== 200 || !data.user || !data.user.apikey) {
       console.log(data);
       return alertUser("Une erreur est survenue");
     }
