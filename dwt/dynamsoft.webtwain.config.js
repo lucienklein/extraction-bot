@@ -25,7 +25,6 @@ Dynamsoft.DWT.Containers = [{ WebTwainId: "", ContainerId: "dwtcontrolContainer"
 /// If you need to use multiple keys on the same server, you can combine keys and write like this
 /// Dynamsoft.DWT.ProductKey = 'key1;key2;key3';
 /// To get a free trial, please visit https://www.dynamsoft.com/customer/license/trialLicense?product=dwt&utm_source=installer.
-// Dynamsoft.DWT.ProductKey = 't0115QAEAAAK6BI2EY3TZgotBJcvjnaeeCX0SJkG1Gp47i4RFsU2APe6xuyIk0mtacfKRtdKHMC+aCF4Fr5Df23hdtLpYcYXd28L4eCrTVzv4Y8Ag4rgkYOKQ2WpMvpHjnCLrjLUfgvBmmnd0cxQzOg0naLtA6A==';
 
 ///
 //Dynamsoft.DWT.ResourcesPath = 'Resources';
