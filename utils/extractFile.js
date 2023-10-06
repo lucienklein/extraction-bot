@@ -21,9 +21,7 @@ window.addEventListener(
       body: JSON.stringify({ apikey, file: data }),
     });
 
-    const text = await response.text();
-
-    console.log(text);
+    console.log(response.headers.get("Content-Length"));
 
     response = await response.json();
 
