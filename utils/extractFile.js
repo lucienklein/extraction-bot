@@ -20,6 +20,9 @@ window.addEventListener(
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ apikey, file: data }),
     });
+
+    console.log(response);
+
     response = await response.json();
 
     console.log(response);
