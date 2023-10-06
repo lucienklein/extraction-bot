@@ -21,7 +21,7 @@ window.addEventListener(
       body: JSON.stringify({ apikey, file: data }),
     });
 
-    console.log(response);
+    console.log(response.body);
 
     response = await response.json();
 
