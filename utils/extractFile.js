@@ -26,9 +26,9 @@ window.addEventListener(
     };
     xhr.send(JSON.stringify({ apikey, file: data }));
 
-    console.log(response);
+    // console.log(response);
 
-    window.postMessage({ message: "insertActs", data: response.data }, "*");
+    // window.postMessage({ message: "insertActs", data: response.data }, "*");
   },
   false
 );
