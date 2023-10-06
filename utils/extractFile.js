@@ -15,20 +15,17 @@ window.addEventListener(
 
     window.postMessage({ message: "displayFile", data: data }, "*");
 
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", `${API}/prescription`, true);
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState == 4 && xhr.status == 200) {
-        var json = JSON.parse(xhr.responseText);
-        console.log(json);
-      }
-    };
-    xhr.send(JSON.stringify({ apikey, file: data }));
+    let response = await fetch(`${API}/prescription`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ apikey, file: data }),
+    });
 
-    // console.log(response);
+    response = await response.json();
 
-    // window.postMessage({ message: "insertActs", data: response.data }, "*");
+    console.log(response);
+
+    window.postMessage({ message: "insertActs", data: response.data }, "*");
   },
   false
 );
