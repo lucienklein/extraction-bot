@@ -4,7 +4,7 @@ import getFiles from "./files";
 import extractData from "./extractData";
 import { loadLibrary, getChromeStorage } from "./utils";
 import { displayFiles, displayPolygons } from "./display";
-import insertActs from "./insertActs";
+import insertData from "./insertData";
 
 // let extractedActs = [];
 
@@ -71,7 +71,7 @@ async function init() {
     const apikey = await getChromeStorage("apikey");
     const responses = await extractData(apikey, files);
 
-    const acts = await insertActs(responses);
+    const acts = await insertData(responses);
 
     displayPolygons(acts);
   });
