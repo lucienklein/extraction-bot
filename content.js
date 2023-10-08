@@ -381,6 +381,7 @@ function displayPolygonThatMatchTheDisplayedImage() {
   images.forEach((img) => {
     if (img.style.display !== "none") {
       const mongoid = img.getAttribute("mongoid");
+      console.log(mongoid);
       const polygons = document.querySelectorAll(`div[mongoid]`);
       polygons.forEach((polygon) => {
         if (polygon.getAttribute("mongoid") === mongoid) return (polygon.style.display = "block");
