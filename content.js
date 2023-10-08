@@ -169,6 +169,7 @@ window.addEventListener(
     for (let i; i < prescriptions.length; i++) {
       const mongoid = prescriptions[i].data._id.toString();
       const image = document.querySelector(`[docIndex='${i}']`);
+      console.log(image);
       image.setAttribute("mongoid", mongoid);
     }
 
@@ -332,7 +333,6 @@ function updatePolygonPoints(document, viewportHeight, acts) {
   container.innerHTML = "";
 
   for (const act of acts) {
-    console.log(act);
     let newWidth = (viewportHeight / act.height) * act.width;
 
     let scaleFactorX = newWidth / act.width;
