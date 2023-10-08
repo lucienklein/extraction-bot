@@ -134,20 +134,40 @@ const main = async (prescriptions) => {
   return actsWithoutNotFound;
 };
 
-const insertAct = async (act, timeout) => {
-  const inputAnalyse = document.querySelector("#analyseCodeAjout");
-  const enterKeyEvent = new KeyboardEvent("keydown", {
-    key: "Enter",
-    code: "Enter",
-    keyCode: 13,
-    charCode: 13,
-    shiftKey: false,
-  });
-  inputAnalyse.value = act.code;
-  inputAnalyse.dispatchEvent(new Event("focus"));
-  inputAnalyse.dispatchEvent(enterKeyEvent);
+async function insertAct(act, timeout) {
+  for (const code of act.codes) {
+    const inputAnalyse = document.querySelector("#analyseCodeAjout");
+    const enterKeyEvent = new KeyboardEvent("keydown", {
+      key: "Enter",
+      code: "Enter",
+      keyCode: 13,
+      charCode: 13,
+      shiftKey: false,
+    });
 
-  await new Promise((resolve) => setTimeout(resolve, timeout));
-};
+    inputAnalyse.value = code;
+    inputAnalyse.dispatchEvent(enterKeyEvent);
+
+    await new Promise((resolve) => setTimeout(resolve, timeout));
+  }
+}
+
+function matchActsAndEl(acts) {
+  const actsInserted = [...document.querySelectorAll(`.analyseBox`)].map((act) => act.getAttribute("idanalyse"));
+  for (let act of acts) {
+    const elThatMatchAct = actsInserted.filter((idAnalyse) => {
+      const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
+      const codeanalyse = el.getAttribute("codeanalyse");
+      const codegroupe = el.getAttribute("codegroupe");
+
+      return act.codes.includes(codeanalyse) || act.codes.includes(codegroupe);
+    });
+
+    act.elThatMatchAct = elThatMatchAct;
+    act.notFound = elThatMatchAct.length === 0;
+  }
+
+  return acts;
+}
 
 export default main;
