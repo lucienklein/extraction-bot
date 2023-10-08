@@ -5123,6 +5123,7 @@ window.addEventListener(
       },
     };
 
+    console.log(response.data);
     window.postMessage({ message: "insertActs", data: response.data }, "*");
   },
   false
