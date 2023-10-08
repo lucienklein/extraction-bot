@@ -14,5 +14,5 @@
   },
   "options_page": "popup.html",
   "permissions": ["storage"],
-  "web_accessible_resources": ["dwt/*", "utils/*"]
+  "web_accessible_resources": ["dwt/*"]
 }
