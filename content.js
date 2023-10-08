@@ -163,7 +163,9 @@ window.addEventListener(
           polygons.forEach((polygon) => (polygon.style.opacity = "0.15"));
         });
 
-        el.classList.add(`querco_act_${selectorAct}`);
+        act.codes.forEach((code) => {
+          el.classList.add(`querco_act_${code}`);
+        });
 
         if (!act.ALD) continue;
         el.setAttribute("isselected", true);
@@ -285,12 +287,13 @@ function updatePolygonPoints(document, viewportHeight, originalWidth, originalHe
 
     const pointsString = adjustedPoints.map((point) => `${point.x}px ${point.y}px`).join(", ");
 
-    const selectorPolygon = act.codes.map((code) => `.querco_polygon_${code}`).join("");
     const selectorAct = act.codes.map((code) => `.querco_act_${code}`).join("");
 
     const polygon = document.createElement("div");
     polygon.style = `position: absolute; clip-path: polygon(${pointsString}); background-color: ${color}; opacity: 0.15; width: 100%; height: 100%;`;
-    polygon.className = selectorPolygon;
+    act.codes.forEach((code) => {
+      polygon.classList.add(`querco_polygon_${code}`);
+    });
 
     polygon.addEventListener("mouseover", function () {
       const acts = document.querySelectorAll(selectorAct);
