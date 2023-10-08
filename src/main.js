@@ -68,7 +68,6 @@ Sentry.configureScope((scope) => {
 // });
 
 const init = async () => {
-  test();
   if (!window.location.href.includes("moduleSil/demande/saisie/index.php")) return;
   if (!license) return;
 
