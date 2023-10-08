@@ -22,6 +22,8 @@ const main = async (apikey, files) => {
 
   responses = responses.sort((a, b) => a.index - b.index);
 
+  console.log(responses);
+
   return responses;
 };
 
