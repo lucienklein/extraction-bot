@@ -20,19 +20,19 @@ window.addEventListener(
 
     window.postMessage({ message: "displayFile", data: data }, "*");
 
-    let responses = [];
+    let responses = await Promise.all(
+      data.map(async (file, index) => {
+        let response = await fetch(`${API}/prescription`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ apikey, file }),
+        });
 
-    data.forEach(async (file, index) => {
-      let response = await fetch(`${API}/prescription`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ apikey, file }),
-      });
+        response = await response.json();
 
-      response = await response.json();
-
-      responses.push({ data: response.data, index });
-    });
+        return { data: response.data, index };
+      })
+    );
 
     responses.sort((a, b) => a.index - b.index);
 
