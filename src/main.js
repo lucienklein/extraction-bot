@@ -109,7 +109,7 @@ try {
 
   const errorDiv = document.createElement("div");
   errorDiv.style.position = "absolute";
-  errorDiv.style.top = "0";
+  errorDiv.style.bottom = "0";
   errorDiv.style.right = "0";
   errorDiv.style.zIndex = "1000";
   errorDiv.style.padding = "10px";
