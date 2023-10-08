@@ -11,7 +11,7 @@ const main = async (prescriptions) => {
     )
     .flat();
 
-  extractedActs = [...extractedActs, ...acts];
+  //   extractedActs = [...extractedActs, ...acts];
 
   prescriptions.forEach((prescription, index) => {
     const mongoid = prescription.data._id.toString();
