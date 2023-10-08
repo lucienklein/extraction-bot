@@ -149,18 +149,19 @@ window.addEventListener(
       if (act.notFound) continue;
       for (const idAnalyse of act.elThatMatchAct) {
         const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
+        const id = JSON.stringify(act.codes);
 
         el.addEventListener("mouseover", function () {
-          const polygons = document.querySelectorAll(`.querco_polygon_${act.code}`);
+          const polygons = document.querySelectorAll(`.querco_polygon_${id}`);
           polygons.forEach((polygon) => (polygon.style.opacity = "0.5"));
         });
 
         el.addEventListener("mouseout", function () {
-          const polygons = document.querySelectorAll(`.querco_polygon_${act.code}`);
+          const polygons = document.querySelectorAll(`.querco_polygon_${id}`);
           polygons.forEach((polygon) => (polygon.style.opacity = "0.15"));
         });
 
-        el.classList.add(`querco_act_${act.code}`);
+        el.classList.add(`querco_act_${id}`);
 
         if (!act.ALD) continue;
         el.setAttribute("isselected", true);
@@ -274,6 +275,7 @@ function updatePolygonPoints(document, viewportHeight, originalWidth, originalHe
     let color = "#24b337";
     if (act.ALD) color = "#F7FA13";
     if (act.warning) color = "#FA1313";
+    const id = JSON.stringify(act.codes);
 
     const adjustedPoints = points.map((point) => ({
       x: point.x * scaleFactorX,
@@ -284,15 +286,15 @@ function updatePolygonPoints(document, viewportHeight, originalWidth, originalHe
 
     const polygon = document.createElement("div");
     polygon.style = `position: absolute; clip-path: polygon(${pointsString}); background-color: ${color}; opacity: 0.15; width: 100%; height: 100%;`;
-    polygon.className = `querco_polygon_${act.code}`;
+    polygon.className = `querco_polygon_${id}`;
 
     polygon.addEventListener("mouseover", function () {
-      const acts = document.querySelectorAll(`.querco_act_${act.code}`);
+      const acts = document.querySelectorAll(`.querco_act_${id}`);
       acts.forEach((act) => (act.style.border = `2px solid red`));
     });
 
     polygon.addEventListener("mouseout", function () {
-      const acts = document.querySelectorAll(`.querco_act_${act.code}`);
+      const acts = document.querySelectorAll(`.querco_act_${id}`);
       acts.forEach((act) => (act.style.border = "2px solid #96db70"));
     });
 
