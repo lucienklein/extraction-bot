@@ -59,6 +59,7 @@ Sentry.init({
 
 try {
   async function init() {
+    test();
     if (!window.location.href.includes("moduleSil/demande/saisie/index.php")) return;
 
     await loadLibrary(dwtURL + "/dynamsoft.webtwain.initiate.js", "text/javascript");
