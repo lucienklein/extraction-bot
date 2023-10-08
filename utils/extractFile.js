@@ -31,30 +31,30 @@ window.addEventListener(
 );
 
 const launchScan = async () => {
-  const result = await DWTChromeExtension.scan();
+  // const result = await DWTChromeExtension.scan();
 
-  return `data:image/png;base64,${result._content}`;
+  // return `data:image/png;base64,${result._content}`;
 
-  // const fileInput = document.createElement("input");
-  // fileInput.type = "file";
-  // fileInput.style.display = "none";
-  // document.body.appendChild(fileInput);
-  // fileInput.click();
+  const fileInput = document.createElement("input");
+  fileInput.type = "file";
+  fileInput.style.display = "none";
+  document.body.appendChild(fileInput);
+  fileInput.click();
 
-  // let result;
-  // await new Promise((resolve) => {
-  //   fileInput.addEventListener("change", async (event) => {
-  //     const file = event.target.files[0];
-  //     const reader = new FileReader();
-  //     reader.onload = (event) => {
-  //       result = event.target.result;
-  //       resolve();
-  //     };
-  //     reader.readAsDataURL(file);
-  //   });
-  // });
+  let result;
+  await new Promise((resolve) => {
+    fileInput.addEventListener("change", async (event) => {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        result = event.target.result;
+        resolve();
+      };
+      reader.readAsDataURL(file);
+    });
+  });
 
-  // return result;
+  return result;
 };
 
 const getFileFromKalisil = async () => {
