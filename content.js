@@ -167,7 +167,6 @@ window.addEventListener(
     extractedActs = [...extractedActs, ...acts];
 
     prescriptions.forEach((prescription, index) => {
-      console.log("test");
       const mongoid = prescription.data._id.toString();
       const image = document.querySelector(`[docIndex='${index}']`);
       image.setAttribute("mongoid", mongoid);
@@ -376,6 +375,7 @@ function updatePolygonPoints(document, viewportHeight, acts) {
 
 function diplayPolygonThatMatchTheDisplayedImage() {
   const images = document.querySelectorAll("[docIndex]");
+  console.log(images);
   images.forEach((img) => {
     if (img.style.display !== "none") {
       const mongoid = img.getAttribute("mongoid");
