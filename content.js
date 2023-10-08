@@ -23,9 +23,9 @@ let extractedActs = [];
 //   if (acts.length === 0) return;
 
 //   const apikey = await getChromeStorage("apikey");
-//   const mongoId = document.querySelector("#displayImage").getAttribute("mongoId");
+//   const mongoid = document.querySelector("#displayImage").getAttribute("mongoid");
 
-//   const response = await fetch(`${API}/prescription/${mongoId}`, {
+//   const response = await fetch(`${API}/prescription/${mongoid}`, {
 //     method: "PUT",
 //     headers: {
 //       "Content-Type": "application/json",
@@ -167,9 +167,9 @@ window.addEventListener(
     extractedActs = [...extractedActs, ...acts];
 
     for (let i; i < prescriptions.length; i++) {
-      const mongoId = prescriptions[i].data._id.toString();
+      const mongoid = prescriptions[i].data._id.toString();
       const div = document.createElement("div");
-      div.setAttribute("mongoId", mongoId);
+      div.setAttribute("mongoid", mongoid);
       div.setAttribute("style", "display: none;");
       div.setAttribute("index", i);
       const image = document.querySelector(`[docIndex='${i}']`);
@@ -357,7 +357,7 @@ function updatePolygonPoints(document, viewportHeight, acts) {
 
     const polygon = document.createElement("div");
     polygon.style = `position: absolute; clip-path: polygon(${pointsString}); background-color: ${color}; opacity: 0.15; width: 100%; height: 100%;`;
-    polygon.setAttribute("mongoId", act.prescriptionId);
+    polygon.setAttribute("mongoid", act.prescriptionId);
     act.codes.forEach((code) => {
       polygon.classList.add(`querco_polygon_${code}`);
     });
@@ -378,20 +378,20 @@ function updatePolygonPoints(document, viewportHeight, acts) {
 }
 
 function diplayPolygonThatMatchTheDisplayedImage() {
-  const images = document.querySelectorAll("[docIndex]");
-  images.forEach((img) => {
-    if (img.style.display !== "none") {
-      const mongoId = img.getAttribute("mongoId");
-      const polygons = document.querySelectorAll(`div[mongoId='${mongoId}']`);
-      polygons.forEach((polygon) => {
-        if (polygon.getAttribute("mongoId") === mongoId) {
-          polygon.style.display = "block";
-        } else {
-          polygon.style.display = "none";
-        }
-      });
-    }
-  });
+  // const images = document.querySelectorAll("[docIndex]");
+  // images.forEach((img) => {
+  //   if (img.style.display !== "none") {
+  //     const mongoid = img.getAttribute("mongoid");
+  //     const polygons = document.querySelectorAll(`div[mongoid='${mongoid}']`);
+  //     polygons.forEach((polygon) => {
+  //       if (polygon.getAttribute("mongoid") === mongoid) {
+  //         polygon.style.display = "block";
+  //       } else {
+  //         polygon.style.display = "none";
+  //       }
+  //     });
+  //   }
+  // });
 }
 
 function loadLibrary(src, type, id, data) {
