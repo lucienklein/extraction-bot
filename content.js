@@ -379,14 +379,10 @@ function diplayPolygonThatMatchTheDisplayedImage() {
     console.log(img.style.display);
     if (img.style.display !== "none") {
       const mongoid = img.getAttribute("mongoid");
-      const polygons = document.querySelectorAll(`div[mongoid='${mongoid}']`);
-      console.log(polygons);
+      const polygons = document.querySelectorAll(`div[mongoid]`);
       polygons.forEach((polygon) => {
-        if (polygon.getAttribute("mongoid") === mongoid) {
-          polygon.style.display = "block";
-        } else {
-          polygon.style.display = "none";
-        }
+        if (polygon.getAttribute("mongoid") === mongoid) return (polygon.style.display = "block");
+        polygon.style.display = "none";
       });
     }
   });
