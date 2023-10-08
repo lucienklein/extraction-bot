@@ -168,12 +168,8 @@ window.addEventListener(
 
     for (let i; i < prescriptions.length; i++) {
       const mongoid = prescriptions[i].data._id.toString();
-      const div = document.createElement("div");
-      div.setAttribute("mongoid", mongoid);
-      div.setAttribute("style", "display: none;");
-      div.setAttribute("index", i);
       const image = document.querySelector(`[docIndex='${i}']`);
-      image.appendChild(div);
+      image.setAttribute("mongoid", mongoid);
     }
 
     const boxAnalyse = document.querySelector("#ihmBoxAnalyse .ihmCboxContent.ihmCboxvert");
