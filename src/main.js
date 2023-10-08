@@ -100,8 +100,8 @@ const init = async () => {
 };
 
 try {
+  test.test();
   init();
-  test();
 } catch (error) {
   // Sentry.captureException(error);
 
