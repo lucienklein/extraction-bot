@@ -82,7 +82,7 @@ window.addEventListener(
       <div id="displayText" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background-color: rgba(0, 0, 0, 0.5); color: white; z-index: 2; font-size: 2rem; font-weight: bold;">
        Extraction en cours...
       </div>
-      <button id="previousImage" style="position: absolute; top: 0; left: 0; z-index: 3;">Précédent</button>
+      <button id="previousImage" style="position: absolute; top: 0; left: 0; z-index: 3; display: none">Précédent</button>
       <button id="changeImage" style="position: absolute; top: 0; right: 0; z-index: 3;">Suivant</button>
     </div>`;
 
