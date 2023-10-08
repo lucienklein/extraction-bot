@@ -21,7 +21,8 @@ window.addEventListener(
     window.postMessage({ message: "displayFile", data: data }, "*");
 
     let responses = [];
-    for (const file of data) {
+
+    data.forEach(async (file, index) => {
       let response = await fetch(`${API}/prescription`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -30,8 +31,10 @@ window.addEventListener(
 
       response = await response.json();
 
-      responses.push(response.data);
-    }
+      responses.push({ data: response.data, index });
+    });
+
+    responses.sort((a, b) => a.index - b.index);
 
     console.log(responses);
     window.postMessage({ message: "insertActs", data: responses }, "*");

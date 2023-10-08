@@ -78,7 +78,13 @@ window.addEventListener(
     const div = document.createElement("div");
     div.innerHTML = `
     <div style="position: relative; width: 100%; height: 100%;" id="divQuerco">
-      <img id="displayImage" src="${event.data.data[0]}" style="width: auto; height: 100vh ; object-fit: contain; position: relative; z-index: 1;">
+    ${event.data.data.map(
+      (image, index) => `
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: none;" docIndex="${index}">
+        <img src="${image}" style="width: auto; height: 100vh ; object-fit: contain; position: relative; z-index: 1;">
+      </div>
+    `
+    )}
       <div id="displayText" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background-color: rgba(0, 0, 0, 0.5); color: white; z-index: 2; font-size: 2rem; font-weight: bold;">
        Extraction en cours...
       </div>
@@ -90,41 +96,47 @@ window.addEventListener(
     principalDiv.style.display = "flex";
     principalDiv.appendChild(div);
 
+    const image = document.querySelector("[docIndex='0']");
+    image.style.display = "block";
+
     let imageIndex = 0;
     const changeImageButton = document.querySelector("#changeImage");
     changeImageButton.addEventListener("click", function () {
-      imageIndex = imageIndex + 1;
-      const displayImage = document.querySelector("#displayImage");
-      displayImage.src = event.data.data[imageIndex];
+      imageIndex = imageIndex + 1 > event.data.data.length - 1 ? 0 : imageIndex + 1;
+
+      const allImages = document.querySelectorAll("[docIndex]");
+      allImages.forEach((img) => {
+        img.style.display = "none";
+      });
+
+      const image = document.querySelector(`[docIndex='${imageIndex}']`);
+      image.style.display = "block";
 
       if (imageIndex === event.data.data.length - 1) {
         changeImageButton.style.display = "none";
         previousImageButton.style.display = "block";
       }
 
-      const polygons = document.querySelectorAll("#quercoContainer > div");
-      polygons.forEach((polygon) => {
-        if (polygon.classList.contains(`querco_doc_${imageIndex}`)) return (polygon.style.display = "block");
-        polygon.style.display = "none";
-      });
+      diplayPolygonThatMatchTheDisplayedImage();
     });
 
     const previousImageButton = document.querySelector("#previousImage");
     previousImageButton.addEventListener("click", function () {
-      imageIndex = imageIndex - 1;
-      const displayImage = document.querySelector("#displayImage");
-      displayImage.src = event.data.data[imageIndex];
+      imageIndex = imageIndex - 1 > 0 ? imageIndex - 1 : 0;
+      const allImages = document.querySelectorAll("[docIndex]");
+      allImages.forEach((img) => {
+        img.style.display = "none";
+      });
+
+      const image = document.querySelector(`[docIndex='${imageIndex}']`);
+      image.style.display = "block";
 
       if (imageIndex === 0) {
         changeImageButton.style.display = "block";
         previousImageButton.style.display = "none";
       }
 
-      const polygons = document.querySelectorAll("#quercoContainer > div");
-      polygons.forEach((polygon) => {
-        if (polygon.classList.contains(`querco_doc_${imageIndex}`)) return (polygon.style.display = "block");
-        polygon.style.display = "none";
-      });
+      diplayPolygonThatMatchTheDisplayedImage();
     });
 
     if (data.length === 1) {
@@ -142,28 +154,28 @@ window.addEventListener(
     if (event.source != window) return;
     if (!event.data.message || event.data.message !== "insertActs") return;
     let prescriptions = event.data.data;
-    let doctors = prescriptions.map((prescription) => prescription.doctor).flat();
+    let doctors = prescriptions.map((prescription) => prescription.data.doctor).flat();
     let acts = prescriptions
       .map((prescription) =>
-        prescription.acts.map((act) => ({
+        prescription.data.acts.map((act) => ({
           ...act,
           width: prescription.width,
           height: prescription.height,
-          prescriptionId: prescription._id,
+          prescriptionId: prescription.index,
         }))
       )
       .flat();
 
     extractedActs = [...extractedActs, ...acts];
 
-    const image = document.querySelector("#displayImage");
     for (let i; i < prescriptions.length; i++) {
-      const mongoId = prescriptions[i]._id.toString();
+      const mongoId = prescriptions[i].data._id.toString();
       const div = document.createElement("div");
       div.setAttribute("mongoId", mongoId);
       div.setAttribute("style", "display: none;");
       div.setAttribute("index", i);
-      image.parentNode.insertBefore(div, image.nextSibling);
+      const image = document.querySelector(`[docIndex='${i}']`);
+      image.appendChild(div);
     }
 
     const boxAnalyse = document.querySelector("#ihmBoxAnalyse .ihmCboxContent.ihmCboxvert");
@@ -347,7 +359,7 @@ function updatePolygonPoints(document, viewportHeight, acts) {
 
     const polygon = document.createElement("div");
     polygon.style = `position: absolute; clip-path: polygon(${pointsString}); background-color: ${color}; opacity: 0.15; width: 100%; height: 100%;`;
-    polygon.classList.add(`querco_doc_${act.prescriptionId}`);
+    polygon.setAttribute("mongoId", act.prescriptionId);
     act.codes.forEach((code) => {
       polygon.classList.add(`querco_polygon_${code}`);
     });
@@ -364,11 +376,22 @@ function updatePolygonPoints(document, viewportHeight, acts) {
 
     container.appendChild(polygon);
   }
+  diplayPolygonThatMatchTheDisplayedImage();
+}
 
-  const polygons = document.querySelectorAll("#quercoContainer > div");
-  polygons.forEach((polygon) => {
-    if (!polygon.classList.contains("querco_doc_0")) {
-      polygon.style.display = "none";
+function diplayPolygonThatMatchTheDisplayedImage() {
+  const images = document.querySelectorAll("[docIndex]");
+  images.forEach((img) => {
+    if (img.style.display !== "none") {
+      const mongoId = img.getAttribute("mongoId");
+      const polygons = document.querySelectorAll(`div[mongoId='${mongoId}']`);
+      polygons.forEach((polygon) => {
+        if (polygon.getAttribute("mongoId") === mongoId) {
+          polygon.style.display = "block";
+        } else {
+          polygon.style.display = "none";
+        }
+      });
     }
   });
 }
