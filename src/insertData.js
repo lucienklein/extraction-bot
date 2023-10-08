@@ -1,4 +1,5 @@
 const main = async (prescriptions) => {
+  console.log(prescriptions);
   let doctors = prescriptions.map((prescription) => prescription.data.doctor).flat();
   let acts = prescriptions
     .map((prescription) =>
