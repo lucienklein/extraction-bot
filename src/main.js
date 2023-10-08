@@ -101,7 +101,20 @@ const init = async () => {
 
 try {
   init();
+  test();
 } catch (error) {
-  Sentry.captureException(error);
+  // Sentry.captureException(error);
+
   console.error(error);
+
+  const errorDiv = document.createElement("div");
+  errorDiv.style.position = "absolute";
+  errorDiv.style.top = "0";
+  errorDiv.style.right = "0";
+  errorDiv.style.zIndex = "1000";
+  errorDiv.style.padding = "10px";
+  errorDiv.style.backgroundColor = "red";
+  errorDiv.style.color = "white";
+  errorDiv.innerText = "L'extension Extraction a rencontré une erreur.";
+  document.body.appendChild(errorDiv);
 }
