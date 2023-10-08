@@ -129,11 +129,30 @@ window.addEventListener(
   async function (event) {
     if (event.source != window) return;
     if (!event.data.message || event.data.message !== "insertActs") return;
-    let prescription = event.data.data;
-    extractedActs = [...extractedActs, ...prescription.acts];
+    let prescriptions = event.data.data;
+    let doctors = prescriptions.map((prescription) => prescription.doctor).flat();
+    let acts = prescriptions
+      .map((prescription) =>
+        prescription.acts.map((act) => ({
+          ...act,
+          width: prescription.width,
+          height: prescription.height,
+          prescriptionId: prescription._id,
+        }))
+      )
+      .flat();
+
+    extractedActs = [...extractedActs, ...acts];
 
     const image = document.querySelector("#displayImage");
-    image.setAttribute("mongoId", prescription._id.toString());
+    for (let i; i < prescriptions.length; i++) {
+      const mongoId = prescriptions[i]._id.toString();
+      const div = document.createElement("div");
+      div.setAttribute("mongoId", mongoId);
+      div.setAttribute("style", "display: none;");
+      div.setAttribute("index", i);
+      image.parentNode.insertBefore(div, image.nextSibling);
+    }
 
     const boxAnalyse = document.querySelector("#ihmBoxAnalyse .ihmCboxContent.ihmCboxvert");
     const overlay = document.createElement("div");
@@ -146,7 +165,7 @@ window.addEventListener(
     boxAnalyse.style.position = "relative";
     boxAnalyse.appendChild(overlay);
 
-    for (let act of prescription.acts) {
+    for (let act of acts) {
       await insertAct(act, 250);
     }
 
@@ -159,9 +178,9 @@ window.addEventListener(
       }, 1000);
     });
 
-    prescription.acts = matchActsAndEl(prescription.acts);
+    acts = matchActsAndEl(acts);
 
-    for (let act of prescription.acts) {
+    for (let act of acts) {
       if (!act.notFound) continue;
       await insertAct(act, 500);
     }
@@ -174,16 +193,15 @@ window.addEventListener(
       }, 1000);
     });
 
-    prescription.acts = matchActsAndEl(prescription.acts);
+    acts = matchActsAndEl(acts);
 
     let actsAld = [];
-    for (let act of prescription.acts) {
+    for (let act of acts) {
       if (act.notFound) continue;
       for (const idAnalyse of act.elThatMatchAct) {
         const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
 
         const selectorPolygon = act.codes.map((code) => `.querco_polygon_${code}`).join("");
-        const selectorAct = act.codes.map((code) => `.querco_act_${code}`).join("");
 
         el.addEventListener("mouseover", function () {
           const polygons = document.querySelectorAll(selectorPolygon);
@@ -205,10 +223,11 @@ window.addEventListener(
       }
     }
 
-    if (prescription.doctor.length === 1 && prescription.doctor[0].data) {
-      const doctorCode = `${prescription.doctor[0].data["Nom d'exercice"].substring(0, 4)}${prescription.doctor[0].data[
-        "Prénom d'exercice"
-      ].substring(0, 3)}`;
+    for (let doctor of doctors) {
+      const doctorCode = `${doctor.data["Nom d'exercice"].substring(0, 4)}${doctor.data["Prénom d'exercice"].substring(
+        0,
+        3
+      )}`;
       const doctorInput = document.querySelector("#medecinCodeAjout");
       const enterKeyEvent = new KeyboardEvent("keydown", {
         key: "Enter",
@@ -243,15 +262,8 @@ window.addEventListener(
       <div id="quercoContainer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" > </div>
     `;
 
-    const actsWithoutNotFound = prescription.acts.filter((act) => !act.notFound);
-    const fctRefreshPolygon = () =>
-      updatePolygonPoints(
-        window.document,
-        window.innerHeight,
-        prescription.width,
-        prescription.height,
-        actsWithoutNotFound
-      );
+    const actsWithoutNotFound = acts.filter((act) => !act.notFound);
+    const fctRefreshPolygon = () => updatePolygonPoints(window.document, window.innerHeight, actsWithoutNotFound);
 
     window.addEventListener("resize", fctRefreshPolygon);
     fctRefreshPolygon();
@@ -297,16 +309,16 @@ function matchActsAndEl(acts) {
   return acts;
 }
 
-function updatePolygonPoints(document, viewportHeight, originalWidth, originalHeight, acts) {
-  let newWidth = (viewportHeight / originalHeight) * originalWidth;
-
-  let scaleFactorX = newWidth / originalWidth;
-  let scaleFactorY = viewportHeight / originalHeight;
-
+function updatePolygonPoints(document, viewportHeight, acts) {
   const container = document.querySelector(`#quercoContainer`);
   container.innerHTML = "";
 
   for (const act of acts) {
+    let newWidth = (viewportHeight / act.height) * act.width;
+
+    let scaleFactorX = newWidth / act.width;
+    let scaleFactorY = viewportHeight / act.height;
+
     const points = act.polygon;
     let color = "#24b337";
     if (act.ALD) color = "#F7FA13";
