@@ -5,7 +5,7 @@
   "content_scripts": [
     {
       "matches": ["*://172.30.69.50/*"],
-      "js": ["content.js", "utils/extractFile.js"],
+      "js": ["dist/bundle.js"],
       "css": ["style.css"]
     }
   ],
