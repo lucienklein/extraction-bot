@@ -5120,7 +5120,7 @@ window.addEventListener(
       },
     };
 
-    console.log(response.data);
+    console.log(response);
     window.postMessage({ message: "insertActs", data: response.data }, "*");
   },
   false
