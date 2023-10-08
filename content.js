@@ -288,9 +288,8 @@ window.addEventListener(
     window.addEventListener("resize", fctRefreshPolygon);
     fctRefreshPolygon();
 
-    displayPolygonThatMatchTheDisplayedImage();
-
     overlay.remove();
+    displayPolygonThatMatchTheDisplayedImage();
   },
   false
 );
@@ -356,7 +355,7 @@ function updatePolygonPoints(document, viewportHeight, acts) {
     const selectorAct = act.codes.map((code) => `.querco_act_${code}`).join("");
 
     const polygon = document.createElement("div");
-    polygon.style = `position: absolute; clip-path: polygon(${pointsString}); background-color: ${color}; opacity: 0.15; width: 100%; height: 100%;`;
+    polygon.style = `position: absolute; clip-path: polygon(${pointsString}); background-color: ${color}; opacity: 0.15; width: 100%; height: 100%; display: none;`;
     polygon.setAttribute("mongoid", act.prescriptionId);
     act.codes.forEach((code) => {
       polygon.classList.add(`querco_polygon_${code}`);
@@ -381,7 +380,7 @@ function displayPolygonThatMatchTheDisplayedImage() {
   images.forEach((img) => {
     if (img.style.display !== "none") {
       const mongoid = img.getAttribute("mongoid");
-      console.log(mongoid);
+      console.log(mongoid, img.style.display);
       const polygons = document.querySelectorAll(`div[mongoid]`);
       polygons.forEach((polygon) => {
         if (polygon.getAttribute("mongoid") === mongoid) return (polygon.style.display = "block");
