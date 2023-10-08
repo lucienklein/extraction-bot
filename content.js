@@ -150,23 +150,24 @@ window.addEventListener(
       for (const idAnalyse of act.elThatMatchAct) {
         const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
 
-        for (const code of act.codes) {
-          el.addEventListener("mouseover", function () {
-            const polygons = document.querySelectorAll(`.querco_polygon_${code}`);
-            polygons.forEach((polygon) => (polygon.style.opacity = "0.5"));
-          });
+        const selectorPolygon = act.codes.map((code) => `.querco_polygon_${code}`).join("");
+        const selectorAct = act.codes.map((code) => `.querco_act_${code}`).join("");
 
-          el.addEventListener("mouseout", function () {
-            const polygons = document.querySelectorAll(`.querco_polygon_${code}`);
-            polygons.forEach((polygon) => (polygon.style.opacity = "0.15"));
-          });
+        el.addEventListener("mouseover", function () {
+          const polygons = document.querySelectorAll(selectorPolygon);
+          polygons.forEach((polygon) => (polygon.style.opacity = "0.5"));
+        });
 
-          el.classList.add(`querco_act_${code}`);
+        el.addEventListener("mouseout", function () {
+          const polygons = document.querySelectorAll(selectorPolygon);
+          polygons.forEach((polygon) => (polygon.style.opacity = "0.15"));
+        });
 
-          if (!act.ALD) continue;
-          el.setAttribute("isselected", true);
-          actsAld.push(el);
-        }
+        el.classList.add(`querco_act_${selectorAct}`);
+
+        if (!act.ALD) continue;
+        el.setAttribute("isselected", true);
+        actsAld.push(el);
       }
     }
 
@@ -284,23 +285,24 @@ function updatePolygonPoints(document, viewportHeight, originalWidth, originalHe
 
     const pointsString = adjustedPoints.map((point) => `${point.x}px ${point.y}px`).join(", ");
 
-    for (const code of act.codes) {
-      const polygon = document.createElement("div");
-      polygon.style = `position: absolute; clip-path: polygon(${pointsString}); background-color: ${color}; opacity: 0.15; width: 100%; height: 100%;`;
-      polygon.className = `querco_polygon_${code}`;
+    const selectorPolygon = act.codes.map((code) => `.querco_polygon_${code}`).join("");
+    const selectorAct = act.codes.map((code) => `.querco_act_${code}`).join("");
 
-      polygon.addEventListener("mouseover", function () {
-        const acts = document.querySelectorAll(`.querco_act_${code}`);
-        acts.forEach((act) => (act.style.border = `2px solid red`));
-      });
+    const polygon = document.createElement("div");
+    polygon.style = `position: absolute; clip-path: polygon(${pointsString}); background-color: ${color}; opacity: 0.15; width: 100%; height: 100%;`;
+    polygon.className = selectorPolygon;
 
-      polygon.addEventListener("mouseout", function () {
-        const acts = document.querySelectorAll(`.querco_act_${code}`);
-        acts.forEach((act) => (act.style.border = "2px solid #96db70"));
-      });
+    polygon.addEventListener("mouseover", function () {
+      const acts = document.querySelectorAll(selectorAct);
+      acts.forEach((act) => (act.style.border = `2px solid red`));
+    });
 
-      container.appendChild(polygon);
-    }
+    polygon.addEventListener("mouseout", function () {
+      const acts = document.querySelectorAll(selectorAct);
+      acts.forEach((act) => (act.style.border = "2px solid #96db70"));
+    });
+
+    container.appendChild(polygon);
   }
 }
 
