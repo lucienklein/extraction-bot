@@ -77,6 +77,9 @@ const init = async () => {
   await loadLibrary(dwtURL + "/dwt.js", "text/javascript", "dwt", { dwtURL, license });
 
   const examDiv = document.querySelector("#ajoutAnalyse");
+
+  if (!examDiv) return;
+
   const button = document.createElement("button");
   button.innerText = "Extraction Automatique";
   button.addEventListener("click", async (e) => {
