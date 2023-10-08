@@ -134,4 +134,20 @@ const main = async (prescriptions) => {
   return actsWithoutNotFound;
 };
 
+const insertAct = async (act, timeout) => {
+  const inputAnalyse = document.querySelector("#analyseCodeAjout");
+  const enterKeyEvent = new KeyboardEvent("keydown", {
+    key: "Enter",
+    code: "Enter",
+    keyCode: 13,
+    charCode: 13,
+    shiftKey: false,
+  });
+  inputAnalyse.value = act.code;
+  inputAnalyse.dispatchEvent(new Event("focus"));
+  inputAnalyse.dispatchEvent(enterKeyEvent);
+
+  await new Promise((resolve) => setTimeout(resolve, timeout));
+};
+
 export default main;
