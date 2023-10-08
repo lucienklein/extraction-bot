@@ -4,44 +4,44 @@ const utilsURL = new URL(chrome.runtime.getURL("/utils"));
 
 let extractedActs = [];
 
-const observer = new MutationObserver(async (mutations) => {
-  let acts = [];
+// const observer = new MutationObserver(async (mutations) => {
+//   let acts = [];
 
-  for (const mutation of mutations) {
-    for (const node of mutation.addedNodes) {
-      if (!node.classList || !node.classList.contains("analyseBox")) return;
-      const codeanalyse = node.getAttribute("codeanalyse");
-      const codegroupe = node.getAttribute("codegroupe");
-      const code = codegroupe || codeanalyse;
+//   for (const mutation of mutations) {
+//     for (const node of mutation.addedNodes) {
+//       if (!node.classList || !node.classList.contains("analyseBox")) return;
+//       const codeanalyse = node.getAttribute("codeanalyse");
+//       const codegroupe = node.getAttribute("codegroupe");
+//       const code = codegroupe || codeanalyse;
 
-      const act = extractedActs.find((act) => act.code === code);
-      if (act) return;
+//       const act = extractedActs.find((act) => act.code === code);
+//       if (act) return;
 
-      acts.push({ code, isAdded: true });
-    }
-  }
-  if (acts.length === 0) return;
+//       acts.push({ code, isAdded: true });
+//     }
+//   }
+//   if (acts.length === 0) return;
 
-  const apikey = await getChromeStorage("apikey");
-  const mongoId = document.querySelector("#displayImage").getAttribute("mongoId");
+//   const apikey = await getChromeStorage("apikey");
+//   const mongoId = document.querySelector("#displayImage").getAttribute("mongoId");
 
-  const response = await fetch(`${API}/prescription/${mongoId}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ apikey, acts }),
-  });
+//   const response = await fetch(`${API}/prescription/${mongoId}`, {
+//     method: "PUT",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({ apikey, acts }),
+//   });
 
-  if (!response.ok) return;
-  const prescription = await response.json();
-  extractedActs = [...extractedActs, ...prescription.data.acts];
-});
+//   if (!response.ok) return;
+//   const prescription = await response.json();
+//   extractedActs = [...extractedActs, ...prescription.data.acts];
+// });
 
-observer.observe(document.body, {
-  childList: true,
-  subtree: true,
-});
+// observer.observe(document.body, {
+//   childList: true,
+//   subtree: true,
+// });
 
 async function init() {
   if (!window.location.href.includes("moduleSil/demande/saisie/index.php")) return;
@@ -101,6 +101,12 @@ window.addEventListener(
         changeImageButton.style.display = "none";
         previousImageButton.style.display = "block";
       }
+
+      const polygons = document.querySelectorAll("#quercoContainer > div");
+      polygons.forEach((polygon) => {
+        if (polygon.classList.contains(`querco_doc_${imageIndex}`)) return (polygon.style.display = "block");
+        polygon.style.display = "none";
+      });
     });
 
     const previousImageButton = document.querySelector("#previousImage");
@@ -113,6 +119,12 @@ window.addEventListener(
         changeImageButton.style.display = "block";
         previousImageButton.style.display = "none";
       }
+
+      const polygons = document.querySelectorAll("#quercoContainer > div");
+      polygons.forEach((polygon) => {
+        if (polygon.classList.contains(`querco_doc_${imageIndex}`)) return (polygon.style.display = "block");
+        polygon.style.display = "none";
+      });
     });
 
     if (data.length === 1) {
@@ -335,6 +347,7 @@ function updatePolygonPoints(document, viewportHeight, acts) {
 
     const polygon = document.createElement("div");
     polygon.style = `position: absolute; clip-path: polygon(${pointsString}); background-color: ${color}; opacity: 0.15; width: 100%; height: 100%;`;
+    polygon.classList.add(`querco_doc_${act.prescriptionId}`);
     act.codes.forEach((code) => {
       polygon.classList.add(`querco_polygon_${code}`);
     });
@@ -351,6 +364,13 @@ function updatePolygonPoints(document, viewportHeight, acts) {
 
     container.appendChild(polygon);
   }
+
+  const polygons = document.querySelectorAll("#quercoContainer > div");
+  polygons.forEach((polygon) => {
+    if (!polygon.classList.contains("querco_doc_0")) {
+      polygon.style.display = "none";
+    }
+  });
 }
 
 function loadLibrary(src, type, id, data) {
