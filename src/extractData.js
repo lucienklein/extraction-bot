@@ -9,7 +9,7 @@ const extractData = async (apikey, file) => {
 
   response = await response.json();
 
-  return { data: response.data, index };
+  return response;
 };
 
 const main = async (apikey, files) => {
