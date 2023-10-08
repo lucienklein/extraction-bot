@@ -66,7 +66,7 @@ const displayFiles = (files) => {
     displayPolygonThatMatchTheDisplayedImage();
   });
 
-  if (data.length === 1) {
+  if (files.length === 1) {
     changeImageButton.style.display = "none";
     previousImageButton.style.display = "none";
   }
