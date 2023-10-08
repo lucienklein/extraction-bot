@@ -378,9 +378,8 @@ function updatePolygonPoints(document, viewportHeight, acts) {
 function displayPolygonThatMatchTheDisplayedImage() {
   const images = document.querySelectorAll("[docIndex]");
   images.forEach((img) => {
-    if (img.style.display !== "none") {
+    if (img.style.display === "block") {
       const mongoid = img.getAttribute("mongoid");
-      console.log(mongoid, img.style.display);
       const polygons = document.querySelectorAll(`div[mongoid]`);
       polygons.forEach((polygon) => {
         if (polygon.getAttribute("mongoid") === mongoid) return (polygon.style.display = "block");
