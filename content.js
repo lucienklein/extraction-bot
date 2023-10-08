@@ -78,15 +78,24 @@ window.addEventListener(
     const div = document.createElement("div");
     div.innerHTML = `
     <div style="position: relative; width: 100%; height: 100%;" id="divQuerco">
-      <img id="displayImage" src="${event.data.data}" style="width: auto; height: 100vh ; object-fit: contain; position: relative; z-index: 1;">
+      <img id="displayImage" src="${event.data.data[0]}" style="width: auto; height: 100vh ; object-fit: contain; position: relative; z-index: 1;">
       <div id="displayText" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background-color: rgba(0, 0, 0, 0.5); color: white; z-index: 2; font-size: 2rem; font-weight: bold;">
        Extraction en cours...
       </div>
+      <button id="changeImage" style="position: absolute; top: 0; right: 0; z-index: 3;">Change Image</button>
     </div>`;
 
     const principalDiv = document.querySelector("#principalContent");
     principalDiv.style.display = "flex";
     principalDiv.appendChild(div);
+
+    let imageIndex = 0;
+    const changeImageButton = document.querySelector("#changeImage");
+    changeImageButton.addEventListener("click", function () {
+      imageIndex = (imageIndex + 1) % event.data.data.length;
+      const displayImage = document.querySelector("#displayImage");
+      displayImage.src = event.data.data[imageIndex];
+    });
   },
   false
 );
