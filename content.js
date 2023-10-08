@@ -379,20 +379,20 @@ function updatePolygonPoints(document, viewportHeight, acts) {
 }
 
 function diplayPolygonThatMatchTheDisplayedImage() {
-  // const images = document.querySelectorAll("[docIndex]");
-  // images.forEach((img) => {
-  //   if (img.style.display !== "none") {
-  //     const mongoid = img.getAttribute("mongoid");
-  //     const polygons = document.querySelectorAll(`div[mongoid='${mongoid}']`);
-  //     polygons.forEach((polygon) => {
-  //       if (polygon.getAttribute("mongoid") === mongoid) {
-  //         polygon.style.display = "block";
-  //       } else {
-  //         polygon.style.display = "none";
-  //       }
-  //     });
-  //   }
-  // });
+  const images = document.querySelectorAll("[docIndex]");
+  images.forEach((img) => {
+    if (img.style.display !== "none") {
+      const mongoid = img.getAttribute("mongoid");
+      const polygons = document.querySelectorAll(`div[mongoid='${mongoid}']`);
+      polygons.forEach((polygon) => {
+        if (polygon.getAttribute("mongoid") === mongoid) {
+          polygon.style.display = "block";
+        } else {
+          polygon.style.display = "none";
+        }
+      });
+    }
+  });
 }
 
 function loadLibrary(src, type, id, data) {
