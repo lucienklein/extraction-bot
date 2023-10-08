@@ -82,7 +82,8 @@ window.addEventListener(
       <div id="displayText" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background-color: rgba(0, 0, 0, 0.5); color: white; z-index: 2; font-size: 2rem; font-weight: bold;">
        Extraction en cours...
       </div>
-      <button id="changeImage" style="position: absolute; top: 0; right: 0; z-index: 3;">Change Image</button>
+      <button id="changeImage" style="position: absolute; top: 0; right: 0; z-index: 3;">Suivant</button>
+      <button id="previousImage" style="position: absolute; top: 0; left: 0; z-index: 3;">Précédent</button>
     </div>`;
 
     const principalDiv = document.querySelector("#principalContent");
@@ -93,6 +94,13 @@ window.addEventListener(
     const changeImageButton = document.querySelector("#changeImage");
     changeImageButton.addEventListener("click", function () {
       imageIndex = (imageIndex + 1) % event.data.data.length;
+      const displayImage = document.querySelector("#displayImage");
+      displayImage.src = event.data.data[imageIndex];
+    });
+
+    const previousImageButton = document.querySelector("#previousImage");
+    previousImageButton.addEventListener("click", function () {
+      imageIndex = (imageIndex - 1 + event.data.data.length) % event.data.data.length;
       const displayImage = document.querySelector("#displayImage");
       displayImage.src = event.data.data[imageIndex];
     });
