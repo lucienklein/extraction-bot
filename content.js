@@ -224,20 +224,23 @@ window.addEventListener(
   false
 );
 
-function insertAct(act, timeout) {
-  const inputAnalyse = document.querySelector("#analyseCodeAjout");
-  const enterKeyEvent = new KeyboardEvent("keydown", {
-    key: "Enter",
-    code: "Enter",
-    keyCode: 13,
-    charCode: 13,
-    shiftKey: false,
-  });
+async function insertAct(act, timeout) {
+  console.log("insertAct", act);
+  for (const code of act.codes) {
+    const inputAnalyse = document.querySelector("#analyseCodeAjout");
+    const enterKeyEvent = new KeyboardEvent("keydown", {
+      key: "Enter",
+      code: "Enter",
+      keyCode: 13,
+      charCode: 13,
+      shiftKey: false,
+    });
 
-  inputAnalyse.value = act.code;
-  inputAnalyse.dispatchEvent(enterKeyEvent);
+    inputAnalyse.value = code;
+    inputAnalyse.dispatchEvent(enterKeyEvent);
 
-  return new Promise((resolve) => setTimeout(resolve, timeout));
+    await new Promise((resolve) => setTimeout(resolve, timeout));
+  }
 }
 
 function matchActsAndEl(acts) {
