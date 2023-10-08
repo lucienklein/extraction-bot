@@ -117,7 +117,7 @@ window.addEventListener(
         previousImageButton.style.display = "block";
       }
 
-      diplayPolygonThatMatchTheDisplayedImage();
+      displayPolygonThatMatchTheDisplayedImage();
     });
 
     const previousImageButton = document.querySelector("#previousImage");
@@ -136,7 +136,7 @@ window.addEventListener(
         previousImageButton.style.display = "none";
       }
 
-      diplayPolygonThatMatchTheDisplayedImage();
+      displayPolygonThatMatchTheDisplayedImage();
     });
 
     if (data.length === 1) {
@@ -288,6 +288,8 @@ window.addEventListener(
     window.addEventListener("resize", fctRefreshPolygon);
     fctRefreshPolygon();
 
+    displayPolygonThatMatchTheDisplayedImage();
+
     overlay.remove();
   },
   false
@@ -372,13 +374,11 @@ function updatePolygonPoints(document, viewportHeight, acts) {
 
     container.appendChild(polygon);
   }
-  diplayPolygonThatMatchTheDisplayedImage();
 }
 
-function diplayPolygonThatMatchTheDisplayedImage() {
+function displayPolygonThatMatchTheDisplayedImage() {
   const images = document.querySelectorAll("[docIndex]");
   images.forEach((img) => {
-    console.log(img.style.display);
     if (img.style.display !== "none") {
       const mongoid = img.getAttribute("mongoid");
       const polygons = document.querySelectorAll(`div[mongoid]`);
