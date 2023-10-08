@@ -166,13 +166,16 @@ window.addEventListener(
 
     extractedActs = [...extractedActs, ...acts];
 
+    console.log(prescriptions);
+    console.log("ok");
     for (let i; i < prescriptions.length; i++) {
-      console.log(prescriptions[i]);
+      console.log("test");
       const mongoid = prescriptions[i].data._id.toString();
       const image = document.querySelector(`[docIndex='${i}']`);
       console.log(image);
       image.setAttribute("mongoid", mongoid);
     }
+    console.log("ok2");
 
     const boxAnalyse = document.querySelector("#ihmBoxAnalyse .ihmCboxContent.ihmCboxvert");
     const overlay = document.createElement("div");
