@@ -149,23 +149,24 @@ window.addEventListener(
       if (act.notFound) continue;
       for (const idAnalyse of act.elThatMatchAct) {
         const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
-        const id = act.codes.join("_");
 
-        el.addEventListener("mouseover", function () {
-          const polygons = document.querySelectorAll(`.querco_polygon_${id}`);
-          polygons.forEach((polygon) => (polygon.style.opacity = "0.5"));
-        });
+        for (const code of act.codes) {
+          el.addEventListener("mouseover", function () {
+            const polygons = document.querySelectorAll(`.querco_polygon_${code}`);
+            polygons.forEach((polygon) => (polygon.style.opacity = "0.5"));
+          });
 
-        el.addEventListener("mouseout", function () {
-          const polygons = document.querySelectorAll(`.querco_polygon_${id}`);
-          polygons.forEach((polygon) => (polygon.style.opacity = "0.15"));
-        });
+          el.addEventListener("mouseout", function () {
+            const polygons = document.querySelectorAll(`.querco_polygon_${code}`);
+            polygons.forEach((polygon) => (polygon.style.opacity = "0.15"));
+          });
 
-        el.classList.add(`querco_act_${id}`);
+          el.classList.add(`querco_act_${code}`);
 
-        if (!act.ALD) continue;
-        el.setAttribute("isselected", true);
-        actsAld.push(el);
+          if (!act.ALD) continue;
+          el.setAttribute("isselected", true);
+          actsAld.push(el);
+        }
       }
     }
 
@@ -275,7 +276,6 @@ function updatePolygonPoints(document, viewportHeight, originalWidth, originalHe
     let color = "#24b337";
     if (act.ALD) color = "#F7FA13";
     if (act.warning) color = "#FA1313";
-    const id = act.codes.join("_");
 
     const adjustedPoints = points.map((point) => ({
       x: point.x * scaleFactorX,
@@ -284,21 +284,23 @@ function updatePolygonPoints(document, viewportHeight, originalWidth, originalHe
 
     const pointsString = adjustedPoints.map((point) => `${point.x}px ${point.y}px`).join(", ");
 
-    const polygon = document.createElement("div");
-    polygon.style = `position: absolute; clip-path: polygon(${pointsString}); background-color: ${color}; opacity: 0.15; width: 100%; height: 100%;`;
-    polygon.className = `querco_polygon_${id}`;
+    for (const code of act.codes) {
+      const polygon = document.createElement("div");
+      polygon.style = `position: absolute; clip-path: polygon(${pointsString}); background-color: ${color}; opacity: 0.15; width: 100%; height: 100%;`;
+      polygon.className = `querco_polygon_${code}`;
 
-    polygon.addEventListener("mouseover", function () {
-      const acts = document.querySelectorAll(`.querco_act_${id}`);
-      acts.forEach((act) => (act.style.border = `2px solid red`));
-    });
+      polygon.addEventListener("mouseover", function () {
+        const acts = document.querySelectorAll(`.querco_act_${code}`);
+        acts.forEach((act) => (act.style.border = `2px solid red`));
+      });
 
-    polygon.addEventListener("mouseout", function () {
-      const acts = document.querySelectorAll(`.querco_act_${id}`);
-      acts.forEach((act) => (act.style.border = "2px solid #96db70"));
-    });
+      polygon.addEventListener("mouseout", function () {
+        const acts = document.querySelectorAll(`.querco_act_${code}`);
+        acts.forEach((act) => (act.style.border = "2px solid #96db70"));
+      });
 
-    container.appendChild(polygon);
+      container.appendChild(polygon);
+    }
   }
 }
 
