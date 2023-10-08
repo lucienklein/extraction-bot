@@ -101,18 +101,22 @@ const init = async () => {
 
 try {
   init();
+  test();
 } catch (error) {
-  Sentry.captureException(error);
+  // Sentry.captureException(error);
   console.error(error);
 
   const errorDiv = document.createElement("div");
-  errorDiv.style.position = "absolute";
+  errorDiv.innerText = "L'extension Extraction a rencontré une erreur. L'erreur a été envoyée à l'équipe technique.";
+  errorDiv.style.color = "red";
+  errorDiv.style.position = "fixed";
   errorDiv.style.bottom = "0";
   errorDiv.style.right = "0";
-  errorDiv.style.zIndex = "1000";
+  errorDiv.style.zIndex = "9999";
+  errorDiv.style.backgroundColor = "white";
   errorDiv.style.padding = "10px";
-  errorDiv.style.backgroundColor = "red";
-  errorDiv.style.color = "white";
-  errorDiv.innerText = "L'extension Extraction a rencontré une erreur.";
+  errorDiv.style.width = "100%";
+  errorDiv.style.textAlign = "center";
+
   document.body.appendChild(errorDiv);
 }
