@@ -25,7 +25,7 @@ window.addEventListener(
       let response = await fetch(`${API}/prescription`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ apikey, file: data }),
+        body: JSON.stringify({ apikey, file }),
       });
 
       response = await response.json();
