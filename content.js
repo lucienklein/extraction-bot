@@ -225,7 +225,6 @@ window.addEventListener(
 );
 
 async function insertAct(act, timeout) {
-  console.log("insertAct", act);
   for (const code of act.codes) {
     const inputAnalyse = document.querySelector("#analyseCodeAjout");
     const enterKeyEvent = new KeyboardEvent("keydown", {
@@ -251,7 +250,7 @@ function matchActsAndEl(acts) {
       const codeanalyse = el.getAttribute("codeanalyse");
       const codegroupe = el.getAttribute("codegroupe");
 
-      return codeanalyse === act.code || codegroupe === act.code;
+      return act.codes.includes(codeanalyse) || act.codes.includes(codegroupe);
     });
 
     act.elThatMatchAct = elThatMatchAct;
