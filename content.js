@@ -149,7 +149,7 @@ window.addEventListener(
       if (act.notFound) continue;
       for (const idAnalyse of act.elThatMatchAct) {
         const el = document.querySelector(`[idanalyse="${idAnalyse}"]`);
-        const id = JSON.stringify(act.codes);
+        const id = act.codes.join("_");
 
         el.addEventListener("mouseover", function () {
           const polygons = document.querySelectorAll(`.querco_polygon_${id}`);
@@ -275,7 +275,7 @@ function updatePolygonPoints(document, viewportHeight, originalWidth, originalHe
     let color = "#24b337";
     if (act.ALD) color = "#F7FA13";
     if (act.warning) color = "#FA1313";
-    const id = JSON.stringify(act.codes);
+    const id = act.codes.join("_");
 
     const adjustedPoints = points.map((point) => ({
       x: point.x * scaleFactorX,
