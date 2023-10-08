@@ -16,7 +16,7 @@ const main = async (apikey, files) => {
   let responses = await Promise.all(
     files.map(async (file, index) => {
       const response = await extractData(apikey, file);
-      return { response, index };
+      return { data: response, index };
     })
   );
 
