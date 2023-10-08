@@ -159,7 +159,7 @@ window.addEventListener(
           ...act,
           width: prescription.width,
           height: prescription.height,
-          prescriptionId: prescription.index,
+          prescriptionId: prescription.data._id.toString(),
         }))
       )
       .flat();
