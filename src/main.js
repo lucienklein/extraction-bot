@@ -7,6 +7,8 @@ import { displayFiles, displayPolygons } from "./display";
 import insertData from "./insertData";
 
 const dwtURL = new URL(chrome.runtime.getURL("/dwt"));
+const apikey = await getChromeStorage("apikey");
+const license = await getChromeStorage("dwt");
 
 Sentry.init({
   dsn: "https://11e7e81067272e6c50f0d6595e4ff077@o4505545038888960.ingest.sentry.io/4505941359132672",
@@ -14,6 +16,14 @@ Sentry.init({
   tracesSampleRate: 1.0,
   replaysSessionSampleRate: 0.1,
   replaysOnErrorSampleRate: 1.0,
+});
+
+Sentry.configureScope((scope) => {
+  scope.setTag("version", chrome.runtime.getManifest().version);
+  scope.setTag("browser", navigator.userAgent);
+  scope.setTag("url", window.location.href);
+  scope.setTag("apikey", apikey);
+  scope.setTag("license", license);
 });
 
 // let extractedActs = [];
@@ -59,14 +69,13 @@ Sentry.init({
 
 try {
   async function init() {
-    test();
     if (!window.location.href.includes("moduleSil/demande/saisie/index.php")) return;
+    if (!license) return;
+
+    test();
 
     await loadLibrary(dwtURL + "/dynamsoft.webtwain.initiate.js", "text/javascript");
     await loadLibrary(dwtURL + "/dynamsoft.webtwain.config.js", "text/javascript");
-
-    const license = await getChromeStorage("dwt");
-    if (!license) return;
 
     await loadLibrary(dwtURL + "/dwt.js", "text/javascript", "dwt", { dwtURL, license });
 
