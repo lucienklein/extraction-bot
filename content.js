@@ -157,8 +157,8 @@ window.addEventListener(
       .map((prescription) =>
         prescription.data.acts.map((act) => ({
           ...act,
-          width: prescription.width,
-          height: prescription.height,
+          width: prescription.data.width,
+          height: prescription.data.height,
           prescriptionId: prescription.data._id.toString(),
         }))
       )
@@ -358,10 +358,10 @@ function updatePolygonPoints(document, viewportHeight, acts) {
 
     const polygon = document.createElement("div");
     polygon.style = `position: absolute; clip-path: polygon(${pointsString}); background-color: ${color}; opacity: 0.15; width: 100%; height: 100%;`;
-    // polygon.setAttribute("mongoid", act.prescriptionId);
-    // act.codes.forEach((code) => {
-    //   polygon.classList.add(`querco_polygon_${code}`);
-    // });
+    polygon.setAttribute("mongoid", act.prescriptionId);
+    act.codes.forEach((code) => {
+      polygon.classList.add(`querco_polygon_${code}`);
+    });
 
     polygon.addEventListener("mouseover", function () {
       const acts = document.querySelectorAll(selectorAct);
