@@ -336,6 +336,7 @@ function updatePolygonPoints(document, viewportHeight, acts) {
   container.innerHTML = "";
 
   for (const act of acts) {
+    console.log(act);
     let newWidth = (viewportHeight / act.height) * act.width;
 
     let scaleFactorX = newWidth / act.width;
@@ -357,10 +358,10 @@ function updatePolygonPoints(document, viewportHeight, acts) {
 
     const polygon = document.createElement("div");
     polygon.style = `position: absolute; clip-path: polygon(${pointsString}); background-color: ${color}; opacity: 0.15; width: 100%; height: 100%;`;
-    polygon.setAttribute("mongoid", act.prescriptionId);
-    act.codes.forEach((code) => {
-      polygon.classList.add(`querco_polygon_${code}`);
-    });
+    // polygon.setAttribute("mongoid", act.prescriptionId);
+    // act.codes.forEach((code) => {
+    //   polygon.classList.add(`querco_polygon_${code}`);
+    // });
 
     polygon.addEventListener("mouseover", function () {
       const acts = document.querySelectorAll(selectorAct);
