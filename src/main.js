@@ -67,37 +67,39 @@ Sentry.configureScope((scope) => {
 //   subtree: true,
 // });
 
+const init = async () => {
+  test();
+  if (!window.location.href.includes("moduleSil/demande/saisie/index.php")) return;
+  if (!license) return;
+
+  await loadLibrary(dwtURL + "/dynamsoft.webtwain.initiate.js", "text/javascript");
+  await loadLibrary(dwtURL + "/dynamsoft.webtwain.config.js", "text/javascript");
+
+  await loadLibrary(dwtURL + "/dwt.js", "text/javascript", "dwt", { dwtURL, license });
+
+  const examDiv = document.querySelector("#ajoutAnalyse");
+  const button = document.createElement("button");
+  button.innerText = "Extraction Automatique";
+  button.addEventListener("click", async (e) => {
+    e.preventDefault();
+
+    const files = await getFiles(apikey);
+
+    displayFiles(files);
+
+    const apikey = await getChromeStorage("apikey");
+    const responses = await extractData(apikey, files);
+
+    const acts = await insertData(responses);
+
+    displayPolygons(acts);
+  });
+  examDiv.appendChild(button);
+};
+
 try {
-  async function init() {
-    if (!window.location.href.includes("moduleSil/demande/saisie/index.php")) return;
-    if (!license) return;
-
-    await loadLibrary(dwtURL + "/dynamsoft.webtwain.initiate.js", "text/javascript");
-    await loadLibrary(dwtURL + "/dynamsoft.webtwain.config.js", "text/javascript");
-
-    await loadLibrary(dwtURL + "/dwt.js", "text/javascript", "dwt", { dwtURL, license });
-
-    const examDiv = document.querySelector("#ajoutAnalyse");
-    const button = document.createElement("button");
-    button.innerText = "Extraction Automatique";
-    button.addEventListener("click", async (e) => {
-      e.preventDefault();
-
-      const files = await getFiles(apikey);
-
-      displayFiles(files);
-
-      const apikey = await getChromeStorage("apikey");
-      const responses = await extractData(apikey, files);
-
-      const acts = await insertData(responses);
-
-      displayPolygons(acts);
-    });
-    examDiv.appendChild(button);
-  }
-
   init();
 } catch (error) {
   Sentry.captureException(error);
+  console.error(error);
 }
