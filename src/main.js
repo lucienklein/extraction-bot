@@ -100,11 +100,9 @@ const init = async () => {
 };
 
 try {
-  test.test();
   init();
 } catch (error) {
-  // Sentry.captureException(error);
-
+  Sentry.captureException(error);
   console.error(error);
 
   const errorDiv = document.createElement("div");
