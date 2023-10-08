@@ -78,11 +78,13 @@ window.addEventListener(
     const div = document.createElement("div");
     div.innerHTML = `
     <div style="position: relative; width: 100%; height: 100%;" id="divQuerco">
-    ${event.data.data.map(
-      (image, index) => `
+    ${event.data.data
+      .map(
+        (image, index) => `
         <img id="displayImage" docIndex="${index}" src="${image}" style="width: auto; height: 100vh ; object-fit: contain; position: relative; z-index: 1;">
       `
-    )}
+      )
+      .join("")}
       <div id="displayText" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background-color: rgba(0, 0, 0, 0.5); color: white; z-index: 2; font-size: 2rem; font-weight: bold;">
        Extraction en cours...
       </div>
