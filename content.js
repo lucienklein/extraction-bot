@@ -167,6 +167,7 @@ window.addEventListener(
     extractedActs = [...extractedActs, ...acts];
 
     for (let i; i < prescriptions.length; i++) {
+      console.log(prescriptions[i]);
       const mongoid = prescriptions[i].data._id.toString();
       const image = document.querySelector(`[docIndex='${i}']`);
       console.log(image);
