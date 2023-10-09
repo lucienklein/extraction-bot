@@ -154,7 +154,14 @@ const Popup = () => {
                     const acts = document.querySelectorAll(polygon.selectorAct);
                     acts.forEach((act) => (act.style.border = "2px solid #96db70"));
                   }}
-                  style={`clip-path: polygon(${polygon.pointsString}); background-color: ${polygon.color}; opacity: 0.15; width: 100%; height: 100%; display: none;`}
+                  style={{
+                    clipPath: `polygon(${polygon.pointsString})`,
+                    backgroundColor: polygon.color,
+                    opacity: 0.15,
+                    width: "100%",
+                    height: "100%",
+                    display: "none",
+                  }}
                   mongoid={polygon.mongoid}
                 ></div>
               ))}
