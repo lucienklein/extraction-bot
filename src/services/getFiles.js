@@ -9,23 +9,16 @@ const launchScan = async () => {
   document.body.appendChild(fileInput);
   fileInput.click();
 
-  let result;
-  await new Promise((resolve) => {
+  return await new Promise((resolve) => {
     fileInput.addEventListener("change", async (event) => {
       const file = event.target.files[0];
       const reader = new FileReader();
       reader.onload = (event) => {
-        console.log(event.target.result);
-        result = event.target.result;
-        resolve();
+        resolve([event.target.result]);
       };
       reader.readAsDataURL(file);
     });
   });
-
-  console.log(result);
-
-  return [result];
 };
 
 const getFileFromKalisil = async () => {
@@ -77,6 +70,8 @@ const main = async () => {
   let files = [];
   if (fileScanned.length > 0) files = await getFileFromKalisil();
   else files = await launchScan();
+
+  console.log(files);
 
   return files;
 };
