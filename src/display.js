@@ -14,15 +14,18 @@ const displayFiles = (files) => {
         <button id="closeButton">X</button>
       </div>
 
-      ${files
-        .map(
-          (file, index) => `
-          <img id="displayImage" docIndex="${index}" src="${file}" style="width: auto; height: 90vh ; object-fit: contain; position: relative; z-index: 1; display: none;">
-        `
-        )
-        .join("")}
-        <div id="displayText" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background-color: rgba(0, 0, 0, 0.5); color: white; z-index: 2; font-size: 2rem; font-weight: bold;">
-         Extraction en cours...
+
+      <div style="position: relative;">
+        ${files
+          .map(
+            (file, index) => `
+            <img id="displayImage" docIndex="${index}" src="${file}" style="width: auto; height: 90vh ; object-fit: contain; position: relative; z-index: 1; display: none;">
+          `
+          )
+          .join("")}
+          <div id="displayText" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background-color: rgba(0, 0, 0, 0.5); color: white; z-index: 2; font-size: 2rem; font-weight: bold;">
+          Extraction en cours...
+          </div>
         </div>
       </div>`;
 
@@ -36,16 +39,9 @@ const displayFiles = (files) => {
 
     // Create a new div to reopen the popup
     const reopenDiv = document.createElement("div");
-    reopenDiv.innerHTML = "Open Popup";
-    reopenDiv.style.position = "fixed";
-    reopenDiv.style.bottom = "0";
-    reopenDiv.style.right = "0";
-    reopenDiv.style.zIndex = "9999";
-    reopenDiv.style.backgroundColor = "white";
-    reopenDiv.style.border = "1px solid gray";
-    reopenDiv.style.borderRadius = "5px";
-    reopenDiv.style.padding = "10px";
-    reopenDiv.style.cursor = "pointer";
+    reopenDiv.innerHTML = "Extraction Automatique";
+    reopenDiv.style =
+      "position: fixed; bottom: 0; right: 0; z-index: 9999; background-color: white; border: 1px solid gray; border-radius: 5px; padding: 10px; cursor: pointer;";
 
     // Add event listener to reopen the popup
     reopenDiv.addEventListener("click", function () {
