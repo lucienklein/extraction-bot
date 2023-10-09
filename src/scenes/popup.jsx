@@ -44,7 +44,11 @@ const Popup = () => {
     if (!extractedFiles) return;
     setFiles(extractedFiles);
 
+    console.log("files", files);
+
     const responses = await extractData(files);
+
+    console.log("responses", responses);
 
     const acts = await insertData(responses);
     setActs(acts);
