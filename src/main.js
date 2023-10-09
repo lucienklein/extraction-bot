@@ -7,6 +7,7 @@ import { displayFiles, displayPolygons } from "./display";
 import insertData from "./insertData";
 
 const dwtURL = new URL(chrome.runtime.getURL("/dwt"));
+const stylesURL = new URL(chrome.runtime.getURL("/styles.css"));
 const apikey = await getChromeStorage("apikey");
 const license = await getChromeStorage("dwt");
 
@@ -71,16 +72,10 @@ const init = async () => {
   if (!window.location.href.includes("moduleSil/demande/saisie/index.php")) return;
   if (!license) return;
 
-  let link = document.createElement("link");
-  link.href = chrome.runtime.getURL("styles.css");
-  link.type = "text/css";
-  link.rel = "stylesheet";
-  document.getElementsByTagName("head")[0].appendChild(link);
-
   await loadLibrary(dwtURL + "/dynamsoft.webtwain.initiate.js", "text/javascript");
   await loadLibrary(dwtURL + "/dynamsoft.webtwain.config.js", "text/javascript");
-
-  await loadLibrary(dwtURL + "/dwt.js", "text/javascript", "dwt", { dwtURL, license });
+  await loadLibrary(dwtURL + "/dynamsoft.webtwain.install.js", "text/javascript");
+  await loadLibrary(stylesURL, "text/css");
 
   const examDiv = document.querySelector("#ajoutAnalyse");
 
