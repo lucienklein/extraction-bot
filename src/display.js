@@ -4,20 +4,26 @@ const displayFiles = (files) => {
 
   const div = document.createElement("div");
   div.innerHTML = `
-    <div style="position: fixed; width: 80%; height: 80%; top: 10%; left: 10%; z-index: 9999; background-color: white; border: 1px solid gray; border-radius: 5px; overflow: auto;" id="divQuerco">
-      <button style="position: absolute; top: 0; right: 0; z-index: 3;" id="closeButton">X</button>
+    <div style="position: fixed; width: auto; height: auto; top: 10%; left: 10%; z-index: 9999; background-color: white; border: 1px solid gray; border-radius: 5px; overflow: auto;" id="divQuerco">
+      <div style="z-index: 3; display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center;">
+          <button id="previousImage" style="position: absolute; top: 0; left: 0; z-index: 3; display: none"><</button>
+          <button id="changeImage" style="position: absolute; top: 0; right: 0; z-index: 3;">></button>
+        </div>
+        <h1 style="margin: 0; padding: 10px;">Extraction Automatique</h1>
+        <button id="closeButton">X</button>
+      </div>
+
       ${files
         .map(
           (file, index) => `
-          <img id="displayImage" docIndex="${index}" src="${file}" style="width: auto; height: 100vh ; object-fit: contain; position: relative; z-index: 1; display: none;">
+          <img id="displayImage" docIndex="${index}" src="${file.src}" style="width: auto; height: 90vh ; object-fit: contain; position: relative; z-index: 1; display: none;">
         `
         )
         .join("")}
         <div id="displayText" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background-color: rgba(0, 0, 0, 0.5); color: white; z-index: 2; font-size: 2rem; font-weight: bold;">
          Extraction en cours...
         </div>
-        <button id="previousImage" style="position: absolute; top: 0; left: 0; z-index: 3; display: none">Précédent</button>
-        <button id="changeImage" style="position: absolute; top: 0; right: 0; z-index: 3;">Suivant</button>
       </div>`;
 
   const principalDiv = document.querySelector("#principalContent");
