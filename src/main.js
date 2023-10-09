@@ -82,7 +82,7 @@ const init = async () => {
   const button = document.createElement("button");
   button.innerText = "Extraction Automatique";
   button.className =
-    "tailwind rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600";
+    "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600";
   button.addEventListener("click", async (e) => {
     e.preventDefault();
 
@@ -97,7 +97,11 @@ const init = async () => {
 
     displayPolygons(acts);
   });
-  examDiv.appendChild(button);
+
+  const container = document.createElement("div");
+  container.className = "tailwind";
+  container.appendChild(button);
+  examDiv.appendChild(container);
 };
 
 try {
