@@ -15,12 +15,15 @@ const launchScan = async () => {
       const file = event.target.files[0];
       const reader = new FileReader();
       reader.onload = (event) => {
+        console.log(event.target.result);
         result = event.target.result;
         resolve();
       };
       reader.readAsDataURL(file);
     });
   });
+
+  console.log(result);
 
   return [result];
 };
