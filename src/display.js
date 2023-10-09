@@ -2,9 +2,9 @@ const displayFiles = (files) => {
   const existingDiv = document.querySelector("#divQuerco");
   if (existingDiv) existingDiv.remove();
 
-  const div = document.createElement("div");
-  div.innerHTML = `
-    <div style="position: fixed; width: auto; height: auto; bottom: 0; right: 0; z-index: 9999; background-color: white; border: 1px solid gray; border-radius: 5px; overflow: auto;" id="divQuerco">
+  const popup = document.createElement("div");
+  popup.innerHTML = `
+    <div style="display: none; position: fixed; width: auto; height: auto; bottom: 0; right: 0; z-index: 9999; background-color: white; border: 1px solid gray; border-radius: 5px; overflow: auto;" id="divQuerco">
       <div style="z-index: 3; display: flex; justify-content: space-between; align-items: center; padding-inline: 5px;">
         <div style="display: flex; align-items: center;">
           <button id="previousImage" disabled><</button>
@@ -28,29 +28,22 @@ const displayFiles = (files) => {
           </div>
         </div>
       </div>`;
+  document.body.appendChild(popup);
 
-  const principalDiv = document.querySelector("#principalContent");
-  principalDiv.style.display = "flex";
-  principalDiv.appendChild(div);
+  const reopenDiv = document.createElement("div");
+  reopenDiv.innerHTML = "Extraction Automatique";
+  reopenDiv.id = "reopenDiv";
+  reopenDiv.style =
+    "position: fixed; bottom: 0; right: 0; z-index: 9999; background-color: white; border: 1px solid gray; border-radius: 5px; padding: 10px; cursor: pointer;";
+  reopenDiv.addEventListener("click", function () {
+    popup.style.display = "flex";
+    reopenDiv.style.display = "none";
+  });
+  document.body.appendChild(reopenDiv);
 
   const closeButton = document.querySelector("#closeButton");
   closeButton.addEventListener("click", function () {
-    div.style.display = "none";
-
-    // Create a new div to reopen the popup
-    const reopenDiv = document.createElement("div");
-    reopenDiv.innerHTML = "Extraction Automatique";
-    reopenDiv.style =
-      "position: fixed; bottom: 0; right: 0; z-index: 9999; background-color: white; border: 1px solid gray; border-radius: 5px; padding: 10px; cursor: pointer;";
-
-    // Add event listener to reopen the popup
-    reopenDiv.addEventListener("click", function () {
-      div.style.display = "flex";
-      document.body.removeChild(reopenDiv);
-    });
-
-    // Append the div to the body
-    document.body.appendChild(reopenDiv);
+    popup.style.display = "none";
   });
 
   const image = document.querySelector("[docIndex='0']");
@@ -71,7 +64,7 @@ const displayFiles = (files) => {
     image.style.display = "block";
 
     if (imageIndex === files.length - 1) {
-      nextImageButton.setAttribute("disabled");
+      nextImageButton.setAttribute("disabled", true);
       previousImageButton.removeAttribute("disabled");
     }
 
@@ -92,7 +85,7 @@ const displayFiles = (files) => {
 
     if (imageIndex === 0) {
       nextImageButton.removeAttribute("disabled");
-      previousImageButton.setAttribute("disabled");
+      previousImageButton.setAttribute("disabled", true);
     }
 
     displayPolygonThatMatchTheDisplayedImage();
