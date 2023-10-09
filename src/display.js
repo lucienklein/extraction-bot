@@ -7,8 +7,8 @@ const displayFiles = (files) => {
     <div style="position: fixed; width: auto; height: auto; bottom: 0; right: 0; z-index: 9999; background-color: white; border: 1px solid gray; border-radius: 5px; overflow: auto;" id="divQuerco">
       <div style="z-index: 3; display: flex; justify-content: space-between; align-items: center; padding-inline: 5px;">
         <div style="display: flex; align-items: center;">
-          <button id="previousImage" disabled><</button>
-          <button id="nextImage">></button>
+          <button id="previousImage" disabled="true"><</button>
+          <button id="nextImage" disabled="false">></button>
         </div>
         <div style="margin: 0; padding: 10px;">Extraction Automatique</div>
         <button id="closeButton">X</button>
@@ -121,7 +121,7 @@ function updatePolygonPoints(document, viewportHeight, acts) {
     let newWidth = (viewportHeight / act.height) * act.width;
 
     let scaleFactorX = newWidth / act.width;
-    let scaleFactorY = viewportHeight / act.height;
+    let scaleFactorY = (viewportHeight * 0.9) / act.height;
 
     const points = act.polygon;
     let color = "#24b337";
