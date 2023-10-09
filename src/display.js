@@ -4,13 +4,13 @@ const displayFiles = (files) => {
 
   const div = document.createElement("div");
   div.innerHTML = `
-    <div style="position: fixed; width: auto; height: auto; bottom: 0px; right: 0px; z-index: 9999; background-color: white; border: 1px solid gray; border-radius: 5px; overflow: auto;" id="divQuerco">
+    <div style="position: fixed; width: auto; height: auto; bottom: 0; right: 0; z-index: 9999; background-color: white; border: 1px solid gray; border-radius: 5px; overflow: auto;" id="divQuerco">
       <div style="z-index: 3; display: flex; justify-content: space-between; align-items: center;">
         <div style="display: flex; align-items: center;">
-          <button id="previousImage" style="position: absolute; top: 0; left: 0; z-index: 3; display: none"><</button>
-          <button id="changeImage" style="position: absolute; top: 0; right: 0; z-index: 3;">></button>
+          <button id="previousImage" disabled><</button>
+          <button id="changeImage">></button>
         </div>
-        <h1 style="margin: 0; padding: 10px;">Extraction Automatique</h1>
+        <div style="margin: 0; padding: 10px;">Extraction Automatique</div>
         <button id="closeButton">X</button>
       </div>
 
@@ -52,8 +52,8 @@ const displayFiles = (files) => {
     image.style.display = "block";
 
     if (imageIndex === files.length - 1) {
-      changeImageButton.style.display = "none";
-      previousImageButton.style.display = "block";
+      changeImageButton.setAttribute("disabled", true);
+      previousImageButton.setAttribute("disabled", false);
     }
 
     displayPolygonThatMatchTheDisplayedImage();
@@ -71,16 +71,16 @@ const displayFiles = (files) => {
     image.style.display = "block";
 
     if (imageIndex === 0) {
-      changeImageButton.style.display = "block";
-      previousImageButton.style.display = "none";
+      changeImageButton.setAttribute("disabled", false);
+      previousImageButton.setAttribute("disabled", true);
     }
 
     displayPolygonThatMatchTheDisplayedImage();
   });
 
   if (files.length === 1) {
-    changeImageButton.style.display = "none";
-    previousImageButton.style.display = "none";
+    changeImageButton.setAttribute("disabled", true);
+    previousImageButton.setAttribute("disabled", true);
   }
 };
 

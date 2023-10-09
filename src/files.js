@@ -22,6 +22,8 @@ const launchScan = async () => {
     });
   });
 
+  console.log(result);
+
   return [result, result];
 };
 
