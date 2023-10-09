@@ -75,14 +75,10 @@ const init = async () => {
   await loadLibrary(dwtURL + "/dynamsoft.webtwain.config.js", "text/javascript");
   await loadLibrary(dwtURL + "/dynamsoft.webtwain.install.js", "text/javascript");
 
-  const examDiv = document.querySelector("#ajoutAnalyse");
-
-  if (!examDiv) return;
-
   const button = document.createElement("button");
   button.innerText = "Extraction Automatique";
   button.className =
-    "rounded-md bg-indigo-600 px-3 py-2 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600";
+    "rounded-md bg-indigo-600 px-3 py-2 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 bottom-2 right-2 fixed z-50";
   button.addEventListener("click", async (e) => {
     e.preventDefault();
 
@@ -101,7 +97,7 @@ const init = async () => {
   const container = document.createElement("div");
   container.className = "tailwind";
   container.appendChild(button);
-  examDiv.appendChild(container);
+  document.body.appendChild(container);
 };
 
 try {

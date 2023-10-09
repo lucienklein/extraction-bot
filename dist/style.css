@@ -544,12 +544,20 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   bottom: 0px;
 }
 
+.tailwind .bottom-2 {
+  bottom: 0.5rem;
+}
+
 .tailwind .left-0 {
   left: 0px;
 }
 
 .tailwind .right-0 {
   right: 0px;
+}
+
+.tailwind .right-2 {
+  right: 0.5rem;
 }
 
 .tailwind .top-0 {
