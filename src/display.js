@@ -8,7 +8,7 @@ const displayFiles = (files) => {
     ${files
       .map(
         (file, index) => `
-        <img id="displayImage" docIndex="${index}" src="${file}" style="width: auto; height: 100vh ; object-fit: contain; position: relative; z-index: 1;">
+        <img id="displayImage" docIndex="${index}" src="${file}" style="width: auto; height: 100vh ; object-fit: contain; position: relative; z-index: 1; display: none;">
       `
       )
       .join("")}
