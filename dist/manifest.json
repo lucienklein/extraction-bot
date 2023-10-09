@@ -9,9 +9,6 @@
       "css": ["style.css"]
     }
   ],
-  "action": {
-    "default_popup": "popup.html"
-  },
   "options_page": "popup.html",
   "permissions": ["storage"],
   "web_accessible_resources": ["dwt/*"]
