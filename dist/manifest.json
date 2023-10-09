@@ -5,8 +5,7 @@
   "content_scripts": [
     {
       "matches": ["*://172.30.69.50/*"],
-      "js": ["bundle.js"],
-      "css": ["style.css"]
+      "js": ["bundle.js"]
     }
   ],
   "options_page": "options.html",
