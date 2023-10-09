@@ -142,7 +142,7 @@ const Popup = () => {
                 />
               ))
               .join("")}
-            <div id="container" class="absolute top-0 left-0 w-full h-full z-0">
+            {/* <div id="container" class="absolute top-0 left-0 w-full h-full z-0">
               {polygons.map((polygon) => (
                 <div
                   class="absolute top-0 left-0 w-full h-full z-0"
@@ -165,7 +165,7 @@ const Popup = () => {
                   mongoid={polygon.mongoid}
                 ></div>
               ))}
-            </div>
+            </div> */}
           </div>
         </div>
       )}
