@@ -22,7 +22,7 @@ const launchScan = async () => {
     });
   });
 
-  return [result, result];
+  return [result];
 };
 
 const getFileFromKalisil = async () => {
