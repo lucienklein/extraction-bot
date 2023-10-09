@@ -4,24 +4,30 @@ const displayFiles = (files) => {
 
   const div = document.createElement("div");
   div.innerHTML = `
-    <div style="position: relative; width: 100%; height: 100%;" id="divQuerco">
-    ${files
-      .map(
-        (file, index) => `
-        <img id="displayImage" docIndex="${index}" src="${file}" style="width: auto; height: 100vh ; object-fit: contain; position: relative; z-index: 1; display: none;">
-      `
-      )
-      .join("")}
-      <div id="displayText" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background-color: rgba(0, 0, 0, 0.5); color: white; z-index: 2; font-size: 2rem; font-weight: bold;">
-       Extraction en cours...
-      </div>
-      <button id="previousImage" style="position: absolute; top: 0; left: 0; z-index: 3; display: none">Précédent</button>
-      <button id="changeImage" style="position: absolute; top: 0; right: 0; z-index: 3;">Suivant</button>
-    </div>`;
+    <div style="position: fixed; width: 80%; height: 80%; top: 10%; left: 10%; z-index: 9999; background-color: white; border: 1px solid gray; border-radius: 5px; overflow: auto;" id="divQuerco">
+      <button style="position: absolute; top: 0; right: 0; z-index: 3;" id="closeButton">X</button>
+      ${files
+        .map(
+          (file, index) => `
+          <img id="displayImage" docIndex="${index}" src="${file}" style="width: auto; height: 100vh ; object-fit: contain; position: relative; z-index: 1; display: none;">
+        `
+        )
+        .join("")}
+        <div id="displayText" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background-color: rgba(0, 0, 0, 0.5); color: white; z-index: 2; font-size: 2rem; font-weight: bold;">
+         Extraction en cours...
+        </div>
+        <button id="previousImage" style="position: absolute; top: 0; left: 0; z-index: 3; display: none">Précédent</button>
+        <button id="changeImage" style="position: absolute; top: 0; right: 0; z-index: 3;">Suivant</button>
+      </div>`;
 
   const principalDiv = document.querySelector("#principalContent");
   principalDiv.style.display = "flex";
   principalDiv.appendChild(div);
+
+  const closeButton = document.querySelector("#closeButton");
+  closeButton.addEventListener("click", function () {
+    div.style.display = "none";
+  });
 
   const image = document.querySelector("[docIndex='0']");
   image.style.display = "block";
