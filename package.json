@@ -4,7 +4,7 @@
   "description": "",
   "main": "content.js",
   "scripts": {
-    "build": "webpack --mode=production",
+    "build": "npm run build:css && webpack --mode=production",
     "build:css": "npx postcss ./src/style.css -o ./dist/style.css"
   },
   "keywords": [],

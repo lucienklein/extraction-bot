@@ -6,27 +6,27 @@ const displayFiles = (files) => {
   popup.style.display = "none";
   popup.id = "divQuerco";
   popup.innerHTML = `
-    <div class="bg-blue-500" style="position: fixed; width: auto; height: auto; bottom: 0; right: 0; z-index: 9999; background-color: white; border: 1px solid gray; border-radius: 5px; overflow: auto;">
-      <div style="z-index: 3; display: flex; justify-content: space-between; align-items: center; padding-inline: 5px;">
-        <div style="display: flex; align-items: center;">
+    <div class="bg-white border fixed w-auto h-auto bottom-0 right-0 z-50 border-gray-400 overflow-auto rounded-md">
+      <div class="z-10 flex justify-between items-center px-1">
+        <div class="flex items-center">
           <button id="previousImage" disabled><</button>
           <button id="nextImage" disabled>></button>
         </div>
-        <div style="margin: 0; padding: 10px;">Extraction Automatique</div>
+        <div class="m-0 p-3">Extraction Automatique</div>
         <button id="closeButton">X</button>
       </div>
 
 
-      <div style="position: relative;">
+      <div class="relative">
         ${files
           .map(
             (file, index) => `
-            <img id="displayImage" docIndex="${index}" src="${file}" style="width: auto; height: 90vh ; object-fit: contain; position: relative; z-index: 1; display: none;">
+            <img id="displayImage" docIndex="${index}" src="${file}" class="w-auto h-[90vh] object-contain relative z-10" style="display: none;" />
           `
           )
           .join("")}
-          <div id="displayText" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background-color: rgba(0, 0, 0, 0.5); color: white; z-index: 2; font-size: 2rem; font-weight: bold;">
-          Extraction en cours...
+          <div id="displayText" class="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 text-white z-20 text-2xl font-bold">
+            Extraction en cours...
           </div>
         </div>
       </div>`;
