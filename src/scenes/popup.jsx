@@ -74,7 +74,7 @@ const Popup = () => {
       </button>
       {displayFiles && (
         <div class="bg-white border fixed w-auto h-auto bottom-0 right-0 z-50 border-gray-400 overflow-auto rounded-lg p-4">
-          {/* <div class="z-10 flex justify-between items-center px-1">
+          <div class="z-10 flex justify-between items-center px-1">
             <div class="flex items-center">
               <button
                 id="previousImage"
@@ -104,7 +104,7 @@ const Popup = () => {
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  style="transform: rotate(180deg);"
+                  style={{ transform: "rotate(180deg)" }}
                 >
                   <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
                 </svg>
@@ -126,7 +126,7 @@ const Popup = () => {
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
-          </div> */}
+          </div>
 
           <div class="relative">
             {/* {files.map((file, index) => (
