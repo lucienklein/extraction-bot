@@ -110,7 +110,7 @@ const init = async () => {
 init();
 // } catch (error) {
 // Sentry.captureException(error);
-console.error(error);
+// console.error(error);
 
 const container = document.createElement("div");
 container.className = "tailwind";
