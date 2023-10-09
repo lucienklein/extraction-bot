@@ -5,10 +5,10 @@ const displayFiles = (files) => {
   const div = document.createElement("div");
   div.innerHTML = `
     <div style="position: fixed; width: auto; height: auto; bottom: 0; right: 0; z-index: 9999; background-color: white; border: 1px solid gray; border-radius: 5px; overflow: auto;" id="divQuerco">
-      <div style="z-index: 3; display: flex; justify-content: space-between; align-items: center;">
+      <div style="z-index: 3; display: flex; justify-content: space-between; align-items: center; padding-inline: 5px;">
         <div style="display: flex; align-items: center;">
           <button id="previousImage" disabled><</button>
-          <button id="changeImage">></button>
+          <button id="nextImage">></button>
         </div>
         <div style="margin: 0; padding: 10px;">Extraction Automatique</div>
         <button id="closeButton">X</button>
@@ -33,14 +33,37 @@ const displayFiles = (files) => {
   const closeButton = document.querySelector("#closeButton");
   closeButton.addEventListener("click", function () {
     div.style.display = "none";
+
+    // Create a new div to reopen the popup
+    const reopenDiv = document.createElement("div");
+    reopenDiv.innerHTML = "Open Popup";
+    reopenDiv.style.position = "fixed";
+    reopenDiv.style.bottom = "0";
+    reopenDiv.style.right = "0";
+    reopenDiv.style.zIndex = "9999";
+    reopenDiv.style.backgroundColor = "white";
+    reopenDiv.style.border = "1px solid gray";
+    reopenDiv.style.borderRadius = "5px";
+    reopenDiv.style.padding = "10px";
+    reopenDiv.style.cursor = "pointer";
+
+    // Add event listener to reopen the popup
+    reopenDiv.addEventListener("click", function () {
+      div.style.display = "flex";
+      document.body.removeChild(reopenDiv);
+    });
+
+    // Append the div to the body
+    document.body.appendChild(reopenDiv);
   });
 
   const image = document.querySelector("[docIndex='0']");
   image.style.display = "block";
 
   let imageIndex = 0;
-  const changeImageButton = document.querySelector("#changeImage");
-  changeImageButton.addEventListener("click", function () {
+  const nextImageButton = document.querySelector("#nextImage");
+  nextImageButton.addEventListener("click", function () {
+    console.log("next image");
     imageIndex = imageIndex + 1 > files.length - 1 ? 0 : imageIndex + 1;
 
     const allImages = document.querySelectorAll("[docIndex]");
@@ -52,7 +75,7 @@ const displayFiles = (files) => {
     image.style.display = "block";
 
     if (imageIndex === files.length - 1) {
-      changeImageButton.setAttribute("disabled", true);
+      nextImageButton.setAttribute("disabled", true);
       previousImageButton.setAttribute("disabled", false);
     }
 
@@ -61,6 +84,7 @@ const displayFiles = (files) => {
 
   const previousImageButton = document.querySelector("#previousImage");
   previousImageButton.addEventListener("click", function () {
+    console.log("previous image");
     imageIndex = imageIndex - 1 > 0 ? imageIndex - 1 : 0;
     const allImages = document.querySelectorAll("[docIndex]");
     allImages.forEach((img) => {
@@ -71,7 +95,7 @@ const displayFiles = (files) => {
     image.style.display = "block";
 
     if (imageIndex === 0) {
-      changeImageButton.setAttribute("disabled", false);
+      nextImageButton.setAttribute("disabled", false);
       previousImageButton.setAttribute("disabled", true);
     }
 
@@ -79,7 +103,7 @@ const displayFiles = (files) => {
   });
 
   if (files.length === 1) {
-    changeImageButton.setAttribute("disabled", true);
+    nextImageButton.setAttribute("disabled", true);
     previousImageButton.setAttribute("disabled", true);
   }
 };
