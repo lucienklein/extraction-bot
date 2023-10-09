@@ -7,7 +7,7 @@ const displayFiles = (files) => {
   popup.style.display = "none";
   popup.id = "divQuerco";
   popup.innerHTML = `
-    <div class="bg-white border fixed w-auto h-auto bottom-0 right-0 z-50 border-gray-400 overflow-auto rounded-md">
+    <div class="bg-white border fixed w-auto h-auto bottom-0 right-0 z-50 border-gray-400 overflow-auto rounded-lg p-4">
       <div class="z-10 flex justify-between items-center px-1">
         <div class="flex items-center">
           <button id="previousImage" disabled class="px-5 py-2 text-sm text-gray-700 bg-white border rounded-lg gap-x-2">
@@ -22,7 +22,7 @@ const displayFiles = (files) => {
           </button>
         </div>
         <div class="m-0 p-3">Extraction Automatique</div>
-        <button id="closeButton" class="bg-white rounded-lg p-2 text-red-400 hover:text-red-500 hover:bg-gray-100 border border-red-400 hover:border-red-500">
+        <button id="closeButton" class="bg-white rounded-lg p-2 text-red-400 hover:text-red-500 hover:bg-gray-100 hover:border hover:border-red-500">
           <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>

@@ -67,6 +67,16 @@ Sentry.configureScope((scope) => {
 //   subtree: true,
 // });
 
+// content.jsx
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./scenes/popup.jsx";
+
+const app = document.createElement("div");
+app.id = "my-extension-root";
+document.body.appendChild(app);
+ReactDOM.render(<App />, app);
+
 const init = async () => {
   if (!window.location.href.includes("moduleSil/demande/saisie/index.php")) return;
   if (!license) return;
