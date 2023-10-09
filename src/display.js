@@ -34,7 +34,6 @@ const displayFiles = (files) => {
   document.body.appendChild(popup);
 
   const button = document.querySelector("#quercoButton");
-  button.removeEventListener("click", null);
   button.addEventListener("click", function () {
     popup.style.display = "block";
     button.style.display = "none";

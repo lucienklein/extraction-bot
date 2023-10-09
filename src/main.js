@@ -83,7 +83,7 @@ const init = async () => {
   button.innerText = "Extraction Automatique";
   button.className =
     "rounded-md bg-indigo-600 px-3.5 py-2.5 text-2xl font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 bottom-3 right-4 fixed z-40";
-  button.addEventListener("click", async (e) => {
+  button.addEventListener("click", async function extraction(e) {
     e.preventDefault();
 
     button.innerText = "Extraction en cours...";
@@ -102,6 +102,8 @@ const init = async () => {
 
     button.innerText = "Extraction Automatique";
     button.removeAttribute("disabled");
+
+    button.removeEventListener("click", extraction);
   });
 
   const container = document.createElement("div");
