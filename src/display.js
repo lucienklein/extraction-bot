@@ -3,6 +3,7 @@ const displayFiles = (files) => {
   if (existingDiv) existingDiv.remove();
 
   const popup = document.createElement("div");
+  popup.className = "tailwind";
   popup.style.display = "none";
   popup.id = "divQuerco";
   popup.innerHTML = `

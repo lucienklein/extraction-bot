@@ -75,6 +75,9 @@ const init = async () => {
   await loadLibrary(dwtURL + "/dynamsoft.webtwain.config.js", "text/javascript");
   await loadLibrary(dwtURL + "/dynamsoft.webtwain.install.js", "text/javascript");
 
+  const inputAnalyse = document.querySelector("#analyseCodeAjout");
+  if (!inputAnalyse) return;
+
   const button = document.createElement("button");
   button.innerText = "Extraction Automatique";
   button.className =
