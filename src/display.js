@@ -33,21 +33,16 @@ const displayFiles = (files) => {
       </div>`;
   document.body.appendChild(popup);
 
-  const reopenDiv = document.createElement("div");
-  reopenDiv.innerHTML = "Extraction en cours...";
-  reopenDiv.id = "reopenDiv";
-  reopenDiv.style =
-    "position: fixed; bottom: 0; right: 0; z-index: 9999; background-color: white; border: 1px solid gray; border-radius: 5px; padding: 10px; cursor: pointer;";
-  reopenDiv.addEventListener("click", function () {
+  const button = document.querySelector("#quercoButton");
+  button.addEventListener("click", function () {
     popup.style.display = "block";
-    reopenDiv.style.display = "none";
+    button.style.display = "none";
   });
-  document.body.appendChild(reopenDiv);
 
   const closeButton = document.querySelector("#closeButton");
   closeButton.addEventListener("click", function () {
     popup.style.display = "none";
-    reopenDiv.style.display = "block";
+    button.style.display = "block";
   });
 
   const image = document.querySelector("[docIndex='0']");
