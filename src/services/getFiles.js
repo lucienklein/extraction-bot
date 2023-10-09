@@ -71,8 +71,6 @@ const main = async () => {
   if (fileScanned.length > 0) files = await getFileFromKalisil();
   else files = await launchScan();
 
-  console.log(files);
-
   return files;
 };
 

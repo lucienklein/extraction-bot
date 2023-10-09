@@ -44,9 +44,7 @@ const Popup = () => {
     if (!extractedFiles) return;
     setFiles(extractedFiles);
 
-    console.log("files", files);
-
-    const responses = await extractData(files);
+    const responses = await extractData(extractedFiles);
 
     console.log("responses", responses);
 
