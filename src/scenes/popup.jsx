@@ -38,7 +38,7 @@ const Popup = () => {
   const onClick = async (e) => {
     e.preventDefault();
 
-    if (!files.length) return setDisplayFiles(true);
+    if (files.length) return setDisplayFiles(true);
 
     setButtonText("Extraction en cours...");
     setDisableButton(true);
