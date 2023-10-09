@@ -55,7 +55,6 @@ const displayFiles = (files) => {
   let imageIndex = 0;
   const nextImageButton = document.querySelector("#nextImage");
   nextImageButton.addEventListener("click", function () {
-    console.log("next image");
     imageIndex = imageIndex + 1 > files.length - 1 ? 0 : imageIndex + 1;
 
     const allImages = document.querySelectorAll("[docIndex]");
@@ -76,7 +75,6 @@ const displayFiles = (files) => {
 
   const previousImageButton = document.querySelector("#previousImage");
   previousImageButton.addEventListener("click", function () {
-    console.log("previous image");
     imageIndex = imageIndex - 1 > 0 ? imageIndex - 1 : 0;
     const allImages = document.querySelectorAll("[docIndex]");
     allImages.forEach((img) => {
