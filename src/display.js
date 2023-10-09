@@ -99,9 +99,9 @@ const displayPolygons = (acts) => {
   fctRefreshPolygon();
   displayPolygonThatMatchTheDisplayedImage();
 
-  const reopenDiv = document.querySelector("#reopenDiv");
-  reopenDiv.style.display = "none";
-  reopenDiv.innerHTML = "Extraction Automatique";
+  const button = document.querySelector("#quercoButton");
+  button.style.display = "none";
+  button.innerHTML = "Afficher l'extraction automatique";
 
   const divQuerco = document.querySelector("#divQuerco");
   divQuerco.style.display = "block";
