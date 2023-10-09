@@ -82,7 +82,7 @@ const init = async () => {
   const button = document.createElement("button");
   button.innerText = "Extraction Automatique";
   button.className =
-    "rounded-md bg-white px-3 py-2 font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50";
+    "tailwind rounded-md bg-white px-3 py-2 font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50";
   button.addEventListener("click", async (e) => {
     e.preventDefault();
 
