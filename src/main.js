@@ -106,20 +106,19 @@ const init = async () => {
   document.body.appendChild(container);
 };
 
-// try {
-init();
-// } catch (error) {
-// Sentry.captureException(error);
-// console.error(error);
+try {
+  init();
+} catch (error) {
+  Sentry.captureException(error);
+  console.error(error);
 
-const container = document.createElement("div");
-container.className = "tailwind";
-const errorDiv = document.createElement("div");
-errorDiv.innerText = "L'extension Extraction a rencontré une erreur. L'erreur a été envoyée à l'équipe technique.";
-errorDiv.className =
-  "rounded-md bg-red-600 px-3.5 py-2.5 text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 bottom-3 right-4 fixed z-50";
+  const container = document.createElement("div");
+  container.className = "tailwind";
+  const errorDiv = document.createElement("div");
+  errorDiv.innerText = "L'extension Extraction a rencontré une erreur. L'erreur a été envoyée à l'équipe technique.";
+  errorDiv.className =
+    "rounded-md bg-red-600 px-3.5 py-2.5 text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600 bottom-3 right-4 fixed z-50";
 
-container.appendChild(errorDiv);
-document.body.appendChild(container);
-
-// }
+  container.appendChild(errorDiv);
+  document.body.appendChild(container);
+}
