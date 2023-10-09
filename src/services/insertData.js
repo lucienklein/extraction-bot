@@ -11,12 +11,6 @@ const insertData = async (prescriptions) => {
     )
     .flat();
 
-  prescriptions.forEach((prescription, index) => {
-    const mongoid = prescription.data._id.toString();
-    const image = document.querySelector(`[docIndex='${index}']`);
-    image.setAttribute("mongoid", mongoid);
-  });
-
   const boxAnalyse = document.querySelector("#ihmBoxAnalyse .ihmCboxContent.ihmCboxvert");
   const overlay = document.createElement("div");
   overlay.addEventListener("click", (e) => e.stopPropagation(), true);

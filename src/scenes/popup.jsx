@@ -40,12 +40,13 @@ const Popup = () => {
     setButtonText("Extraction en cours...");
     setDisableButton(true);
 
-    const extractedFiles = await getFiles();
+    let extractedFiles = await getFiles();
     if (!extractedFiles) return;
-    setFiles(extractedFiles);
 
     const responses = await extractData(extractedFiles);
+    extractedFiles = extractedFiles.map((file, index) => ({ data: file, id: responses[index]?.data._id }));
 
+    setFiles(extractedFiles);
     console.log("responses", responses);
 
     const acts = await insertData(responses);
@@ -127,11 +128,16 @@ const Popup = () => {
           <div class="relative">
             $
             {files
-              .map(
-                (file, index) => `
-            <img id="displayImage" docIndex="${index}" src="${file}" class="w-auto h-[90vh] object-contain relative z-10" style="display: none;" />
-          `
-              )
+              .map((file, index) => (
+                <img
+                  id="displayImage"
+                  docIndex={index}
+                  src={file.data}
+                  mongoid={file.id}
+                  class="w-auto h-[90vh] object-contain relative z-10"
+                  style="display: none;"
+                />
+              ))
               .join("")}
             <div id="container" class="absolute top-0 left-0 w-full h-full z-0">
               {polygons.map((polygon) => (
