@@ -71,6 +71,12 @@ const init = async () => {
   if (!window.location.href.includes("moduleSil/demande/saisie/index.php")) return;
   if (!license) return;
 
+  let link = document.createElement("link");
+  link.href = chrome.runtime.getURL("styles.css");
+  link.type = "text/css";
+  link.rel = "stylesheet";
+  document.getElementsByTagName("head")[0].appendChild(link);
+
   await loadLibrary(dwtURL + "/dynamsoft.webtwain.initiate.js", "text/javascript");
   await loadLibrary(dwtURL + "/dynamsoft.webtwain.config.js", "text/javascript");
 
