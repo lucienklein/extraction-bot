@@ -592,6 +592,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   display: flex;
 }
 
+.tailwind .h-5 {
+  height: 1.25rem;
+}
+
 .tailwind .h-\[90vh\] {
   height: 90vh;
 }
@@ -602,6 +606,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .tailwind .h-full {
   height: 100%;
+}
+
+.tailwind .w-5 {
+  width: 1.25rem;
 }
 
 .tailwind .w-auto {
@@ -628,8 +636,17 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   justify-content: space-between;
 }
 
+.tailwind .gap-x-2 {
+  -moz-column-gap: 0.5rem;
+       column-gap: 0.5rem;
+}
+
 .tailwind .overflow-auto {
   overflow: auto;
+}
+
+.tailwind .rounded-lg {
+  border-radius: 0.5rem;
 }
 
 .tailwind .rounded-md {
@@ -693,6 +710,11 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   padding-right: 0.875rem;
 }
 
+.tailwind .px-5 {
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
 .tailwind .py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -708,12 +730,22 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   line-height: 2rem;
 }
 
+.tailwind .text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
 .tailwind .font-bold {
   font-weight: 700;
 }
 
 .tailwind .font-semibold {
   font-weight: 600;
+}
+
+.tailwind .text-gray-700 {
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity));
 }
 
 .tailwind .text-white {
@@ -800,4 +832,9 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .focus-visible\:outline-red-600:focus-visible {
   outline-color: #dc2626;
+}
+
+:is([dir="rtl"] .rtl\:rotate-180) {
+  --tw-rotate: 180deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
