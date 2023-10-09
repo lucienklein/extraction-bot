@@ -3,8 +3,9 @@ const displayFiles = (files) => {
   if (existingDiv) existingDiv.remove();
 
   const popup = document.createElement("div");
+  popup.style.display = "none";
   popup.innerHTML = `
-    <div style="display: none; position: fixed; width: auto; height: auto; bottom: 0; right: 0; z-index: 9999; background-color: white; border: 1px solid gray; border-radius: 5px; overflow: auto;" id="divQuerco">
+    <div style="position: fixed; width: auto; height: auto; bottom: 0; right: 0; z-index: 9999; background-color: white; border: 1px solid gray; border-radius: 5px; overflow: auto;" id="divQuerco">
       <div style="z-index: 3; display: flex; justify-content: space-between; align-items: center; padding-inline: 5px;">
         <div style="display: flex; align-items: center;">
           <button id="previousImage" disabled><</button>
