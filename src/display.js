@@ -6,7 +6,7 @@ const displayFiles = (files) => {
   popup.style.display = "none";
   popup.id = "divQuerco";
   popup.innerHTML = `
-    <div style="position: fixed; width: auto; height: auto; bottom: 0; right: 0; z-index: 9999; background-color: white; border: 1px solid gray; border-radius: 5px; overflow: auto;">
+    <div class="bg-blue-500" style="position: fixed; width: auto; height: auto; bottom: 0; right: 0; z-index: 9999; background-color: white; border: 1px solid gray; border-radius: 5px; overflow: auto;">
       <div style="z-index: 3; display: flex; justify-content: space-between; align-items: center; padding-inline: 5px;">
         <div style="display: flex; align-items: center;">
           <button id="previousImage" disabled><</button>
