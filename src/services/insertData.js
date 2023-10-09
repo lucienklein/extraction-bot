@@ -1,4 +1,4 @@
-const main = async (prescriptions) => {
+const insertData = async (prescriptions) => {
   let doctors = prescriptions.map((prescription) => prescription.data.doctor).flat();
   let acts = prescriptions
     .map((prescription) =>
@@ -170,4 +170,4 @@ function matchActsAndEl(acts) {
   return acts;
 }
 
-export default main;
+export default insertData;

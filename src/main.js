@@ -1,10 +1,6 @@
 import * as Sentry from "@sentry/browser";
 
-import getFiles from "./files";
-import extractData from "./extractData";
 import { loadLibrary, getChromeStorage } from "./utils";
-import { displayFiles, displayPolygons } from "./display";
-import insertData from "./insertData";
 
 const dwtURL = new URL(chrome.runtime.getURL("/dwt"));
 const apikey = await getChromeStorage("apikey");
@@ -72,11 +68,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./scenes/popup.jsx";
 
-const app = document.createElement("div");
-app.id = "my-extension-root";
-document.body.appendChild(app);
-ReactDOM.render(<App />, app);
-
 const init = async () => {
   if (!window.location.href.includes("moduleSil/demande/saisie/index.php")) return;
   if (!license) return;
@@ -88,38 +79,9 @@ const init = async () => {
   const inputAnalyse = document.querySelector("#analyseCodeAjout");
   if (!inputAnalyse) return;
 
-  const button = document.createElement("button");
-  button.id = "quercoButton";
-  button.innerText = "Extraction Automatique";
-  button.className =
-    "rounded-md bg-indigo-600 px-3.5 py-2.5 text-2xl font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 bottom-3 right-4 fixed z-40";
-  button.addEventListener("click", async function extraction(e) {
-    e.preventDefault();
-
-    button.innerText = "Extraction en cours...";
-    button.setAttribute("disabled", true);
-
-    const files = await getFiles(apikey);
-
-    displayFiles(files);
-
-    const apikey = await getChromeStorage("apikey");
-    const responses = await extractData(apikey, files);
-
-    const acts = await insertData(responses);
-
-    displayPolygons(acts);
-
-    button.innerText = "Extraction Automatique";
-    button.removeAttribute("disabled");
-
-    button.removeEventListener("click", extraction);
-  });
-
-  const container = document.createElement("div");
-  container.className = "tailwind";
-  container.appendChild(button);
-  document.body.appendChild(container);
+  const app = document.createElement("div");
+  document.body.appendChild(app);
+  ReactDOM.render(<App />, app);
 };
 
 try {

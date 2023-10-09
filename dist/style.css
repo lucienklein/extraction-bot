@@ -564,6 +564,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   top: 0px;
 }
 
+.tailwind .z-0 {
+  z-index: 0;
+}
+
 .tailwind .z-10 {
   z-index: 10;
 }
