@@ -4,7 +4,7 @@ const displayFiles = (files) => {
 
   const div = document.createElement("div");
   div.innerHTML = `
-    <div style="position: fixed; width: auto; height: auto; top: 10%; left: 10%; z-index: 9999; background-color: white; border: 1px solid gray; border-radius: 5px; overflow: auto;" id="divQuerco">
+    <div style="position: fixed; width: auto; height: auto; bottom: 0px; right: 0px; z-index: 9999; background-color: white; border: 1px solid gray; border-radius: 5px; overflow: auto;" id="divQuerco">
       <div style="z-index: 3; display: flex; justify-content: space-between; align-items: center;">
         <div style="display: flex; align-items: center;">
           <button id="previousImage" style="position: absolute; top: 0; left: 0; z-index: 3; display: none"><</button>
@@ -17,7 +17,7 @@ const displayFiles = (files) => {
       ${files
         .map(
           (file, index) => `
-          <img id="displayImage" docIndex="${index}" src="${file.src}" style="width: auto; height: 90vh ; object-fit: contain; position: relative; z-index: 1; display: none;">
+          <img id="displayImage" docIndex="${index}" src="${file}" style="width: auto; height: 90vh ; object-fit: contain; position: relative; z-index: 1; display: none;">
         `
         )
         .join("")}
