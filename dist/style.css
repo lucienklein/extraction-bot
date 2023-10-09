@@ -681,17 +681,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   line-height: 2rem;
 }
 
-.tailwind .text-sm {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-}
-
 .tailwind .font-bold {
   font-weight: 700;
-}
-
-.tailwind .font-semibold {
-  font-weight: 600;
 }
 
 .tailwind .text-white {
