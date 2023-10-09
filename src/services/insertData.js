@@ -121,12 +121,6 @@ const insertData = async (prescriptions) => {
     divToClick.click();
   }
 
-  const div = document.querySelector("#displayText");
-  div.style.backgroundColor = "transparent";
-  div.innerHTML = `
-      <div id="quercoContainer" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" > </div>
-    `;
-
   const actsWithoutNotFound = acts.filter((act) => !act.notFound);
 
   overlay.remove();
