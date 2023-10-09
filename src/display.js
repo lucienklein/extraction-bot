@@ -4,8 +4,9 @@ const displayFiles = (files) => {
 
   const popup = document.createElement("div");
   popup.style.display = "none";
+  popup.id = "divQuerco";
   popup.innerHTML = `
-    <div style="position: fixed; width: auto; height: auto; bottom: 0; right: 0; z-index: 9999; background-color: white; border: 1px solid gray; border-radius: 5px; overflow: auto;" id="divQuerco">
+    <div style="position: fixed; width: auto; height: auto; bottom: 0; right: 0; z-index: 9999; background-color: white; border: 1px solid gray; border-radius: 5px; overflow: auto;">
       <div style="z-index: 3; display: flex; justify-content: space-between; align-items: center; padding-inline: 5px;">
         <div style="display: flex; align-items: center;">
           <button id="previousImage" disabled><</button>
@@ -32,12 +33,12 @@ const displayFiles = (files) => {
   document.body.appendChild(popup);
 
   const reopenDiv = document.createElement("div");
-  reopenDiv.innerHTML = "Extraction Automatique";
+  reopenDiv.innerHTML = "Extraction en cours...";
   reopenDiv.id = "reopenDiv";
   reopenDiv.style =
     "position: fixed; bottom: 0; right: 0; z-index: 9999; background-color: white; border: 1px solid gray; border-radius: 5px; padding: 10px; cursor: pointer;";
   reopenDiv.addEventListener("click", function () {
-    popup.style.display = "flex";
+    popup.style.display = "block";
     reopenDiv.style.display = "none";
   });
   document.body.appendChild(reopenDiv);
@@ -45,6 +46,7 @@ const displayFiles = (files) => {
   const closeButton = document.querySelector("#closeButton");
   closeButton.addEventListener("click", function () {
     popup.style.display = "none";
+    reopenDiv.style.display = "block";
   });
 
   const image = document.querySelector("[docIndex='0']");
@@ -102,6 +104,13 @@ const displayPolygons = (acts) => {
 
   fctRefreshPolygon();
   displayPolygonThatMatchTheDisplayedImage();
+
+  const reopenDiv = document.querySelector("#reopenDiv");
+  reopenDiv.style.display = "none";
+  reopenDiv.innerHTML = "Extraction Automatique";
+
+  const divQuerco = document.querySelector("#divQuerco");
+  divQuerco.style.display = "block";
 };
 
 function updatePolygonPoints(document, viewportHeight, acts) {
