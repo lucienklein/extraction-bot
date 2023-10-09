@@ -6,4 +6,7 @@ module.exports = {
   },
   plugins: [],
   purge: ["./src/**/*.js", "./src/**/*.html"],
+  corePlugins: {
+    preflight: false,
+  },
 };
