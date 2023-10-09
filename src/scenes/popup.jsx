@@ -129,16 +129,16 @@ const Popup = () => {
           </div>
 
           <div class="relative">
-            {/* {files.map((file, index) => (
+            {files.map((file, index) => (
               <img
                 id="displayImage"
                 docIndex={index}
                 src={file.data}
                 mongoid={file.id}
                 class="w-auto h-[90vh] object-contain relative z-10"
-                style="display: none;"
+                style={{ display: "none" }}
               />
-            ))} */}
+            ))}
             <div id="container" class="absolute top-0 left-0 w-full h-full z-0">
               {polygons.map((polygon) => (
                 <div
