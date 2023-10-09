@@ -102,7 +102,6 @@ const init = async () => {
 
     button.innerText = "Extraction Automatique";
     button.removeAttribute("disabled");
-    button.removeEventListener("click", function () {});
   });
 
   const container = document.createElement("div");
