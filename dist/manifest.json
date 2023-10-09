@@ -5,11 +5,11 @@
   "content_scripts": [
     {
       "matches": ["*://172.30.69.50/*"],
-      "js": ["dist/bundle.js"],
+      "js": ["bundle.js"],
       "css": ["style.css"]
     }
   ],
-  "options_page": "popup.html",
+  "options_page": "options.html",
   "permissions": ["storage"],
   "web_accessible_resources": ["dwt/*"]
 }
