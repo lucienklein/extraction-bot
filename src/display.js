@@ -7,8 +7,8 @@ const displayFiles = (files) => {
     <div style="position: fixed; width: auto; height: auto; bottom: 0; right: 0; z-index: 9999; background-color: white; border: 1px solid gray; border-radius: 5px; overflow: auto;" id="divQuerco">
       <div style="z-index: 3; display: flex; justify-content: space-between; align-items: center; padding-inline: 5px;">
         <div style="display: flex; align-items: center;">
-          <button id="previousImage" disabled="true"><</button>
-          <button id="nextImage" disabled="false">></button>
+          <button id="previousImage" disabled><</button>
+          <button id="nextImage" disabled>></button>
         </div>
         <div style="margin: 0; padding: 10px;">Extraction Automatique</div>
         <button id="closeButton">X</button>
@@ -71,8 +71,8 @@ const displayFiles = (files) => {
     image.style.display = "block";
 
     if (imageIndex === files.length - 1) {
-      nextImageButton.setAttribute("disabled", true);
-      previousImageButton.setAttribute("disabled", false);
+      nextImageButton.setAttribute("disabled");
+      previousImageButton.removeAttribute("disabled");
     }
 
     displayPolygonThatMatchTheDisplayedImage();
@@ -91,17 +91,14 @@ const displayFiles = (files) => {
     image.style.display = "block";
 
     if (imageIndex === 0) {
-      nextImageButton.setAttribute("disabled", false);
-      previousImageButton.setAttribute("disabled", true);
+      nextImageButton.removeAttribute("disabled");
+      previousImageButton.setAttribute("disabled");
     }
 
     displayPolygonThatMatchTheDisplayedImage();
   });
 
-  if (files.length === 1) {
-    nextImageButton.setAttribute("disabled", true);
-    previousImageButton.setAttribute("disabled", true);
-  }
+  if (files.length > 1) nextImageButton.removeAttribute("disabled");
 };
 
 const displayPolygons = (acts) => {
@@ -118,7 +115,7 @@ function updatePolygonPoints(document, viewportHeight, acts) {
   container.innerHTML = "";
 
   for (const act of acts) {
-    let newWidth = (viewportHeight / act.height) * act.width;
+    let newWidth = ((viewportHeight * 0.9) / act.height) * act.width;
 
     let scaleFactorX = newWidth / act.width;
     let scaleFactorY = (viewportHeight * 0.9) / act.height;
