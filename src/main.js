@@ -7,7 +7,7 @@ import { displayFiles, displayPolygons } from "./display";
 import insertData from "./insertData";
 
 const dwtURL = new URL(chrome.runtime.getURL("/dwt"));
-const stylesURL = new URL(chrome.runtime.getURL("/styles.css"));
+const stylesURL = new URL(chrome.runtime.getURL("/style.css"));
 const apikey = await getChromeStorage("apikey");
 const license = await getChromeStorage("dwt");
 
