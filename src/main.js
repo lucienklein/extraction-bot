@@ -76,11 +76,11 @@ const init = async () => {
   await loadLibrary(dwtURL + "/dynamsoft.webtwain.config.js", "text/javascript");
   await loadLibrary(dwtURL + "/dynamsoft.webtwain.install.js", "text/javascript");
 
-  const style = document.createElement("link");
-  style.setAttribute("rel", "stylesheet");
-  style.setAttribute("type", "text/css");
-  style.setAttribute("href", stylesURL);
-  document.head.appendChild(style);
+  // const style = document.createElement("link");
+  // style.setAttribute("rel", "stylesheet");
+  // style.setAttribute("type", "text/css");
+  // style.setAttribute("href", stylesURL);
+  // document.head.appendChild(style);
 
   const examDiv = document.querySelector("#ajoutAnalyse");
 
