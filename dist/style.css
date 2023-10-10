@@ -584,6 +584,11 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   margin: 0px;
 }
 
+.tailwind .mx-4 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
 .tailwind .block {
   display: block;
 }
