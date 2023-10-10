@@ -81,11 +81,10 @@ const insertData = async (prescriptions) => {
   }
 
   for (let doctor of doctors) {
-    const doctorCode = `${doctor.data["Nom d'exercice"].substring(0, 4)}${doctor.data["Prénom d'exercice"].substring(
+    const doctorCode = `${doctor.data["Nom d'exercice"].substring(0, 5)}${doctor.data["Prénom d'exercice"].substring(
       0,
-      2
+      3
     )}`;
-    console.log(doctorCode);
     const doctorInput = document.querySelector("#medecinCodeAjout");
     const enterKeyEvent = new KeyboardEvent("keydown", {
       key: "Enter",
