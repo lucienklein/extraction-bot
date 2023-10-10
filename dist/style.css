@@ -609,6 +609,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   height: 20px;
 }
 
+.tailwind .h-\[24px\] {
+  height: 24px;
+}
+
 .tailwind .h-\[90vh\] {
   height: 90vh;
 }
@@ -631,6 +635,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .tailwind .w-\[16px\] {
   width: 16px;
+}
+
+.tailwind .w-\[24px\] {
+  width: 24px;
 }
 
 .tailwind .w-auto {
@@ -699,6 +707,11 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 .tailwind .bg-black {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+
+.tailwind .bg-red-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 113 113 / var(--tw-bg-opacity));
 }
 
 .tailwind .bg-red-600 {
