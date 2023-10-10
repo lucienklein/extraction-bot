@@ -10,6 +10,7 @@ const Popup = () => {
   const [displayedFile, setDisplayedFile] = useState({});
   const [intervalId, setIntervalId] = useState(null);
   const [acts, setActs] = useState([]);
+  const [nerAct, setNerAct] = useState([]);
 
   useEffect(() => {
     return () => {
@@ -28,15 +29,18 @@ const Popup = () => {
     let extractedFiles = await getFiles();
     if (!extractedFiles?.length) return;
 
-    extractedFiles = [extractedFiles[0], extractedFiles[0]];
-
     const responses = await extractData(extractedFiles);
-    extractedFiles = extractedFiles.map((file, index) => ({ data: file, id: responses[index]?.data._id }));
     console.log("responses", responses);
+
+    setNerAct(responses.map((response) => response.data.ner.filter((ner) => ner.category === "examinationName")));
+    extractedFiles = extractedFiles.map((file, index) => ({
+      data: file,
+      id: responses[index]?.data._id,
+      polygons: [],
+    }));
 
     const acts = await insertData(responses);
     setActs(acts);
-    extractedFiles = extractedFiles.map((file) => ({ ...file, polygons: [] }));
 
     for (const act of acts) {
       let newWidth = ((window.innerHeight * 0.9) / act.height) * act.width;
@@ -192,6 +196,50 @@ const Popup = () => {
           </div>
         </div>
       )}
+
+      <div
+        aria-live="assertive"
+        class="pointer-events-none fixed inset-0 flex items-end px-4 py-6 sm:items-start sm:p-6"
+      >
+        <div class="flex w-full flex-col items-center space-y-4 sm:items-end">
+          <div class="pointer-events-auto w-full max-w-sm rounded-lg bg-white shadow-lg ring-1 ring-black ring-opacity-5">
+            <div class="p-4">
+              <div class="flex items-start">
+                <div class="flex-shrink-0 pt-0.5"></div>
+                <div class="ml-3 w-0 flex-1">
+                  <p class="text-sm font-medium text-gray-900">Emilia Gates</p>
+                  <p class="mt-1 text-sm text-gray-500">Sent you an invite to connect.</p>
+                  <div class="mt-4 flex">
+                    <button
+                      type="button"
+                      class="inline-flex items-center rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    >
+                      Accept
+                    </button>
+                    <button
+                      type="button"
+                      class="ml-3 inline-flex items-center rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                    >
+                      Decline
+                    </button>
+                  </div>
+                </div>
+                <div class="ml-4 flex flex-shrink-0">
+                  <button
+                    type="button"
+                    class="inline-flex rounded-md bg-white text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  >
+                    <span class="sr-only">Close</span>
+                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
