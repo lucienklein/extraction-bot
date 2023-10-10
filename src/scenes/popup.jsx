@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { HiArrowNarrowLeft, HiArrowNarrowRight } from "react-icons/hi";
 import getFiles from "../services/getFiles";
 import extractData from "../services/extractData";
 import insertData from "../services/insertData";
@@ -126,16 +127,7 @@ const Popup = () => {
                 disabled={displayedFile.id === files[0].id}
                 class="px-5 py-2 text-sm text-gray-700 bg-white border rounded-lg gap-x-2"
               >
-                <svg
-                  class="w-5 h-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                >
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
-                </svg>
+                <HiArrowNarrowLeft class="w-5 h-5" />
               </button>
               <button
                 onClick={(e) => {
@@ -149,17 +141,7 @@ const Popup = () => {
                 disabled={displayedFile.id === files[files.length - 1].id}
                 class="px-5 py-2 text-sm text-gray-700 bg-white border rounded-lg gap-x-2"
               >
-                <svg
-                  class="w-5 h-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  style={{ transform: "rotate(180deg)" }}
-                >
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
-                </svg>
+                <HiArrowNarrowRight class="w-5 h-5" />
               </button>
             </div>
             <div class="m-0 p-3">Extraction Automatique</div>
@@ -170,16 +152,7 @@ const Popup = () => {
               }}
               class="bg-white rounded-lg p-2 text-red-400 hover:text-red-500 border-transparent  hover:border-red-500"
             >
-              <svg
-                class="h-6 w-6"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                aria-hidden="true"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
+              <HiOutlineX class="w-5 h-5" />
             </button>
           </div>
 
