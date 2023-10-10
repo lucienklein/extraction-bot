@@ -28,6 +28,8 @@ const Popup = () => {
     let extractedFiles = await getFiles();
     if (!extractedFiles?.length) return;
 
+    extractedFiles = [extractedFiles[0], extractedFiles[0]];
+
     const responses = await extractData(extractedFiles);
     extractedFiles = extractedFiles.map((file, index) => ({ data: file, id: responses[index]?.data._id }));
     console.log("responses", responses);
