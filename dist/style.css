@@ -629,6 +629,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   width: 1.5rem;
 }
 
+.tailwind .w-8 {
+  width: 2rem;
+}
+
 .tailwind .w-auto {
   width: auto;
 }
