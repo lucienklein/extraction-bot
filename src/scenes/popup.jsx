@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { HiArrowNarrowLeft, HiArrowNarrowRight } from "react-icons/hi";
+import { HiArrowNarrowLeft, HiArrowNarrowRight, HiOutlineX } from "react-icons/hi";
 import getFiles from "../services/getFiles";
 import extractData from "../services/extractData";
 import insertData from "../services/insertData";
