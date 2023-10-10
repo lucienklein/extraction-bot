@@ -16,6 +16,7 @@ const Popup = () => {
 
     const callback = function (mutationsList, observer) {
       for (let mutation of mutationsList) {
+        console.log("ok");
         if (mutation.type === "childList") {
           for (let node of mutation.addedNodes) {
             if (node.nodeType === Node.ELEMENT_NODE) {
