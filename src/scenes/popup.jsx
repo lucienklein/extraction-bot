@@ -12,7 +12,7 @@ const Popup = () => {
   useEffect(() => {
     const targetNode = document.getElementById("divAnalyses");
 
-    const config = { childList: true };
+    const config = { childList: true, subtree: true };
 
     const callback = function (mutationsList, observer) {
       for (let mutation of mutationsList) {
