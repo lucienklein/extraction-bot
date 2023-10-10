@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import getFiles from "../services/getFiles";
 import extractData from "../services/extractData";
 import insertData from "../services/insertData";
@@ -8,6 +8,41 @@ const Popup = () => {
   const [disableButton, setDisableButton] = useState(false);
   const [files, setFiles] = useState([]);
   const [displayedFile, setDisplayedFile] = useState({});
+
+  useEffect(() => {
+    const targetNode = document.getElementById("divAnalyses");
+
+    const config = { childList: true };
+
+    const callback = function (mutationsList, observer) {
+      for (let mutation of mutationsList) {
+        if (mutation.type === "childList") {
+          for (let node of mutation.addedNodes) {
+            if (node.nodeType === Node.ELEMENT_NODE) {
+              const codeAnalyse = node.getAttribute("codeanalyse");
+              const codeGroup = node.getAttribute("codegroupe");
+              console.log("Removed node with : ", codeGroup, codeAnalyse);
+            }
+          }
+          for (let node of mutation.removedNodes) {
+            if (node.nodeType === Node.ELEMENT_NODE) {
+              const codeAnalyse = node.getAttribute("codeanalyse");
+              const codeGroup = node.getAttribute("codegroupe");
+              console.log("Removed node with : ", codeGroup, codeAnalyse);
+            }
+          }
+        }
+      }
+    };
+
+    const observer = new MutationObserver(callback);
+
+    observer.observe(targetNode, config);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   const onClick = async (e) => {
     e.preventDefault();

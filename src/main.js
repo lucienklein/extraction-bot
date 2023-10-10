@@ -35,21 +35,6 @@ const init = async () => {
 
   const inputAnalyse = document.querySelector("#analyseCodeAjout");
   if (!inputAnalyse) return;
-  const targetNode = document.getElementById("divAnalyses");
-
-  const config = { childList: true };
-
-  const callback = function (mutationsList, observer) {
-    for (let mutation of mutationsList) {
-      if (mutation.type === "childList") {
-        console.log("A child node has been added or removed.");
-      }
-    }
-  };
-
-  const observer = new MutationObserver(callback);
-
-  observer.observe(targetNode, config);
 
   inputAnalyse.parentNode.style.display = "flex";
   inputAnalyse.parentNode.style.alignItems = "center";

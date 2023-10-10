@@ -80,11 +80,11 @@ const insertData = async (prescriptions) => {
     }
   }
 
-  for (let doctor of doctors) {
-    const doctorCode = `${doctor.data["Nom d'exercice"].substring(0, 5)}${doctor.data["Prénom d'exercice"].substring(
-      0,
-      3
-    )}`;
+  if (doctors.length === 1) {
+    const doctorCode = `${doctors[0].data["Nom d'exercice"].substring(0, 5)}${doctors[0].data[
+      "Prénom d'exercice"
+    ].substring(0, 3)}`;
+
     const doctorInput = document.querySelector("#medecinCodeAjout");
     const enterKeyEvent = new KeyboardEvent("keydown", {
       key: "Enter",
@@ -96,14 +96,6 @@ const insertData = async (prescriptions) => {
     doctorInput.value = doctorCode;
     doctorInput.dispatchEvent(new Event("focus"));
     doctorInput.dispatchEvent(enterKeyEvent);
-
-    await new Promise((resolve) => {
-      const interval = setInterval(() => {
-        if (doctorInput.classList.contains("ui-autocomplete-loading")) return;
-        clearInterval(interval);
-        resolve();
-      }, 1000);
-    });
   }
 
   if (actsAld.length > 0) {
