@@ -52,13 +52,10 @@ const Popup = () => {
     console.log("responses", responses);
 
     const acts = await insertData(responses);
-    setActs(acts);
-
     displayPolygons(acts);
 
     setButtonText("Afficher l'extraction");
     setDisableButton(false);
-
     // button.removeEventListener("click", extraction);
   };
 
