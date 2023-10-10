@@ -589,8 +589,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   margin-right: 1rem;
 }
 
-.tailwind .ml-4 {
-  margin-left: 1rem;
+.tailwind .mr-4 {
+  margin-right: 1rem;
 }
 
 .tailwind .block {
