@@ -1,3 +1,6 @@
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./scenes/popup.jsx";
 import * as Sentry from "@sentry/browser";
 
 import { loadLibrary, getChromeStorage } from "./utils";
@@ -22,52 +25,6 @@ Sentry.configureScope((scope) => {
   scope.setTag("license", license);
 });
 
-// let extractedActs = [];
-
-// const observer = new MutationObserver(async (mutations) => {
-//   let acts = [];
-
-//   for (const mutation of mutations) {
-//     for (const node of mutation.addedNodes) {
-//       if (!node.classList || !node.classList.contains("analyseBox")) return;
-//       const codeanalyse = node.getAttribute("codeanalyse");
-//       const codegroupe = node.getAttribute("codegroupe");
-//       const code = codegroupe || codeanalyse;
-
-//       const act = extractedActs.find((act) => act.code === code);
-//       if (act) return;
-
-//       acts.push({ code, isAdded: true });
-//     }
-//   }
-//   if (acts.length === 0) return;
-
-//   const apikey = await getChromeStorage("apikey");
-//   const mongoid = document.querySelector("#displayImage").getAttribute("mongoid");
-
-//   const response = await fetch(`${API}/prescription/${mongoid}`, {
-//     method: "PUT",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({ apikey, acts }),
-//   });
-
-//   if (!response.ok) return;
-//   const prescription = await response.json();
-//   extractedActs = [...extractedActs, ...prescription.data.acts];
-// });
-
-// observer.observe(document.body, {
-//   childList: true,
-//   subtree: true,
-// });
-
-// content.jsx
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./scenes/popup.jsx";
-
 const init = async () => {
   if (!window.location.href.includes("moduleSil/demande/saisie/index.php")) return;
   if (!license) return;
@@ -78,6 +35,21 @@ const init = async () => {
 
   const inputAnalyse = document.querySelector("#analyseCodeAjout");
   if (!inputAnalyse) return;
+  const targetNode = document.getElementById("divAnalyses");
+
+  const config = { childList: true };
+
+  const callback = function (mutationsList, observer) {
+    for (let mutation of mutationsList) {
+      if (mutation.type === "childList") {
+        console.log("A child node has been added or removed.");
+      }
+    }
+  };
+
+  const observer = new MutationObserver(callback);
+
+  observer.observe(targetNode, config);
 
   inputAnalyse.parentNode.style.display = "flex";
   inputAnalyse.parentNode.style.alignItems = "center";
