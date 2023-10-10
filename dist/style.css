@@ -576,10 +576,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   z-index: 20;
 }
 
-.tailwind .z-40 {
-  z-index: 40;
-}
-
 .tailwind .z-50 {
   z-index: 50;
 }
