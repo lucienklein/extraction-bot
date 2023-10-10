@@ -25,6 +25,7 @@ const Popup = () => {
     console.log("responses", responses);
 
     const acts = await insertData(responses);
+    extractedFiles = extractedFiles.map((file) => ({ ...file, polygons: [] }));
     for (const act of acts) {
       let newWidth = ((window.innerHeight * 0.9) / act.height) * act.width;
 
