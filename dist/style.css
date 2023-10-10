@@ -605,6 +605,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   height: 1.5rem;
 }
 
+.tailwind .h-8 {
+  height: 2rem;
+}
+
 .tailwind .h-\[90vh\] {
   height: 90vh;
 }
