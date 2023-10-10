@@ -8,9 +8,23 @@ const Popup = () => {
   const [disableButton, setDisableButton] = useState(false);
   const [files, setFiles] = useState([]);
   const [displayedFile, setDisplayedFile] = useState({});
-  const [polygons, setPolygons] = useState([]);
 
-  const displayPolygons = (acts) => {
+  const onClick = async (e) => {
+    e.preventDefault();
+
+    if (files.length) return setDisplayedFile(files[0]);
+
+    setButtonText("Extraction en cours...");
+    setDisableButton(true);
+
+    let extractedFiles = await getFiles();
+    if (!extractedFiles) return;
+
+    const responses = await extractData(extractedFiles);
+    extractedFiles = extractedFiles.map((file, index) => ({ data: file, id: responses[index]?.data._id }));
+    console.log("responses", responses);
+
+    const acts = await insertData(responses);
     for (const act of acts) {
       let newWidth = ((window.innerHeight * 0.9) / act.height) * act.width;
 
@@ -30,30 +44,14 @@ const Popup = () => {
       const pointsString = adjustedPoints.map((point) => `${point.x}px ${point.y}px`).join(", ");
       const selectorAct = act.codes.map((code) => `.querco_act_${code}`).join("");
 
-      setPolygons([...polygons, { pointsString, color, selectorAct, mongoid: act.prescriptionId, codes: act.codes }]);
+      const index = extractedFiles.findIndex((file) => file.id === act.prescriptionId);
+      extractedFiles[index].polygons = [
+        ...extractedFiles[index].polygons,
+        { pointsString, color, selectorAct, codes: act.codes },
+      ];
     }
-  };
-
-  const onClick = async (e) => {
-    e.preventDefault();
-
-    if (files.length) return setDisplayedFile(files[0]);
-
-    setButtonText("Extraction en cours...");
-    setDisableButton(true);
-
-    let extractedFiles = await getFiles();
-    if (!extractedFiles) return;
-
-    const responses = await extractData(extractedFiles);
-    extractedFiles = extractedFiles.map((file, index) => ({ data: file, id: responses[index]?.data._id }));
 
     setFiles(extractedFiles);
-    console.log("responses", responses);
-
-    const acts = await insertData(responses);
-    displayPolygons(acts);
-
     setButtonText("Afficher l'extraction");
     setDisableButton(false);
     // button.removeEventListener("click", extraction);
@@ -138,7 +136,7 @@ const Popup = () => {
                 e.preventDefault();
                 setDisplayedFile({});
               }}
-              class="bg-white rounded-lg p-2 text-red-400 hover:text-red-500 hover:bg-gray-100 hover:border hover:border-red-500"
+              class="bg-white rounded-lg p-2 text-red-400 hover:text-red-500 border-transparent  hover:border-red-500"
             >
               <svg
                 class="h-6 w-6"
@@ -161,7 +159,7 @@ const Popup = () => {
               class="w-auto h-[90vh] object-contain relative z-10"
             />
             <div id="container" class="absolute top-0 left-0 w-full h-full z-0">
-              {polygons.map((polygon) => (
+              {displayedFile.polygons.map((polygon) => (
                 <div
                   class="absolute top-0 left-0 w-full h-full z-0"
                   onMouseOver={() => {

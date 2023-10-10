@@ -687,6 +687,10 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   border-color: rgb(156 163 175 / var(--tw-border-opacity));
 }
 
+.tailwind .border-transparent {
+  border-color: transparent;
+}
+
 .tailwind .bg-\[\#026D77\] {
   --tw-bg-opacity: 1;
   background-color: rgb(2 109 119 / var(--tw-bg-opacity));
