@@ -678,14 +678,14 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   border-color: rgb(156 163 175 / var(--tw-border-opacity));
 }
 
+.tailwind .bg-\[\#026D77\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(2 109 119 / var(--tw-bg-opacity));
+}
+
 .tailwind .bg-black {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
-}
-
-.tailwind .bg-indigo-600 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(79 70 229 / var(--tw-bg-opacity));
 }
 
 .tailwind .bg-red-600 {
@@ -872,10 +872,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 
 .focus-visible\:outline-offset-2:focus-visible {
   outline-offset: 2px;
-}
-
-.focus-visible\:outline-indigo-600:focus-visible {
-  outline-color: #4f46e5;
 }
 
 .focus-visible\:outline-red-600:focus-visible {

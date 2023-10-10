@@ -80,7 +80,7 @@ const init = async () => {
   if (!inputAnalyse) return;
 
   const app = document.createElement("div");
-  document.body.appendChild(app);
+  inputAnalyse.parentNode.insertBefore(app, inputAnalyse.nextSibling);
   ReactDOM.render(<App />, app);
 };
 
