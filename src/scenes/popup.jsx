@@ -156,7 +156,6 @@ const Popup = () => {
           <div class="relative">
             <img
               id="displayImage"
-              docIndex={index}
               src={displayedFile.data}
               mongoid={displayedFile.id}
               class="w-auto h-[90vh] object-contain relative z-10"
