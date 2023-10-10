@@ -12,6 +12,8 @@ const extractData = async (files) => {
         body: JSON.stringify({ apikey, file }),
       });
 
+      if (!response.ok) throw new Error("Error while extracting data from prescription " + apikey + " file : " + file);
+
       return await response.json();
     })
   );

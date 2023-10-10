@@ -8,40 +8,12 @@ const Popup = () => {
   const [disableButton, setDisableButton] = useState(false);
   const [files, setFiles] = useState([]);
   const [displayedFile, setDisplayedFile] = useState({});
+  const [intervalId, setIntervalId] = useState(null);
+  const [acts, setActs] = useState([]);
 
   useEffect(() => {
-    const targetNode = document.getElementById("divAnalyses");
-
-    const config = { childList: true, subtree: true };
-
-    const callback = function (mutationsList, observer) {
-      for (let mutation of mutationsList) {
-        console.log("ok");
-        if (mutation.type === "childList") {
-          for (let node of mutation.addedNodes) {
-            if (node.nodeType === Node.ELEMENT_NODE) {
-              const codeAnalyse = node.getAttribute("codeanalyse");
-              const codeGroup = node.getAttribute("codegroupe");
-              console.log("Removed node with : ", codeGroup, codeAnalyse);
-            }
-          }
-          for (let node of mutation.removedNodes) {
-            if (node.nodeType === Node.ELEMENT_NODE) {
-              const codeAnalyse = node.getAttribute("codeanalyse");
-              const codeGroup = node.getAttribute("codegroupe");
-              console.log("Removed node with : ", codeGroup, codeAnalyse);
-            }
-          }
-        }
-      }
-    };
-
-    const observer = new MutationObserver(callback);
-
-    observer.observe(targetNode, config);
-
     return () => {
-      observer.disconnect();
+      if (intervalId) clearInterval(intervalId);
     };
   }, []);
 
@@ -61,6 +33,7 @@ const Popup = () => {
     console.log("responses", responses);
 
     const acts = await insertData(responses);
+    setActs(acts);
     extractedFiles = extractedFiles.map((file) => ({ ...file, polygons: [] }));
 
     for (const act of acts) {
@@ -93,6 +66,20 @@ const Popup = () => {
     setDisplayedFile(extractedFiles[0]);
     setButtonText("Afficher l'extraction");
     setDisableButton(false);
+
+    const id = setInterval(() => {
+      const targetNode = document.getElementById("divAnalyses");
+      if (targetNode) {
+        const children = targetNode.children;
+        for (let i = 0; i < children.length; i++) {
+          const codeAnalyse = children[i].getAttribute("codeanalyse");
+          const codeGroup = children[i].getAttribute("codegroupe");
+          console.log("Node with : ", codeGroup, codeAnalyse);
+        }
+      }
+    }, 1000);
+
+    setIntervalId(id);
   };
 
   return (
@@ -112,8 +99,8 @@ const Popup = () => {
         {buttonText}
       </button>
       {displayedFile.data && (
-        <div class="bg-white border fixed w-auto h-auto bottom-0 right-0 z-50 border-gray-400 overflow-auto rounded-lg p-4">
-          <div class="z-10 flex justify-between items-center px-1">
+        <div class="bg-white border fixed w-auto h-auto bottom-0 right-0 border-gray-400 overflow-auto rounded-lg p-4 z-[200]">
+          <div class="flex justify-between items-center px-1">
             <div class="flex items-center">
               <button
                 onClick={(e) => {
@@ -171,11 +158,11 @@ const Popup = () => {
               id="displayImage"
               src={displayedFile.data}
               mongoid={displayedFile.id}
-              class="w-auto h-[90vh] object-contain relative z-10"
+              class="w-auto h-[90vh] object-contain relative z-[210]"
             />
             {displayedFile.polygons.map((polygon) => (
               <div
-                class="absolute top-0 left-0 w-full h-full z-20"
+                class="absolute top-0 left-0 w-full h-full z-[220]"
                 onMouseOver={() => {
                   const acts = document.querySelectorAll(polygon.selectorAct);
                   acts.forEach((act) => (act.style.border = "2px solid red"));
