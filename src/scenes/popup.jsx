@@ -124,7 +124,9 @@ const Popup = () => {
                   });
                 }}
                 disabled={displayedFile.id === files[0].id}
-                class="px-5 py-2 text-sm text-gray-700 bg-white border rounded-lg gap-x-2"
+                class={`px-5 py-2 text-gray-700 bg-white border rounded-lg gap-x-2 ${
+                  displayedFile.id === files[0].id && "opacity-50"
+                }`}
               >
                 Précédent
               </button>
@@ -138,7 +140,9 @@ const Popup = () => {
                   });
                 }}
                 disabled={displayedFile.id === files[files.length - 1].id}
-                class="px-5 py-2 text-sm text-gray-700 bg-white border rounded-lg gap-x-2"
+                class={`px-5 py-2 text-gray-700 bg-white border rounded-lg gap-x-2 ${
+                  displayedFile.id === files[files.length - 1].id && "opacity-50"
+                }`}
               >
                 Suivant
               </button>
