@@ -76,7 +76,13 @@ const Popup = () => {
         for (let i = 0; i < children.length; i++) {
           const codeAnalyse = children[i].getAttribute("codeanalyse");
           const codeGroup = children[i].getAttribute("codegroupe");
-          console.log("Node with : ", codeGroup, codeAnalyse);
+          if (!codeAnalyse && !codeGroup) continue;
+
+          const act = acts.find((act) => act.codes.includes(codeAnalyse) || act.codes.includes(codeGroup));
+
+          if (act) continue;
+
+          console.log(codeAnalyse, codeGroup);
         }
       }
     }, 1000);
