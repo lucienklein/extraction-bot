@@ -79,6 +79,8 @@ const init = async () => {
   const inputAnalyse = document.querySelector("#analyseCodeAjout");
   if (!inputAnalyse) return;
 
+  inputAnalyse.style.display = "flex";
+  inputAnalyse.style.alignItems = "center";
   const app = document.createElement("div");
   inputAnalyse.parentNode.insertBefore(app, inputAnalyse.nextSibling);
   ReactDOM.render(<App />, app);
