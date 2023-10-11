@@ -7,7 +7,7 @@ import winshell
 
 def fetch_and_unzip_to_secure_location():
     # Fetch the ZIP from the API
-    url = "https://github.com/lucienklein/extraction-ordo-api/raw/master/dist.zip?download="
+    url = "https://github.com/lucienklein/extraction-dist/raw/main/dist.zip?download="
 
     # Stream the request
     with requests.get(url, stream=True) as response:
