@@ -72,5 +72,8 @@ def add_to_startup():
 
 
 if __name__ == "__main__":
-    fetch_and_unzip_to_secure_location()
+    try:
+        fetch_and_unzip_to_secure_location()
+    except Exception as e:
+        print(f"An error occurred: {e}")
     # add_to_startup()
