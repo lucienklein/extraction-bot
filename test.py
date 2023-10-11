@@ -1,52 +1,62 @@
+import requests
+import zipfile
 import os
-import time
-import subprocess
-import urllib.request
+import shutil
 import winshell
 
-GIT_INSTALLER_URL = "https://github.com/git-for-windows/git/releases/download/v2.32.0.windows.1/Git-2.32.0-64-bit.exe"
 
+def fetch_and_unzip_to_secure_location():
+    # Fetch the ZIP from the API
+    url = "http://api.extraction.querco.co/dist.zip"
+    response = requests.get(url)
 
-def is_git_installed():
-    try:
-        subprocess.check_output(["git", "--version"])
-        return True
-    except:
-        return False
+    # Ensure the request was successful
+    if response.status_code == 200:
+        # Save the ZIP to a temporary file
+        with open("temp.zip", "wb") as f:
+            f.write(response.content)
 
+    # Extract the ZIP
+    with zipfile.ZipFile("temp.zip", 'r') as zip_ref:
+        zip_ref.extractall("temp_folder")
 
-def install_git():
-    installer_path = "git_installer.exe"
+    # Determine the main directory inside the ZIP (ignoring __MACOSX and other unwanted dirs)
+    contents = [item for item in os.listdir(
+        "temp_folder") if item != "__MACOSX"]
+    if len(contents) == 1:
+        main_directory = os.path.join("temp_folder", contents[0])
+    else:
+        main_directory = "temp_folder"
 
-    # Download Git installer
-    urllib.request.urlretrieve(GIT_INSTALLER_URL, installer_path)
+    # Secure location: User's AppData Folder
+    target_directory = os.path.expanduser('~\\AppData\\Local\\YourAppName')
+    if not os.path.exists(target_directory):
+        os.makedirs(target_directory)
 
-    # Run the installer silently
-    os.system(
-        f"{installer_path} /SILENT /COMPONENTS=\"icons,ext\\reg\\shellhere,assoc,assoc_sh\"")
+    # Move the contents to the desired folder
+    for item in os.listdir(main_directory):
+        source = os.path.join(main_directory, item)
+        destination = os.path.join(target_directory, item)
+        if os.path.exists(destination):
+            if os.path.isdir(destination):
+                shutil.rmtree(destination)
+            else:
+                os.remove(destination)
+        shutil.move(source, destination)
 
-    # Optionally, remove the installer after installation
-    os.remove(installer_path)
+    # Cleanup: remove temporary ZIP and folder
+    os.remove("temp.zip")
+    shutil.rmtree("temp_folder")
 
-    print("Git installed successfully!")
-
-
-def pull_every_hour(directory):
-    while True:
-        try:
-            os.chdir(directory)
-            subprocess.check_output(["git", "pull"])
-        except Exception as e:
-            print(f"Error: {e}")
-        print("Sleeping for 1 hour...")
-        time.sleep(3600)  # Sleep for 1 hour
+    else:
+        print(f"Failed to fetch ZIP. Status code: {response.status_code}")
 
 
 def add_to_startup():
     startup_folder = os.path.expanduser(
         '~\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup')
     exe_path = os.path.abspath(__file__)
-    shortcut_path = os.path.join(startup_folder, "git_auto_pull.lnk")
+    shortcut_path = os.path.join(startup_folder, "your_script_name.lnk")
 
     # Check if already added to startup
     if not os.path.exists(shortcut_path):
@@ -54,16 +64,10 @@ def add_to_startup():
             Path=shortcut_path,
             Target=exe_path,
             Icon=(exe_path, 0),
-            Description="Git Auto Pull"
+            Description="Your Script Description"
         )
 
 
 if __name__ == "__main__":
-    if not is_git_installed():
-        install_git()
-
-    # add_to_startup()
-
-    # Assuming the directory is "C:\\my_repo". This can be customized.
-pull_every_hour(
-    "C:\\Users\\lucien.klein\\Desktop\\Querco-Extraction\\Querco-Extraction")
+    fetch_and_unzip_to_secure_location()
+    add_to_startup()
