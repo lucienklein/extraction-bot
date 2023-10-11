@@ -74,10 +74,7 @@ def add_to_startup():
 
 
 def modify_shortcut_target():
-    # Define the path to the desktop and the shortcut
-    desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
-    shortcut_name = "KaliSil.lnk"
-    shortcut_path = os.path.join(desktop_path, shortcut_name)
+    shortcut_path = "C:\Users\Public\Desktop\KaliSil.lnk"
 
     print(f"Shortcut path: {shortcut_path}")
 
