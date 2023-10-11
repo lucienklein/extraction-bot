@@ -21,7 +21,14 @@ const Popup = () => {
   const onClick = async (e) => {
     e.preventDefault();
 
-    if (files.length) return setDisplayedFile(files[0]);
+    if (displayedFile.data) {
+      setButtonText("Afficher l'extraction");
+      return setDisplayedFile({});
+    }
+    if (files.length) {
+      setButtonText("Masquer l'extraction");
+      return setDisplayedFile(files[0]);
+    }
 
     setButtonText("Extraction en cours...");
     setDisableButton(true);
@@ -70,7 +77,7 @@ const Popup = () => {
 
     setFiles(extractedFiles);
     setDisplayedFile(extractedFiles[0]);
-    setButtonText("Afficher l'extraction");
+    setButtonText("Masquer l'extraction");
     setDisableButton(false);
 
     // const id = setInterval(() => {
