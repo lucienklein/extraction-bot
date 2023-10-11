@@ -36,6 +36,7 @@ def pull_every_hour(directory):
             subprocess.check_output(["git", "pull"])
         except Exception as e:
             print(f"Error: {e}")
+        print("Sleeping for 1 hour...")
         time.sleep(3600)  # Sleep for 1 hour
 
 
