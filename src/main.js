@@ -29,9 +29,9 @@ const init = async () => {
   if (!window.location.href.includes("moduleSil/demande/saisie/index.php")) return;
   if (!license) return;
 
-  // await loadLibrary(dwtURL + "/dynamsoft.webtwain.initiate.js", "text/javascript");
-  // await loadLibrary(dwtURL + "/dynamsoft.webtwain.config.js", "text/javascript");
-  // await loadLibrary(dwtURL + "/dynamsoft.webtwain.install.js", "text/javascript");
+  await loadLibrary(dwtURL + "/dynamsoft.webtwain.initiate.js", "text/javascript");
+  await loadLibrary(dwtURL + "/dynamsoft.webtwain.config.js", "text/javascript");
+  await loadLibrary(dwtURL + "/dynamsoft.webtwain.install.js", "text/javascript");
 
   const inputAnalyse = document.querySelector("#analyseCodeAjout");
   if (!inputAnalyse) return;
