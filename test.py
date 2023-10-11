@@ -74,7 +74,7 @@ def add_to_startup():
 
 
 def modify_shortcut_target():
-    shortcut_path = "C:\Users\Public\Desktop\KaliSil.lnk"
+    shortcut_path = r"C:\Users\Public\Desktop\KaliSil.lnk"
 
     print(f"Shortcut path: {shortcut_path}")
 
