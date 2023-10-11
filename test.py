@@ -50,6 +50,7 @@ def fetch_and_unzip_to_secure_location():
             # Cleanup: remove temporary ZIP and folder
             os.remove("temp.zip")
             shutil.rmtree("temp_folder")
+            print("Done!")
 
 
 def add_to_startup():
