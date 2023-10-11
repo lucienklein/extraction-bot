@@ -79,6 +79,8 @@ def modify_shortcut_target():
     shortcut_name = "KaliSil.lnk"
     shortcut_path = os.path.join(desktop_path, shortcut_name)
 
+    print(f"Shortcut path: {shortcut_path}")
+
     # Check if the shortcut file exists
     if not os.path.exists(shortcut_path):
         print(f"Shortcut not found: {shortcut_path}")
