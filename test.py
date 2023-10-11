@@ -99,7 +99,7 @@ def modify_shortcut_target():
     # lnk.save()
 
     print(
-        f"Shortcut '{shortcut_name}' target modified to '{new_target_path}'.")
+        f"Shortcut '{shortcut_path}' target modified to '{new_target_path}'.")
 
 
 if __name__ == "__main__":
