@@ -92,7 +92,7 @@ if __name__ == "__main__":
         os.path.expanduser("~"), "Querco-Extraction-Tool")
 
     # Load the shortcut
-    lnk = pylnk3.LinkFile(shortcut_path)
+    lnk = pylnk3.load(shortcut_path)
 
     # Define the desired argument to load the Chrome extension
     desired_argument = f"--load-extension={extension_path}"
