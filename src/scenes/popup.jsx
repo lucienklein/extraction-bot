@@ -58,12 +58,14 @@ const Popup = () => {
       polygons.push({ pointsString, color, selectorAct, className, fileId: act.prescriptionId });
     }
 
-    setFiles((prev) =>
-      prev.map((file) => {
-        const polygonsFilter = polygons.filter((polygon) => polygon.fileId === file.id);
-        return { ...file, polygons: polygonsFilter };
-      })
-    );
+    const newFiles = files.map((file, index) => {
+      const polygonsFilter = polygons.filter((polygon) => polygon.fileId === file.id);
+      return { data: file, id: responses[index]?.data._id, polygons: polygonsFilter };
+    });
+
+    setFiles(newFiles);
+    const displayedFileIndex = newFiles.findIndex((file) => file.id === displayedFile.id);
+    if (displayedFileIndex !== -1) setDisplayedFile(newFiles[displayedFileIndex]);
   }, [acts.length, windowHeight]);
 
   const onClick = async (e) => {
