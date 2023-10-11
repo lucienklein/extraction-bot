@@ -588,10 +588,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   margin: 0px;
 }
 
-.tailwind .mr-4 {
-  margin-right: 1rem;
-}
-
 .tailwind .mt-4 {
   margin-top: 1rem;
 }
@@ -600,8 +596,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   display: flex;
 }
 
-.tailwind .h-4 {
-  height: 1rem;
+.tailwind .h-8 {
+  height: 2rem;
 }
 
 .tailwind .h-\[90vh\] {
@@ -616,8 +612,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   height: 100%;
 }
 
-.tailwind .w-4 {
-  width: 1rem;
+.tailwind .w-8 {
+  width: 2rem;
 }
 
 .tailwind .w-auto {

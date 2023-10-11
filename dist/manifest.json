@@ -10,6 +10,6 @@
     }
   ],
   "options_page": "options.html",
-  "permissions": ["storage"],
+  "permissions": ["storage", "downloads"],
   "web_accessible_resources": ["dwt/*", "images/*"]
 }

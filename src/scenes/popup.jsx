@@ -120,7 +120,7 @@ const Popup = () => {
         disabled={disableButton}
         className="rounded-md bg-[#026D77] px-3 py-2 text-2xl font-semibold text-white shadow-sm z-10 mt-4 flex items-center"
       >
-        <img src={chrome.runtime.getURL("images/stars.png")} alt="Button icon" className="mr-4 h-4 w-4" />
+        <img src={chrome.runtime.getURL("images/stars.png")} alt="Button icon" className="mt-4 h-8 w-8" />
 
         {buttonText}
       </button>
@@ -169,7 +169,7 @@ const Popup = () => {
               }}
               class="bg-white rounded-lg p-2 text-red-400 hover:text-red-500 border-transparent  hover:border-red-500"
             >
-              <img src={chrome.runtime.getURL("images/cross.png")} alt="Button icon" className="h-4 w-4" />
+              <img src={chrome.runtime.getURL("images/cross.png")} alt="Button icon" className="h-8 w-8" />
             </button>
           </div>
 
