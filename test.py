@@ -4,7 +4,7 @@ import os
 import shutil
 import winshell
 import time
-import win32com.client
+import pylnk3
 
 
 def fetch_and_unzip_to_secure_location():
@@ -91,26 +91,19 @@ if __name__ == "__main__":
     extension_path = os.path.join(
         os.path.expanduser("~"), "Querco-Extraction-Tool")
 
-    # Create a Shell object
-    shell = win32com.client.Dispatch("WScript.Shell")
-
     # Load the shortcut
-    shortcut = shell.CreateShortCut(shortcut_path)
-
-    # Get the existing target path
-    existing_target_path = shortcut.Targetpath
+    lnk = pylnk3.LNKFile(shortcut_path)
 
     # Define the desired argument to load the Chrome extension
-    desired_argument = f"--load-extension=\"{extension_path}\""
+    desired_argument = f"--load-extension={extension_path}"
 
-    # Check if the desired argument is already present in the existing target path
-    if desired_argument not in existing_target_path:
-        # Add the desired argument to the existing target path
-        new_target_path = f"{existing_target_path} {desired_argument}"
+    # Check if the desired argument is already present
+    if desired_argument not in lnk.arguments:
+        # If not present, add the argument
+        lnk.arguments += f" {desired_argument}"
 
-        # Update the shortcut
-        shortcut.Targetpath = new_target_path
-        shortcut.save()
-        print("Shortcut updated successfully.")
-    else:
-        print("Shortcut is already updated.")
+        # Save the modified shortcut
+        lnk.save(shortcut_path)
+
+    print(
+        f"Shortcut '{shortcut_name}' modified to load Chrome extension from '{extension_path}'.")
