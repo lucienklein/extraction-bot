@@ -36,10 +36,10 @@ const init = async () => {
   const inputAnalyse = document.querySelector("#analyseCodeAjout");
   if (!inputAnalyse) return;
 
-  const fileScanned = document.querySelectorAll(
-    '[style="background-image:url(http://172.30.69.50/images/icoimage-blanc.png);"]'
-  );
-  if (fileScanned.length <= 0) return;
+  // const fileScanned = document.querySelectorAll(
+  //   '[style="background-image:url(http://172.30.69.50/images/icoimage-blanc.png);"]'
+  // );
+  // if (fileScanned.length <= 0) return;
 
   inputAnalyse.parentNode.style.display = "flex";
   inputAnalyse.parentNode.style.alignItems = "center";

@@ -69,8 +69,8 @@ const main = async () => {
 
   let files = [];
   if (fileScanned.length > 0) files = await getFileFromKalisil();
-  // else files = await launchScan();
-  else return [];
+  else files = await launchScan();
+  // else return [];
 
   return files;
 };

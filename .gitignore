@@ -1,4 +1,4 @@
 node_modules
 # Sentry Auth Token
 .env.sentry-build-plugin
-dist.zip
+*.zip
