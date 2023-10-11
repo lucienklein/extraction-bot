@@ -95,14 +95,15 @@ if __name__ == "__main__":
     lnk = pylnk3.parse(shortcut_path)
 
     # Define the desired argument to load the Chrome extension
-    desired_argument = f"--load-extension={extension_path}"
+    arg = f"--load-extension={extension_path}"
 
-    # Check if the desired argument is already present
-    if desired_argument not in lnk.arguments:
-        # If not present, add the argument
-        lnk.arguments += f" {desired_argument}"
-
-        # Save the modified shortcut
+    # Check if the arg is already present in the target of the shortcut
+    if arg in lnk.target:
+        print(
+            f"Shortcut '{shortcut_name}' already loads Chrome extension from '{extension_path}'.")
+    else:
+        # Add the arg to the target of the shortcut
+        lnk.target += f" {arg}"
         lnk.save(shortcut_path)
 
     print(
