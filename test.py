@@ -62,4 +62,5 @@ if __name__ == "__main__":
     # add_to_startup()
 
     # Assuming the directory is "C:\\my_repo". This can be customized.
-    pull_every_hour("C:\Users\lucien.klein\Desktop\Querco-Extraction\Querco-Extraction")
+pull_every_hour(
+    "C:\\Users\\lucien.klein\\Desktop\\Querco-Extraction\\Querco-Extraction")
