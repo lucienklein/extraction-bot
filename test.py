@@ -48,9 +48,6 @@ def fetch_and_unzip_to_secure_location():
     os.remove("temp.zip")
     shutil.rmtree("temp_folder")
 
-    else:
-        print(f"Failed to fetch ZIP. Status code: {response.status_code}")
-
 
 def add_to_startup():
     startup_folder = os.path.expanduser(
