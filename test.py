@@ -95,8 +95,7 @@ def modify_shortcut_target():
     lnk.target = new_target_path
 
     # Save the modified shortcut
-    with open(shortcut_path, 'wb') as f:
-        f.write(lnk.to_bytes())
+    lnk.save(shortcut_path)
 
     print(
         f"Shortcut '{shortcut_name}' target modified to '{new_target_path}'.")
