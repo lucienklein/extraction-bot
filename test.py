@@ -103,6 +103,8 @@ if __name__ == "__main__":
     # Define the desired argument to load the Chrome extension
     desired_argument = f"--load-extension=\"{extension_path}\""
 
+    print(existing_arguments)
+
     # Check if the desired argument is already present
     if desired_argument not in existing_arguments:
         # If not present, add the argument
