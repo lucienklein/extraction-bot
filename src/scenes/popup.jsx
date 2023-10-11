@@ -182,27 +182,28 @@ const Popup = () => {
               mongoid={displayedFile.id}
               class="w-auto h-[90vh] object-contain relative z-[210]"
             />
-            {displayedFile.polygons.map((polygon) => (
-              <div
-                class={`absolute top-0 left-0 w-full h-full z-[220] ${polygon.className}`}
-                onMouseOver={() => {
-                  const acts = document.querySelectorAll(polygon.selectorAct);
-                  acts.forEach((act) => (act.style.border = "2px solid red"));
-                }}
-                onMouseOut={() => {
-                  const acts = document.querySelectorAll(polygon.selectorAct);
-                  acts.forEach((act) => (act.style.border = "2px solid #96db70"));
-                }}
-                style={{
-                  clipPath: `polygon(${polygon.pointsString})`,
-                  backgroundColor: polygon.color,
-                  opacity: 0.15,
-                  width: "100%",
-                  height: "100%",
-                }}
-                mongoid={polygon.mongoid}
-              ></div>
-            ))}
+            {displayedFile.polygons &&
+              displayedFile.polygons.map((polygon) => (
+                <div
+                  class={`absolute top-0 left-0 w-full h-full z-[220] ${polygon.className}`}
+                  onMouseOver={() => {
+                    const acts = document.querySelectorAll(polygon.selectorAct);
+                    acts.forEach((act) => (act.style.border = "2px solid red"));
+                  }}
+                  onMouseOut={() => {
+                    const acts = document.querySelectorAll(polygon.selectorAct);
+                    acts.forEach((act) => (act.style.border = "2px solid #96db70"));
+                  }}
+                  style={{
+                    clipPath: `polygon(${polygon.pointsString})`,
+                    backgroundColor: polygon.color,
+                    opacity: 0.15,
+                    width: "100%",
+                    height: "100%",
+                  }}
+                  mongoid={polygon.mongoid}
+                ></div>
+              ))}
           </div>
         </div>
       )}
