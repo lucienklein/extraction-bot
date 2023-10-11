@@ -32,7 +32,7 @@ def fetch_and_unzip_to_secure_location():
 
             # Secure location: User's AppData Folder
             target_directory = os.path.expanduser(
-                '~\\Desktop')
+                '~\\Querco-Extraction-Tool')
             if not os.path.exists(target_directory):
                 os.makedirs(target_directory)
 
