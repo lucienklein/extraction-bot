@@ -84,14 +84,13 @@ const Popup = () => {
 
     const responses = await extractData(extractedFiles);
     console.log("responses", responses);
+    const acts = await insertData(responses);
 
     setNerAct(responses.map((response) => response.data.ner.filter((ner) => ner.category === "examinationName")));
     extractedFiles = extractedFiles.map((file, index) => ({ data: file, id: responses[index]?.data._id }));
 
-    const acts = await insertData(responses);
-    setActs(acts);
-
     setFiles(extractedFiles);
+    setActs(acts);
     setDisplayedFile(extractedFiles[0]);
     setDisableButton(false);
 
