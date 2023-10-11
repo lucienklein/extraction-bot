@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Querco - Extraction",
   "version": "1.3",
   "content_scripts": [
@@ -10,6 +10,5 @@
     }
   ],
   "options_page": "options.html",
-  "permissions": ["storage"],
-  "web_accessible_resources": ["dwt/*"]
+  "permissions": ["storage"]
 }
