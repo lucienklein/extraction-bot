@@ -50,7 +50,9 @@ def fetch_and_unzip_to_secure_location():
             # Cleanup: remove temporary ZIP and folder
             os.remove("temp.zip")
             shutil.rmtree("temp_folder")
-            print("Done!")
+        else:
+            print(
+                f"Failed to download ZIP. Status code: {response.status_code}")
 
 
 def add_to_startup():
