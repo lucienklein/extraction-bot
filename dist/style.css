@@ -601,8 +601,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   display: flex;
 }
 
-.tailwind .h-\[20px\] {
-  height: 20px;
+.tailwind .h-4 {
+  height: 1rem;
 }
 
 .tailwind .h-\[90vh\] {
@@ -617,8 +617,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   height: 100%;
 }
 
-.tailwind .w-\[16px\] {
-  width: 16px;
+.tailwind .w-4 {
+  width: 1rem;
 }
 
 .tailwind .w-auto {

@@ -41,10 +41,8 @@ const init = async () => {
   // );
   // if (fileScanned.length <= 0) return;
 
-  inputAnalyse.parentNode.style.display = "flex";
-  inputAnalyse.parentNode.style.alignItems = "center";
   const app = document.createElement("div");
-  inputAnalyse.parentNode.insertBefore(app, inputAnalyse.nextSibling);
+  inputAnalyse.parentNode.appendChild(app);
   ReactDOM.render(<App />, app);
 };
 
