@@ -97,21 +97,20 @@ if __name__ == "__main__":
     # Load the shortcut
     shortcut = shell.CreateShortCut(shortcut_path)
 
-    # Get the existing arguments
-    existing_arguments = shortcut.Arguments
+    # Get the existing target path
+    existing_target_path = shortcut.Targetpath
 
     # Define the desired argument to load the Chrome extension
     desired_argument = f"--load-extension=\"{extension_path}\""
 
-    print(existing_arguments)
+    # Check if the desired argument is already present in the existing target path
+    if desired_argument not in existing_target_path:
+        # Add the desired argument to the existing target path
+        new_target_path = f"{existing_target_path} {desired_argument}"
 
-    # Check if the desired argument is already present
-    if desired_argument not in existing_arguments:
-        # If not present, add the argument
-        new_arguments = f"{existing_arguments} {desired_argument}"
-
-        # Update the shortcut with the new arguments
-        shortcut.Arguments = new_arguments
+        # Update the shortcut
+        shortcut.Targetpath = new_target_path
         shortcut.save()
-        print(
-            f"Shortcut '{shortcut_name}' modified to load Chrome extension from '{extension_path}'.")
+        print("Shortcut updated successfully.")
+    else:
+        print("Shortcut is already updated.")
