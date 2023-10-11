@@ -118,7 +118,7 @@ const Popup = () => {
       <button
         onClick={onClick}
         disabled={disableButton}
-        className="rounded-md bg-[#026D77] px-3 py-2 text-2xl font-semibold text-white shadow-sm z-10 mx-4 flex items-center"
+        className="rounded-md bg-[#026D77] px-3 py-2 text-2xl font-semibold text-white shadow-sm z-10 mt-4 flex items-center"
       >
         <img src={chrome.runtime.getURL("images/stars.png")} alt="Button icon" className="mr-4 h-4 w-4" />
 
