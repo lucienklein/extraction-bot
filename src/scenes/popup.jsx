@@ -11,12 +11,27 @@ const Popup = () => {
   const [intervalId, setIntervalId] = useState(null);
   const [acts, setActs] = useState([]);
   const [nerAct, setNerAct] = useState([]);
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
 
   // useEffect(() => {
   //   return () => {
   //     if (intervalId) clearInterval(intervalId);
   //   };
   // }, []);
+
+  useEffect(() => {
+    const handleResize = () => setWindowHeight(window.innerHeight);
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (!displayedFile.data && !files.length) return setButtonText("Extraction Automatique");
+    if (!displayedFile.data && files.length) return setButtonText("Afficher l'extraction");
+    if (displayedFile.data && files.length) return setButtonText("Masquer l'extraction");
+  }, [displayedFile.data, files.length]);
 
   useEffect(() => {
     let polygons = [];
@@ -49,19 +64,13 @@ const Popup = () => {
         return { ...file, polygons: polygonsFilter };
       })
     );
-  }, [acts.length, window.innerHeight]);
+  }, [acts.length, windowHeight]);
 
   const onClick = async (e) => {
     e.preventDefault();
 
-    if (displayedFile.data) {
-      setButtonText("Afficher l'extraction");
-      return setDisplayedFile({});
-    }
-    if (files.length) {
-      setButtonText("Masquer l'extraction");
-      return setDisplayedFile(files[0]);
-    }
+    if (displayedFile.data) return setDisplayedFile({});
+    if (files.length) return setDisplayedFile(files[0]);
 
     setButtonText("Extraction en cours...");
     setDisableButton(true);
@@ -80,7 +89,6 @@ const Popup = () => {
 
     setFiles(extractedFiles);
     setDisplayedFile(extractedFiles[0]);
-    setButtonText("Masquer l'extraction");
     setDisableButton(false);
 
     // const id = setInterval(() => {
