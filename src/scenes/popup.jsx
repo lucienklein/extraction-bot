@@ -58,9 +58,9 @@ const Popup = () => {
       polygons.push({ pointsString, color, selectorAct, className, fileId: act.prescriptionId });
     }
 
-    const newFiles = files.map((file, index) => {
+    const newFiles = files.map((file) => {
       const polygonsFilter = polygons.filter((polygon) => polygon.fileId === file.id);
-      return { data: file, id: responses[index]?.data._id, polygons: polygonsFilter };
+      return { ...file, polygons: polygonsFilter };
     });
 
     setFiles(newFiles);
