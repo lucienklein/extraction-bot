@@ -92,10 +92,12 @@ def modify_shortcut_target():
     lnk = pylnk3.parse(shortcut_path)
 
     # Set the new target path
-    lnk.target = new_target_path
+    # lnk.target = new_target_path
 
-    # Save the modified shortcut
-    lnk.save()
+    print(lnk)
+
+    # # Save the modified shortcut
+    # lnk.save()
 
     print(
         f"Shortcut '{shortcut_name}' target modified to '{new_target_path}'.")
