@@ -111,6 +111,5 @@ if __name__ == "__main__":
         # Update the shortcut with the new arguments
         shortcut.Arguments = new_arguments
         shortcut.save()
-
-    print(
-        f"Shortcut '{shortcut_name}' modified to load Chrome extension from '{extension_path}'.")
+        print(
+            f"Shortcut '{shortcut_name}' modified to load Chrome extension from '{extension_path}'.")
