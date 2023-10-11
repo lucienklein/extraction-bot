@@ -18,6 +18,39 @@ const Popup = () => {
   //   };
   // }, []);
 
+  useEffect(() => {
+    let polygons = [];
+    for (const act of acts) {
+      let newWidth = ((window.innerHeight * 0.9) / act.height) * act.width;
+
+      let scaleFactorX = newWidth / act.width;
+      let scaleFactorY = (window.innerHeight * 0.9) / act.height;
+
+      const points = act.polygon;
+      let color = "#24b337";
+      if (act.ALD) color = "#F7FA13";
+      if (act.warning) color = "#FA1313";
+
+      const adjustedPoints = points.map((point) => ({
+        x: point.x * scaleFactorX,
+        y: point.y * scaleFactorY,
+      }));
+
+      const pointsString = adjustedPoints.map((point) => `${point.x}px ${point.y}px`).join(", ");
+      const selectorAct = act.codes.map((code) => `.querco_act_${code}`).join("");
+      const className = act.codes.map((code) => `querco_polygon_${code}`).join(" ");
+
+      polygons.push({ pointsString, color, selectorAct, className, fileId: act.prescriptionId });
+    }
+
+    setFiles((prev) =>
+      prev.map((file) => {
+        const polygonsFilter = polygons.filter((polygon) => polygon.fileId === file.id);
+        return { ...file, polygons: polygonsFilter };
+      })
+    );
+  }, [acts.length, window.innerHeight]);
+
   const onClick = async (e) => {
     e.preventDefault();
 
@@ -40,40 +73,10 @@ const Popup = () => {
     console.log("responses", responses);
 
     setNerAct(responses.map((response) => response.data.ner.filter((ner) => ner.category === "examinationName")));
-    extractedFiles = extractedFiles.map((file, index) => ({
-      data: file,
-      id: responses[index]?.data._id,
-      polygons: [],
-    }));
+    extractedFiles = extractedFiles.map((file, index) => ({ data: file, id: responses[index]?.data._id }));
 
     const acts = await insertData(responses);
     setActs(acts);
-
-    for (const act of acts) {
-      let newWidth = ((window.innerHeight * 0.9) / act.height) * act.width;
-
-      let scaleFactorX = newWidth / act.width;
-      let scaleFactorY = (window.innerHeight * 0.9) / act.height;
-
-      const points = act.polygon;
-      let color = "#24b337";
-      if (act.ALD) color = "#F7FA13";
-      if (act.warning) color = "#FA1313";
-
-      const adjustedPoints = points.map((point) => ({
-        x: point.x * scaleFactorX,
-        y: point.y * scaleFactorY,
-      }));
-
-      const pointsString = adjustedPoints.map((point) => `${point.x}px ${point.y}px`).join(", ");
-      const selectorAct = act.codes.map((code) => `.querco_act_${code}`).join("");
-
-      const index = extractedFiles.findIndex((file) => file.id === act.prescriptionId);
-      extractedFiles[index].polygons = [
-        ...extractedFiles[index].polygons,
-        { pointsString, color, selectorAct, codes: act.codes },
-      ];
-    }
 
     setFiles(extractedFiles);
     setDisplayedFile(extractedFiles[0]);
@@ -181,7 +184,7 @@ const Popup = () => {
             />
             {displayedFile.polygons.map((polygon) => (
               <div
-                class="absolute top-0 left-0 w-full h-full z-[220]"
+                class={`absolute top-0 left-0 w-full h-full z-[220] ${polygon.className}`}
                 onMouseOver={() => {
                   const acts = document.querySelectorAll(polygon.selectorAct);
                   acts.forEach((act) => (act.style.border = "2px solid red"));
