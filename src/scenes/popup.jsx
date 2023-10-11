@@ -63,8 +63,6 @@ const Popup = () => {
       return { ...file, polygons: polygonsFilter };
     });
 
-    console.log("newFiles", newFiles);
-
     setFiles(newFiles);
     const displayedFileIndex = newFiles.findIndex((file) => file.id === displayedFile.id);
     if (displayedFileIndex !== -1) setDisplayedFile(newFiles[displayedFileIndex]);
@@ -90,8 +88,8 @@ const Popup = () => {
     extractedFiles = extractedFiles.map((file, index) => ({ data: file, id: responses[index]?.data._id }));
 
     setFiles(extractedFiles);
-    setActs(acts);
     setDisplayedFile(extractedFiles[0]);
+    setActs(acts);
     setDisableButton(false);
 
     // const id = setInterval(() => {

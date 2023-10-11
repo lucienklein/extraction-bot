@@ -61,13 +61,11 @@ const insertData = async (prescriptions) => {
       const selectorPolygon = act.codes.map((code) => `.querco_polygon_${code}`).join("");
 
       el.addEventListener("mouseover", function () {
-        console.log("mouseover");
         const polygons = document.querySelectorAll(selectorPolygon);
         polygons.forEach((polygon) => (polygon.style.opacity = "0.5"));
       });
 
       el.addEventListener("mouseout", function () {
-        console.log("mouseout");
         const polygons = document.querySelectorAll(selectorPolygon);
         polygons.forEach((polygon) => (polygon.style.opacity = "0.15"));
       });
