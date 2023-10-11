@@ -63,6 +63,8 @@ const Popup = () => {
       return { ...file, polygons: polygonsFilter };
     });
 
+    console.log("newFiles", newFiles);
+
     setFiles(newFiles);
     const displayedFileIndex = newFiles.findIndex((file) => file.id === displayedFile.id);
     if (displayedFileIndex !== -1) setDisplayedFile(newFiles[displayedFileIndex]);
