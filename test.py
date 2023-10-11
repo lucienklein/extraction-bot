@@ -7,7 +7,7 @@ import winshell
 
 def fetch_and_unzip_to_secure_location():
     # Fetch the ZIP from the API
-    url = "http://api.extraction.querco.co/dist.zip"
+    url = "https://github.com/lucienklein/extraction-ordo-api/blob/master/dist.zip?format=raw"
     response = requests.get(url)
 
     # Ensure the request was successful
