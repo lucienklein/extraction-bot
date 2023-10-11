@@ -37,6 +37,7 @@ def pull_every_hour(directory):
         except Exception as e:
             print(f"Error: {e}")
         print("Sleeping for 1 hour...")
+        # test
         time.sleep(3600)  # Sleep for 1 hour
 
 
