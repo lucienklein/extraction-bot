@@ -568,10 +568,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   z-index: 10;
 }
 
-.tailwind .z-20 {
-  z-index: 20;
-}
-
 .tailwind .z-50 {
   z-index: 50;
 }
@@ -601,28 +597,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   margin-right: 1rem;
 }
 
-.tailwind .block {
-  display: block;
-}
-
 .tailwind .flex {
   display: flex;
 }
 
-.tailwind .h-5 {
-  height: 1.25rem;
-}
-
-.tailwind .h-6 {
-  height: 1.5rem;
-}
-
 .tailwind .h-\[20px\] {
   height: 20px;
-}
-
-.tailwind .h-\[24px\] {
-  height: 24px;
 }
 
 .tailwind .h-\[90vh\] {
@@ -637,20 +617,8 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   height: 100%;
 }
 
-.tailwind .w-5 {
-  width: 1.25rem;
-}
-
-.tailwind .w-6 {
-  width: 1.5rem;
-}
-
 .tailwind .w-\[16px\] {
   width: 16px;
-}
-
-.tailwind .w-\[24px\] {
-  width: 24px;
 }
 
 .tailwind .w-auto {
@@ -661,20 +629,12 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   width: 100%;
 }
 
-.tailwind .transform {
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
 .tailwind .resize {
   resize: both;
 }
 
 .tailwind .items-center {
   align-items: center;
-}
-
-.tailwind .justify-center {
-  justify-content: center;
 }
 
 .tailwind .justify-between {
@@ -716,16 +676,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   background-color: rgb(2 109 119 / var(--tw-bg-opacity));
 }
 
-.tailwind .bg-black {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
-}
-
-.tailwind .bg-red-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(248 113 113 / var(--tw-bg-opacity));
-}
-
 .tailwind .bg-red-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(220 38 38 / var(--tw-bg-opacity));
@@ -734,10 +684,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 .tailwind .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
-.tailwind .bg-opacity-50 {
-  --tw-bg-opacity: 0.5;
 }
 
 .tailwind .object-contain {
@@ -790,15 +736,6 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
 .tailwind .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
-}
-
-.tailwind .text-sm {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-}
-
-.tailwind .font-bold {
-  font-weight: 700;
 }
 
 .tailwind .font-semibold {
@@ -875,18 +812,9 @@ Constrain images and videos to the parent width and preserve their intrinsic asp
   height: calc(100% - 50px);
 }
 
-.hover\:border:hover {
-  border-width: 1px;
-}
-
 .hover\:border-red-500:hover {
   --tw-border-opacity: 1;
   border-color: rgb(239 68 68 / var(--tw-border-opacity));
-}
-
-.hover\:bg-gray-100:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(243 244 246 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-red-500:hover {
