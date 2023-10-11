@@ -28,6 +28,8 @@ def install_git():
     # Optionally, remove the installer after installation
     os.remove(installer_path)
 
+    print("Git installed successfully!")
+
 
 def pull_every_hour(directory):
     while True:
@@ -37,7 +39,6 @@ def pull_every_hour(directory):
         except Exception as e:
             print(f"Error: {e}")
         print("Sleeping for 1 hour...")
-        # test
         time.sleep(3600)  # Sleep for 1 hour
 
 
