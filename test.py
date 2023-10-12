@@ -83,23 +83,16 @@ def modify_shortcut_target():
         print(f"Shortcut not found: {shortcut_path}")
         return
 
-    # Define the new target path
-    new_target_path = os.path.join(
-        os.path.expanduser("~"), "Querco-Extraction-Tool")
+    # # Define the new target path
+    # new_target_path = os.path.join(
+    #     os.path.expanduser("~"), "Querco-Extraction-Tool")
 
-    # Load the shortcut
-    lnk = pylnk3.parse(shortcut_path)
+    # Get the current target of the shortcut
+    current_target = os.readlink(shortcut_path)
 
-    # Set the new target path
-    # lnk.target = new_target_path
-
-    print(lnk)
-
-    # # Save the modified shortcut
-    # lnk.save()
-
-    print(
-        f"Shortcut '{shortcut_path}' target modified to '{new_target_path}'.")
+    # Add to the target new arguments
+    new_target = f"{current_target} --new-argument"
+    os.symlink(new_target, shortcut_path)
 
 
 if __name__ == "__main__":
