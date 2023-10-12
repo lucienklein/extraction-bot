@@ -1,9 +1,6 @@
 import { API_URL } from "../config";
-import { getChromeStorage } from "../utils";
 
-const extractData = async (files) => {
-  const apikey = await getChromeStorage("apikey");
-
+const extractData = async (apikey, files) => {
   let responses = await Promise.all(
     files.map(async (file, index) => {
       const response = await fetch(`${API_URL}/prescription`, {

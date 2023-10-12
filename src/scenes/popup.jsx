@@ -3,7 +3,7 @@ import getFiles from "../services/getFiles";
 import extractData from "../services/extractData";
 import insertData from "../services/insertData";
 
-const Popup = () => {
+const Popup = ({ apikey, hostname }) => {
   const [buttonText, setButtonText] = useState("Extraction Automatique");
   const [disableButton, setDisableButton] = useState(false);
   const [files, setFiles] = useState([]);
@@ -77,10 +77,10 @@ const Popup = () => {
     setButtonText("Extraction en cours...");
     setDisableButton(true);
 
-    let extractedFiles = await getFiles();
+    let extractedFiles = await getFiles(hostname);
     if (!extractedFiles?.length) return;
 
-    const responses = await extractData(extractedFiles);
+    const responses = await extractData(apikey, extractedFiles);
     console.log("responses", responses);
     const acts = await insertData(responses);
 
@@ -120,7 +120,7 @@ const Popup = () => {
         disabled={disableButton}
         className="rounded-md bg-[#026D77] px-3 py-2 text-2xl font-semibold text-white shadow-sm z-10 mt-4 flex items-center"
       >
-        <img src={chrome.runtime.getURL("images/stars.png")} alt="Button icon" className="mt-4 h-8 w-8" />
+        <img src={chrome.runtime.getURL("images/stars.png")} alt="Button icon" className="h-8 w-8" />
 
         {buttonText}
       </button>

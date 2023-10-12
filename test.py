@@ -120,10 +120,14 @@ if __name__ == "__main__":
                     with open(last_seen_version_file, "w") as f:
                         f.write(latest_version)
 
+            time.sleep(1800)  # 30 minutes
+
+        except KeyboardInterrupt:
+            print("Interrupted by user. Exiting...")
+            break
+
         except Exception as e:
             sentry_sdk.capture_exception(e)
             print(f"An error occurred: {e}")
-
-        time.sleep(1800)  # 30 minutes
 
     # add_to_startup()

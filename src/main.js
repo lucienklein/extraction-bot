@@ -5,45 +5,43 @@ import * as Sentry from "@sentry/browser";
 
 import { loadLibrary, getChromeStorage } from "./utils";
 
-const dwtURL = new URL(chrome.runtime.getURL("/dwt"));
-const apikey = await getChromeStorage("apikey");
-const license = await getChromeStorage("dwt");
-
 Sentry.init({
   dsn: "https://11e7e81067272e6c50f0d6595e4ff077@o4505545038888960.ingest.sentry.io/4505941359132672",
   integrations: [new Sentry.BrowserTracing(), new Sentry.Replay()],
   tracesSampleRate: 0.25,
-  replaysSessionSampleRate: 0.1,
+  replaysSessionSampleRate: 0,
   replaysOnErrorSampleRate: 1.0,
 });
 
-Sentry.configureScope((scope) => {
-  scope.setTag("version", chrome.runtime.getManifest().version);
-  scope.setTag("browser", navigator.userAgent);
-  scope.setTag("url", window.location.href);
-  scope.setTag("apikey", apikey);
-  scope.setTag("license", license);
-});
-
 const init = async () => {
-  if (!window.location.href.includes("moduleSil/demande/saisie/index.php")) return;
+  const license = await getChromeStorage("dwt");
   if (!license) return;
-
-  await loadLibrary(dwtURL + "/dynamsoft.webtwain.initiate.js", "text/javascript");
-  await loadLibrary(dwtURL + "/dynamsoft.webtwain.config.js", "text/javascript");
-  await loadLibrary(dwtURL + "/dynamsoft.webtwain.install.js", "text/javascript");
 
   const inputAnalyse = document.querySelector("#analyseCodeAjout");
   if (!inputAnalyse) return;
 
-  // const fileScanned = document.querySelectorAll(
-  //   '[style="background-image:url(http://172.30.69.50/images/icoimage-blanc.png);"]'
+  const hostname = window.location.hostname;
+
+  // const filesScanned = document.querySelectorAll(
+  //   `[style="background-image:url(${hostname}/images/icoimage-blanc.png);"]`
   // );
-  // if (fileScanned.length <= 0) return;
+  // if (filesScanned.length <= 0) return;
+
+  const apikey = await getChromeStorage("apikey");
+  Sentry.configureScope((scope) => {
+    scope.setTag("browser", navigator.userAgent);
+    scope.setTag("url", window.location.href);
+    scope.setTag("apikey", apikey);
+    scope.setTag("license", license);
+  });
+
+  // await loadLibrary(dwtURL + "/dynamsoft.webtwain.initiate.js", "text/javascript");
+  // await loadLibrary(dwtURL + "/dynamsoft.webtwain.config.js", "text/javascript");
+  // await loadLibrary(dwtURL + "/dynamsoft.webtwain.install.js", "text/javascript");
 
   const app = document.createElement("div");
   inputAnalyse.parentNode.appendChild(app);
-  ReactDOM.render(<App />, app);
+  ReactDOM.render(<App apikey={apikey} hostname={hostname} />, app);
 };
 
 try {

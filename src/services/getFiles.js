@@ -21,13 +21,9 @@ const launchScan = async () => {
   });
 };
 
-const getFileFromKalisil = async () => {
-  const fileScanned = document.querySelectorAll(
-    '[style="background-image:url(http://172.30.69.50/images/icoimage-blanc.png);"]'
-  );
-
+const getFileFromKalisil = async (filesScanned) => {
   const imgsBase64 = [];
-  for (const file of fileScanned) {
+  for (const file of filesScanned) {
     const script = file.nextElementSibling;
     const data = script.innerText;
 
@@ -62,13 +58,14 @@ const getFileFromKalisil = async () => {
   return imgsBase64;
 };
 
-const main = async () => {
-  const fileScanned = document.querySelectorAll(
-    '[style="background-image:url(http://172.30.69.50/images/icoimage-blanc.png);"]'
+const main = async (hostname) => {
+  console.log(`[style="background-image:url(${hostname}/images/icoimage-blanc.png);`);
+  const filesScanned = document.querySelectorAll(
+    `[style="background-image:url(${hostname}/images/icoimage-blanc.png);"]`
   );
 
   let files = [];
-  if (fileScanned.length > 0) files = await getFileFromKalisil();
+  if (filesScanned.length > 0) files = await getFileFromKalisil(filesScanned);
   else files = await launchScan();
   // else return [];
 

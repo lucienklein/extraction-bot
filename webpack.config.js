@@ -2,12 +2,25 @@ const { sentryWebpackPlugin } = require("@sentry/webpack-plugin");
 
 module.exports = {
   entry: "./src/main.js",
-  devtool: "source-map",
+  devtool: false,
+  mode: "production",
 
   output: {
     path: __dirname + "/dist",
     filename: "bundle.js",
   },
+
+  // optimization: {
+  //   splitChunks: {
+  //     cacheGroups: {
+  //       vendor: {
+  //         test: /[\\/]node_modules[\\/]/,
+  //         name: "vendors",
+  //         chunks: "all",
+  //       },
+  //     },
+  //   },
+  // },
 
   module: {
     rules: [
