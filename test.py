@@ -103,6 +103,7 @@ if __name__ == "__main__":
 
             # if the commit sha has changed (or if we've never seen one), download the file
             if latest_sha != last_seen_sha:
+                print("New commit found. Downloading ZIP...")
                 fetch_and_unzip_to_secure_location(target_directory)
 
                 # write the new commit sha to the file
