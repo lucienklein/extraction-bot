@@ -6,22 +6,18 @@ import winshell
 import time
 
 
-def get_latest_commit_sha():
-    url = f"https://api.github.com/repos/lucienklein/extraction-dist/commits"
-    params = {"path": "dist.zip"}
-    response = requests.get(url, params=params)
+def get_latest_version():
+    url = "https://api.extraction.querco.co/extension"
+    response = requests.get(url)
     response.raise_for_status()  # Ensure the request was successful
-    commits = response.json()
-    if commits:
-        return commits[0]["sha"]
+    data = response.json()
+    if data and data['ok']:
+        return data['data']['version'], data['data']['url']
     else:
-        return None
+        return None, None
 
 
-def fetch_and_unzip_to_secure_location(target_directory):
-    # Fetch the ZIP from the API
-    url = "https://github.com/lucienklein/extraction-dist/raw/main/dist.zip?download="
-
+def fetch_and_unzip_to_secure_location(target_directory, url):
     # Stream the request
     with requests.get(url, stream=True) as response:
         # Ensure the request was successful
@@ -87,28 +83,29 @@ if __name__ == "__main__":
         try:
             target_directory = os.path.expanduser('~\\Querco-Extraction-Tool')
 
-            # Path to a file where we'll store the last seen commit SHA
-            last_seen_sha_file = os.path.join(
-                target_directory, "last_seen_sha.txt")
+            # Path to a file where we'll store the last seen version
+            last_seen_version_file = os.path.join(
+                target_directory, "last_seen_version.txt")
 
-            # get the latest commit sha for the file
-            latest_sha = get_latest_commit_sha()
+            # get the latest version and download url
+            latest_version, download_url = get_latest_version()
 
-            # read the last seen commit sha from the file
-            if os.path.exists(last_seen_sha_file):
-                with open(last_seen_sha_file, "r") as f:
-                    last_seen_sha = f.read().strip()
+            # read the last seen version from the file
+            if os.path.exists(last_seen_version_file):
+                with open(last_seen_version_file, "r") as f:
+                    last_seen_version = f.read().strip()
             else:
-                last_seen_sha = None
+                last_seen_version = None
 
-            # if the commit sha has changed (or if we've never seen one), download the file
-            if latest_sha != last_seen_sha:
-                print("New commit found. Downloading ZIP...")
-                fetch_and_unzip_to_secure_location(target_directory)
+            # if the version has changed (or if we've never seen one), download the file
+            if latest_version != last_seen_version:
+                print("New version found. Downloading ZIP...")
+                fetch_and_unzip_to_secure_location(
+                    target_directory, download_url)
 
-                # write the new commit sha to the file
-                with open(last_seen_sha_file, "w") as f:
-                    f.write(latest_sha)
+                # write the new version to the file
+                with open(last_seen_version_file, "w") as f:
+                    f.write(latest_version)
 
             time.sleep(1800)  # 30 minutes
         except Exception as e:

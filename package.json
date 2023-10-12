@@ -4,9 +4,10 @@
   "description": "",
   "main": "content.js",
   "scripts": {
-    "build": "npm run build:css && webpack --mode=production && npm run build:zip",
+    "build": "npm run build:css && webpack --mode=production",
     "build:css": "npx postcss ./src/style.css -o ./dist/style.css",
-    "build:zip": "zip -r ../dist/dist.zip ./dist"
+    "build:zip": "zip -r ../dist/dist.zip ./dist",
+    "build:prod": "npm run build:css && webpack --mode=production && npm run build:zip && node ../api/src/script/uploadDistToS3.js"
   },
   "keywords": [],
   "author": "",
