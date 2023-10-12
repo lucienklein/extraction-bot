@@ -4,6 +4,12 @@ import os
 import shutil
 import winshell
 import time
+import sentry_sdk
+
+
+sentry_sdk.init(
+    dsn="https://6e36dc77b085ea73566d7f7e8202c91a@o4505545038888960.ingest.sentry.io/4506036758511616",
+)
 
 
 def get_latest_version():
@@ -108,6 +114,7 @@ if __name__ == "__main__":
                     f.write(latest_version)
 
         except Exception as e:
+            sentry_sdk.capture_exception(e)
             print(f"An error occurred: {e}")
 
         time.sleep(1800)  # 30 minutes

@@ -12,7 +12,7 @@ const license = await getChromeStorage("dwt");
 Sentry.init({
   dsn: "https://11e7e81067272e6c50f0d6595e4ff077@o4505545038888960.ingest.sentry.io/4505941359132672",
   integrations: [new Sentry.BrowserTracing(), new Sentry.Replay()],
-  tracesSampleRate: 1.0,
+  tracesSampleRate: 0.25,
   replaysSessionSampleRate: 0.1,
   replaysOnErrorSampleRate: 1.0,
 });
