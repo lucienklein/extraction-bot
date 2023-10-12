@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npm run build:css && webpack --mode=production && npm run build:zip",
     "build:css": "npx postcss ./src/style.css -o ./dist/style.css",
-    "build:zip": "cd dist && zip -r ../../dist/dist.zip ."
+    "build:zip": "zip -r ../dist/dist.zip ./dist"
   },
   "keywords": [],
   "author": "",
