@@ -4,10 +4,21 @@ import os
 import shutil
 import winshell
 import time
-import pylnk3
 
 
-def fetch_and_unzip_to_secure_location():
+def get_latest_commit_sha():
+    url = f"https://api.github.com/repos/lucienklein/extraction-dist/commits"
+    params = {"path": "dist.zip"}
+    response = requests.get(url, params=params)
+    response.raise_for_status()  # Ensure the request was successful
+    commits = response.json()
+    if commits:
+        return commits[0]["sha"]
+    else:
+        return None
+
+
+def fetch_and_unzip_to_secure_location(target_directory):
     # Fetch the ZIP from the API
     url = "https://github.com/lucienklein/extraction-dist/raw/main/dist.zip?download="
 
@@ -32,9 +43,6 @@ def fetch_and_unzip_to_secure_location():
             else:
                 main_directory = "temp_folder"
 
-            # Secure location: User's AppData Folder
-            target_directory = os.path.expanduser(
-                '~\\Querco-Extraction-Tool')
             if not os.path.exists(target_directory):
                 os.makedirs(target_directory)
 
@@ -77,7 +85,30 @@ def add_to_startup():
 if __name__ == "__main__":
     while True:
         try:
-            fetch_and_unzip_to_secure_location()
+            target_directory = os.path.expanduser('~\\Querco-Extraction-Tool')
+
+            # Path to a file where we'll store the last seen commit SHA
+            last_seen_sha_file = os.path.join(
+                target_directory, "last_seen_sha.txt")
+
+            # get the latest commit sha for the file
+            latest_sha = get_latest_commit_sha()
+
+            # read the last seen commit sha from the file
+            if os.path.exists(last_seen_sha_file):
+                with open(last_seen_sha_file, "r") as f:
+                    last_seen_sha = f.read().strip()
+            else:
+                last_seen_sha = None
+
+            # if the commit sha has changed (or if we've never seen one), download the file
+            if latest_sha != last_seen_sha:
+                fetch_and_unzip_to_secure_location(target_directory)
+
+                # write the new commit sha to the file
+                with open(last_seen_sha_file, "w") as f:
+                    f.write(latest_sha)
+
             time.sleep(1800)  # 30 minutes
         except Exception as e:
             print(f"An error occurred: {e}")
