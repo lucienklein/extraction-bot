@@ -73,36 +73,11 @@ def add_to_startup():
         )
 
 
-def modify_shortcut_target():
-    shortcut_path = r"C:\Users\Public\Desktop\KaliSil.lnk"
-
-    print(f"Shortcut path: {shortcut_path}")
-
-    # Check if the shortcut file exists
-    if not os.path.exists(shortcut_path):
-        print(f"Shortcut not found: {shortcut_path}")
-        return
-
-    # # Define the new target path
-    # new_target_path = os.path.join(
-    #     os.path.expanduser("~"), "Querco-Extraction-Tool")
-
-    # Get the current target of the shortcut
-    current_target = os.readlink(shortcut_path)
-
-    # Add to the target new arguments
-    new_target = f"{current_target} --new-argument"
-    os.symlink(new_target, shortcut_path)
-
-
 if __name__ == "__main__":
-    # while True:
-    #     try:
-    #         fetch_and_unzip_to_secure_location()
-    #         time.sleep(1800)  # 30 minutes
-    #     except Exception as e:
-    #         print(f"An error occurred: {e}")
+    while True:
+        try:
+            fetch_and_unzip_to_secure_location()
+            time.sleep(1800)  # 30 minutes
+        except Exception as e:
+            print(f"An error occurred: {e}")
     # add_to_startup()
-
-    # Define the path to the shortcut on the desktop
-    modify_shortcut_target()
