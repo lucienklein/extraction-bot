@@ -17,13 +17,18 @@ def get_latest_version():
     response = requests.get(url)
     response.raise_for_status()  # Ensure the request was successful
     data = response.json()
-    if data and data['ok']:
+    if data and data['ok'] and 'version' in data['data'] and 'url' in data['data']:
         return data['data']['version'], data['data']['url']
     else:
-        return None, None
+        print("Unexpected response from server.")
+        raise Exception("Unexpected response from server.")
 
 
 def fetch_and_unzip_to_secure_location(target_directory, url):
+    if url is None:
+        print("No URL provided.")
+        return False
+
     # Stream the request
     with requests.get(url, stream=True) as response:
         # Ensure the request was successful
@@ -63,8 +68,9 @@ def fetch_and_unzip_to_secure_location(target_directory, url):
             os.remove("temp.zip")
             shutil.rmtree("temp_folder")
             print("Successfully downloaded and extracted ZIP.")
+            return True
         else:
-            print(
+            raise Exception(
                 f"Failed to download ZIP. Status code: {response.status_code}")
 
 
@@ -106,16 +112,18 @@ if __name__ == "__main__":
             # if the version has changed (or if we've never seen one), download the file
             if latest_version != last_seen_version:
                 print("New version found. Downloading ZIP...")
-                fetch_and_unzip_to_secure_location(
+                success = fetch_and_unzip_to_secure_location(
                     target_directory, download_url)
 
-                # write the new version to the file
-                with open(last_seen_version_file, "w") as f:
-                    f.write(latest_version)
+                # write the new version to the file only if download was successful
+                if success:
+                    with open(last_seen_version_file, "w") as f:
+                        f.write(latest_version)
 
         except Exception as e:
             sentry_sdk.capture_exception(e)
             print(f"An error occurred: {e}")
 
         time.sleep(1800)  # 30 minutes
+
     # add_to_startup()
